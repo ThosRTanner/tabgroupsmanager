@@ -1,0 +1,11 @@
+<!ENTITY TabGroupsManager.groupSettingsDialog.title         "グループ情報の設定">
+<!ENTITY TabGroupsManager.groupSettingsDialog.description   "タブグループマネージャー in Firefox">
+<!ENTITY TabGroupsManager.name.label                        "名前：">
+<!ENTITY TabGroupsManager.icon.label                        "アイコン：">
+<!ENTITY TabGroupsManager.buttonAddIconFolder.label         "アイコンフォルダを追加する">
+<!ENTITY TabGroupsManager.buttonAddIconFolder.accessKey     "A">
+<!ENTITY TabGroupsManager.buttonDefaultIconFolder.label     "デフォルトに戻す">
+<!ENTITY TabGroupsManager.buttonDefaultIconFolder.accessKey "D">
+<!ENTITY TabGroupsManager.menuitemExcludeFolder.label       "このフォルダを除外する">
+<!ENTITY TabGroupsManager.dialogExcludeFolder.label         "\n\nこのフォルダをリストから除外します。フォルダ自体は削除しません。\nよろしいですか？">
+<!ENTITY TabGroupsManager.dialogDefault.label               "アイコンリストをデフォルトに戻します。\nよろしいですか？">

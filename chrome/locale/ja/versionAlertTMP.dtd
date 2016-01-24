@@ -1,0 +1,9 @@
+<!ENTITY TabGroupsManager.versionAlertTMP.title         "バージョンの不整合">
+<!ENTITY TabGroupsManager.versionAlertTMP.description   "タブグループマネージャー in Firefox">
+
+<!ENTITY TabGroupsManager.description1.label            "このバージョンの TabGroups Manager は、古いバージョンの Tab Mix Plus をサポートしていません。">
+<!ENTITY TabGroupsManager.description2.label            "Tab Mix Plus を新しいバージョンにアップグレードするか、TabGroups Manager を古いバージョンに戻してください。">
+<!ENTITY TabGroupsManager.newTMP.label                  "新しいバージョンの Tab Mix Plus をダウンロード">
+<!ENTITY TabGroupsManager.newTMP.url                    "https://addons.mozilla.org/ja/firefox/addon/1122">
+<!ENTITY TabGroupsManager.oldTGM.label                  "古いバージョンの TabGroups Manager をダウンロード">
+<!ENTITY TabGroupsManager.oldTGM.url                    "https://addons.mozilla.org/ja/firefox/addons/versions/10254">

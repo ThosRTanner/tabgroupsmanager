@@ -1,0 +1,313 @@
+<!ENTITY TabGroupsManager.prefWindow.title                                      "タブグループマネージャー 設定">
+
+<!ENTITY TabGroupsManager.doesNotControl.label                                  "タブグループマネージャーで制御しない">         <!-- -1 -->
+<!ENTITY TabGroupsManager.doesNotAction.label                                   "何もしない">                                   <!--  0 -->
+<!ENTITY TabGroupsManager.keyboard.enter.label                                  "エンター">
+<!ENTITY TabGroupsManager.keyboard.noneSupKey.label                             "補助キーなし">
+<!ENTITY TabGroupsManager.keyboard.shift.label                                  "Shift">
+<!ENTITY TabGroupsManager.keyboard.ctrl.label                                   "Ctrl">
+<!ENTITY TabGroupsManager.keyboard.alt.label                                    "Alt">
+<!ENTITY TabGroupsManager.mouseClick.lClick.label                               "左クリック">
+<!ENTITY TabGroupsManager.mouseClick.mClick.label                               "中クリック">
+<!ENTITY TabGroupsManager.mouseClick.rClick.label                               "右クリック">
+<!ENTITY TabGroupsManager.mouseClick.dblClick.label                             "ダブルクリック">
+<!ENTITY TabGroupsManager.mouseClick.dblRClick.label                            "右ダブルクリック">
+<!ENTITY TabGroupsManager.mouseClick.dblClick.attention.label                   "    ダブルクリックは直前に左クリックも起こります">
+<!ENTITY TabGroupsManager.nyoro.label                                           "～">
+<!ENTITY TabGroupsManager.attention.label                                       "注意：">
+<!ENTITY TabGroupsManager.milliSecond.label                                     "(ms)">
+<!ENTITY TabGroupsManager.advanced.label                                        "高度">
+<!ENTITY TabGroupsManager.default.label                                         "デフォルト">
+<!ENTITY TabGroupsManager.requireRestart.label                                  "（要再起動）">
+
+<!ENTITY TabGroupsManager.apply.label                                           "適用">
+<!ENTITY TabGroupsManager.settings.label                                        "設定">
+<!ENTITY TabGroupsManager.settingsDefault.label                                 "全設定をデフォルトに戻す">
+<!ENTITY TabGroupsManager.settingsDefault.accesskey                             "D">
+<!ENTITY TabGroupsManager.settingsExport.label                                  "設定のエクスポート">
+<!ENTITY TabGroupsManager.settingsExport.accesskey                              "E">
+<!ENTITY TabGroupsManager.settingsImport.label                                  "設定のインポート">
+<!ENTITY TabGroupsManager.settingsImport.accesskey                              "I">
+<!ENTITY TabGroupsManager.settingsDefaultMessage.label                          "タブグループマネージャーの全設定をデフォルトに戻します。\nよろしいですか？">
+<!ENTITY TabGroupsManager.settingsDefaultAfterMessage.label                     "タブグループマネージャーの全設定をデフォルトに戻しました。\n一部の設定は、Firefoxを再起動するまで有効になりません。">
+<!ENTITY TabGroupsManager.settingsImportSuccessMessage.label                    "タブグループマネージャーの設定をインポートしました。\n一部の設定は、Firefoxを再起動するまで有効になりません。">
+<!ENTITY TabGroupsManager.settingsImportFailMessage.label                       "設定のインポートに失敗しました。\n指定したファイルは、タブグループマネージャーの設定ファイルではありません。">
+<!ENTITY TabGroupsManager.settingsFile.label                                    "タブグループマネージャー：設定ファイル">
+
+<!ENTITY TabGroupsManager.prefpaneDisplay.title                                 "表示">
+<!ENTITY TabGroupsManager.dispGroupbarButton.label                              "グループバー">
+<!ENTITY TabGroupsManager.groupBarSmoothScroll.label                            "スムーズスクロールを有効にする">
+<!ENTITY TabGroupsManager.hideGroupBarByContentClick.label                      "コンテンツエリアをクリックしたら、グループバーを隠す">
+<!ENTITY TabGroupsManager.hideGroupBarByContentClick.accesskey                  "H">
+<!ENTITY TabGroupsManager.hideGroupBarByMouseover.label                         "ツールボックスにマウスオーバーでグループバーを表示する">
+<!ENTITY TabGroupsManager.hideGroupBarByMouseover.accesskey                     "I">
+<!ENTITY TabGroupsManager.hideGroupBarByMouseover.help                          "ツールボックスには、メニューバー、ツールバー、グループバーが含まれます">
+<!ENTITY TabGroupsManager.hideGroupBarByMouseout.label                          "ツールボックスからマウスアウトでグループバーを隠す">
+<!ENTITY TabGroupsManager.hideGroupBarByMouseout.accesskey                      "O">
+<!ENTITY TabGroupsManager.hideGroupBarByMouseout.help                           "ツールボックスには、メニューバー、ツールバー、グループバーが含まれます">
+<!ENTITY TabGroupsManager.hideGroupBarByMouseoutTimer.label                     "    遅れ時間">
+<!ENTITY TabGroupsManager.hideGroupBarDialogBox.title                           "ウィンドウにタブ、グループが１つしかない時にグループバーを隠す設定">
+<!ENTITY TabGroupsManager.hideGroupBarWhenOneTab.label                          "タブが１つだけの場合にグループバーを隠す">
+<!ENTITY TabGroupsManager.hideGroupBarWhenOneGroup.label                        "グループが１つだけの場合にグループバーを隠す">
+<!ENTITY TabGroupsManager.hideGroupBarWhenOneTabWithMultipleFirefox.label       "他にグループバーを持つウィンドウがあり、タブが１つだけの場合にグループバーを隠す">
+<!ENTITY TabGroupsManager.hideGroupBarWhenOneGroupWithMultipleFirefox.label     "他にグループバーを持つウィンドウがあり、グループが１つだけの場合にグループバーを隠す">
+<!ENTITY TabGroupsManager.hideTabBarWhenOneTabWithMultipleFirefox.label         "他にグループバーを持つウィンドウがあり、タブが１つだけの場合にタブバーを隠す">
+
+<!ENTITY TabGroupsManager.groupBarPosition.label                                "グループバーの位置">
+<!ENTITY TabGroupsManager.groupBarInToolbox.label                               "ツールボックスの中">
+<!ENTITY TabGroupsManager.groupBarUnderToolbox.label                            "ツールボックスの下">
+<!ENTITY TabGroupsManager.groupBarUnderContents.label                           "コンテンツエリアの下">
+<!ENTITY TabGroupsManager.groupBarPositionAttention.label                       "（グループバーをカスタマイズする時には、「ツールボックスの中」を指定する必要があります。）">
+<!ENTITY TabGroupsManager.groupBarOrdinal.label                                 "グループバーの順番">
+<!ENTITY TabGroupsManager.tabBarOrdinal.label                                   "タブバーの順番">
+<!ENTITY TabGroupsManager.groupBarOrdinalDescription.label                      "グループバーの順番を0にすれば、Firefoxの「タブを上部に表示」に対応します">
+<!ENTITY TabGroupsManager.groupBarSmoothScroll.accesskey                        "S">
+<!ENTITY TabGroupsManager.dispGroupTab.label                                    "グループ">
+<!ENTITY TabGroupsManager.checkboxGroupTabIcon.label                            "アイコンを表示する">
+<!ENTITY TabGroupsManager.checkboxGroupTabIcon.accesskey                        "I">
+<!ENTITY TabGroupsManager.checkboxGroupTabIconReading.label                     "読み込み中アイコンを表示する">
+<!ENTITY TabGroupsManager.checkboxGroupTabIconReading.accesskey                 "R">
+<!ENTITY TabGroupsManager.checkboxGroupTabCount.label                           "含まれるタブの数を表示する">
+<!ENTITY TabGroupsManager.checkboxGroupTabCount.accesskey                       "N">
+<!ENTITY TabGroupsManager.checkboxGroupTabCountReading.label                    "読み込み中のタブの数を表示する">
+<!ENTITY TabGroupsManager.checkboxGroupTabCountReading.accesskey                "C">
+<!ENTITY TabGroupsManager.groupTabMinWidth.label                                "グループタブの幅">
+<!ENTITY TabGroupsManager.reduceSuspendGroup.label                              "サスペンドしたグループの幅を狭める">
+<!ENTITY TabGroupsManager.reduceSuspendGroup.accesskey                          "W">
+<!ENTITY TabGroupsManager.groupTabCrop.label                                    "グループラベルのクリッピング方法">
+<!ENTITY TabGroupsManager.groupTabCropNone.label                                "クリッピングなし">
+<!ENTITY TabGroupsManager.groupTabCropStart.label                               "先頭を省略">
+<!ENTITY TabGroupsManager.groupTabCropEnd.label                                 "末尾を省略">
+<!ENTITY TabGroupsManager.groupTabCropCenter.label                              "中央を省略">
+<!ENTITY TabGroupsManager.styleOfGroup.label                                    "グループのスタイル">
+<!ENTITY TabGroupsManager.normaldGroupStyle.label                               "通常">
+<!ENTITY TabGroupsManager.selectedGroupStyle.label                              "選択中">
+<!ENTITY TabGroupsManager.unreadGroupStyle.label                                "未読">
+<!ENTITY TabGroupsManager.suspendedGroupStyle.label                             "サスペンド">
+<!ENTITY TabGroupsManager.groupStyleColor.label                                 "文字色">
+<!ENTITY TabGroupsManager.groupStyleBackgroundColor.label                       "背景色">
+<!ENTITY TabGroupsManager.groupStyleBold.label                                  "太字">
+<!ENTITY TabGroupsManager.groupStyleItalic.label                                "斜体">
+<!ENTITY TabGroupsManager.editStyle.label                                       "スタイルシートを編集">
+
+<!ENTITY TabGroupsManager.prefpaneMouseControl.title                            "マウス操作">
+<!ENTITY TabGroupsManager.mouseClick.group.label                                "グループ">
+<!ENTITY TabGroupsManager.mouseClick.groupBar.label                             "グループバー">
+<!ENTITY TabGroupsManager.mouseClick.button.label                               " ボタン">
+<!ENTITY TabGroupsManager.mouseClick.menu-button.label                          "(メニューボタン)">
+<!ENTITY TabGroupsManager.mouseClick.action.sleepThisGroup.label                "このグループを休止状態にする">                         <!--  1 -->
+<!ENTITY TabGroupsManager.mouseClick.action.closeThisGroup.label                "このグループを閉じる">                                 <!--  2 -->
+<!ENTITY TabGroupsManager.mouseClick.action.suspendThisGroup.label              "このグループをサスペンドする">                         <!--  5 -->
+<!ENTITY TabGroupsManager.mouseClick.action.autoRenameThisGroup.label           "このグループを自動リネームする">                       <!--  4 -->
+<!ENTITY TabGroupsManager.mouseClick.action.setGroupData.label                  "このグループの情報を変更する">                         <!--  3 -->
+
+<!ENTITY TabGroupsManager.mouseClick.action.openGroup.label                     "新しいグループを開く">                                 <!--  1 -->
+<!ENTITY TabGroupsManager.mouseClick.action.openGroupF.label                    "新しいアクティブなグループを開く">                     <!--  6 -->
+<!ENTITY TabGroupsManager.mouseClick.action.openGroupRename.label               "名前を付けて新しいグループを開く">                     <!--  7 -->
+<!ENTITY TabGroupsManager.mouseClick.action.openGroupRenameF.label              "名前を付けて新しいアクティブなグループを開く">         <!--  8 -->
+<!ENTITY TabGroupsManager.mouseClick.action.openGroupHome.label                 "新しいグループでホームページを開く">                   <!--  9 -->
+<!ENTITY TabGroupsManager.mouseClick.action.openGroupHomeF.label                "新しいアクティブなグループでホームページを開く">       <!-- 10 -->
+<!ENTITY TabGroupsManager.mouseClick.action.sleepActiveGroup.label              "選択グループを休止状態にする">                         <!--  2 -->
+<!ENTITY TabGroupsManager.mouseClick.action.closeActiveGroup.label              "選択グループを閉じる">                                 <!--  3 -->
+<!ENTITY TabGroupsManager.mouseClick.action.suspendActiveGroup.label            "選択グループをサスペンドする">                         <!-- 11 -->
+<!ENTITY TabGroupsManager.mouseClick.action.restoreLastSleepGroup.label         "最後に休止したグループを復元">                         <!--  4 -->
+<!ENTITY TabGroupsManager.mouseClick.action.restoreLastClosedGroup.label        "最後に閉じたグループを復元">                           <!--  5 -->
+<!ENTITY TabGroupsManager.mouseClick.action.selectGroup.label                   "このグループを選択する">
+<!ENTITY TabGroupsManager.mouseClick.action.groupMenu.label                     "グループメニュー">
+<!ENTITY TabGroupsManager.mouseClick.action.groupBarMenu.label                  "グループバーメニュー">
+<!ENTITY TabGroupsManager.mouseClick.action.sleepingGroupList.label             "休止状態のグループのリスト">
+<!ENTITY TabGroupsManager.mouseClick.action.closedGroupList.label               "閉じたグループのリスト">
+<!ENTITY TabGroupsManager.mouseClick.action.displayNonDisplay.label             "グループバーの表示・非表示切り替え">
+<!ENTITY TabGroupsManager.mouseClick.action.openMenu.label                      "開くメニュー">
+<!ENTITY TabGroupsManager.mouseClick.bookmarkFolder.label                       "ブックマークフォルダ">
+<!ENTITY TabGroupsManager.mouseClick.action.allOpenNewGroup.label               "新しいグループですべて開く">
+<!ENTITY TabGroupsManager.mouseClick.action.allOpenNewGroupStay.label           "新しいグループですべて開く（メニューを閉じない）">
+<!ENTITY TabGroupsManager.mouseClick.action.allOpenNewSelectedGroup.label       "新しい選択されたグループですべて開く">
+<!ENTITY TabGroupsManager.mouseClick.action.allOpenNewSelectedGroupStay.label   "新しい選択されたグループですべて開く（メニューを閉じない）">
+<!ENTITY TabGroupsManager.mouseClick.action.contextMenu.label                   "コンテキストメニュー">
+
+<!ENTITY TabGroupsManager.prefpaneKeyBind.title                                 "キー操作">
+<!ENTITY TabGroupsManager.keyBindPleaseSelectCommand.label                      "割り当てるコマンドを選択してください">
+<!ENTITY TabGroupsManager.keyBindPushKeyHere.label                              "ここでキーを押す">
+<!ENTITY TabGroupsManager.keyBindAdd.label                                      "追加">
+<!ENTITY TabGroupsManager.keyBindRecommend.label                                "推奨設定">
+<!ENTITY TabGroupsManager.keyBindRecommend.help                                 "Firefox のショートカットを上書きが不要な設定">
+<!ENTITY TabGroupsManager.keyBindRecommend2.label                               "推奨設定2">
+<!ENTITY TabGroupsManager.keyBindRecommend2.help                                "Firefox のショートカットを上書きが必要な設定">
+<!ENTITY TabGroupsManager.keyBindAllDelete.label                                "すべて削除">
+<!ENTITY TabGroupsManager.keyBindDelete.label                                   "削除">
+<!ENTITY TabGroupsManager.keyBindCommand.label                                  "コマンド">
+<!ENTITY TabGroupsManager.keyBindParam.label                                    "パラメーター">
+<!ENTITY TabGroupsManager.keyBindShortcutKey.label                              "ショートカットキー">
+<!ENTITY TabGroupsManager.keyBindOverride.label                                 "Firefox や他のアドオンのショートカットキーを上書きする">
+<!ENTITY TabGroupsManager.keyBindOverride.help                                  "Firefox や他のアドオンのショートカットキーと重複する場合、このアドオンのショートカットキーを優先します。">
+<!ENTITY TabGroupsManager.keyBindOverride.accesskey                             "O">
+<!ENTITY TabGroupsManager.keyBindOverrideAttention.label                        "    上書き判定時には、accel→control, access→alt として扱われます。">
+<!ENTITY TabGroupsManager.keyBindModifiersDescription.label                     "c=control  s=shift  a=alt">
+<!ENTITY TabGroupsManager.ctrlTab.label                                         "ctrl + tab の動作">
+<!ENTITY TabGroupsManager.ctrlTab0.label                                        "グループ内の次のタブ　（ + shift：グループ内の前のタブ）">
+<!ENTITY TabGroupsManager.ctrlTab1.label                                        "グループ内の次のタブ　（ + shift：次のグループ）">
+
+<!ENTITY TabGroupsManager.prefpaneNewGroup.title                                "新グループ">
+<!ENTITY TabGroupsManager.openNewGroupOperation.label                           "新しいグループで開く操作を使う">
+<!ENTITY TabGroupsManager.openNewGroupOperation.help                            "チェックを外すとオーバーライドが解除されます">
+<!ENTITY TabGroupsManager.openNewGroupOperation.accesskey                       "G">
+<!ENTITY TabGroupsManager.linkEtc.label                                         "リンク、ブックマーク、履歴、ロケーションバーなどから開いたタブ">
+<!ENTITY TabGroupsManager.openNewGroupByShift.label                             "Shift を押しながら「新しいタブを開く」と、新しいグループの中に開く">
+<!ENTITY TabGroupsManager.openNewGroupByShift.accesskey                         "S">
+<!ENTITY TabGroupsManager.openNewGroupByShift.help                              "リンクの場合は Shift＋左クリックではありません。Shift＋中クリック、Shift＋Ctrl＋左クリックで新しいタブを開いた場合です。">
+<!ENTITY TabGroupsManager.searchFromSearchBar.label                             "検索バー">
+<!ENTITY TabGroupsManager.useSearchPlugin.label                                 "TabGroups Manager 用の検索プラグインを使う">
+<!ENTITY TabGroupsManager.useSearchPlugin.help                                  "Easy DragToGo, セカンドサーチ, Drag de Go からTGM用プラグインで検索した場合も以下の設定に従います。">
+<!ENTITY TabGroupsManager.useSearchPlugin.accesskey                             "T">
+<!ENTITY TabGroupsManager.defaultSearchPlugin.label                             "デフォルト">
+<!ENTITY TabGroupsManager.defaultSearchPlugin.help                              "TabGroups Manager用検索プラグインをデフォルトに戻す">
+<!ENTITY TabGroupsManager.defaultSearchPlugin.accesskey                         "D">
+<!ENTITY TabGroupsManager.useSearchPluginaction.label                           "TabGroups Manager 用の検索プラグインの動作">
+<!ENTITY TabGroupsManager.searchInCurrentTab                                    "現在のタブで検索する">                                 <!-- 1 -->
+<!ENTITY TabGroupsManager.searchInNewTabActive                                  "新しいタブで検索する（アクティブ）">                   <!-- 2 -->
+<!ENTITY TabGroupsManager.searchInNewTabNotActive                               "新しいタブで検索する（バックグラウンド）">             <!-- 3 -->
+<!ENTITY TabGroupsManager.searchInNewGroupActive                                "新しいグループで検索する（アクティブ）">               <!-- 4 -->
+<!ENTITY TabGroupsManager.searchInNewGroupNotActive                             "新しいグループで検索する（バックグラウンド）">         <!-- 5 -->
+
+<!ENTITY TabGroupsManager.prefpaneMenu.title                                    "メニュー">
+<!ENTITY TabGroupsManager.groupBarMenu.label                                    "グループバーメニュー">
+<!ENTITY TabGroupsManager.tabContextMenu.label                                  "タブメニュー">
+<!ENTITY TabGroupsManager.menuItemOpen.label                                    "グループを開く">
+<!ENTITY TabGroupsManager.menuItemOpen.accesskey                                "O">
+<!ENTITY TabGroupsManager.menuItemOpenActive.label                              "アクティブなグループを開く">
+<!ENTITY TabGroupsManager.menuItemOpenActive.accesskey                          "A">
+<!ENTITY TabGroupsManager.menuItemOpenRename.label                              "名前を付けてグループを開く">
+<!ENTITY TabGroupsManager.menuItemOpenRename.accesskey                          "N">
+<!ENTITY TabGroupsManager.menuItemOpenActiveRename.label                        "名前を付けてアクティブなグループを開く">
+<!ENTITY TabGroupsManager.menuItemOpenActiveRename.accesskey                    "M">
+<!ENTITY TabGroupsManager.menuItemOpenWithHome.label                            "新しいグループでホームページを開く">
+<!ENTITY TabGroupsManager.menuItemOpenWithHome.accesskey                        "H">
+<!ENTITY TabGroupsManager.menuItemOpenActiveWithHome.label                      "新しいアクティブなグループでホームページを開く">
+<!ENTITY TabGroupsManager.menuItemOpenActiveWithHome.accesskey                  "I">
+<!ENTITY TabGroupsManager.menuItemOpenByRenameHistory.label                     "名前を選択してグループを開く">
+<!ENTITY TabGroupsManager.menuItemOpenByRenameHistory.accesskey                 "R">
+<!ENTITY TabGroupsManager.menuItemSleepActiveGroup.label                        "アクティブなグループを休止状態にする">
+<!ENTITY TabGroupsManager.menuItemSleepActiveGroup.accesskey                    "S">
+<!ENTITY TabGroupsManager.menuItemCloseActiveGroup.label                        "アクティブなグループを閉じる">
+<!ENTITY TabGroupsManager.menuItemCloseActiveGroup.accesskey                    "C">
+<!ENTITY TabGroupsManager.menuItemSleepingGroups.label                          "休止中のグループのリスト">
+<!ENTITY TabGroupsManager.menuItemSleepingGroups.accesskey                      "J">
+<!ENTITY TabGroupsManager.menuItemClosedGroups.label                            "最近閉じたグループのリスト">
+<!ENTITY TabGroupsManager.menuItemClosedGroups.accesskey                        "D">
+<!ENTITY TabGroupsManager.menuItemBookmarkAllGroups.label                       "全グループをブックマーク">
+<!ENTITY TabGroupsManager.menuItemBookmarkAllGroups.accesskey                   "B">
+<!ENTITY TabGroupsManager.menuItemBackupSession.label                           "セッション">
+<!ENTITY TabGroupsManager.menuItemBackupSession.accesskey                       "E">
+
+<!ENTITY TabGroupsManager.tabMenuSendToOtherGroup.label                         "他のグループに送る">
+<!ENTITY TabGroupsManager.tabMenuSendToOtherGroup.accesskey                     "T">
+<!ENTITY TabGroupsManager.tabMenuCloseOtherTabInGroup.label                     "他のタブをすべて閉じる（同グループ）">
+<!ENTITY TabGroupsManager.tabMenuCloseOtherTabInGroup.accesskey                 "O">
+<!ENTITY TabGroupsManager.tabMenuCloseLeftTabInGroup.label                      "←のタブをすべて閉じる（同グループ）">
+<!ENTITY TabGroupsManager.tabMenuCloseLeftTabInGroup.accesskey                  "L">
+<!ENTITY TabGroupsManager.tabMenuSelectLeftTabInGroup.label                     "←のタブをすべて選択する（同グループ、マルチプルタブハンドラが必要）">
+<!ENTITY TabGroupsManager.tabMenuSelectLeftTabInGroup.accesskey                 "M">
+<!ENTITY TabGroupsManager.tabMenuCloseRightTabInGroup.label                     "→のタブをすべて閉じる（同グループ）">
+<!ENTITY TabGroupsManager.tabMenuCloseRightTabInGroup.accesskey                 "R">
+<!ENTITY TabGroupsManager.tabMenuSelectRightTabInGroup.label                    "→のタブをすべて選択する（同グループ、マルチプルタブハンドラが必要）">
+<!ENTITY TabGroupsManager.tabMenuSelectRightTabInGroup.accesskey                "S">
+
+<!ENTITY TabGroupsManager.prefpaneSession.title                                 "セッション">
+<!ENTITY TabGroupsManager.sessionStoreStatus.label                              "セッションストアの状態">
+<!ENTITY TabGroupsManager.disableSessionStore1.label                            "セッションストアが無効になっています。">
+<!ENTITY TabGroupsManager.disableSessionStore2.label                            "再起動時にグループを復元するためにはセッションストアが必要です。">
+<!ENTITY TabGroupsManager.disableSessionStore3.label                            "Firefox の設定、他のアドオンの設定を見直してみてください。">
+<!ENTITY TabGroupsManager.disableSessionStore4.label                            "セッションストアを有効にするために必要な設定">
+<!ENTITY TabGroupsManager.browserSessionstoreEnabled.label                      "browser.sessionstore.enabled = true">
+<!ENTITY TabGroupsManager.disableSessionStore5.label                            "太字の部分が違う値に設定されています。">
+<!ENTITY TabGroupsManager.disableSessionStore6.label                            "できるだけ、「about:config」を直接操作するのではなく、Firefox や他のアドオンの設定を変更して下さい。">
+
+<!ENTITY TabGroupsManager.saveDataBackup.label                                  "バックアップを残す数(0=バックアップしない)">
+<!ENTITY TabGroupsManager.sessionBackupByWindowCloseCount.label                 "Firefox のウィンドウを閉じた時のセッション">
+<!ENTITY TabGroupsManager.sessionBackupByTimerCount.label                       "タイマーで保存したセッションを残す数">
+<!ENTITY TabGroupsManager.sessionBackupByTimerInterval1.label                   "保存する間隔">
+<!ENTITY TabGroupsManager.sessionBackupByTimerInterval2.label                   "（分）">
+
+<!ENTITY TabGroupsManager.sessionBackupDescription1.label                       "・手動でバックアップしたデータは、手動で削除するまでいくつでも保存できるようになりました。">
+<!ENTITY TabGroupsManager.sessionBackupDescription2.label                       "・グループを休止したときのバックアップは、保存データのバックアップに変更されました。保存データを更新するたびに、自動的にバックアップされます。">
+
+<!ENTITY TabGroupsManager.sessionMenu.label                                     "セッションメニュー">
+<!ENTITY TabGroupsManager.sessionMenuDisplay.label                              "グループバーメニューにセッションをバックアップ・復元するためのメニューを表示する">
+<!ENTITY TabGroupsManager.sessionMenuDisplay.accesskey                          "M">
+
+<!ENTITY TabGroupsManager.saveData.label                                        "保存データ">
+<!ENTITY TabGroupsManager.saveDataDescription1.label                            "・複数の Firefox のウィンドウを開いても、全てのウィンドウで休止グループが共有されるようになりました。そのため、複数ウィンドウの中の１つを閉じた場合でも、休止グループが失われることが無くなりました。">
+<!ENTITY TabGroupsManager.saveDataDescription2.label                            "・休止グループのデータは、セッションストアではなくファイルに記録されます。ファイルに記録するデータはバックアップではなくオリジナルデータなので、TGM をバージョンアップしても消えないプロファイルフォルダ内に記録されます。TGM をアンインストールする時には、手動でデータを削除する必要があります。">
+<!ENTITY TabGroupsManager.saveDataDescription3.label                            "・他のアドオンでセッションを復元した場合は、休止グループは変化しません。そのため、休止グループを失う危険無しで他のセッション関連のアドオンを利用できます。">
+<!ENTITY TabGroupsManager.saveDataDescription4.label                            "・TGM のセッションバックアップ機能を使えば、休止グループとセッションとを同期して復元できます。">
+
+<!ENTITY TabGroupsManager.prefpaneCompatibility.title                           "互換性">
+<!ENTITY TabGroupsManager.sessionManager.label                                  "セッションマネージャ">
+<!ENTITY TabGroupsManager.overrideSessionManagerRestoreSession.label            "セッション復元をオーバーライドする（要再起動）">
+<!ENTITY TabGroupsManager.overrideSessionManagerRestoreSession.accesskey        "S">
+<!ENTITY TabGroupsManager.overrideSessionManagerRestoreSession.help             "    セッション復元操作をした時に対応できるようになります。">
+<!ENTITY TabGroupsManager.treeStyleTab.label                                    "ツリー型タブ">
+<!ENTITY TabGroupsManager.overrideTreeStyleTab.label                            "onTabMove をオーバーライドする（要再起動）">
+<!ENTITY TabGroupsManager.overrideTreeStyleTab.accesskey                        "S">
+<!ENTITY TabGroupsManager.overrideTreeStyleTab.help                             "    グループを切り替えた時に、親タブが前のツリーの子になる現象を回避できます。">
+<!ENTITY TabGroupsManager.overrideAttention1.label                              "チェックを入れるとそれぞれのメソッドをメモリ上で書き換えます。">
+<!ENTITY TabGroupsManager.overrideAttention2.label                              "そのため、何らかの問題が発生するかもしれません。">
+<!ENTITY TabGroupsManager.firefox35PlusMacOsx.label                             "Firefox 3.5 + Mac OS X で起こる問題の修正">
+<!ENTITY TabGroupsManager.adjustTopPositionOfGroup.label                        "グループタブの縦位置を修正する（要再起動）">
+<!ENTITY TabGroupsManager.adjustTopPositionOfGroupAttention.label               "これは暫定的な設定です。問題が起こる場合のみ使用してください。">
+
+<!ENTITY TabGroupsManager.prefpaneOther.title                                   "その他">
+<!ENTITY TabGroupsManager.hibernatedClosedGroup.label                           "グループの休止・閉じる">
+<!ENTITY TabGroupsManager.groupRestoreOldPosition.label                         "休止中のグループ・閉じたグループを復元する時に、元の位置に戻す">
+<!ENTITY TabGroupsManager.groupRestoreOldPosition.accesskey                     "R">
+<!ENTITY TabGroupsManager.maxClosedGroupStoreCount.label                        "閉じたグループを保存する数：">
+<!ENTITY TabGroupsManager.autoRename.label                                      "自動リネーム">
+<!ENTITY TabGroupsManager.disableAutoRenameTimePre.label                        "最後に自動リネームをしてから">
+<!ENTITY TabGroupsManager.disableAutoRenameTimeAfter.label                      "に自動リネームを無効にする。">
+<!ENTITY TabGroupsManager.disableAutoRenameTime0.label                          "無効にしない">
+<!ENTITY TabGroupsManager.disableAutoRenameTime0_5.label                        "30秒後">
+<!ENTITY TabGroupsManager.disableAutoRenameTime1.label                          "1分後">
+<!ENTITY TabGroupsManager.disableAutoRenameTime3.label                          "3分後">
+<!ENTITY TabGroupsManager.disableAutoRenameTime5.label                          "5分後">
+<!ENTITY TabGroupsManager.disableAutoRenameTime10.label                         "10分後">
+<!ENTITY TabGroupsManager.disableAutoRenameTime30.label                         "30分後">
+<!ENTITY TabGroupsManager.disableAutoRenameTime60.label                         "1時間後">
+<!ENTITY TabGroupsManager.focusTabWhenActiveTabClose.label                      "タブを閉じたときの動作">
+<!ENTITY TabGroupsManager.focusTabWhenActiveTabClose2.label                     "選択中のタブを閉じた時の、フォーカスの移動先">
+<!ENTITY TabGroupsManager.focusTabWhenActiveTabClose.right.label                "同一グループ内で右のタブ">             <!-- 0 -->
+<!ENTITY TabGroupsManager.focusTabWhenActiveTabClose.left.label                 "同一グループ内で左のタブ">             <!-- 1 -->
+<!ENTITY TabGroupsManager.focusTabWhenActiveTabClose.first.label                "同一グループ内で最初のタブ">           <!-- 2 -->
+<!ENTITY TabGroupsManager.focusTabWhenActiveTabClose.last.label                 "同一グループ内で最後のタブ">           <!-- 3 -->
+<!ENTITY TabGroupsManager.focusTabWhenActiveTabClose.latest.label               "同一グループ内で最後に選択したタブ">   <!-- 4 -->
+<!ENTITY TabGroupsManager.groupNotCloseWhenCloseAllTabsInGroup.label            "グループ内のすべてのタブを閉じた時に、グループを閉じない">
+<!ENTITY TabGroupsManager.groupNotCloseWhenCloseAllTabsInGroup.accesskey        "C">
+<!ENTITY TabGroupsManager.multipleFirefox.label                                 "複数の Firefox のウィンドウを開いている場合">
+<!ENTITY TabGroupsManager.windowCloseWhenLastGroupClose.label                   "最後のグループを閉じる・休止した時にそのウィンドウを閉じる">
+<!ENTITY TabGroupsManager.windowCloseWhenLastGroupClose.accesskey               "W">
+<!ENTITY TabGroupsManager.windowClose.label                                     "複数のFirefoxのウィンドウの１つを閉じた場合の動作（タブが１つしかない場合を除く）">
+<!ENTITY TabGroupsManager.moveGroupBeforeWindowClose.label                      "閉じるウィンドウのグループを他のウィンドウに移動してからウィンドウを閉じる">
+<!ENTITY TabGroupsManager.notMoveGroupBeforeWindowClose.label                   "何もしないでウィンドウを閉じる(そのウィンドウのグループは消滅する)">
+<!ENTITY TabGroupsManager.confirmAlwaysBeforeWindowClose.label                  "毎回確認する">
+<!ENTITY TabGroupsManager.firefoxClose.label                                    "Firefox を終了する時">
+<!ENTITY TabGroupsManager.suspendWhenFirefoxClose.label                         "全ての非選択グループをサスペンドする">
+<!ENTITY TabGroupsManager.suspendWhenFirefoxClose.accesskey                     "S">
+
+<!ENTITY TabGroupsManager.testing.title                                         "テスト中">
+<!ENTITY TabGroupsManager.tabTree.label                                         "タブの親子関係（全て要再起動）">
+<!ENTITY TabGroupsManager.tabTreeAnalysis.label                                 "どこからタブを開いたかを分析する（オーバーライドを使用）">
+<!ENTITY TabGroupsManager.tabTreeOpenTabByExternalApplication.label             "外部アプリケーションから開いたタブを特定のグループにまとめる">
+<!ENTITY TabGroupsManager.tabTreeOpenTabByJavaScript.label                      "Web サイトの JavaScript で開いたタブは、必ず親と同じグループに開く">
+<!ENTITY TabGroupsManager.tabTreeRecordParentAndChild.label                     "タブの親子関係を記録する">
+<!ENTITY TabGroupsManager.tabTreeDisplayParentAndChild.label                    "タブの親子関係をタブの背景色で表示する">
+<!ENTITY TabGroupsManager.tabTreeFocusTabByParentAndChild.label                 "選択中のタブを閉じた時のフォーカスの移動先の決定にタブの親子関係を使う">
+<!ENTITY TabGroupsManager.tabTreeAnalysis.accesskey                             "A">
+<!ENTITY TabGroupsManager.tabTreeOpenTabByExternalApplication.accesskey         "E">
+<!ENTITY TabGroupsManager.tabTreeOpenTabByJavaScript.accesskey                  "J">
+<!ENTITY TabGroupsManager.tabTreeRecordParentAndChild.accesskey                 "P">
+<!ENTITY TabGroupsManager.tabTreeDisplayParentAndChild.accesskey                "B">
+<!ENTITY TabGroupsManager.tabTreeFocusTabByParentAndChild.accesskey             "F">
+<!ENTITY TabGroupsManager.testingDescription1.label                             "この機能は、まだテスト中です。">
+<!ENTITY TabGroupsManager.testingDescription2.label                             "私は、上の３つの設定の機能は正式に採用する予定です。下の３つの設定の機能は、上の３つの設定の機能の副産物です。この機能よりも「Tree Style Tab」の方が高機能なので、私は下の３つの設定を正式に採用するかまだ決めていません。">
+<!ENTITY TabGroupsManager.testingDescription3.label                             "正式採用を決めた場合は、ツリー構造の保存や、ツリー構造を使って複数タブを他のグループに移動する機能などを実装する予定です。">
+<!ENTITY TabGroupsManager.testingDescription4.label                             "また、この機能は TGM とは独立しているので、違うアドオンとして公開するかもしれません。">

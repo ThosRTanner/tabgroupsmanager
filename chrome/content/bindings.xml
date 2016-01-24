@@ -1,0 +1,287 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bindings xmlns="http://www.mozilla.org/xbl" xmlns:html="http://www.w3.org/1999/xhtml" xmlns:xul ="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul" xmlns:xbl ="http://www.mozilla.org/xbl">
+
+<!-- GroupBar -->
+	<binding id="tabgroupsmanager-groupbar-binding" display="xul:hbox" extends="chrome://global/content/bindings/toolbar.xml#toolbar">
+		<content chromedir="ltr">
+			<xbl:children/>
+		</content>
+	</binding>
+
+<!-- GroupTabs -->
+	<binding id="tabgroupsmanager-grouptabs-binding" display="xul:hbox" extends="chrome://global/content/bindings/tabbox.xml#tabs">
+		<content chromedir="ltr">
+			<xbl:children/>
+			<xul:label value="" style="margin:0px;width:0px;"/>	<!-- これがないと、グループの順番が狂ってしまう -->
+		</content>
+
+		<implementation>
+			<constructor><![CDATA[
+				this.contextBak = null;
+			]]></constructor>
+
+			<method name="openNotContextMenu">
+				<parameter name="event"/>
+				<body><![CDATA[
+					if ( this.hasAttribute( "context" ) )
+					{
+						this.contextBak = this.getAttribute( "context" );
+						//this.removeAttribute( "context" ); //fix to prevent 2 popup menu overlapping when right clicking a tab, fix by micha. 
+					}
+					if ( this.contextBak )
+					{
+//						document.popupNode = event.target;	// popupNode を使わないで、TGMの内部変数を使った方が良い
+						TabGroupsManager.groupMenu.popupGroupTab = event.target;
+						TabGroupsManager.groupMenu.popupGroup = event.target.group;
+						document.getElementById( this.contextBak ).openPopup( event.target, "after_start", 0, 0, false, false );
+						event.stopPropagation();
+					}
+				]]></body>
+			</method>
+		</implementation>
+
+		<handlers>
+			<handler event="click" button="2" action="this.openNotContextMenu( event );"/>
+		</handlers>
+	</binding>
+
+<!-- GroupTab -->
+	<binding id="tabgroupsmanager-grouptab-binding" display="xul:hbox" extends="chrome://global/content/bindings/tabbox.xml#tab">
+		<resources>
+			<stylesheet src="chrome://tabgroupsmanager/skin/bindings.css" />
+		</resources>
+
+		<content chromedir="ltr">
+			<xul:hbox class="tab-middle box-inherit" xbl:inherits="align,dir,pack,orient,selected" flex="1" align="center">
+				<xul:deck class="tabgroupsmanager-grouptab-image-deck">
+					<xul:image class="tabgroupsmanager-grouptab-image-busy" xbl:inherits="busy" validate="never"/>
+					<xul:image class="tabgroupsmanager-grouptab-image" xbl:inherits="validate,src=image"/>
+				</xul:deck>
+				<xul:label class="tab-text" xbl:inherits="value=label,accesskey,crop,disabled,style,hidden=reduce" flex="1"/>
+				<xul:label class="tab-text" xbl:inherits="value=tabCount,disabled,style,hidden=reduce"/>
+			</xul:hbox>
+		</content>
+
+		<implementation>
+			<field name="_hideIcon">false</field>
+			<field name="_hideLabel">false</field>
+			<field name="_hideTabCount">false</field>
+			<field name="_tabCount">-1</field>
+			<field name="_minWidthWithReduce">-1</field>
+
+			<property name="hideIcon">
+				<getter><![CDATA[
+					return this._hideIcon;
+				]]></getter>
+
+				<setter><![CDATA[
+					if ( this._hideIcon != val )
+					{
+						this._hideIcon = val;
+						document.getAnonymousNodes(this)[0].childNodes[0].childNodes[1].setAttribute( "hidden", val );
+					}
+					return this._hideIcon;
+				]]></setter>
+			</property>
+
+			<property name="hideLabel">
+				<getter><![CDATA[
+					return this._hideLabel;
+				]]></getter>
+
+				<setter><![CDATA[
+					if ( this._hideLabel != val )
+					{
+						this._hideLabel = val;
+						document.getAnonymousNodes(this)[0].childNodes[1].setAttribute( "hidden", val || this.suspended );
+					}
+					return this._hideLabel;
+				]]></setter>
+			</property>
+
+			<property name="hideTabCount">
+				<getter><![CDATA[
+					return this._hideTabCount;
+				]]></getter>
+
+				<setter><![CDATA[
+					if ( this._hideTabCount != val )
+					{
+						this._hideTabCount = val;
+						document.getAnonymousNodes(this)[0].childNodes[2].setAttribute( "hidden", val || this.suspended );
+					}
+					return this._hideTabCount;
+				]]></setter>
+			</property>
+
+			<property name="tabCount">
+				<getter><![CDATA[
+					return this._tabCount;
+				]]></getter>
+
+				<setter><![CDATA[
+					if ( this._tabCount != val )
+					{
+						this._tabCount = val;
+						this.setAttribute( "tabCount", "(" + val + ")" );
+					}
+					return this._tabCount;
+				]]></setter>
+			</property>
+
+			<property name="minWidthWithReduce">
+				<getter><![CDATA[
+					return this._minWidthWithReduce;
+				]]></getter>
+
+				<setter><![CDATA[
+					if ( this._minWidthWithReduce != val )
+					{
+						this._minWidthWithReduce = val;
+						this.minWidth = this._reduce ? 30 : val;
+					}
+					return this._minWidthWithReduce;
+				]]></setter>
+			</property>
+
+			<property name="reduce">
+				<getter><![CDATA[
+					return this.hasAttribute( "reduce" );
+				]]></getter>
+
+				<setter><![CDATA[
+					if ( this.reduce != val )
+					{
+						if ( val )
+						{
+							this.setAttribute( "reduce", "true" );
+							this.minWidth = 30;
+							this.removeAttribute( "busy" );
+						}
+						else
+						{
+							this.removeAttribute( "reduce" );
+							this.minWidth = this._minWidthWithReduce;
+						}
+					}
+					return this._reduce;
+				]]></setter>
+			</property>
+
+		</implementation>
+	</binding>
+
+<!-- 右クリックでコンテキストメニューではないメニューを開くボタン -->
+	<binding id="toolbarbutton-notcontextmenu" display="xul:button" extends="chrome://global/content/bindings/toolbarbutton.xml#toolbarbutton">
+		<content>
+			<children includes="observes|template|menupopup|tooltip"/>
+			<xul:image class="toolbarbutton-icon" xbl:inherits="validate,src=image,toolbarmode,buttonstyle"/>
+			<xul:label class="toolbarbutton-text" crop="right" flex="1" xbl:inherits="value=label,accesskey,crop,toolbarmode,buttonstyle"/>
+		</content>
+
+		<implementation>
+			<constructor><![CDATA[
+				this.contextBak = null;
+			]]></constructor>
+
+			<method name="openNotContextMenu">
+				<parameter name="event"/>
+				<body><![CDATA[
+					if ( this.hasAttribute( "context" ) )
+					{
+						this.contextBak = this.getAttribute( "context" );
+						this.removeAttribute( "context" );
+					}
+					if ( this.contextBak )
+					{
+//						document.popupNode = this;	これがあると、この次のポップアップメニューが開けない
+						document.getElementById( this.contextBak ).openPopup( this, "after_start", 0, 0, false, false );
+						event.stopPropagation();
+					}
+				]]></body>
+			</method>
+		</implementation>
+
+		<handlers>
+			<handler event="click" button="2" action="this.openNotContextMenu( event );"/>
+		</handlers>
+	</binding>
+
+<!-- 右クリックでコンテキストメニューではないメニューを開くボタン（タイプ：メニュー） -->
+	<binding id="toolbarbutton-menu-notcontextmenu" display="xul:menu" extends="chrome://tabgroupsmanager/content/bindings.xml#toolbarbutton-notcontextmenu">
+		<content>
+			<children includes="observes|template|menupopup|tooltip"/>
+			<xul:image class="toolbarbutton-icon" xbl:inherits="validate,src=image,toolbarmode,buttonstyle"/>
+			<xul:label class="toolbarbutton-text" crop="right" flex="1" xbl:inherits="value=label,accesskey,crop,dragover-top,toolbarmode,buttonstyle"/>
+		</content>
+	</binding>
+
+<!-- 右クリックでコンテキストメニューではないメニューを開くツールバーボタン（タイプ：メニューボタン） -->
+	<binding id="toolbarbutton-menubutton" display="xul:menu" extends="chrome://tabgroupsmanager/content/bindings.xml#toolbarbutton-notcontextmenu">
+		<resources>
+			<stylesheet src="chrome://global/skin/toolbarbutton.css"/>
+			<stylesheet src="chrome://tabgroupsmanager/skin/bindings.css"/>
+		</resources>
+
+		<content>
+			<children includes="observes|template|menupopup|panel|tooltip"/>
+			<xul:toolbarbutton class="tabgroupsmanager-menubutton-button" anonid="button" flex="1" allowevents="true" xbl:inherits="disabled,crop,image,label,context,accesskey,command,align,dir,pack,orient,toolbarmode,buttonstyle"/>
+			<xul:dropmarker type="menu-button" class="toolbarbutton-menubutton-dropmarker" xbl:inherits="align,dir,pack,orient,disabled,toolbarmode,buttonstyle,label"/>
+		</content>
+	</binding>
+
+<!-- メニューボタン用ボタン -->
+	<binding id="tabgroupsmanager-menubutton-button" display="xul:button" extends="chrome://tabgroupsmanager/content/bindings.xml#toolbarbutton-notcontextmenu">
+		<resources>
+			<stylesheet src="chrome://global/skin/toolbarbutton.css"/>
+			<stylesheet src="chrome://tabgroupsmanager/skin/bindings.css"/>
+		</resources>
+
+		<content>
+			<children includes="observes|template|menupopup|panel|tooltip"/>
+			<xul:image class="tabgroupsmanager-menubutton-button-icon toolbarbutton-icon" xbl:inherits="validate,src=image,toolbarmode,buttonstyle"/>
+			<xul:label class="tabgroupsmanager-menubutton-button-text toolbarbutton-text" crop="right" flex="1" xbl:inherits="value=label,accesskey,crop,toolbarmode,buttonstyle"/>
+		</content>
+	</binding>
+
+<!-- タイトルを書くだけのメニューアイテム（押しても何も起こらない）-->
+	<binding id="menuitem-title-only" display="xul:menuitem" extends="chrome://global/content/bindings/menu.xml#menuitem-base">
+		<content>
+			<xul:label class="menuitem-title-only-text" flex="1" xbl:inherits="value=label,crop"/>
+		</content>
+
+		<implementation>
+			<constructor><![CDATA[
+				this.setAttribute( "disabled", true );
+			]]></constructor>
+		</implementation>
+
+		<handlers>
+			<handler event="mousedown" action="return false;" />
+		</handlers>
+	</binding>
+
+<!-- アイコンだけのメニューアイテム -->
+	<binding id="menuitem-icon-only" display="xul:menuitem" extends="chrome://global/content/bindings/menu.xml#menuitem-base">
+		<content>
+			<xul:image class="menu-iconic-icon" xbl:inherits="src=image,validate"/>
+		</content>
+	</binding>
+
+<!-- アイコンだけのボタン -->
+	<binding id="button-icon-only" display="xul:button" extends="chrome://global/content/bindings/button.xml#button">
+		<resources>
+			<stylesheet src="chrome://tabgroupsmanager/skin/bindings.css" />
+		</resources>
+
+		<content>
+			<children includes="observes|template|menupopup|panel|tooltip"/>
+			<xul:hbox class="box-inherit button-box" xbl:inherits="align,dir,pack,orient" align="center" pack="center" flex="1" style="padding:1px">
+				<children>
+					<xul:image xbl:inherits="src=image,validate,width=imagewidth,height=imageheight,maxwidth=imagemaxwidth,maxheight=imagemaxheight,minwidth=imageminwidth,minheight=imageminheight"/>
+				</children>
+			</xul:hbox>
+		</content>
+	</binding>
+
+</bindings>

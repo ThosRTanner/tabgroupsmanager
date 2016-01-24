@@ -1,0 +1,8 @@
+<!ENTITY TabGroupsManager.menuItemOpenInNewGroup.label                  "Открыть в новой группе">
+<!ENTITY TabGroupsManager.menuItemOpenInNewGroup.accesskey              "Н">
+<!ENTITY TabGroupsManager.menuItemOpenInSelectedGroup.label             "Открыть в новой актиной">
+<!ENTITY TabGroupsManager.menuItemOpenInSelectedGroup.accesskey         "А">
+<!ENTITY TabGroupsManager.menuItemAllOpenInNewGroup.label               "Открыть всё в новой группе">
+<!ENTITY TabGroupsManager.menuItemAllOpenInNewGroup.accesskey           "Н">
+<!ENTITY TabGroupsManager.menuItemAllOpenInSelectedGroup.label          "Открыть всё в новой активной">
+<!ENTITY TabGroupsManager.menuItemAllOpenInSelectedGroup.accesskey      "А">

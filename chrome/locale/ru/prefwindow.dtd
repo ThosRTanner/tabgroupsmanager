@@ -1,0 +1,313 @@
+<!ENTITY TabGroupsManager.prefWindow.title                                      "Настройки группировщика вкладок">
+
+<!ENTITY TabGroupsManager.doesNotControl.label                                  "Не управляется группровщиком вкладок">
+<!ENTITY TabGroupsManager.doesNotAction.label                                   "Ничего">
+<!ENTITY TabGroupsManager.keyboard.enter.label                                  "Enter">
+<!ENTITY TabGroupsManager.keyboard.noneSupKey.label                             "Ничего">
+<!ENTITY TabGroupsManager.keyboard.shift.label                                  "Shift">
+<!ENTITY TabGroupsManager.keyboard.ctrl.label                                   "Ctrl">
+<!ENTITY TabGroupsManager.keyboard.alt.label                                    "Alt">
+<!ENTITY TabGroupsManager.mouseClick.lClick.label                               "Левый-щелчок">
+<!ENTITY TabGroupsManager.mouseClick.mClick.label                               "Средний-щелчок">
+<!ENTITY TabGroupsManager.mouseClick.rClick.label                               "Правый-щелчок">
+<!ENTITY TabGroupsManager.mouseClick.dblClick.label                             "Двойной-щелчок">
+<!ENTITY TabGroupsManager.mouseClick.dblRClick.label                            "Двойной-правый-щелчок">
+<!ENTITY TabGroupsManager.mouseClick.dblClick.attention.label                   "Левый-щелчок случается прежде, чем двойной-щелчок.">
+<!ENTITY TabGroupsManager.nyoro.label                                           "&lt;--&gt;">
+<!ENTITY TabGroupsManager.attention.label                                       "Внимание:">
+<!ENTITY TabGroupsManager.milliSecond.label                                     "(мс)">
+<!ENTITY TabGroupsManager.advanced.label                                        "Ещё">
+<!ENTITY TabGroupsManager.default.label                                         "по умолчанию">
+<!ENTITY TabGroupsManager.requireRestart.label                                  "(требуется перезапуск)">
+
+<!ENTITY TabGroupsManager.apply.label                                           "Применить">
+<!ENTITY TabGroupsManager.settings.label                                        "Настройки">
+<!ENTITY TabGroupsManager.settingsDefault.label                                 "Сбросить к умолчаниям">
+<!ENTITY TabGroupsManager.settingsDefault.accesskey                             "У">
+<!ENTITY TabGroupsManager.settingsExport.label                                  "Экспорт настроек">
+<!ENTITY TabGroupsManager.settingsExport.accesskey                              "Э">
+<!ENTITY TabGroupsManager.settingsImport.label                                  "Импорт настроек">
+<!ENTITY TabGroupsManager.settingsImport.accesskey                              "И">
+<!ENTITY TabGroupsManager.settingsDefaultMessage.label                          "Группировщик вкладок восстановит все настройки по умолчанию.\nСогласны? ">
+<!ENTITY TabGroupsManager.settingsDefaultAfterMessage.label                     "Группировщик вкладок восстановит все настройки по умолчанию.\nЧасть настроек вступит в силу только после перезапуска FireFox.">
+<!ENTITY TabGroupsManager.settingsImportSuccessMessage.label                    "Группировщик вкладок импортировал настройки.\nЧасть настроек вступит в силу только после перезапуска FireFox.">
+<!ENTITY TabGroupsManager.settingsImportFailMessage.label                       "Группировщик вкладок не смог импортировать настройки.\nВыбранный вами файл не является файлом настроек группировщика вкладок.">
+<!ENTITY TabGroupsManager.settingsFile.label                                    "Группировщик вкладок: файл настроек">
+
+<!ENTITY TabGroupsManager.prefpaneDisplay.title                                 "Вид">
+<!ENTITY TabGroupsManager.dispGroupbarButton.label                              "Панель групп">
+<!ENTITY TabGroupsManager.groupBarSmoothScroll.label                            "Включить плавную прокрутку.">
+<!ENTITY TabGroupsManager.hideGroupBarByContentClick.label                      "Скрыть панель групп когда нажимается область содержимого.">
+<!ENTITY TabGroupsManager.hideGroupBarByContentClick.accesskey                  "Н">
+<!ENTITY TabGroupsManager.hideGroupBarByMouseover.label                         "Показать панель групп когда мышь находится над панелью инструментов.">
+<!ENTITY TabGroupsManager.hideGroupBarByMouseover.accesskey                     "П">
+<!ENTITY TabGroupsManager.hideGroupBarByMouseover.help                          "Панель меню, кнопок и групп включены в панель инструментов.">
+<!ENTITY TabGroupsManager.hideGroupBarByMouseout.label                          "Скрыть панель групп когда мышь уходит с панели инструментов.">
+<!ENTITY TabGroupsManager.hideGroupBarByMouseout.accesskey                      "С">
+<!ENTITY TabGroupsManager.hideGroupBarByMouseout.help                           "Панель меню, кнопок и групп включены в панель инструментов.">
+<!ENTITY TabGroupsManager.hideGroupBarByMouseoutTimer.label                     "Время задержки">
+<!ENTITY TabGroupsManager.hideGroupBarDialogBox.title                           "Настройки скрытия панели групп когда окно имеет одну вкладку.">
+<!ENTITY TabGroupsManager.hideGroupBarWhenOneTab.label                          "Скрывать панель групп когда остаётся одна вкладка.">
+<!ENTITY TabGroupsManager.hideGroupBarWhenOneGroup.label                        "Скрывать панель групп когда остаётся одна группа.">
+<!ENTITY TabGroupsManager.hideGroupBarWhenOneTabWithMultipleFirefox.label       "Скрывать панель групп когда остаётся одна вкладка, но показывается панель групп в других окнах.">
+<!ENTITY TabGroupsManager.hideGroupBarWhenOneGroupWithMultipleFirefox.label     "Скрывать панель групп когда остаётся одна группа, но показывается панель групп в других окнах.">
+<!ENTITY TabGroupsManager.hideTabBarWhenOneTabWithMultipleFirefox.label         "Скрывать панель вкладок когда остаётся одна вкладка, но показывается панель групп в других окнах.">
+
+<!ENTITY TabGroupsManager.groupBarPosition.label                                "Положение панели групп">
+<!ENTITY TabGroupsManager.groupBarInToolbox.label                               "В панели инструментов">
+<!ENTITY TabGroupsManager.groupBarUnderToolbox.label                            "Под панелью инструментов">
+<!ENTITY TabGroupsManager.groupBarUnderContents.label                           "Под областью содержимого">
+<!ENTITY TabGroupsManager.groupBarPositionAttention.label                       "(Чтобы настроить панель групп она должна находиться &quot;В панели инструментов &quot;.)">
+<!-- add --><!ENTITY TabGroupsManager.groupBarOrdinal.label                                 "Положение панели групп">
+<!-- add --><!ENTITY TabGroupsManager.tabBarOrdinal.label                                   "Положение панели вкладок">
+<!-- add --><!ENTITY TabGroupsManager.groupBarOrdinalDescription.label                      "Если &quot;Положение панели групп&quot; = 0, Панель групп будет как &quot;Вкладки сверху&quot; у Firefox.">
+<!ENTITY TabGroupsManager.groupBarSmoothScroll.accesskey                        "К">
+<!ENTITY TabGroupsManager.dispGroupTab.label                                    "Панель групп">
+<!ENTITY TabGroupsManager.checkboxGroupTabIcon.label                            "Отображать значки панели групп">
+<!ENTITY TabGroupsManager.checkboxGroupTabIcon.accesskey                        "З">
+<!ENTITY TabGroupsManager.checkboxGroupTabIconReading.label                     "Отображать значки загрузки">
+<!ENTITY TabGroupsManager.checkboxGroupTabIconReading.accesskey                 "З">
+<!ENTITY TabGroupsManager.checkboxGroupTabCount.label                           "Показ числа включенных вкладок.">
+<!ENTITY TabGroupsManager.checkboxGroupTabCount.accesskey                       "В">
+<!ENTITY TabGroupsManager.checkboxGroupTabCountReading.label                    "Показ числа загружаемых вкладок.">
+<!ENTITY TabGroupsManager.checkboxGroupTabCountReading.accesskey                "З">
+<!ENTITY TabGroupsManager.groupTabMinWidth.label                                "Ширина панели групп">
+<!ENTITY TabGroupsManager.reduceSuspendGroup.label                              "Уменьшить ширину отложенной группы">
+<!ENTITY TabGroupsManager.reduceSuspendGroup.accesskey                          "Ш">
+<!ENTITY TabGroupsManager.groupTabCrop.label                                    "Метод обрезания заголовка вкладки групп">
+<!ENTITY TabGroupsManager.groupTabCropNone.label                                "никакой">
+<!ENTITY TabGroupsManager.groupTabCropStart.label                               "Обрезать с левого края">
+<!ENTITY TabGroupsManager.groupTabCropEnd.label                                 "Обрезать с правого края">
+<!ENTITY TabGroupsManager.groupTabCropCenter.label                              "Обрезать в середине">
+<!ENTITY TabGroupsManager.styleOfGroup.label                                    "Внешний вид групп">
+<!ENTITY TabGroupsManager.normaldGroupStyle.label                               "Нормальный">
+<!ENTITY TabGroupsManager.selectedGroupStyle.label                              "Выбранный">
+<!ENTITY TabGroupsManager.unreadGroupStyle.label                                "Непрочтённый">
+<!ENTITY TabGroupsManager.suspendedGroupStyle.label                             "Отложенная">
+<!ENTITY TabGroupsManager.groupStyleColor.label                                 "цвет">
+<!ENTITY TabGroupsManager.groupStyleBackgroundColor.label                       "фон">
+<!ENTITY TabGroupsManager.groupStyleBold.label                                  "полужирный">
+<!ENTITY TabGroupsManager.groupStyleItalic.label                                "курсивный">
+<!ENTITY TabGroupsManager.editStyle.label                                       "Редактировать таблицу стилей">
+
+<!ENTITY TabGroupsManager.prefpaneMouseControl.title                            "Мышь">
+<!ENTITY TabGroupsManager.mouseClick.group.label                                "Группа">
+<!ENTITY TabGroupsManager.mouseClick.groupBar.label                             "Панель групп">
+<!ENTITY TabGroupsManager.mouseClick.button.label                               "Кнопка">
+<!ENTITY TabGroupsManager.mouseClick.menu-button.label                          "(Меню кнопки)">
+<!ENTITY TabGroupsManager.mouseClick.action.sleepThisGroup.label                "Заморозить группу">
+<!ENTITY TabGroupsManager.mouseClick.action.closeThisGroup.label                "Закрыть группу">
+<!ENTITY TabGroupsManager.mouseClick.action.suspendThisGroup.label              "Отложить">
+<!ENTITY TabGroupsManager.mouseClick.action.autoRenameThisGroup.label           "Самостоятельно переименовать группу">
+<!ENTITY TabGroupsManager.mouseClick.action.setGroupData.label                  "Переименовать группу">
+
+<!ENTITY TabGroupsManager.mouseClick.action.openGroup.label                     "Открыть новую группу">
+<!ENTITY TabGroupsManager.mouseClick.action.openGroupF.label                    "Открыть новую активную группу">
+<!ENTITY TabGroupsManager.mouseClick.action.openGroupRename.label               "Открыть новую группу с выбором названия">
+<!ENTITY TabGroupsManager.mouseClick.action.openGroupRenameF.label              "Открыть новую активную с выбором названия">
+<!ENTITY TabGroupsManager.mouseClick.action.openGroupHome.label                 "Открыть новую группу с домашней страницей">
+<!ENTITY TabGroupsManager.mouseClick.action.openGroupHomeF.label                "Открыть новую активную с домашней страницей">
+<!ENTITY TabGroupsManager.mouseClick.action.sleepActiveGroup.label              "Заморозить группу">
+<!ENTITY TabGroupsManager.mouseClick.action.closeActiveGroup.label              "Закрыть группу">
+<!ENTITY TabGroupsManager.mouseClick.action.suspendActiveGroup.label            "Отложить">
+<!ENTITY TabGroupsManager.mouseClick.action.restoreLastSleepGroup.label         "Восстановить последнюю замороженную группу">
+<!ENTITY TabGroupsManager.mouseClick.action.restoreLastClosedGroup.label        "Восстановить последнюю закрытую группу">
+<!ENTITY TabGroupsManager.mouseClick.action.selectGroup.label                   "Выбрать эту группу">
+<!ENTITY TabGroupsManager.mouseClick.action.groupMenu.label                     "Меню группы">
+<!ENTITY TabGroupsManager.mouseClick.action.groupBarMenu.label                  "Меню панели групп">
+<!ENTITY TabGroupsManager.mouseClick.action.sleepingGroupList.label             "Список замороженных групп">
+<!ENTITY TabGroupsManager.mouseClick.action.closedGroupList.label               "Список закрытых групп">
+<!ENTITY TabGroupsManager.mouseClick.action.displayNonDisplay.label             "Переключить показывать/непоказывать панель групп">
+<!ENTITY TabGroupsManager.mouseClick.action.openMenu.label                      "Открыть меню">
+<!ENTITY TabGroupsManager.mouseClick.bookmarkFolder.label                       "Папка закладок">
+<!ENTITY TabGroupsManager.mouseClick.action.allOpenNewGroup.label               "Открыть все в новой группе">
+<!ENTITY TabGroupsManager.mouseClick.action.allOpenNewGroupStay.label           "Открыть все в новой группе (не закрывая меню)">
+<!ENTITY TabGroupsManager.mouseClick.action.allOpenNewSelectedGroup.label       "Открыть все в активной группе">
+<!ENTITY TabGroupsManager.mouseClick.action.allOpenNewSelectedGroupStay.label   "Открыть все в активной группе (не закрывая меню)">
+<!ENTITY TabGroupsManager.mouseClick.action.contextMenu.label                   "Контекстное меню">
+
+<!ENTITY TabGroupsManager.prefpaneKeyBind.title                                 "Клавиатура">
+<!ENTITY TabGroupsManager.keyBindPleaseSelectCommand.label                      "Пожалуйста выберите команду">
+<!ENTITY TabGroupsManager.keyBindPushKeyHere.label                              "Нажмите клавишу здесь">
+<!ENTITY TabGroupsManager.keyBindAdd.label                                      "Добав.">
+<!ENTITY TabGroupsManager.keyBindRecommend.label                                "Советуемые">
+<!ENTITY TabGroupsManager.keyBindRecommend.help                                 "Горячие клавиши которые не перекрывают клавиши Firefox.">
+<!ENTITY TabGroupsManager.keyBindRecommend2.label                               "Советуемые 2">
+<!ENTITY TabGroupsManager.keyBindRecommend2.help                                "Горячие клавиши которые перекрывают клавиши Firefox.">
+<!ENTITY TabGroupsManager.keyBindAllDelete.label                                "Удалить все">
+<!ENTITY TabGroupsManager.keyBindDelete.label                                   "Удалить">
+<!ENTITY TabGroupsManager.keyBindCommand.label                                  "Команда">
+<!ENTITY TabGroupsManager.keyBindParam.label                                    "Свойство">
+<!ENTITY TabGroupsManager.keyBindShortcutKey.label                              "Клавиша">
+<!ENTITY TabGroupsManager.keyBindOverride.label                                 "Перекрыть клавиши Firefox и других его надстроек.">
+<!ENTITY TabGroupsManager.keyBindOverride.help                                  "Отдает первоочерёдность ГВ клавишам при пересечении с клавишами используемыми Firefox и другими его надстроками.">
+<!ENTITY TabGroupsManager.keyBindOverride.accesskey                             "П">
+<!ENTITY TabGroupsManager.keyBindOverrideAttention.label                        "Обрабатывается как ускоритель -> Ctrl доступ -> Alt когда перекрыто.">
+<!ENTITY TabGroupsManager.keyBindModifiersDescription.label                     "c=Ctrl  s=Shift  a=Alt">
+<!ENTITY TabGroupsManager.ctrlTab.label                                         "Ctrl + Tab">
+<!ENTITY TabGroupsManager.ctrlTab0.label                                        "Выбрать правую вкладку в группе (+ Shift — Выбрать левую вкладку в группе)">
+<!ENTITY TabGroupsManager.ctrlTab1.label                                        "Выбрать правую вкладку в группе (+ Shift — Выбрать правую группу)">
+
+<!ENTITY TabGroupsManager.prefpaneNewGroup.title                                "Новая группа">
+<!ENTITY TabGroupsManager.openNewGroupOperation.label                           "Включить открытие вкладок в новых группах.">
+<!ENTITY TabGroupsManager.openNewGroupOperation.help                            "Когда галка убрана, перекрытие убрано.">
+<!ENTITY TabGroupsManager.openNewGroupOperation.accesskey                       "Н">
+<!ENTITY TabGroupsManager.linkEtc.label                                         "Открытие вкладки из ссылок, закладок, истории, панели закладок и т.д.">
+<!ENTITY TabGroupsManager.openNewGroupByShift.label                             "Открытие вкладки в новой группе при (Shift + Ctrl + Левый-щелчок) или (Shift + Средний-щелчок).">
+<!ENTITY TabGroupsManager.openNewGroupByShift.accesskey                         "О">
+<!ENTITY TabGroupsManager.openNewGroupByShift.help                              "не &quot;Shift + Левый-щелчок&quot; а &quot;Shift + Средний-щелчок&quot; или &quot;Shift + Ctrl + Левый-щелчок&quot;">
+<!ENTITY TabGroupsManager.searchFromSearchBar.label                             "Панель поиска">
+<!ENTITY TabGroupsManager.useSearchPlugin.label                                 "Включить поисковые дополнения от группировщика вкладок">
+<!ENTITY TabGroupsManager.useSearchPlugin.help                                  "Это тоже самое, что восстановливать это из Easy DragToGo, Second Search, Drag de Go и т.п. поисковым дополнением группровщика вкладок">
+<!ENTITY TabGroupsManager.useSearchPlugin.accesskey                             "П">
+<!ENTITY TabGroupsManager.defaultSearchPlugin.label                             "По умолчанию">
+<!ENTITY TabGroupsManager.defaultSearchPlugin.help                              "Восстановить поисковые дополнения группировщика вкладок по умолчанию.">
+<!ENTITY TabGroupsManager.defaultSearchPlugin.accesskey                         "У">
+<!ENTITY TabGroupsManager.useSearchPluginaction.label                           "Действия для поисковых дополнений ГВ">
+<!ENTITY TabGroupsManager.searchInCurrentTab                                    "Поиск в текущей вкладке">
+<!ENTITY TabGroupsManager.searchInNewTabActive                                  "Поиск в новой (активной) вкладке">
+<!ENTITY TabGroupsManager.searchInNewTabNotActive                               "Поиск в новой (на фоне) вкладке">
+<!ENTITY TabGroupsManager.searchInNewGroupActive                                "Поиск в новой (активной) группе">
+<!ENTITY TabGroupsManager.searchInNewGroupNotActive                             "Поиск в новой (на фоне) группе">
+
+<!ENTITY TabGroupsManager.prefpaneMenu.title                                    "Меню">
+<!ENTITY TabGroupsManager.groupBarMenu.label                                    "Меню панели групп">
+<!ENTITY TabGroupsManager.tabContextMenu.label                                  "Контекстное меню вкладок">
+<!ENTITY TabGroupsManager.menuItemOpen.label                                    "Новая группа">
+<!ENTITY TabGroupsManager.menuItemOpen.accesskey                                "Н">
+<!ENTITY TabGroupsManager.menuItemOpenActive.label                              "Новая активная группа">
+<!ENTITY TabGroupsManager.menuItemOpenActive.accesskey                          "А">
+<!ENTITY TabGroupsManager.menuItemOpenRename.label                              "Новая группа с выбором названия">
+<!ENTITY TabGroupsManager.menuItemOpenRename.accesskey                          "В">
+<!ENTITY TabGroupsManager.menuItemOpenActiveRename.label                        "Новая активная с выбором названия">
+<!ENTITY TabGroupsManager.menuItemOpenActiveRename.accesskey                    "В">
+<!ENTITY TabGroupsManager.menuItemOpenWithHome.label                            "Новая группа с домашней страницей">
+<!ENTITY TabGroupsManager.menuItemOpenWithHome.accesskey                        "Д">
+<!ENTITY TabGroupsManager.menuItemOpenActiveWithHome.label                      "Новая активная с домашней страницей">
+<!ENTITY TabGroupsManager.menuItemOpenActiveWithHome.accesskey                  "Д">
+<!ENTITY TabGroupsManager.menuItemOpenByRenameHistory.label                     "Новая группа через список">
+<!ENTITY TabGroupsManager.menuItemOpenByRenameHistory.accesskey                 "С">
+<!ENTITY TabGroupsManager.menuItemSleepActiveGroup.label                        "Заморозить группу">
+<!ENTITY TabGroupsManager.menuItemSleepActiveGroup.accesskey                    "З">
+<!ENTITY TabGroupsManager.menuItemCloseActiveGroup.label                        "Закрыть группу">
+<!ENTITY TabGroupsManager.menuItemCloseActiveGroup.accesskey                    "З">
+<!ENTITY TabGroupsManager.menuItemSleepingGroups.label                          "Список замороженных групп">
+<!ENTITY TabGroupsManager.menuItemSleepingGroups.accesskey                      "С">
+<!ENTITY TabGroupsManager.menuItemClosedGroups.label                            "Список закрытых групп">
+<!ENTITY TabGroupsManager.menuItemClosedGroups.accesskey                        "С">
+<!ENTITY TabGroupsManager.menuItemBookmarkAllGroups.label                       "В закладки все группы">
+<!ENTITY TabGroupsManager.menuItemBookmarkAllGroups.accesskey                   "В">
+<!ENTITY TabGroupsManager.menuItemBackupSession.label                           "Сессии">
+<!ENTITY TabGroupsManager.menuItemBackupSession.accesskey                       "С">
+
+<!ENTITY TabGroupsManager.tabMenuSendToOtherGroup.label                         "Отправить в другую группу">
+<!ENTITY TabGroupsManager.tabMenuSendToOtherGroup.accesskey                     "О">
+<!ENTITY TabGroupsManager.tabMenuCloseOtherTabInGroup.label                     "Закрыть другие вкладки (в самой группе)">
+<!ENTITY TabGroupsManager.tabMenuCloseOtherTabInGroup.accesskey                 "Д">
+<!ENTITY TabGroupsManager.tabMenuCloseLeftTabInGroup.label                      "Закрыть вкладки слева (в самой группе)">
+<!ENTITY TabGroupsManager.tabMenuCloseLeftTabInGroup.accesskey                  "Л">
+<!ENTITY TabGroupsManager.tabMenuSelectLeftTabInGroup.label                     "Выбрать вкладки слева (в самой группе, требуется &quot;Multiple Tab Handler&quot;)">
+<!ENTITY TabGroupsManager.tabMenuSelectLeftTabInGroup.accesskey                 "Л">
+<!ENTITY TabGroupsManager.tabMenuCloseRightTabInGroup.label                     "Закрыть вкладки справа (в самой группе)">
+<!ENTITY TabGroupsManager.tabMenuCloseRightTabInGroup.accesskey                 "П">
+<!ENTITY TabGroupsManager.tabMenuSelectRightTabInGroup.label                    "Выбрать вкладки справа (в самой группе, требуется &quot;Multiple Tab Handler&quot;)">
+<!ENTITY TabGroupsManager.tabMenuSelectRightTabInGroup.accesskey                "П">
+
+<!ENTITY TabGroupsManager.prefpaneSession.title                                 "Сессии">
+<!ENTITY TabGroupsManager.sessionStoreStatus.label                              "Состояние хранилища сессий">
+<!ENTITY TabGroupsManager.disableSessionStore1.label                            "Хранилище сессий кажется отключено">
+<!ENTITY TabGroupsManager.disableSessionStore2.label                            "Хранилище сессий необходимо, чтобы восстановить вкладки, группы + замороженные группы при перезапуске.">
+<!ENTITY TabGroupsManager.disableSessionStore3.label                            "Удостоверьтесь, что хранилище сессий включено в настройках Firefox + любом другом расширении управлении сессий">
+<!ENTITY TabGroupsManager.disableSessionStore4.label                            "Чтобы включить хранилище сессий следующие выделенные настройки должны быть верны:">
+<!ENTITY TabGroupsManager.browserSessionstoreEnabled.label                      "browser.sessionstore.enabled = true">
+<!ENTITY TabGroupsManager.disableSessionStore5.label                            "">
+<!ENTITY TabGroupsManager.disableSessionStore6.label                            "Пожалуйста, не изменяйте напрямую &quot;about:config&quot;. Вместо этого измените необходимые настройки внутри настроек FireFox или других расширений, чтобы включить хранилище сессий.">
+
+<!ENTITY TabGroupsManager.saveDataBackup.label                                  "Число запасных копий сессий для сохранения (0 — отключено)">
+<!ENTITY TabGroupsManager.sessionBackupByWindowCloseCount.label                 "Запаска сессии когда окно Firefox закрывается">
+<!ENTITY TabGroupsManager.sessionBackupByTimerCount.label                       "Запаска сессии при промежутке времени">
+<!ENTITY TabGroupsManager.sessionBackupByTimerInterval1.label                   "промежуток">
+<!ENTITY TabGroupsManager.sessionBackupByTimerInterval2.label                   "(мин)">
+
+<!ENTITY TabGroupsManager.sessionBackupDescription1.label                       "— Количество ручных запасных копий стало неограниченным, поскольку теперь их можно удалить вручную.">
+<!ENTITY TabGroupsManager.sessionBackupDescription2.label                       "— Запасная копия, когда группа после заморозки была закрыта. Данные замороженных групп самостоятельно пересохраняются, когда данные меняются и запасная копия уже сделана.">
+
+<!ENTITY TabGroupsManager.sessionMenu.label                                     "Меню сессий">
+<!ENTITY TabGroupsManager.sessionMenuDisplay.label                              "Меню запаски и восстановления сессий отображаемого в меню панели групп.">
+<!ENTITY TabGroupsManager.sessionMenuDisplay.accesskey                          "М">
+
+<!ENTITY TabGroupsManager.saveData.label                                        "Сохраняемые данные">
+<!ENTITY TabGroupsManager.saveDataDescription1.label                            "— Даже если два или более окон Firefox было открыто, то при заморозке группы, это видно во всех окнах. Так что даже если одно из окон было закрыто, то замороженная группа не будет потеряна.">
+<!ENTITY TabGroupsManager.saveDataDescription2.label                            "— Данные о замороженных группах записываются не в хранилище сессий, а в файл. Поэтому файл записывается в папку профиля, чтобы хранить файл даже если ГВ обновляется. Когда вы удаляете ГВ, следует удалить данные вручную.">
+<!ENTITY TabGroupsManager.saveDataDescription3.label                            "— Когда сессия восстанавливается другим дополнением, на замороженные группы это никак не вляет. Таким образом нет опасности их потерять, даже если используется другие дополнения, которые управляют сессиями.">
+<!ENTITY TabGroupsManager.saveDataDescription4.label                            "— Если вы используете функцию запасного копирования сессий ГВ, вы можете восстановить сессии и замороженные группы одновременно.">
+
+<!ENTITY TabGroupsManager.prefpaneCompatibility.title                           "Совместимость">
+<!ENTITY TabGroupsManager.sessionManager.label                                  "Управление сессиями">
+<!ENTITY TabGroupsManager.overrideSessionManagerRestoreSession.label            "Заменить способ &quot;Восстановления сессий&quot; (требуется перезапуск)">
+<!ENTITY TabGroupsManager.overrideSessionManagerRestoreSession.accesskey        "З">
+<!ENTITY TabGroupsManager.overrideSessionManagerRestoreSession.help             "    Группировщик вкладок сможет вновь использовать &quot;Восстановление сессий&quot;">
+<!ENTITY TabGroupsManager.treeStyleTab.label                                    "Tree Style Tab">
+<!ENTITY TabGroupsManager.overrideTreeStyleTab.label                            "Заменить функцию &quot;onTabMove&quot; (требуется перезапуск)">
+<!ENTITY TabGroupsManager.overrideTreeStyleTab.accesskey                        "З">
+<!ENTITY TabGroupsManager.overrideTreeStyleTab.help                             "    Поможет избежать явления когда вкладки становятся дочерними предыдущего древа при переключении выбранной группы">
+<!ENTITY TabGroupsManager.overrideAttention1.label                              "Если эти настройки помечены, каждый способ переопределяется в памяти.">
+<!ENTITY TabGroupsManager.overrideAttention2.label                              "Поэтому есть вероятность возникновения некоторые трудностей.">
+<!ENTITY TabGroupsManager.firefox35PlusMacOsx.label                             "Исправить проблему с &quot;Firefox 3.5&quot; и &quot;Mac OS X&quot;">
+<!ENTITY TabGroupsManager.adjustTopPositionOfGroup.label                        "Упорядочит вертикальное положение вкладок групп (требуется перезагрузка).">
+<!ENTITY TabGroupsManager.adjustTopPositionOfGroupAttention.label               "Пожалуйста, используйте это только тогда, когда положение вкладок групп не правильны.">
+
+<!ENTITY TabGroupsManager.prefpaneOther.title                                   "Другое">
+<!ENTITY TabGroupsManager.hibernatedClosedGroup.label                           "Заморозка/закрытие групп">
+<!ENTITY TabGroupsManager.groupRestoreOldPosition.label                         "Восстановить замороженные/закрытые группы в изначальное положение.">
+<!ENTITY TabGroupsManager.groupRestoreOldPosition.accesskey                     "В">
+<!ENTITY TabGroupsManager.maxClosedGroupStoreCount.label                        "Число хранимых закрытых групп (0 — выключено):">
+<!ENTITY TabGroupsManager.autoRename.label                                      "Самостоятельное переименовывание">
+<!ENTITY TabGroupsManager.disableAutoRenameTimePre.label                        "Выключить &quot;Самопереименовку&quot;">
+<!ENTITY TabGroupsManager.disableAutoRenameTimeAfter.label                      "последнего использования.">
+<!ENTITY TabGroupsManager.disableAutoRenameTime0.label                          "никогда после">
+<!ENTITY TabGroupsManager.disableAutoRenameTime0_5.label                        "после 30 секунд">
+<!ENTITY TabGroupsManager.disableAutoRenameTime1.label                          "после 1 минуты">
+<!ENTITY TabGroupsManager.disableAutoRenameTime3.label                          "после 3 минут">
+<!ENTITY TabGroupsManager.disableAutoRenameTime5.label                          "после 5 минут">
+<!ENTITY TabGroupsManager.disableAutoRenameTime10.label                         "после 10 минут">
+<!ENTITY TabGroupsManager.disableAutoRenameTime30.label                         "после 30 минут">
+<!ENTITY TabGroupsManager.disableAutoRenameTime60.label                         "после 1 часа">
+<!ENTITY TabGroupsManager.focusTabWhenActiveTabClose.label                      "При закрытии текущей вкладки">
+<!ENTITY TabGroupsManager.focusTabWhenActiveTabClose2.label                     "После закрытия текущей вкладки сделать активной">
+<!ENTITY TabGroupsManager.focusTabWhenActiveTabClose.right.label                "Правую вкладку в той же группе">
+<!ENTITY TabGroupsManager.focusTabWhenActiveTabClose.left.label                 "Левую вкладку в той же группе">
+<!ENTITY TabGroupsManager.focusTabWhenActiveTabClose.first.label                "Первую вкладку в той же группе">
+<!ENTITY TabGroupsManager.focusTabWhenActiveTabClose.last.label                 "Последнюю вкладку в той же группе">
+<!ENTITY TabGroupsManager.focusTabWhenActiveTabClose.latest.label               "Последнюю выбранную вкладку в той же группе">
+<!ENTITY TabGroupsManager.groupNotCloseWhenCloseAllTabsInGroup.label            "Оставлять группы открытыми даже тогда, когда все вкладки закрыты.">
+<!ENTITY TabGroupsManager.groupNotCloseWhenCloseAllTabsInGroup.accesskey        "О">
+<!ENTITY TabGroupsManager.multipleFirefox.label                                 "Когда множество окон Firefox открываются,">
+<!ENTITY TabGroupsManager.windowCloseWhenLastGroupClose.label                   "Когда последняя группа закрыта или заморожена, окно закрывается.">
+<!ENTITY TabGroupsManager.windowCloseWhenLastGroupClose.accesskey               "З">
+<!ENTITY TabGroupsManager.windowClose.label                                     "При закрытии одного из окон Firefox (исключая окно имеющее одну вкладку),">
+<!ENTITY TabGroupsManager.moveGroupBeforeWindowClose.label                      "При закрытии окна его группы перемещаются в другое окно.">
+<!ENTITY TabGroupsManager.notMoveGroupBeforeWindowClose.label                   "При закрытии окна группы не перемещаются (группы с окном исчезают).">
+<!ENTITY TabGroupsManager.confirmAlwaysBeforeWindowClose.label                  "Всегда подтверждать">
+<!ENTITY TabGroupsManager.firefoxClose.label                                    "При закрытии Firefox">
+<!ENTITY TabGroupsManager.suspendWhenFirefoxClose.label                         "Приостановить все не выбранные группы">
+<!ENTITY TabGroupsManager.suspendWhenFirefoxClose.accesskey                     "П">
+
+<!ENTITY TabGroupsManager.testing.title                                         "Проверка">
+<!ENTITY TabGroupsManager.tabTree.label                                         "Отношения между дочерними и родительными вкладками (требуется перезапуск, опытно)">
+<!ENTITY TabGroupsManager.tabTreeAnalysis.label                                 "Определить почему вкладка открывается (используется перекрытие)">
+<!ENTITY TabGroupsManager.tabTreeOpenTabByExternalApplication.label             "Вкладка открытая из внешнего приложения перемещается в особую группу">
+<!ENTITY TabGroupsManager.tabTreeOpenTabByJavaScript.label                      "Вкладка открытая с помощью JavaScript всегда открывается в той же группе где и родитель">
+<!ENTITY TabGroupsManager.tabTreeRecordParentAndChild.label                     "Записывать отношения между дочерними и родительными вкладками">
+<!ENTITY TabGroupsManager.tabTreeDisplayParentAndChild.label                    "Это отображается в цвете фона вкладки">
+<!ENTITY TabGroupsManager.tabTreeFocusTabByParentAndChild.label                 "После закрытия текущей вкладки сделать активной дочернюю или родительную вкладку">
+<!ENTITY TabGroupsManager.tabTreeAnalysis.accesskey                             "А">
+<!ENTITY TabGroupsManager.tabTreeOpenTabByExternalApplication.accesskey         "В">
+<!ENTITY TabGroupsManager.tabTreeOpenTabByJavaScript.accesskey                  "J">
+<!ENTITY TabGroupsManager.tabTreeRecordParentAndChild.accesskey                 "О">
+<!ENTITY TabGroupsManager.tabTreeDisplayParentAndChild.accesskey                "Ц">
+<!ENTITY TabGroupsManager.tabTreeFocusTabByParentAndChild.accesskey             "П">
+<!ENTITY TabGroupsManager.testingDescription1.label                             "Эти функции все еще проверяются.">
+<!ENTITY TabGroupsManager.testingDescription2.label                             "Я думаю внесу верхние три настройки. Нижние же три настройки являются сторонними продуктами верхних трех. Я так и не решил, стоит ли их вносить, потому что для этого кажется лучше подходит расширение Tree Style Tab.">
+<!ENTITY TabGroupsManager.testingDescription3.label                             "Если я решу внести их, я сделаю функцию пресохранения древо-структуры. Так как функции не зависят от ГВ, то возможно я сделаю для этого другое расширение.">
+<!ENTITY TabGroupsManager.testingDescription4.label                             "">

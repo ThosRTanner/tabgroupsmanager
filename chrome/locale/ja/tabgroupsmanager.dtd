@@ -1,0 +1,137 @@
+<!ENTITY TabGroupsManager.groupBar.label                                "TGM：グループバー">
+
+<!ENTITY TabGroupsManager.dispGroupBar.label                            "TGM：グループバーを表示">
+
+<!ENTITY TabGroupsManager.menuitemDelete.label                          "削除">
+<!ENTITY TabGroupsManager.menuitemDelete.accesskey                      "D">
+
+<!ENTITY TabGroupsManager.menuItemSuspend.label                         "サスペンド">
+<!ENTITY TabGroupsManager.menuItemSuspend.help                          "グループのサスペンドのトグル">
+<!ENTITY TabGroupsManager.menuItemSuspend.accesskey                     "S">
+<!ENTITY TabGroupsManager.menuItemSleep.label                           "休止状態にする">
+<!ENTITY TabGroupsManager.menuItemSleep.help                            "グループを休止状態にする">
+<!ENTITY TabGroupsManager.menuItemSleep.accesskey                       "H">
+<!ENTITY TabGroupsManager.menuItemClose.label                           "閉じる">
+<!ENTITY TabGroupsManager.menuItemClose.help                            "グループを閉じる">
+<!ENTITY TabGroupsManager.menuItemClose.accesskey                       "C">
+<!ENTITY TabGroupsManager.menuItemBookmarkGroup.label                   "グループをブックマーク">
+<!ENTITY TabGroupsManager.menuItemBookmarkGroup.help                    "このグループをブックマークフォルダにブックマークする">
+<!ENTITY TabGroupsManager.menuItemBookmarkGroup.accesskey               "B">
+<!ENTITY TabGroupsManager.menuItemReloadTabInGroup.label                "グループ内の全タブをリロード">
+<!ENTITY TabGroupsManager.menuItemReloadTabInGroup.help                 "このグループに含まれるすべてのタブをリロードする">
+<!ENTITY TabGroupsManager.menuItemReloadTabInGroup.accesskey            "R">
+<!ENTITY TabGroupsManager.menuItemSetGroupDataDialog.label              "グループ情報変更ダイアログ">
+<!ENTITY TabGroupsManager.menuItemSetGroupDataDialog.help               "グループ情報を変更するダイアログボックスを開く">
+<!ENTITY TabGroupsManager.menuItemSetGroupDataDialog.accesskey          "D">
+<!ENTITY TabGroupsManager.menuItemSetGroupData.label                    "グループ情報変更メニュー">
+<!ENTITY TabGroupsManager.menuItemSetGroupData.help                     "グループ情報を変更するサブメニューを開く">
+<!ENTITY TabGroupsManager.menuItemSetGroupData.accesskey                "M">
+<!ENTITY TabGroupsManager.menuItemExportGroup.label                     "グループのエクスポート">
+<!ENTITY TabGroupsManager.menuItemExportGroup.help                      "グループ情報をエクスポートする">
+<!ENTITY TabGroupsManager.menuItemExportGroup.accesskey                 "E">
+
+<!ENTITY TabGroupsManager.menuItemAutoRename.label                      "自動リネーム（名前・アイコン）">
+<!ENTITY TabGroupsManager.menuItemAutoRename.help                       "アクティブなタブから、グループ名とアイコンを取得する">
+<!ENTITY TabGroupsManager.menuItemAutoRename.accesskey                  "A">
+<!ENTITY TabGroupsManager.menuItemAutoRenameNameOnly.label              "自動リネーム（名前のみ）">
+<!ENTITY TabGroupsManager.menuItemAutoRenameNameOnly.help               "アクティブなタブのタイトルから、グループ名を取得する">
+<!ENTITY TabGroupsManager.menuItemAutoRenameNameOnly.accesskey          "N">
+<!ENTITY TabGroupsManager.menuItemAutoRenameIconOnly.label              "自動リネーム（アイコンのみ）">
+<!ENTITY TabGroupsManager.menuItemAutoRenameIconOnly.help               "アクティブなタブのアイコンから、アイコンを取得する">
+<!ENTITY TabGroupsManager.menuItemAutoRenameIconOnly.accesskey          "I">
+<!ENTITY TabGroupsManager.menuItemDisableAutoRename.label               "自動リネーム無効">
+<!ENTITY TabGroupsManager.menuItemDisableAutoRename.help                "このグループの自動リネームを無効にする">
+<!ENTITY TabGroupsManager.menuItemDisableAutoRename.accesskey           "E">
+
+<!ENTITY TabGroupsManager.menuItemRenameRegisterd.label                 "登録された名前にリネーム">
+<!ENTITY TabGroupsManager.menuItemRenameHistory.label                   "過去に付けた名前にリネーム">
+<!ENTITY TabGroupsManager.menuItemRenameHistory.help                    "登録した名前、過去に付けた名前から選択してグループの名前を付ける">
+<!ENTITY TabGroupsManager.menuItemRenameHistory.accesskey               "H">
+<!ENTITY TabGroupsManager.menuItemRenameHistoryClear.label              "過去に付けた名前のリストをクリア">
+<!ENTITY TabGroupsManager.menuItemRenameHistoryClear.help               "過去に付けた名前のリストをすべてクリアする">
+<!ENTITY TabGroupsManager.menuItemRenameHistoryClear.accesskey          "C">
+
+<!ENTITY TabGroupsManager.menuItemOpen.label                            "グループを開く">
+<!ENTITY TabGroupsManager.menuItemOpen.help                             "新しいグループを開く">
+<!ENTITY TabGroupsManager.menuItemOpen.accesskey                        "O">
+<!ENTITY TabGroupsManager.menuItemOpenActive.label                      "アクティブなグループを開く">
+<!ENTITY TabGroupsManager.menuItemOpenActive.help                       "新しいグループを開いてアクティブにする">
+<!ENTITY TabGroupsManager.menuItemOpenActive.accesskey                  "A">
+<!ENTITY TabGroupsManager.menuItemOpenRename.label                      "名前を付けてグループを開く">
+<!ENTITY TabGroupsManager.menuItemOpenRename.help                       "新しいグループを開く＆リネームダイアログを開く">
+<!ENTITY TabGroupsManager.menuItemOpenRename.accesskey                  "N">
+<!ENTITY TabGroupsManager.menuItemOpenActiveRename.label                "名前を付けてアクティブなグループを開く">
+<!ENTITY TabGroupsManager.menuItemOpenActiveRename.help                 "新しいグループを開いてアクティブにする＆リネームダイアログを開く">
+<!ENTITY TabGroupsManager.menuItemOpenActiveRename.accesskey            "M">
+<!ENTITY TabGroupsManager.menuItemOpenWithHome.label                    "新しいグループでホームページを開く">
+<!ENTITY TabGroupsManager.menuItemOpenWithHome.help                     "新しいグループを開き、その中でホームページを開く">
+<!ENTITY TabGroupsManager.menuItemOpenWithHome.accesskey                "H">
+<!ENTITY TabGroupsManager.menuItemOpenActiveWithHome.label              "新しいアクティブなグループでホームページを開く">
+<!ENTITY TabGroupsManager.menuItemOpenActiveWithHome.help               "新しいグループを開いてアクティブにして、その中でホームページを開く">
+<!ENTITY TabGroupsManager.menuItemOpenActiveWithHome.accesskey          "I">
+<!ENTITY TabGroupsManager.menuItemOpenByRenameHistory.label             "名前を選択してグループを開く">
+<!ENTITY TabGroupsManager.menuItemOpenByRenameHistory.help              "リストからグループ名を選択して、新しいグループを開く">
+<!ENTITY TabGroupsManager.menuItemOpenByRenameHistory.accesskey         "R">
+<!ENTITY TabGroupsManager.menuItemSleepActiveGroup.label                "アクティブなグループを休止状態にする">
+<!ENTITY TabGroupsManager.menuItemSleepActiveGroup.help                 "アクティブなグループを休止状態にする">
+<!ENTITY TabGroupsManager.menuItemSleepActiveGroup.accesskey            "S">
+<!ENTITY TabGroupsManager.menuItemCloseActiveGroup.label                "アクティブなグループを閉じる">
+<!ENTITY TabGroupsManager.menuItemCloseActiveGroup.help                 "アクティブなグループを閉じる">
+<!ENTITY TabGroupsManager.menuItemCloseActiveGroup.accesskey            "C">
+<!ENTITY TabGroupsManager.menuItemSleepingGroups.label                  "休止中のグループのリスト">
+<!ENTITY TabGroupsManager.menuItemSleepingGroups.help                   "休止中のグループのリストを表示する">
+<!ENTITY TabGroupsManager.menuItemSleepingGroups.accesskey              "J">
+<!ENTITY TabGroupsManager.menuItemClosedGroups.label                    "最近閉じたグループのリスト">
+<!ENTITY TabGroupsManager.menuItemClosedGroups.help                     "最近閉じたグループのリストを表示する">
+<!ENTITY TabGroupsManager.menuItemClosedGroups.accesskey                "D">
+<!ENTITY TabGroupsManager.menuItemClosedGroupsClear.label               "最近閉じたグループを全削除">
+<!ENTITY TabGroupsManager.menuItemClosedGroupsClear.help                "最近閉じたグループのリストをすべて削除する">
+<!ENTITY TabGroupsManager.menuItemClosedGroupsClear.accesskey           "C">
+<!ENTITY TabGroupsManager.menuItemBookmarkAllGroups.label               "全グループをブックマーク">
+<!ENTITY TabGroupsManager.menuItemBookmarkAllGroups.help                "すべてのグループをブックマークする">
+<!ENTITY TabGroupsManager.menuItemBookmarkAllGroups.accesskey           "B">
+<!ENTITY TabGroupsManager.menuItemBackupSession.label                   "セッション">
+<!ENTITY TabGroupsManager.menuItemBackupSession.help                    "セッションの保存と復元">
+<!ENTITY TabGroupsManager.menuItemBackupSession.accesskey               "E">
+
+<!ENTITY TabGroupsManager.menuItemSaveSession.label                     "現在のセッションをバックアップする">
+<!ENTITY TabGroupsManager.menuItemSaveSession.help                      "現在のセッションをバックアップする">
+<!ENTITY TabGroupsManager.menuItemSaveSession.accesskey                 "S">
+
+<!ENTITY TabGroupsManager.menuItemExportSession.label                   "現在のセッションをエクスポートする">
+<!ENTITY TabGroupsManager.menuItemExportSession.help                    "現在のセッションを指定したファイルにエクスポートする">
+<!ENTITY TabGroupsManager.menuItemExportSession.accesskey               "E">
+
+<!ENTITY TabGroupsManager.menuItemOpenPrefWindow.label                  "設定">
+<!ENTITY TabGroupsManager.menuItemOpenPrefWindow.help                   "設定画面を開く">
+<!ENTITY TabGroupsManager.menuItemOpenPrefWindow.accesskey              "P">
+<!ENTITY TabGroupsManager.menuItemLinkOpenInNewGroup.label              "リンクを新しいグループで開く">
+<!ENTITY TabGroupsManager.menuItemLinkOpenInNewGroup.accesskey          "G">
+<!ENTITY TabGroupsManager.menuItemLinkOpenInSelectedGroup.label         "リンクを新しいアクティブなグループで開く">
+<!ENTITY TabGroupsManager.menuItemLinkOpenInSelectedGroup.accesskey     "H">
+
+<!ENTITY TabGroupsManager.buttonHideGroup.label                         "TGM：表示">
+<!ENTITY TabGroupsManager.buttonHideGroup.help                          "タブグループマネージャー：グループバーの表示・非表示を切り替える">
+<!ENTITY TabGroupsManager.buttonOpen.label                              "TGM：開く">
+<!ENTITY TabGroupsManager.buttonOpen.help                               "タブグループマネージャー：新しいグループを開く">
+<!ENTITY TabGroupsManager.buttonSleep.label                             "TGM：休止">
+<!ENTITY TabGroupsManager.buttonSleep.help                              "タブグループマネージャー：アクティブなグループを休止状態にする">
+<!ENTITY TabGroupsManager.buttonClose.label                             "TGM：閉じる">
+<!ENTITY TabGroupsManager.buttonClose.help                              "タブグループマネージャー：アクティブなグループを閉じる">
+<!ENTITY TabGroupsManager.buttonRestart.label                           "TGM：Firefox を再起動">
+<!ENTITY TabGroupsManager.buttonRestart.help                            "タブグループマネージャー：Firefox を再起動する（非選択グループの自動サスペンドの設定が有効">
+<!ENTITY TabGroupsManager.buttonBackupSession.label                     "TGM：バックアップ">
+<!ENTITY TabGroupsManager.buttonBackupSession.help                      "タブグループマネージャー：現在のセッションをバックアップする">
+<!ENTITY TabGroupsManager.buttonExportSession.label                     "TGM：エクスポート">
+<!ENTITY TabGroupsManager.buttonExportSession.help                      "タブグループマネージャー：現在のセッションをエクスポートする">
+
+<!ENTITY TabGroupsManager.openMenuitemOpenGroupWithRegisteredName.label "登録された名前のグループを開く">
+<!ENTITY TabGroupsManager.openMenuitemOpenGroupWithHistory.label        "ヒストリにある名前のグループを開く">
+
+<!ENTITY TabGroupsManager.openMenuitemToRegisteredGroupName.label       "登録グループ名にする">
+<!ENTITY TabGroupsManager.openMenuitemToRegisteredGroupName.accesskey   "R">
+<!ENTITY TabGroupsManager.openMenuitemRegisterGroupName.label           "グループ名登録">
+<!ENTITY TabGroupsManager.openMenuitemRegisterGroupName.accesskey       "R">
+
+<!ENTITY TabGroupsManager.sendThisGroupToHibernatedGroup.label          "このグループを休止状態にする">
+<!ENTITY TabGroupsManager.deleteThisGroup.label                         "このグループを削除する">

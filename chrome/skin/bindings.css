@@ -1,0 +1,104 @@
+
+/* グループアイコンと読み込み中のイメージのコンテナ */
+.tabgroupsmanager-grouptab-image-deck
+{
+	-moz-margin-start: 0px;
+	-moz-margin-end: 2px;
+}
+
+/* グループアイコン */
+.tabgroupsmanager-grouptab-image
+{
+	max-width: 16px;
+	max-height: 16px;
+	min-width: 0px;
+	min-height: 0px;
+
+	margin: 0px;
+	padding: 0px;
+
+	-moz-margin-start: 0px;
+	-moz-margin-end: 0px;
+}
+
+/* 読み込み中のイメージ */
+.tabgroupsmanager-grouptab-image-busy
+{
+	max-width: 16px;
+	max-height: 16px;
+	min-width: 0px;
+	min-height: 0px;
+
+	margin: 0px;
+	padding: 0px;
+
+	-moz-margin-start: 0px;
+	-moz-margin-end: 0px;
+
+	display: none;
+
+	list-style-image: url("chrome://global/skin/icons/loading_16.png");
+}
+
+/* ラベル */
+.tabgroupsmanager-grouptab label
+{
+	min-height: 16px;	/* 画像に合わせる */
+}
+
+/* メニューボタンのボタン部分 */
+.tabgroupsmanager-menubutton-button
+{
+	-moz-binding: url( "chrome://tabgroupsmanager/content/bindings.xml#tabgroupsmanager-menubutton-button" );
+
+	padding-top: 3px !important;
+	padding-bottom: 3px !important;
+	-moz-padding-start: 0px !important;
+	-moz-padding-end: 1px !important;
+
+	-moz-box-align: center;
+/*	-moz-box-valign: middle;	*/
+	-moz-box-pack: center;
+	-moz-box-orient: vertical;
+
+	min-width: 0px;
+}
+.tabgroupsmanager-menubutton-button:hover,
+.tabgroupsmanager-menubutton-button[buttonover="true"]
+{
+	border-color: ThreeDHighlight ThreeDShadow ThreeDShadow ThreeDHighlight;
+}
+.tabgroupsmanager-menubutton-button:hover:active,
+.tabgroupsmanager-menubutton-button:active[open="true"]
+{
+	border-color: ThreeDShadow ThreeDHighlight ThreeDHighlight ThreeDShadow;
+
+	padding-top: 4px !important;
+	padding-bottom: 2px !important;
+	-moz-padding-start: 1px !important;
+	-moz-padding-end: 0px !important;
+}
+
+/* メニューボタンのアイコン部分 */
+.tabgroupsmanager-menubutton-button-icon
+{
+	padding-left:0px;
+	padding-right:0px;
+
+	margin-left:0px;
+	margin-right:0px;
+
+	min-width:0px;
+}
+
+/* メニューボタンのラベル部分 */
+.tabgroupsmanager-menubutton-button-text
+{
+	padding-left:0px;
+	padding-right:0px;
+
+	margin-left:0px;
+	margin-right:0px;
+
+	min-width:0px;
+}

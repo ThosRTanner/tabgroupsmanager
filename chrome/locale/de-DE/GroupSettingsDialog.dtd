@@ -1,0 +1,11 @@
+<!ENTITY TabGroupsManager.groupSettingsDialog.title         "Gruppeneinstellungen">
+<!ENTITY TabGroupsManager.groupSettingsDialog.description   "TabGroups-Manager in Firefox">
+<!ENTITY TabGroupsManager.name.label                        "Name:">
+<!ENTITY TabGroupsManager.icon.label                        "Symbol:">
+<!ENTITY TabGroupsManager.buttonAddIconFolder.label         "einen Symbolordner hinzufügen">
+<!ENTITY TabGroupsManager.buttonAddIconFolder.accessKey     "A">
+<!ENTITY TabGroupsManager.buttonDefaultIconFolder.label     "Voreinstellung">
+<!ENTITY TabGroupsManager.buttonDefaultIconFolder.accessKey "D">
+<!ENTITY TabGroupsManager.menuitemExcludeFolder.label       "den Symbolordner ausschließen">
+<!ENTITY TabGroupsManager.dialogExcludeFolder.label         "\n\nDer Symbolordner wird von der Liste entfernt. Das Verzeichnis wird nicht gelöscht.">
+<!ENTITY TabGroupsManager.dialogDefault.label               "Die Ordnerliste wird zurückgesetzt. \nSind Sie sich sicher?">

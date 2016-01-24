@@ -1,0 +1,248 @@
+
+tab.tabgroupsmanager-grouptab:not(:-moz-lwtheme)
+{
+	-moz-binding: url("chrome://tabgroupsmanager/content/bindings.xml#tabgroupsmanager-grouptab-binding");
+	-moz-appearance: none;
+
+	-moz-border-radius-topleft: 2px;
+	-moz-border-radius-topright: 2px;
+	-moz-border-top-colors: ThreeDShadow rgba(255,255,255,.3);
+	-moz-border-right-colors: rgba(0,0,0,.1);
+	-moz-border-left-colors: ThreeDShadow rgba(255,255,255,.3);
+	margin-top: 0px;
+}
+
+tab.tabgroupsmanager-grouptab:hover,
+tab.tabgroupsmanager-grouptab[selected="true"]:not(:-moz-lwtheme)
+{
+	-moz-border-radius-topleft: 6px;
+	-moz-border-radius-topright: 6px;
+	-moz-border-top-colors: ThreeDShadow;
+	-moz-border-right-colors: ThreeDShadow;
+	-moz-border-left-colors: ThreeDShadow;
+}
+
+tab.tabgroupsmanager-grouptab:-moz-lwtheme
+{
+	-moz-binding: url("chrome://tabgroupsmanager/content/bindings.xml#tabgroupsmanager-grouptab-binding");
+	-moz-appearance: none;
+	margin-top: 0px;
+	margin-left: 4px;
+	border:0;
+	background-color: transparent;
+	background-image: linear-gradient(rgba(102, 102, 102, 0.6), rgba(76, 76, 76, 0.6) 80%);
+}
+
+tab.tabgroupsmanager-grouptab[selected="true"]:-moz-lwtheme
+{
+	border:0;
+	background-color: transparent;
+	background-image: linear-gradient(rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0.46) 50%);
+}
+
+/* グループバーの色 */
+#TabGroupsManagerToolbar:not(:-moz-lwtheme),
+#TabGroupsManagerToolbar[tabsontop=false]
+{
+	background-image: -moz-linear-gradient(bottom, rgba(10%,10%,10%,.4) 1px, rgba(0,0,0,.05) 1px, transparent 50%);
+}
+
+#main-window[tabsintitlebar]:not([inFullscreen]) #TabGroupsManagerToolbar[ordinal="0"]:not(:-moz-lwtheme),
+#main-window[tabsintitlebar]:not([inFullscreen]) #toolbar-menubar[inactive][ordinal="0"] ~ #TabGroupsManagerToolbar[ordinal="1"]:not(:-moz-lwtheme)
+{
+	background: -moz-linear-gradient(bottom, rgba(10%,10%,10%,.4) 1px, transparent 1px), -moz-linear-gradient(rgba(50%,50%,50%,0), ActiveCaption 85%);
+	color: CaptionText;
+}
+
+#main-window[tabsintitlebar]:not([inFullscreen]) #TabGroupsManagerToolbar[ordinal="0"]:not(:-moz-lwtheme):-moz-window-inactive,
+#main-window[tabsintitlebar]:not([inFullscreen]) #toolbar-menubar[inactive][ordinal="0"] ~ #TabGroupsManagerToolbar[ordinal="1"]:not(:-moz-lwtheme):-moz-window-inactive
+{
+	background: -moz-linear-gradient(bottom, rgba(10%,10%,10%,.4) 1px, transparent 1px), -moz-linear-gradient(rgba(50%,50%,50%,0), InactiveCaption 85%);
+	color: InactiveCaptionText;
+}
+
+/* グループタブの色 */
+tab.tabgroupsmanager-grouptab
+{
+	background-color: -moz-dialog;
+}
+
+.tabgroupsmanager-groupbar
+{
+	-moz-binding: url( "chrome://tabgroupsmanager/content/bindings.xml#tabgroupsmanager-groupbar-binding" );
+}
+
+#main-window[persona] .tabgroupsmanager-groupbar
+{
+	background-image: none;
+}
+
+.tabgroupsmanager-grouptabs
+{
+	-moz-binding: url( "chrome://tabgroupsmanager/content/bindings.xml#tabgroupsmanager-grouptabs-binding" );
+	-moz-box-align: stretch;
+	margin-bottom: 0px;
+}
+
+#TabGroupsManagerGroupBarDropAllow
+{
+	height: 12px;
+	width: 12px;
+	margin-top: -9px;
+	margin-left: -6px;
+	position: fixed;
+	background: url('chrome://tabgroupsmanager/skin/droparrow.png') no-repeat;
+}
+
+#TabGroupsManagerGroupBarDropPlus
+{
+	height: 12px;
+	width: 12px;
+	margin-top: -9px;
+	margin-left: -6px;
+	position: fixed;
+	background: url('chrome://tabgroupsmanager/skin/dropplus.png') no-repeat;
+}
+
+#TabGroupsManagerGroupBarDropPlusNewGroup
+{
+	height: 16px;
+	width: 32px;
+	margin-top: 6px;
+	margin-left: 0px;
+	position: fixed;
+	background: url('chrome://tabgroupsmanager/skin/dropplusnewgroup.png') no-repeat;
+}
+
+#TabGroupsManagerGroupBarDropZZZ
+{
+	height: 24px;
+	width: 40px;
+	margin-top: -12px;
+	margin-left: -20px;
+	position: fixed;
+	background: url('chrome://tabgroupsmanager/skin/dropzzz.gif') no-repeat;
+}
+
+#TabGroupsManagerDropSuspend
+{
+	height: 24px;
+	width: 40px;
+	margin-top: -12px;
+	margin-left: -20px;
+	position: fixed;
+	background: url('chrome://tabgroupsmanager/skin/suspend.gif') no-repeat;
+}
+
+/* arrowscrollbox */
+#TabGroupsManagerGroupBarScrollbox > .autorepeatbutton-up[orient="horizontal"],
+#TabGroupsManagerGroupBarScrollbox > .autorepeatbutton-down[chromedir="rtl"][orient="horizontal"]
+{
+	width:16px;
+	list-style-image: url("chrome://tabgroupsmanager/skin/arrowleft.png");
+	-moz-image-region: rect(0px, 11px, 11px, 0px);
+}
+
+#TabGroupsManagerGroupBarScrollbox > .autorepeatbutton-down[orient="horizontal"],
+#TabGroupsManagerGroupBarScrollbox > .autorepeatbutton-up[chromedir="rtl"][orient="horizontal"]
+{
+	width:16px;
+	list-style-image: url("chrome://tabgroupsmanager/skin/arrowright.png");
+	-moz-image-region: rect(0px, 11px, 11px, 0px);
+}
+
+#TabGroupsManagerGroupBarScrollbox > .autorepeatbutton-up[orient="horizontal"][disabled="true"],
+#TabGroupsManagerGroupBarScrollbox > .autorepeatbutton-down[chromedir="rtl"][orient="horizontal"][disabled="true"]
+{
+	-moz-image-region: rect(0px, 22px, 11px, 11px);
+}
+
+#TabGroupsManagerGroupBarScrollbox > .autorepeatbutton-down[orient="horizontal"][disabled="true"],
+#TabGroupsManagerGroupBarScrollbox > .autorepeatbutton-up[chromedir="rtl"][orient="horizontal"][disabled="true"]
+{
+	-moz-image-region: rect(0px, 22px, 11px, 11px);
+}
+
+#TabGroupsManagerGroupBarScrollbox > autorepeatbutton
+{
+	margin-top: 1px;
+	margin-bottom: 2px;
+	-moz-box-align: center;
+	-moz-box-pack: center;
+	-moz-margin-start: 1px;
+	-moz-margin-end: 2px;
+	border : 1px solid transparent;
+	padding : 1px;
+	padding-top : 3px;
+}
+
+#TabGroupsManagerGroupBarScrollbox > autorepeatbutton:not([disabled="true"]):hover,
+#TabGroupsManagerGroupBarScrollbox > autorepeatbutton:not([disabled="true"]):hover:active
+{
+	margin : 1px;
+	border : 1px inset ThreeDFace;
+	padding-top : 4px;
+	-moz-padding-start: 2px;
+	-moz-padding-end: 1px;
+}
+
+/* タイトルのみのメニューアイテム（実行不能） */
+.tabgroupsmanager-menuitem-title-only
+{
+	-moz-binding: url( "chrome://tabgroupsmanager/content/bindings.xml#menuitem-title-only" );
+
+	color: menutext;
+	font-weight: bold;
+	text-shadow: none;
+	background-color: transparent;
+	-moz-appearance: none;
+}
+
+/* アイコンのみのメニューアイテム */
+.tabgroupsmanager-menuitem-icon-only,
+.tabgroupsmanager-menuitem-icon-only:not([type])
+{
+	-moz-binding: url( "chrome://tabgroupsmanager/content/bindings.xml#menuitem-icon-only" );
+
+	padding:3px 1px 1px 1px;
+}
+
+/* アイコンのみのボタン */
+.tabgroupsmanager-button-icon-only
+{
+	-moz-appearance: none;
+	-moz-binding: url( "chrome://tabgroupsmanager/content/bindings.xml#button-icon-only" );
+
+	min-width: 0px;
+	margin: 0px;
+}
+
+/* アイコンのみのフラットボタン */
+.tabgroupsmanager-button-flat-icon-only
+{
+	-moz-appearance: none;
+	-moz-binding: url( "chrome://tabgroupsmanager/content/bindings.xml#button-icon-only" );
+
+	min-width: 0px;
+	margin: 0px;
+	padding: 2px;
+	border:0px;
+}
+.tabgroupsmanager-button-flat-icon-only:focus,
+.tabgroupsmanager-button-flat-icon-only:hover
+{
+	padding: 0px;
+	border: 2px solid #9A9A9A;
+}
+
+/* 縦幅が狭い textbox */
+.tabgroupsmanager-textbox-narrow
+{
+	-moz-appearance: none;
+	-moz-padding-start: 0px;
+
+	border: 0px;
+	padding: 0px;
+	margin: 0px;
+	font-weight: normal;
+}

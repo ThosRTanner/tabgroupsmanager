@@ -1,0 +1,8 @@
+<!ENTITY TabGroupsManager.menuItemOpenInNewGroup.label                  "In neuer Gruppe öffnen">
+<!ENTITY TabGroupsManager.menuItemOpenInNewGroup.accesskey              "G">
+<!-- add --><!ENTITY TabGroupsManager.menuItemOpenInSelectedGroup.label             "In momentaner Gruppe öffnen">
+<!-- add --><!ENTITY TabGroupsManager.menuItemOpenInSelectedGroup.accesskey         "M">
+<!ENTITY TabGroupsManager.menuItemAllOpenInNewGroup.label               "Alle zusammen in neuer Gruppe öffnen">
+<!ENTITY TabGroupsManager.menuItemAllOpenInNewGroup.accesskey           "G">
+<!-- add --><!ENTITY TabGroupsManager.menuItemAllOpenInSelectedGroup.label          "Alle in momentaner Gruppe öffnen">
+<!-- add --><!ENTITY TabGroupsManager.menuItemAllOpenInSelectedGroup.accesskey      "m">

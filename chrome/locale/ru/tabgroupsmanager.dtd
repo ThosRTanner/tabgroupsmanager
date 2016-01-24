@@ -1,0 +1,137 @@
+<!ENTITY TabGroupsManager.groupBar.label                                "Панель групп">
+
+<!ENTITY TabGroupsManager.dispGroupBar.label                            "Отобразить панель групп">
+
+<!ENTITY TabGroupsManager.menuitemDelete.label                          "Удалить">
+<!ENTITY TabGroupsManager.menuitemDelete.accesskey                      "У">
+
+<!ENTITY TabGroupsManager.menuItemSuspend.label                         "Приостановить">
+<!ENTITY TabGroupsManager.menuItemSuspend.help                          "Группа будет приостановлена/восстановлена">
+<!ENTITY TabGroupsManager.menuItemSuspend.accesskey                     "П">
+<!ENTITY TabGroupsManager.menuItemSleep.label                           "Заморозить">
+<!ENTITY TabGroupsManager.menuItemSleep.help                            "Заморозить эту группу">
+<!ENTITY TabGroupsManager.menuItemSleep.accesskey                       "М">
+<!ENTITY TabGroupsManager.menuItemClose.label                           "Закрыть">
+<!ENTITY TabGroupsManager.menuItemClose.help                            "Закрыть эту группу">
+<!ENTITY TabGroupsManager.menuItemClose.accesskey                       "З">
+<!ENTITY TabGroupsManager.menuItemBookmarkGroup.label                   "В закладки эту группу">
+<!ENTITY TabGroupsManager.menuItemBookmarkGroup.help                    "Добавляет как папку в закладки вкладки этой группы">
+<!ENTITY TabGroupsManager.menuItemBookmarkGroup.accesskey               "П">
+<!ENTITY TabGroupsManager.menuItemReloadTabInGroup.label                "Обновить все вкладки (в группе)">
+<!ENTITY TabGroupsManager.menuItemReloadTabInGroup.help                 "Обновить все вкладки в этой группе">
+<!ENTITY TabGroupsManager.menuItemReloadTabInGroup.accesskey            "О">
+<!ENTITY TabGroupsManager.menuItemSetGroupDataDialog.label              "Диалог настроек групп">
+<!ENTITY TabGroupsManager.menuItemSetGroupDataDialog.help               "Открыть диалог для редактирования настроек групп">
+<!ENTITY TabGroupsManager.menuItemSetGroupDataDialog.accesskey          "Д">
+<!ENTITY TabGroupsManager.menuItemSetGroupData.label                    "Меню настроек групп">
+<!ENTITY TabGroupsManager.menuItemSetGroupData.help                     "Открыть подменю для редактирования настроек групп">
+<!ENTITY TabGroupsManager.menuItemSetGroupData.accesskey                "Н">
+<!ENTITY TabGroupsManager.menuItemExportGroup.label                     "Экспорт группы">
+<!ENTITY TabGroupsManager.menuItemExportGroup.help                      "Экспорт данных группы">
+<!ENTITY TabGroupsManager.menuItemExportGroup.accesskey                 "В">
+
+<!ENTITY TabGroupsManager.menuItemAutoRename.label                      "Самопереименовка (имя + значок)">
+<!ENTITY TabGroupsManager.menuItemAutoRename.help                       "Самостоятельно переименовать группу и выставить значок используя текущую вкладку">
+<!ENTITY TabGroupsManager.menuItemAutoRename.accesskey                  "С">
+<!ENTITY TabGroupsManager.menuItemAutoRenameNameOnly.label              "Самопереименовка (только имя)">
+<!ENTITY TabGroupsManager.menuItemAutoRenameNameOnly.help               "Самостоятельно переименовать группу используя текущую вкладку">
+<!ENTITY TabGroupsManager.menuItemAutoRenameNameOnly.accesskey          "И">
+<!ENTITY TabGroupsManager.menuItemAutoRenameIconOnly.label              "Самопереименовка (только значок)">
+<!ENTITY TabGroupsManager.menuItemAutoRenameIconOnly.help               "Изменить значок группы используя текущую вкладку">
+<!ENTITY TabGroupsManager.menuItemAutoRenameIconOnly.accesskey          "З">
+<!ENTITY TabGroupsManager.menuItemDisableAutoRename.label               "Выключить самопереименовку">
+<!ENTITY TabGroupsManager.menuItemDisableAutoRename.help                "Выключает самостоятельное переименование для этой группы">
+<!ENTITY TabGroupsManager.menuItemDisableAutoRename.accesskey           "В">
+
+<!ENTITY TabGroupsManager.menuItemRenameRegisterd.label                 "Переименовать по описанным названиям">
+<!ENTITY TabGroupsManager.menuItemRenameHistory.label                   "История переименований">
+<!ENTITY TabGroupsManager.menuItemRenameHistory.help                    "Переименовать используя историю">
+<!ENTITY TabGroupsManager.menuItemRenameHistory.accesskey               "И">
+<!ENTITY TabGroupsManager.menuItemRenameHistoryClear.label              "Очистить историю переименований">
+<!ENTITY TabGroupsManager.menuItemRenameHistoryClear.help               "Стереть все пункты в списке истории переименований">
+<!ENTITY TabGroupsManager.menuItemRenameHistoryClear.accesskey          "О">
+
+<!ENTITY TabGroupsManager.menuItemOpen.label                            "Новая группа">
+<!ENTITY TabGroupsManager.menuItemOpen.help                             "Открыть новую группу на фоне">
+<!ENTITY TabGroupsManager.menuItemOpen.accesskey                        "Н">
+<!ENTITY TabGroupsManager.menuItemOpenActive.label                      "Новая активная группа">
+<!ENTITY TabGroupsManager.menuItemOpenActive.help                       "Открыть новую группу на переднем плане">
+<!ENTITY TabGroupsManager.menuItemOpenActive.accesskey                  "А">
+<!ENTITY TabGroupsManager.menuItemOpenRename.label                      "Новая группа с выбором названия">
+<!ENTITY TabGroupsManager.menuItemOpenRename.help                       "Открыть новую группу на фоне с диалогом ввода названия">
+<!ENTITY TabGroupsManager.menuItemOpenRename.accesskey                  "В">
+<!ENTITY TabGroupsManager.menuItemOpenActiveRename.label                "Новая активная с выбором названия">
+<!ENTITY TabGroupsManager.menuItemOpenActiveRename.help                 "Открыть новую группу на переднем плане с диалогом ввода названия">
+<!ENTITY TabGroupsManager.menuItemOpenActiveRename.accesskey            "В">
+<!ENTITY TabGroupsManager.menuItemOpenWithHome.label                    "Новая группа с домашней страницей">
+<!ENTITY TabGroupsManager.menuItemOpenWithHome.help                     "Открыть новую группу на фоне и загрузить домашнюю страницу во вкладке">
+<!ENTITY TabGroupsManager.menuItemOpenWithHome.accesskey                "Д">
+<!ENTITY TabGroupsManager.menuItemOpenActiveWithHome.label              "Новая активная с домашней страницей">
+<!ENTITY TabGroupsManager.menuItemOpenActiveWithHome.help               "Открыть новую группу на переднем плане и загрузить домашнюю страницу во вкладке">
+<!ENTITY TabGroupsManager.menuItemOpenActiveWithHome.accesskey          "Д">
+<!ENTITY TabGroupsManager.menuItemOpenByRenameHistory.label             "Новая группа используя историю">
+<!ENTITY TabGroupsManager.menuItemOpenByRenameHistory.help              "Открыть новую группу и переименовать её используя историю">
+<!ENTITY TabGroupsManager.menuItemOpenByRenameHistory.accesskey         "И">
+<!ENTITY TabGroupsManager.menuItemSleepActiveGroup.label                "Заморозить группу">
+<!ENTITY TabGroupsManager.menuItemSleepActiveGroup.help                 "Заморозить текущую группу">
+<!ENTITY TabGroupsManager.menuItemSleepActiveGroup.accesskey            "З">
+<!ENTITY TabGroupsManager.menuItemCloseActiveGroup.label                "Закрыть группу">
+<!ENTITY TabGroupsManager.menuItemCloseActiveGroup.help                 "Закрыть текущую группу">
+<!ENTITY TabGroupsManager.menuItemCloseActiveGroup.accesskey            "З">
+<!ENTITY TabGroupsManager.menuItemSleepingGroups.label                  "Список замороженных групп">
+<!ENTITY TabGroupsManager.menuItemSleepingGroups.help                   "Посмотреть список замороженных групп">
+<!ENTITY TabGroupsManager.menuItemSleepingGroups.accesskey              "С">
+<!ENTITY TabGroupsManager.menuItemClosedGroups.label                    "Список закрытых групп">
+<!ENTITY TabGroupsManager.menuItemClosedGroups.help                     "Посмотреть список закрытых групп">
+<!ENTITY TabGroupsManager.menuItemClosedGroups.accesskey                "С">
+<!ENTITY TabGroupsManager.menuItemClosedGroupsClear.label               "Очистить список закрытых групп">
+<!ENTITY TabGroupsManager.menuItemClosedGroupsClear.help                "Стереть все пункты в списке закрытых групп">
+<!ENTITY TabGroupsManager.menuItemClosedGroupsClear.accesskey           "О">
+<!ENTITY TabGroupsManager.menuItemBookmarkAllGroups.label               "В закладки все группы">
+<!ENTITY TabGroupsManager.menuItemBookmarkAllGroups.help                "Добавляет как папку в закладки все группы">
+<!ENTITY TabGroupsManager.menuItemBookmarkAllGroups.accesskey           "В">
+<!ENTITY TabGroupsManager.menuItemBackupSession.label                   "Сессии">
+<!ENTITY TabGroupsManager.menuItemBackupSession.help                    "Сохранение и восстановление сессий">
+<!ENTITY TabGroupsManager.menuItemBackupSession.accesskey               "С">
+
+<!ENTITY TabGroupsManager.menuItemSaveSession.label                     "Сохранить сессию">
+<!ENTITY TabGroupsManager.menuItemSaveSession.help                      "Сохранить текущую сессию.">
+<!ENTITY TabGroupsManager.menuItemSaveSession.accesskey                 "С">
+
+<!ENTITY TabGroupsManager.menuItemExportSession.label                   "Экспорт текущей сессии">
+<!ENTITY TabGroupsManager.menuItemExportSession.help                    "Вывоз текущей сессии.">
+<!ENTITY TabGroupsManager.menuItemExportSession.accesskey               "В">
+
+<!ENTITY TabGroupsManager.menuItemOpenPrefWindow.label                  "Настройки">
+<!ENTITY TabGroupsManager.menuItemOpenPrefWindow.help                   "Открыть окно настроек">
+<!ENTITY TabGroupsManager.menuItemOpenPrefWindow.accesskey              "Н">
+<!ENTITY TabGroupsManager.menuItemLinkOpenInNewGroup.label              "Открыть ссылку в новой группе">
+<!ENTITY TabGroupsManager.menuItemLinkOpenInNewGroup.accesskey          "Н">
+<!ENTITY TabGroupsManager.menuItemLinkOpenInSelectedGroup.label         "Открыть ссылку в новой активной">
+<!ENTITY TabGroupsManager.menuItemLinkOpenInSelectedGroup.accesskey     "А">
+
+<!ENTITY TabGroupsManager.buttonHideGroup.label                         "ГВ: Скрыть">
+<!ENTITY TabGroupsManager.buttonHideGroup.help                          "Группировщик вкладок: Показать/скрыть панель групп">
+<!ENTITY TabGroupsManager.buttonOpen.label                              "ГВ: Открыть">
+<!ENTITY TabGroupsManager.buttonOpen.help                               "Группировщик вкладок: Открыть новую группу">
+<!ENTITY TabGroupsManager.buttonSleep.label                             "ГВ: Заморозить">
+<!ENTITY TabGroupsManager.buttonSleep.help                              "Группировщик вкладок: Заморозить текущую группу">
+<!ENTITY TabGroupsManager.buttonClose.label                             "ГВ: Закрыть">
+<!ENTITY TabGroupsManager.buttonClose.help                              "Группировщик вкладок: Закрыть текущую группу">
+<!ENTITY TabGroupsManager.buttonRestart.label                           "ГВ: Перезапустить Firefox">
+<!ENTITY TabGroupsManager.buttonRestart.help                            "Группировщик вкладок: Перезапуск FireFox (используется настройка самоприостановки)">
+<!ENTITY TabGroupsManager.buttonBackupSession.label                     "ГВ: Запаска сессии">
+<!ENTITY TabGroupsManager.buttonBackupSession.help                      "Группировщик вкладок: Запасти текущую сессию.">
+<!ENTITY TabGroupsManager.buttonExportSession.label                     "ГВ: Экспорт сессии">
+<!ENTITY TabGroupsManager.buttonExportSession.help                      "Группировщик вкладок: Экспортировать текущую сессию.">
+
+<!ENTITY TabGroupsManager.openMenuitemOpenGroupWithRegisteredName.label "Открыть группу с описаным названием">
+<!ENTITY TabGroupsManager.openMenuitemOpenGroupWithHistory.label        "Открыть группу с названием из истории">
+
+<!ENTITY TabGroupsManager.openMenuitemToRegisteredGroupName.label       "Отправить в список названий">
+<!ENTITY TabGroupsManager.openMenuitemToRegisteredGroupName.accesskey   "О">
+<!ENTITY TabGroupsManager.openMenuitemRegisterGroupName.label           "Добавить название">
+<!ENTITY TabGroupsManager.openMenuitemRegisterGroupName.accesskey       "Д">
+
+<!ENTITY TabGroupsManager.sendThisGroupToHibernatedGroup.label          "Отправить в замороженную группу">
+<!ENTITY TabGroupsManager.deleteThisGroup.label                         "Удалить эту группу">

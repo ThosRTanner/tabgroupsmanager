@@ -1,0 +1,11 @@
+<!ENTITY TabGroupsManager.groupSettingsDialog.title         "Set Group Data">
+<!ENTITY TabGroupsManager.groupSettingsDialog.description   "TabGroups Manager in Firefox">
+<!ENTITY TabGroupsManager.name.label                        "Name :">
+<!ENTITY TabGroupsManager.icon.label                        "Icon :">
+<!ENTITY TabGroupsManager.buttonAddIconFolder.label         "Add icon folder">
+<!ENTITY TabGroupsManager.buttonAddIconFolder.accessKey     "A">
+<!ENTITY TabGroupsManager.buttonDefaultIconFolder.label     "Default">
+<!ENTITY TabGroupsManager.buttonDefaultIconFolder.accessKey "D">
+<!ENTITY TabGroupsManager.menuitemExcludeFolder.label       "Exclude the folder">
+<!ENTITY TabGroupsManager.dialogExcludeFolder.label         "\n\nThis folder will be excluded from the list. The folder will NOT be deleted.\nProceed?">
+<!ENTITY TabGroupsManager.dialogDefault.label               "The icon list will be restored to the default list. \nProceed?">

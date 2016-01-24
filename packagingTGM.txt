@@ -1,0 +1,26 @@
+Basic steps to package TabgroupsManager
+---------------------------------------
+
+1. Test all changes before creating a new package and then submit everything to SVN repository.
+
+2. Modify VERSION file, with the new date and version number for TGM.
+
+3. Modify install.rdf in <em:version> tag, with the new date and version number for TGM.
+
+4. Add lastest SVN changes to CHANGELOG file.
+
+5. Pack everything in ./chrome folder to create a new tabgroupsmanager.jar compressed file, or overwritting any existing files in it:
+   Example (windows):
+       .\tabgroupsmanager\product\trunk>7z a -xr!*.jar -r .\chrome\tabgroupsmanager.jar .\chrome\*
+
+6. Create final .xpi file and set the right Date and version.
+   Example:
+       .\tabgroupsmanager\product\trunk>7z a -r addon-2015.02.22.006-fx.xpi .
+       .\tabgroupsmanager\product\trunk>7z d addon-2015.02.22.006-fx.xpi chrome\content chrome\locale chrome\skin
+7. Move .xpi created package to the beta folder release: tabgroupsmanager\__static\product\100\beta
+   Example:
+       .\tabgroupsmanager\product\trunk>copy addon-2015.02.22.006-fx.xpi ..\..\__static\product\100\beta
+
+       del addon-2015.02.22.006-fx.xpi
+
+8. Submit new package file to SVN and TAG it with a new version.

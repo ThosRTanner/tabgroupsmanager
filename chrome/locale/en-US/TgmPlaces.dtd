@@ -1,0 +1,8 @@
+<!ENTITY TabGroupsManager.menuItemOpenInNewGroup.label                  "Open in New Group">
+<!ENTITY TabGroupsManager.menuItemOpenInNewGroup.accesskey              "G">
+<!ENTITY TabGroupsManager.menuItemOpenInSelectedGroup.label             "Open in Focused Group">
+<!ENTITY TabGroupsManager.menuItemOpenInSelectedGroup.accesskey         "H">
+<!ENTITY TabGroupsManager.menuItemAllOpenInNewGroup.label               "Open All in New Group">
+<!ENTITY TabGroupsManager.menuItemAllOpenInNewGroup.accesskey           "G">
+<!ENTITY TabGroupsManager.menuItemAllOpenInSelectedGroup.label          "Open All in Focused Group">
+<!ENTITY TabGroupsManager.menuItemAllOpenInSelectedGroup.accesskey      "H">

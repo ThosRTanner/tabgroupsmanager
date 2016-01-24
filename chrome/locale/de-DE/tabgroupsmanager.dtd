@@ -1,0 +1,137 @@
+<!ENTITY TabGroupsManager.groupBar.label                    "TabGroups-Manager-Gruppenleiste">
+
+<!-- add --><!ENTITY TabGroupsManager.dispGroupBar.label                            "Zeige TGM-Gruppenleiste">
+
+<!-- add --><!ENTITY TabGroupsManager.menuitemDelete.label                          "Lösche">
+<!-- add --><!ENTITY TabGroupsManager.menuitemDelete.accesskey                      "L">
+
+<!-- add --><!ENTITY TabGroupsManager.menuItemSuspend.label                         "Gruppe parken">
+<!-- add --><!ENTITY TabGroupsManager.menuItemSuspend.help                          "Speichert die Gruppe vorübergehend. Bei Beenden von Firefox geht sie jedoch verloren.">
+<!-- add --><!ENTITY TabGroupsManager.menuItemSuspend.accesskey                     "P">
+<!ENTITY TabGroupsManager.menuItemSleep.label                   "Gruppe -&gt; Ruhezustand"> 
+<!ENTITY TabGroupsManager.menuItemSleep.help                    "Versetzt die Gruppe in den Ruhezustand"> 
+<!ENTITY TabGroupsManager.menuItemSleep.accesskey               "R">
+<!ENTITY TabGroupsManager.menuItemClose.label                   "Gruppe schließen"> 
+<!ENTITY TabGroupsManager.menuItemClose.help                    "Schließt die Gruppe"> 
+<!ENTITY TabGroupsManager.menuItemClose.accesskey               "s">
+<!ENTITY TabGroupsManager.menuItemBookmarkGroup.label               "Gruppe -&gt; Lesezeichen">
+<!ENTITY TabGroupsManager.menuItemBookmarkGroup.help                "Speichert sämtliche Tabs dieser Gruppe in einem Lesezeichen-Ordner">
+<!ENTITY TabGroupsManager.menuItemBookmarkGroup.accesskey           "L">
+<!ENTITY TabGroupsManager.menuItemReloadTabInGroup.label            "Tabs dieser Gruppe neu laden">
+<!ENTITY TabGroupsManager.menuItemReloadTabInGroup.help             "Lädt samtliche Tabs dieser Gruppe neu.">
+<!ENTITY TabGroupsManager.menuItemReloadTabInGroup.accesskey            "n">
+<!-- add --><!ENTITY TabGroupsManager.menuItemSetGroupDataDialog.label              "Gruppeneinstellungen (Dialog)...">
+<!-- add --><!ENTITY TabGroupsManager.menuItemSetGroupDataDialog.help               "Zeigt die Gruppeneinstellungen">
+<!-- add --><!ENTITY TabGroupsManager.menuItemSetGroupDataDialog.accesskey          "D">
+<!-- add --><!ENTITY TabGroupsManager.menuItemSetGroupData.label                    "Gruppeneinstellungen (Menü)">
+<!-- add --><!ENTITY TabGroupsManager.menuItemSetGroupData.help                     "Öffnet das Untermenü zum Bearbeiten der Gruppeneinstellungen">
+<!-- add --><!ENTITY TabGroupsManager.menuItemSetGroupData.accesskey                "M">
+<!-- add --><!ENTITY TabGroupsManager.menuItemExportGroup.label                     "Exportiere diese Gruppe...">
+<!-- add --><!ENTITY TabGroupsManager.menuItemExportGroup.help                      "Exportiert die Gruppe">
+<!-- add --><!ENTITY TabGroupsManager.menuItemExportGroup.accesskey                 "E">
+
+<!ENTITY TabGroupsManager.menuItemAutoRename.label              "Vererbung (Name und Symbol ändern)">
+<!ENTITY TabGroupsManager.menuItemAutoRename.help               "Übernimmt Gruppenname und -symbol vom aktiven Tab in der Gruppe">
+<!ENTITY TabGroupsManager.menuItemAutoRename.accesskey              "m">
+<!ENTITY TabGroupsManager.menuItemAutoRenameNameOnly.label          "Verebung (Nur Namen ändern)">
+<!ENTITY TabGroupsManager.menuItemAutoRenameNameOnly.help           "Übernimmt den Gruppennamen vom aktiven Tab in der Gruppeb">
+<!ENTITY TabGroupsManager.menuItemAutoRenameNameOnly.accesskey          "T">
+<!ENTITY TabGroupsManager.menuItemAutoRenameIconOnly.label          "Vererbung (Nur Symbol ändern)">
+<!ENTITY TabGroupsManager.menuItemAutoRenameIconOnly.help           "Übernimmt das Gruppensymbol vom aktiven Tab in der Gruppe">
+<!ENTITY TabGroupsManager.menuItemAutoRenameIconOnly.accesskey          "S">
+<!ENTITY TabGroupsManager.menuItemDisableAutoRename.label           "Vererbung deaktivieren">
+<!ENTITY TabGroupsManager.menuItemDisableAutoRename.help            "Schaltet die Vererbung von Gruppenname und -symbol bei dieser Gruppe ab.">
+<!ENTITY TabGroupsManager.menuItemDisableAutoRename.accesskey           "a">
+
+<!-- add --><!ENTITY TabGroupsManager.menuItemRenameRegisterd.label         "Gruppennamen">
+<!ENTITY TabGroupsManager.menuItemRenameHistory.label               "Ehemalige Namen">
+<!ENTITY TabGroupsManager.menuItemRenameHistory.help                "Eine Chronik der schon einmal verwendeten Namen">
+<!ENTITY TabGroupsManager.menuItemRenameHistory.accesskey           "N">
+<!ENTITY TabGroupsManager.menuItemRenameHistoryClear.label          "Ehemalige Namen vergessen">
+<!ENTITY TabGroupsManager.menuItemRenameHistoryClear.help           "Dies löscht die Liste der schon einmal verwendeten Namen">
+<!ENTITY TabGroupsManager.menuItemRenameHistoryClear.accesskey          "v">
+
+<!ENTITY TabGroupsManager.menuItemOpen.label                    "Neue Gruppe erstellen">
+<!ENTITY TabGroupsManager.menuItemOpen.help                 "Erstellt eine neue, leere Gruppe auf der Gruppenleiste, wählt diese aber nicht automatisch an">
+<!ENTITY TabGroupsManager.menuItemOpen.accesskey                "N">
+<!ENTITY TabGroupsManager.menuItemOpenActive.label              "Neue Gruppe erstellen und anwählen">
+<!ENTITY TabGroupsManager.menuItemOpenActive.help               "Erstellt eine neue, leere Gruppe auf der Gruppenleiste und wählt diese an">
+<!ENTITY TabGroupsManager.menuItemOpenActive.accesskey              "a">
+<!ENTITY TabGroupsManager.menuItemOpenRename.label              "Gruppe erstellen, nach Gruppenamen fragen">
+<!ENTITY TabGroupsManager.menuItemOpenRename.help               "Erstellt eine neue, leere Gruppe auf der Gruppenleiste (wählt diese aber nicht automatisch an), und öffnet ein Fenster zur Eingabe des Namens der Gruppe">
+<!ENTITY TabGroupsManager.menuItemOpenRename.accesskey              "f">
+<!ENTITY TabGroupsManager.menuItemOpenActiveRename.label            "Gruppe erstellen, anwählen, nach Gruppennamen fragen">
+<!ENTITY TabGroupsManager.menuItemOpenActiveRename.help             "Erstellt eine neue, leere Gruppe auf der Gruppenleiste, wählt diese unverzüglich an und öffnet ein Fenster zur Eingabe des Namens der Gruppe">
+<!ENTITY TabGroupsManager.menuItemOpenActiveRename.accesskey            "e">
+<!ENTITY TabGroupsManager.menuItemOpenWithHome.label                "Gruppe erstellen, Startseite darin öffnen">
+<!ENTITY TabGroupsManager.menuItemOpenWithHome.help             "Erstellt eine neue, leere Gruppe auf der Gruppenleiste (wählt diese aber nicht automatisch an), und öffnet die Startseite darin.">
+<!ENTITY TabGroupsManager.menuItemOpenWithHome.accesskey            "H">
+<!ENTITY TabGroupsManager.menuItemOpenActiveWithHome.label          "Gruppe erstellen, anwählen, Startseite darin öffnen">
+<!ENTITY TabGroupsManager.menuItemOpenActiveWithHome.help           "Erstellt eine neue, leere Gruppe auf der Gruppenleiste, wählt diese unverzüglich an und öffnet die Startseite darin.">
+<!ENTITY TabGroupsManager.menuItemOpenActiveWithHome.accesskey          "o">
+<!ENTITY TabGroupsManager.menuItemOpenByRenameHistory.label         "Gruppe erstellen, Gruppennamen aus Chronik auswählen">
+<!ENTITY TabGroupsManager.menuItemOpenByRenameHistory.help          "Erstellt eine neue, leere Gruppe auf der Gruppenleiste, wählt diese unverzüglich an und weist den aus der Chronik der ehemals verwendeten Namen gewählten zu.">
+<!ENTITY TabGroupsManager.menuItemOpenByRenameHistory.accesskey         "C">
+<!ENTITY TabGroupsManager.menuItemSleepActiveGroup.label            "aktive Gruppe -&gt; Ruhezustand">
+<!ENTITY TabGroupsManager.menuItemSleepActiveGroup.help             "Versetzt die aktive Gruppe in den Ruhezustand.">
+<!ENTITY TabGroupsManager.menuItemSleepActiveGroup.accesskey            "R">
+<!ENTITY TabGroupsManager.menuItemCloseActiveGroup.label            "aktive Gruppe schließen"> 
+<!ENTITY TabGroupsManager.menuItemCloseActiveGroup.help             "Schließt die aktive Gruppe"> 
+<!ENTITY TabGroupsManager.menuItemCloseActiveGroup.accesskey            "C">
+<!ENTITY TabGroupsManager.menuItemSleepingGroups.label              "Liste der Gruppen im Ruhezustand">
+<!ENTITY TabGroupsManager.menuItemSleepingGroups.help               "Zeigt die Liste derjenigen Gruppen, die sich im Ruhezustand befinden">
+<!ENTITY TabGroupsManager.menuItemSleepingGroups.accesskey          "u">
+<!ENTITY TabGroupsManager.menuItemClosedGroups.label                "Papierkorb (geschlossene Gruppen)">
+<!ENTITY TabGroupsManager.menuItemClosedGroups.help                 "Zeigt eine Liste der zuletzt geschlossenen Gruppen, um diese bei Bedarf retten zu können.">
+<!ENTITY TabGroupsManager.menuItemClosedGroups.accesskey            "P">
+<!ENTITY TabGroupsManager.menuItemClosedGroupsClear.label           "Papierkorb leeren (!)">
+<!ENTITY TabGroupsManager.menuItemClosedGroupsClear.help            "Leert den Papierkorb restlos.">
+<!ENTITY TabGroupsManager.menuItemClosedGroupsClear.accesskey           "r">
+<!ENTITY TabGroupsManager.menuItemBookmarkAllGroups.label           "Sämtliche Gruppen -&gt; Lesezeichen-Ordner">
+<!ENTITY TabGroupsManager.menuItemBookmarkAllGroups.help            "Speichert sämtliche Gruppen in einem Lesezeichen-Ordner">
+<!ENTITY TabGroupsManager.menuItemBookmarkAllGroups.accesskey           "d">
+<!ENTITY TabGroupsManager.menuItemBackupSession.label               "Sitzungs-Backup">
+<!ENTITY TabGroupsManager.menuItemBackupSession.help                "Optionen zum Speichern und Wiederherstellen von Sitzungen">
+<!ENTITY TabGroupsManager.menuItemBackupSession.accesskey           "B">
+
+<!ENTITY TabGroupsManager.menuItemSaveSession.label                 "Aktuelle Sitzung speichern">
+<!ENTITY TabGroupsManager.menuItemSaveSession.help                  "Sichert die aktuelle Sitzung (siehe TabGroups-Manager-Einstellungen)">
+<!ENTITY TabGroupsManager.menuItemSaveSession.accesskey             "A">
+
+<!-- add --><!ENTITY TabGroupsManager.menuItemExportSession.label                   "Exportiere aktuelle Sitzung">
+<!-- add --><!ENTITY TabGroupsManager.menuItemExportSession.help                    "Exportiert die aktuelle Sitzung">
+<!-- add --><!ENTITY TabGroupsManager.menuItemExportSession.accesskey               "E">
+
+<!ENTITY TabGroupsManager.menuItemOpenPrefWindow.label              "TabGroups-Manager-Einstellungen">
+<!ENTITY TabGroupsManager.menuItemOpenPrefWindow.help               "Bietet Konfigurationsmöglichkeiten für &quot;TabGroups Manager&quot;">
+<!ENTITY TabGroupsManager.menuItemOpenPrefWindow.accesskey          "P">
+<!ENTITY TabGroupsManager.menuItemLinkOpenInNewGroup.label          "Link in neuer Gruppe öffnen">
+<!ENTITY TabGroupsManager.menuItemLinkOpenInNewGroup.accesskey      "G">
+<!ENTITY TabGroupsManager.menuItemLinkOpenInSelectedGroup.label     "Link -&gt; Hintergrund-Gruppe">
+<!ENTITY TabGroupsManager.menuItemLinkOpenInSelectedGroup.accesskey "H">
+
+<!ENTITY TabGroupsManager.buttonHideGroup.label                 "TGM verstecken">
+<!ENTITY TabGroupsManager.buttonHideGroup.help                  "Zeigt/versteckt die TabGroups-Manager-Leiste">
+<!ENTITY TabGroupsManager.buttonOpen.label                  "TGM:Open">
+<!ENTITY TabGroupsManager.buttonOpen.help                   "Neue Gruppe erstellen">
+<!ENTITY TabGroupsManager.buttonSleep.label                 "TGM:Hibernate">
+<!ENTITY TabGroupsManager.buttonSleep.help                  "Momentane Gruppe in Ruhezustand versetzen">
+<!ENTITY TabGroupsManager.buttonClose.label                 "TGM:Close">
+<!ENTITY TabGroupsManager.buttonClose.help                  "Momentane Gruppe schließen">
+<!-- add --><!ENTITY TabGroupsManager.buttonRestart.label                           "TGM : Restart Firefox">
+<!-- add --><!ENTITY TabGroupsManager.buttonRestart.help                            "TabGroups Manager : Restart Firefox(setting of auto suspend is used)">
+<!-- add --><!ENTITY TabGroupsManager.buttonBackupSession.label                     "TGM : Backup session">
+<!-- add --><!ENTITY TabGroupsManager.buttonBackupSession.help                      "TabGroups Manager : Backup current session.">
+<!-- add --><!ENTITY TabGroupsManager.buttonExportSession.label                     "TGM : Export session">
+<!-- add --><!ENTITY TabGroupsManager.buttonExportSession.help                      "TabGroups Manager : Export current session.">
+
+<!-- add --><!ENTITY TabGroupsManager.openMenuitemOpenGroupWithRegisteredName.label "Open Group with registered name">
+<!-- add --><!ENTITY TabGroupsManager.openMenuitemOpenGroupWithHistory.label        "Open Group with the name in histories">
+
+<!-- add --><!ENTITY TabGroupsManager.openMenuitemToRegisteredGroupName.label       "Send to registed name list">
+<!-- add --><!ENTITY TabGroupsManager.openMenuitemToRegisteredGroupName.accesskey   "R">
+<!-- add --><!ENTITY TabGroupsManager.openMenuitemRegisterGroupName.label           "Regist name">
+<!-- add --><!ENTITY TabGroupsManager.openMenuitemRegisterGroupName.accesskey       "R">
+
+<!-- add --><!ENTITY TabGroupsManager.sendThisGroupToHibernatedGroup.label          "Send to hibernated Group">
+<!-- add --><!ENTITY TabGroupsManager.deleteThisGroup.label                         "Delete this Group">

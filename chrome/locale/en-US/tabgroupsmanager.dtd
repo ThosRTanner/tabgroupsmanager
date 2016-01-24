@@ -1,0 +1,137 @@
+<!ENTITY TabGroupsManager.groupBar.label                                "TGM: GroupBar">
+
+<!-- add --><!ENTITY TabGroupsManager.dispGroupBar.label                            "TGM: Display GroupBar">
+
+<!ENTITY TabGroupsManager.menuitemDelete.label                          "Delete">
+<!ENTITY TabGroupsManager.menuitemDelete.accesskey                      "D">
+
+<!-- add --><!ENTITY TabGroupsManager.menuItemSuspend.label                         "Suspend">
+<!-- add --><!ENTITY TabGroupsManager.menuItemSuspend.help                          "Toggles Suspend/Un-Suspend of Group">
+<!-- add --><!ENTITY TabGroupsManager.menuItemSuspend.accesskey                     "S">
+<!ENTITY TabGroupsManager.menuItemSleep.label                           "Hibernate">
+<!ENTITY TabGroupsManager.menuItemSleep.help                            "Hibernate this Group">
+<!ENTITY TabGroupsManager.menuItemSleep.accesskey                       "H">
+<!ENTITY TabGroupsManager.menuItemClose.label                           "Close">
+<!ENTITY TabGroupsManager.menuItemClose.help                            "Close this Group">
+<!ENTITY TabGroupsManager.menuItemClose.accesskey                       "C">
+<!ENTITY TabGroupsManager.menuItemBookmarkGroup.label                   "Bookmark Group">
+<!ENTITY TabGroupsManager.menuItemBookmarkGroup.help                    "Bookmark tabs in Group to new bookmark folder in Bookmark Menu">
+<!ENTITY TabGroupsManager.menuItemBookmarkGroup.accesskey               "B">
+<!ENTITY TabGroupsManager.menuItemReloadTabInGroup.label                "Reload Group">
+<!ENTITY TabGroupsManager.menuItemReloadTabInGroup.help                 "Reload all tabs in Group">
+<!ENTITY TabGroupsManager.menuItemReloadTabInGroup.accesskey            "R">
+<!-- add --><!ENTITY TabGroupsManager.menuItemSetGroupDataDialog.label              "Rename by dialog box">
+<!-- add --><!ENTITY TabGroupsManager.menuItemSetGroupDataDialog.help               "Opens dialog box with renaming options for Group label + icon">
+<!-- add --><!ENTITY TabGroupsManager.menuItemSetGroupDataDialog.accesskey          "D">
+<!-- add --><!ENTITY TabGroupsManager.menuItemSetGroupData.label                    "Rename Menu">
+<!-- add --><!ENTITY TabGroupsManager.menuItemSetGroupData.help                     "Renaming options for Group label + icon">
+<!-- add --><!ENTITY TabGroupsManager.menuItemSetGroupData.accesskey                "D">
+<!-- add --><!ENTITY TabGroupsManager.menuItemExportGroup.label                     "Export Group">
+<!-- add --><!ENTITY TabGroupsManager.menuItemExportGroup.help                      "Export this group to file. To import: drag/drop saved file on Group-Bar.">
+<!-- add --><!ENTITY TabGroupsManager.menuItemExportGroup.accesskey                 "E">
+
+<!ENTITY TabGroupsManager.menuItemAutoRename.label                      "Automatically Rename (name + icon)">
+<!ENTITY TabGroupsManager.menuItemAutoRename.help                       "Automatically renames Group by current Tab (name and icon)">
+<!ENTITY TabGroupsManager.menuItemAutoRename.accesskey                  "A">
+<!ENTITY TabGroupsManager.menuItemAutoRenameNameOnly.label              "Automatically Rename (name)">
+<!ENTITY TabGroupsManager.menuItemAutoRenameNameOnly.help               "Automatically renames Group by current Tab (name only)">
+<!ENTITY TabGroupsManager.menuItemAutoRenameNameOnly.accesskey          "N">
+<!ENTITY TabGroupsManager.menuItemAutoRenameIconOnly.label              "Automatically Rename (icon)">
+<!ENTITY TabGroupsManager.menuItemAutoRenameIconOnly.help               "Automatically renames Group by current Tab (icon only)">
+<!ENTITY TabGroupsManager.menuItemAutoRenameIconOnly.accesskey          "I">
+<!ENTITY TabGroupsManager.menuItemDisableAutoRename.label               "Disable Automatically Rename">
+<!ENTITY TabGroupsManager.menuItemDisableAutoRename.help                "Disable automatically rename for this Group">
+<!ENTITY TabGroupsManager.menuItemDisableAutoRename.accesskey           "E">
+
+<!-- add --><!ENTITY TabGroupsManager.menuItemRenameRegisterd.label                 "Rename Group: Favorite Names">
+<!-- add --><!ENTITY TabGroupsManager.menuItemRenameHistory.label                   "Rename Group: Recently Used Names">
+<!ENTITY TabGroupsManager.menuItemRenameHistory.help                    "Rename Group with a recently used name">
+<!ENTITY TabGroupsManager.menuItemRenameHistory.accesskey               "H">
+<!ENTITY TabGroupsManager.menuItemRenameHistoryClear.label              "Clear Recently Used Names">
+<!ENTITY TabGroupsManager.menuItemRenameHistoryClear.help               "Clear all items in Recently Used Names list">
+<!ENTITY TabGroupsManager.menuItemRenameHistoryClear.accesskey          "C">
+
+<!ENTITY TabGroupsManager.menuItemOpen.label                            "New Group">
+<!ENTITY TabGroupsManager.menuItemOpen.help                             "Opens new background Group">
+<!ENTITY TabGroupsManager.menuItemOpen.accesskey                        "O">
+<!ENTITY TabGroupsManager.menuItemOpenActive.label                      "New Focused Group">
+<!ENTITY TabGroupsManager.menuItemOpenActive.help                       "Opens new focused Group">
+<!ENTITY TabGroupsManager.menuItemOpenActive.accesskey                  "A">
+<!ENTITY TabGroupsManager.menuItemOpenRename.label                      "New Group with Rename">
+<!ENTITY TabGroupsManager.menuItemOpenRename.help                       "Opens new background Group with rename dialog box">
+<!ENTITY TabGroupsManager.menuItemOpenRename.accesskey                  "N">
+<!ENTITY TabGroupsManager.menuItemOpenActiveRename.label                "New Focused Group with Rename">
+<!ENTITY TabGroupsManager.menuItemOpenActiveRename.help                 "Opens new focused Group with rename dialog box">
+<!ENTITY TabGroupsManager.menuItemOpenActiveRename.accesskey            "M">
+<!ENTITY TabGroupsManager.menuItemOpenWithHome.label                    "New Group with Homepage">
+<!ENTITY TabGroupsManager.menuItemOpenWithHome.help                     "Opens new background Group and loads homepage in tab">
+<!ENTITY TabGroupsManager.menuItemOpenWithHome.accesskey                "H">
+<!ENTITY TabGroupsManager.menuItemOpenActiveWithHome.label              "New Focused Group with Homepage">
+<!ENTITY TabGroupsManager.menuItemOpenActiveWithHome.help               "Opens new focused Group and loads homepage in tab">
+<!ENTITY TabGroupsManager.menuItemOpenActiveWithHome.accesskey          "I">
+<!ENTITY TabGroupsManager.menuItemOpenByRenameHistory.label             "New Group by List">
+<!ENTITY TabGroupsManager.menuItemOpenByRenameHistory.help              "Opens new Group and rename it by rename history">
+<!ENTITY TabGroupsManager.menuItemOpenByRenameHistory.accesskey         "R">
+<!ENTITY TabGroupsManager.menuItemSleepActiveGroup.label                "Hibernate Group">
+<!ENTITY TabGroupsManager.menuItemSleepActiveGroup.help                 "Hibernate this Group">
+<!ENTITY TabGroupsManager.menuItemSleepActiveGroup.accesskey            "S">
+<!ENTITY TabGroupsManager.menuItemCloseActiveGroup.label                "Close Group">
+<!ENTITY TabGroupsManager.menuItemCloseActiveGroup.help                 "Close this Group">
+<!ENTITY TabGroupsManager.menuItemCloseActiveGroup.accesskey            "C">
+<!ENTITY TabGroupsManager.menuItemSleepingGroups.label                  "Hibernated Groups List">
+<!ENTITY TabGroupsManager.menuItemSleepingGroups.help                   "View list of Hibernated Groups">
+<!ENTITY TabGroupsManager.menuItemSleepingGroups.accesskey              "J">
+<!ENTITY TabGroupsManager.menuItemClosedGroups.label                    "Closed Groups List">
+<!ENTITY TabGroupsManager.menuItemClosedGroups.help                     "View list of Closed Groups">
+<!ENTITY TabGroupsManager.menuItemClosedGroups.accesskey                "D">
+<!ENTITY TabGroupsManager.menuItemClosedGroupsClear.label               "Clear Closed Groups List">
+<!ENTITY TabGroupsManager.menuItemClosedGroupsClear.help                "Clear all items in Closed Groups List">
+<!ENTITY TabGroupsManager.menuItemClosedGroupsClear.accesskey           "C">
+<!ENTITY TabGroupsManager.menuItemBookmarkAllGroups.label               "Bookmark All Groups">
+<!ENTITY TabGroupsManager.menuItemBookmarkAllGroups.help                "Bookmark all Groups to new bookmark folder in Bookmark Menu">
+<!ENTITY TabGroupsManager.menuItemBookmarkAllGroups.accesskey           "B">
+<!ENTITY TabGroupsManager.menuItemBackupSession.label                   "Session">
+<!ENTITY TabGroupsManager.menuItemBackupSession.help                    "Backup &amp; Restore Sessions">
+<!ENTITY TabGroupsManager.menuItemBackupSession.accesskey               "E">
+
+<!ENTITY TabGroupsManager.menuItemSaveSession.label                     "Save Session">
+<!ENTITY TabGroupsManager.menuItemSaveSession.help                      "Save current session">
+<!ENTITY TabGroupsManager.menuItemSaveSession.accesskey                 "S">
+
+<!-- add --><!ENTITY TabGroupsManager.menuItemExportSession.label                   "Export Session">
+<!-- add --><!ENTITY TabGroupsManager.menuItemExportSession.help                    "Export this session to file. To import: drag/drop saved file on firefox window.">
+<!-- add --><!ENTITY TabGroupsManager.menuItemExportSession.accesskey               "E">
+
+<!ENTITY TabGroupsManager.menuItemOpenPrefWindow.label                  "Settings">
+<!ENTITY TabGroupsManager.menuItemOpenPrefWindow.help                   "Open Settings Window">
+<!ENTITY TabGroupsManager.menuItemOpenPrefWindow.accesskey              "P">
+<!ENTITY TabGroupsManager.menuItemLinkOpenInNewGroup.label              "Open Link in New Group">
+<!ENTITY TabGroupsManager.menuItemLinkOpenInNewGroup.accesskey          "G">
+<!ENTITY TabGroupsManager.menuItemLinkOpenInSelectedGroup.label         "Open Link in Focused Group">
+<!ENTITY TabGroupsManager.menuItemLinkOpenInSelectedGroup.accesskey     "H">
+
+<!ENTITY TabGroupsManager.buttonHideGroup.label                         "TGM: Toggle GroupBar">
+<!ENTITY TabGroupsManager.buttonHideGroup.help                          "TGM: Toggle GroupBar">
+<!ENTITY TabGroupsManager.buttonOpen.label                              "TGM: Open">
+<!ENTITY TabGroupsManager.buttonOpen.help                               "TGM: New Group">
+<!ENTITY TabGroupsManager.buttonSleep.label                             "TGM: Hibernate">
+<!ENTITY TabGroupsManager.buttonSleep.help                              "TGM: Hibernate Group">
+<!ENTITY TabGroupsManager.buttonClose.label                             "TGM: Close">
+<!ENTITY TabGroupsManager.buttonClose.help                              "TGM: Close Group">
+<!-- add --><!ENTITY TabGroupsManager.buttonRestart.label                           "TGM: Restart Firefox">
+<!-- add --><!ENTITY TabGroupsManager.buttonRestart.help                            "TGM: Restart Firefox (with auto suspend)">
+<!-- add --><!ENTITY TabGroupsManager.buttonBackupSession.label                     "TGM: Backup Session">
+<!-- add --><!ENTITY TabGroupsManager.buttonBackupSession.help                      "TGM: Backup Session">
+<!-- add --><!ENTITY TabGroupsManager.buttonExportSession.label                     "TGM: Export Session">
+<!-- add --><!ENTITY TabGroupsManager.buttonExportSession.help                      "TGM: Export Session">
+
+<!-- add --><!ENTITY TabGroupsManager.openMenuitemOpenGroupWithRegisteredName.label "New Named Group: Favorite Names">
+<!-- add --><!ENTITY TabGroupsManager.openMenuitemOpenGroupWithHistory.label        "New Named Group: Recently Used Names">
+
+<!ENTITY TabGroupsManager.openMenuitemToRegisteredGroupName.label       "Send to Favorite Names list">
+<!ENTITY TabGroupsManager.openMenuitemToRegisteredGroupName.accesskey   "R">
+<!ENTITY TabGroupsManager.openMenuitemRegisterGroupName.label           "Add Favorite Name">
+<!ENTITY TabGroupsManager.openMenuitemRegisterGroupName.accesskey       "R">
+
+<!ENTITY TabGroupsManager.sendThisGroupToHibernatedGroup.label          "Send to Hibernated Group">
+<!ENTITY TabGroupsManager.deleteThisGroup.label                         "Delete Group">

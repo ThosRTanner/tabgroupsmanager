@@ -1,0 +1,11 @@
+<!ENTITY TabGroupsManager.groupSettingsDialog.title         "Установить данные группы">
+<!ENTITY TabGroupsManager.groupSettingsDialog.description   "Группровщик вкладок в FireFox">
+<!ENTITY TabGroupsManager.name.label                        "Название:">
+<!ENTITY TabGroupsManager.icon.label                        "Значок:">
+<!ENTITY TabGroupsManager.buttonAddIconFolder.label         "Добавить значок папки">
+<!ENTITY TabGroupsManager.buttonAddIconFolder.accessKey     "З">
+<!ENTITY TabGroupsManager.buttonDefaultIconFolder.label     "По умолчанию">
+<!ENTITY TabGroupsManager.buttonDefaultIconFolder.accessKey "У">
+<!ENTITY TabGroupsManager.menuitemExcludeFolder.label       "Исключить папку">
+<!ENTITY TabGroupsManager.dialogExcludeFolder.label         "\n\nЭта папка будет исключена из списка (она не удаляется).\nВы согласны?">
+<!ENTITY TabGroupsManager.dialogDefault.label               "Список значков будет возвращён к умолчанию. \nВы согласны?">

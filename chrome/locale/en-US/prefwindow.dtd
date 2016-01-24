@@ -1,0 +1,313 @@
+<!ENTITY TabGroupsManager.prefWindow.title                                      "TabGroups Manager Preferences">
+
+<!ENTITY TabGroupsManager.doesNotControl.label                                  "Not Controlled by TabGroups Manager">
+<!ENTITY TabGroupsManager.doesNotAction.label                                   "None">
+<!ENTITY TabGroupsManager.keyboard.enter.label                                  "Enter">
+<!ENTITY TabGroupsManager.keyboard.noneSupKey.label                             "None">
+<!ENTITY TabGroupsManager.keyboard.shift.label                                  "Shift">
+<!ENTITY TabGroupsManager.keyboard.ctrl.label                                   "Ctrl">
+<!ENTITY TabGroupsManager.keyboard.alt.label                                    "Alt">
+<!ENTITY TabGroupsManager.mouseClick.lClick.label                               "Left-click">
+<!ENTITY TabGroupsManager.mouseClick.mClick.label                               "Middle-click">
+<!ENTITY TabGroupsManager.mouseClick.rClick.label                               "Right-click">
+<!ENTITY TabGroupsManager.mouseClick.dblClick.label                             "Double-click">
+<!-- add --><!ENTITY TabGroupsManager.mouseClick.dblRClick.label                            "Double-Right-click">
+<!ENTITY TabGroupsManager.mouseClick.dblClick.attention.label                   "The left-click happens before double-click.">
+<!ENTITY TabGroupsManager.nyoro.label                                           "&lt;--&gt;">
+<!ENTITY TabGroupsManager.attention.label                                       "Attention :">
+<!ENTITY TabGroupsManager.milliSecond.label                                     "(ms)">
+<!ENTITY TabGroupsManager.advanced.label                                        "Advanced">
+<!-- add --><!ENTITY TabGroupsManager.default.label                                         "default">
+<!-- add --><!ENTITY TabGroupsManager.requireRestart.label                                  "(requires restart)">
+
+<!-- add --><!ENTITY TabGroupsManager.apply.label                                           "Apply">
+<!-- add --><!ENTITY TabGroupsManager.settings.label                                        "Settings">
+<!-- add --><!ENTITY TabGroupsManager.settingsDefault.label                                 "Restore default settings">
+<!-- add --><!ENTITY TabGroupsManager.settingsDefault.accesskey                             "D">
+<!-- add --><!ENTITY TabGroupsManager.settingsExport.label                                  "Export settings">
+<!-- add --><!ENTITY TabGroupsManager.settingsExport.accesskey                              "E">
+<!-- add --><!ENTITY TabGroupsManager.settingsImport.label                                  "Import settings">
+<!-- add --><!ENTITY TabGroupsManager.settingsImport.accesskey                              "I">
+<!-- add --><!ENTITY TabGroupsManager.settingsDefaultMessage.label                          "TabGroups Manager restore all settings to defaults. \nIs it OK? ">
+<!-- add --><!ENTITY TabGroupsManager.settingsDefaultAfterMessage.label                     "TabGroups Manager restored all settings to default. \nA part of setting is not effective until Firefox is restarted. ">
+<!-- add --><!ENTITY TabGroupsManager.settingsImportSuccessMessage.label                    "TabGroups Manager imported the settings. \nA part of setting is not effective until Firefox is restarted. ">
+<!-- add --><!ENTITY TabGroupsManager.settingsImportFailMessage.label                       "TabGroups Manager failed in the import of the settings. \nThe file that you specified is not a settings file of TabGroups Manager. ">
+<!-- add --><!ENTITY TabGroupsManager.settingsFile.label                                    "TabGroups Manager: Setting file">
+
+<!ENTITY TabGroupsManager.prefpaneDisplay.title                                 "Display">
+<!ENTITY TabGroupsManager.dispGroupbarButton.label                              "GroupBar">
+<!ENTITY TabGroupsManager.groupBarSmoothScroll.label                            "Enable smooth scroll.">
+<!ENTITY TabGroupsManager.hideGroupBarByContentClick.label                      "Hide GroupBar when contents area is clicked.">
+<!ENTITY TabGroupsManager.hideGroupBarByContentClick.accesskey                  "D">
+<!ENTITY TabGroupsManager.hideGroupBarByMouseover.label                         "Display GroupBar when mouse enter toolbox.">
+<!ENTITY TabGroupsManager.hideGroupBarByMouseover.accesskey                     "I">
+<!ENTITY TabGroupsManager.hideGroupBarByMouseover.help                          "Menubar, Toolbar and GroupBar are included in the toolbox.">
+<!ENTITY TabGroupsManager.hideGroupBarByMouseout.label                          "Hide GroupBar when mouse exit toolbox.">
+<!ENTITY TabGroupsManager.hideGroupBarByMouseout.accesskey                      "O">
+<!ENTITY TabGroupsManager.hideGroupBarByMouseout.help                           "Menubar, Toolbar and GroupBar are included in the toolbox.">
+<!ENTITY TabGroupsManager.hideGroupBarByMouseoutTimer.label                     "Delay time">
+<!-- add --><!ENTITY TabGroupsManager.hideGroupBarDialogBox.title                           "Options to Hide GroupBar (when only 1 tab or group exists)">
+<!-- add --><!ENTITY TabGroupsManager.hideGroupBarWhenOneTab.label                          "Hide GroupBar when there is only one tab.">
+<!-- add --><!ENTITY TabGroupsManager.hideGroupBarWhenOneGroup.label                        "Hide GroupBar when there is only one Group.">
+<!-- add --><!ENTITY TabGroupsManager.hideGroupBarWhenOneTabWithMultipleFirefox.label       "Hide GroupBar when there is only one tab and GroupBar is being displayed in other window.">
+<!-- add --><!ENTITY TabGroupsManager.hideGroupBarWhenOneGroupWithMultipleFirefox.label     "Hide GroupBar when there is only one Group and GroupBar is being displayed in other window.">
+<!-- add --><!ENTITY TabGroupsManager.hideTabBarWhenOneTabWithMultipleFirefox.label         "Hide tab bar when there is only one tab and GroupBar is being displayed in other window.">
+
+<!-- add --><!ENTITY TabGroupsManager.groupBarPosition.label                                "Position of GroupBar">
+<!-- add --><!ENTITY TabGroupsManager.groupBarInToolbox.label                               "In Toolbox">
+<!-- add --><!ENTITY TabGroupsManager.groupBarUnderToolbox.label                            "Under Toolbox">
+<!-- add --><!ENTITY TabGroupsManager.groupBarUnderContents.label                           "Bottom of Window">
+<!-- add --><!ENTITY TabGroupsManager.groupBarPositionAttention.label                       "(To customize GroupBar it must be positioned at &quot;In Toolbox &quot;.)">
+<!-- add --><!ENTITY TabGroupsManager.groupBarOrdinal.label                                 "Ordinal of GroupBar">
+<!-- add --><!ENTITY TabGroupsManager.tabBarOrdinal.label                                   "Ordinal of Tab Bar">
+<!-- add --><!ENTITY TabGroupsManager.groupBarOrdinalDescription.label                      "If &quot;Ordinal of GroupBar&quot; = 0, GroupBar support &quot;tabs on top&quot; of Firefox.">
+<!ENTITY TabGroupsManager.groupBarSmoothScroll.accesskey                        "S">
+<!ENTITY TabGroupsManager.dispGroupTab.label                                    "GroupTab">
+<!ENTITY TabGroupsManager.checkboxGroupTabIcon.label                            "Display GroupTab icons.">
+<!ENTITY TabGroupsManager.checkboxGroupTabIcon.accesskey                        "I">
+<!ENTITY TabGroupsManager.checkboxGroupTabIconReading.label                     "Display loading icons.">
+<!ENTITY TabGroupsManager.checkboxGroupTabIconReading.accesskey                 "R">
+<!ENTITY TabGroupsManager.checkboxGroupTabCount.label                           "Display the number of tabs.">
+<!ENTITY TabGroupsManager.checkboxGroupTabCount.accesskey                       "N">
+<!ENTITY TabGroupsManager.checkboxGroupTabCountReading.label                    "Display the number of loading tabs.">
+<!ENTITY TabGroupsManager.checkboxGroupTabCountReading.accesskey                "C">
+<!ENTITY TabGroupsManager.groupTabMinWidth.label                                "Width of GroupTab">
+<!-- add --><!ENTITY TabGroupsManager.reduceSuspendGroup.label                              "Reduce width of Suspended Group">
+<!-- add --><!ENTITY TabGroupsManager.reduceSuspendGroup.accesskey                          "W">
+<!ENTITY TabGroupsManager.groupTabCrop.label                                    "Clipping method of GroupTab label">
+<!ENTITY TabGroupsManager.groupTabCropNone.label                                "none">
+<!ENTITY TabGroupsManager.groupTabCropStart.label                               "Crop on Left Side">
+<!ENTITY TabGroupsManager.groupTabCropEnd.label                                 "Crop on Right Side">
+<!ENTITY TabGroupsManager.groupTabCropCenter.label                              "Crop in Middle">
+<!ENTITY TabGroupsManager.styleOfGroup.label                                    "Style of Group">
+<!ENTITY TabGroupsManager.normaldGroupStyle.label                               "Normal">
+<!ENTITY TabGroupsManager.selectedGroupStyle.label                              "Selected">
+<!ENTITY TabGroupsManager.unreadGroupStyle.label                                "Unread">
+<!-- add --><!ENTITY TabGroupsManager.suspendedGroupStyle.label                             "Suspended">
+<!ENTITY TabGroupsManager.groupStyleColor.label                                 "label color">
+<!ENTITY TabGroupsManager.groupStyleBackgroundColor.label                       "tab color">
+<!ENTITY TabGroupsManager.groupStyleBold.label                                  "bold">
+<!ENTITY TabGroupsManager.groupStyleItalic.label                                "italic">
+<!ENTITY TabGroupsManager.editStyle.label                                       "Edit style sheet">
+
+<!ENTITY TabGroupsManager.prefpaneMouseControl.title                            "Mouse">
+<!ENTITY TabGroupsManager.mouseClick.group.label                                "Group">
+<!ENTITY TabGroupsManager.mouseClick.groupBar.label                             "GroupBar">
+<!ENTITY TabGroupsManager.mouseClick.button.label                               "Button">
+<!-- add --><!ENTITY TabGroupsManager.mouseClick.menu-button.label                          "(Menu-button)">
+<!ENTITY TabGroupsManager.mouseClick.action.sleepThisGroup.label                "Hibernate">
+<!ENTITY TabGroupsManager.mouseClick.action.closeThisGroup.label                "Close">
+<!-- add --><!ENTITY TabGroupsManager.mouseClick.action.suspendThisGroup.label              "Suspend">
+<!ENTITY TabGroupsManager.mouseClick.action.autoRenameThisGroup.label           "Automatically Rename">
+<!-- add --><!ENTITY TabGroupsManager.mouseClick.action.setGroupData.label                  "Manual Rename">
+
+<!ENTITY TabGroupsManager.mouseClick.action.openGroup.label                     "New Group">
+<!ENTITY TabGroupsManager.mouseClick.action.openGroupF.label                    "New Focused Group">
+<!ENTITY TabGroupsManager.mouseClick.action.openGroupRename.label               "New Group with Rename">
+<!ENTITY TabGroupsManager.mouseClick.action.openGroupRenameF.label              "New Focused Group with Rename ">
+<!ENTITY TabGroupsManager.mouseClick.action.openGroupHome.label                 "New Group with Homepage">
+<!ENTITY TabGroupsManager.mouseClick.action.openGroupHomeF.label                "New Focused Group with Homepage">
+<!ENTITY TabGroupsManager.mouseClick.action.sleepActiveGroup.label              "Hibernate">
+<!ENTITY TabGroupsManager.mouseClick.action.closeActiveGroup.label              "Close">
+<!-- add --><!ENTITY TabGroupsManager.mouseClick.action.suspendActiveGroup.label            "Suspend">
+<!ENTITY TabGroupsManager.mouseClick.action.restoreLastSleepGroup.label         "Restore Last Hibernated Group">
+<!ENTITY TabGroupsManager.mouseClick.action.restoreLastClosedGroup.label        "Restore Last Closed Group">
+<!ENTITY TabGroupsManager.mouseClick.action.selectGroup.label                   "Select Group">
+<!ENTITY TabGroupsManager.mouseClick.action.groupMenu.label                     "Group Menu">
+<!ENTITY TabGroupsManager.mouseClick.action.groupBarMenu.label                  "GroupBar Menu">
+<!ENTITY TabGroupsManager.mouseClick.action.sleepingGroupList.label             "Hibernated Groups List">
+<!ENTITY TabGroupsManager.mouseClick.action.closedGroupList.label               "Closed Groups List">
+<!ENTITY TabGroupsManager.mouseClick.action.displayNonDisplay.label             "Toggle Display/Non-Display of GroupBar">
+<!ENTITY TabGroupsManager.mouseClick.action.openMenu.label                      "Open Menu">
+<!-- add --><!ENTITY TabGroupsManager.mouseClick.bookmarkFolder.label                       "Bookmark folder">
+<!-- add --><!ENTITY TabGroupsManager.mouseClick.action.allOpenNewGroup.label               "Open all in New Group">
+<!-- add --><!ENTITY TabGroupsManager.mouseClick.action.allOpenNewGroupStay.label           "Open all in New Group(don't close menu)">
+<!-- add --><!ENTITY TabGroupsManager.mouseClick.action.allOpenNewSelectedGroup.label       "Open all in Focused Group">
+<!-- add --><!ENTITY TabGroupsManager.mouseClick.action.allOpenNewSelectedGroupStay.label   "Open all in Focused Group(don't close menu)">
+<!-- add --><!ENTITY TabGroupsManager.mouseClick.action.contextMenu.label                   "Context menu">
+
+<!ENTITY TabGroupsManager.prefpaneKeyBind.title                                 "Keyboard">
+<!ENTITY TabGroupsManager.keyBindPleaseSelectCommand.label                      "Please Select A Command">
+<!ENTITY TabGroupsManager.keyBindPushKeyHere.label                              "Push Key Here">
+<!ENTITY TabGroupsManager.keyBindAdd.label                                      "Add">
+<!ENTITY TabGroupsManager.keyBindRecommend.label                                "Recommend">
+<!-- add --><!ENTITY TabGroupsManager.keyBindRecommend.help                                 "Shortcut keys that need not override shortcut key of Firefox.">
+<!-- add --><!ENTITY TabGroupsManager.keyBindRecommend2.label                               "Recommend 2">
+<!-- add --><!ENTITY TabGroupsManager.keyBindRecommend2.help                                "Shortcut keys that need override shortcut key of Firefox.">
+<!ENTITY TabGroupsManager.keyBindAllDelete.label                                "Delete All">
+<!ENTITY TabGroupsManager.keyBindDelete.label                                   "Delete">
+<!ENTITY TabGroupsManager.keyBindCommand.label                                  "Command">
+<!-- add --><!ENTITY TabGroupsManager.keyBindParam.label                                    "Parameter">
+<!ENTITY TabGroupsManager.keyBindShortcutKey.label                              "Shortcut Key">
+<!ENTITY TabGroupsManager.keyBindOverride.label                                 "Override shortcut keys used by Firefox and other add-ons.">
+<!ENTITY TabGroupsManager.keyBindOverride.help                                  "Gives priority to TGM shortcut keys when overlapping with shortcut keys used by Firefox and other add-ons.">
+<!ENTITY TabGroupsManager.keyBindOverride.accesskey                             "O">
+<!ENTITY TabGroupsManager.keyBindOverrideAttention.label                        "(Treated as Accel -> Control and Access -> Alt when overridden)">
+<!ENTITY TabGroupsManager.keyBindModifiersDescription.label                     "c=Control  s=Shift  a=Alt">
+<!-- add --><!ENTITY TabGroupsManager.ctrlTab.label                                         "ctrl + tab">
+<!-- add --><!ENTITY TabGroupsManager.ctrlTab0.label                                        "Select Right Tab in Group ( + shift : Select Left Tab in Group )">
+<!-- add --><!ENTITY TabGroupsManager.ctrlTab1.label                                        "Select Right Tab in Group ( + shift : Select Right Group )">
+
+<!ENTITY TabGroupsManager.prefpaneNewGroup.title                                "New Group">
+<!ENTITY TabGroupsManager.openNewGroupOperation.label                           "Enable Open Tab in New Group.">
+<!ENTITY TabGroupsManager.openNewGroupOperation.help                            "When unchecked, override is deleted.">
+<!ENTITY TabGroupsManager.openNewGroupOperation.accesskey                       "G">
+<!ENTITY TabGroupsManager.linkEtc.label                                         "Tab Opened from Link, Bookmarks, History, Location Bar etc.">
+<!ENTITY TabGroupsManager.openNewGroupByShift.label                             "Tab opens in new Group with (Shift+Ctrl+Left-click) or (Shift+Middle-click).">
+<!ENTITY TabGroupsManager.openNewGroupByShift.accesskey                         "S">
+<!ENTITY TabGroupsManager.openNewGroupByShift.help                              "not &quot;Shift + Left-click&quot; but &quot;Shift + Middle-click&quot; or &quot;Shift + Ctrl + Left-click&quot;">
+<!ENTITY TabGroupsManager.searchFromSearchBar.label                             "Search Bar">
+<!ENTITY TabGroupsManager.useSearchPlugin.label                                 "Enable TGM Search Plugin">
+<!ENTITY TabGroupsManager.useSearchPlugin.help                                  "It's the same when retrieving from Easy DragToGo, Second Search, Drag de Go etc by TGM's search plugin.">
+<!ENTITY TabGroupsManager.useSearchPlugin.accesskey                             "T">
+<!ENTITY TabGroupsManager.defaultSearchPlugin.label                             "Default">
+<!ENTITY TabGroupsManager.defaultSearchPlugin.help                              "Restore TabGroups Manager's default search plugins.">
+<!ENTITY TabGroupsManager.defaultSearchPlugin.accesskey                         "D">
+<!ENTITY TabGroupsManager.useSearchPluginaction.label                           "Operation of TGM Search Plugin">
+<!ENTITY TabGroupsManager.searchInCurrentTab                                    "Search in Current Tab">
+<!ENTITY TabGroupsManager.searchInNewTabActive                                  "Search in New Tab (Focused)">
+<!ENTITY TabGroupsManager.searchInNewTabNotActive                               "Search in New Tab (Background)">
+<!ENTITY TabGroupsManager.searchInNewGroupActive                                "Search in New Group (Focused)">
+<!ENTITY TabGroupsManager.searchInNewGroupNotActive                             "Search in New Group (Background)">
+
+<!ENTITY TabGroupsManager.prefpaneMenu.title                                    "Menu">
+<!ENTITY TabGroupsManager.groupBarMenu.label                                    "GroupBar Menu">
+<!ENTITY TabGroupsManager.tabContextMenu.label                                  "Tab Context Menu">
+<!ENTITY TabGroupsManager.menuItemOpen.label                                    "New Group">
+<!ENTITY TabGroupsManager.menuItemOpen.accesskey                                "O">
+<!ENTITY TabGroupsManager.menuItemOpenActive.label                              "New Focused Group">
+<!ENTITY TabGroupsManager.menuItemOpenActive.accesskey                          "A">
+<!ENTITY TabGroupsManager.menuItemOpenRename.label                              "New Group with Rename">
+<!ENTITY TabGroupsManager.menuItemOpenRename.accesskey                          "N">
+<!ENTITY TabGroupsManager.menuItemOpenActiveRename.label                        "New Focused Group with Rename">
+<!ENTITY TabGroupsManager.menuItemOpenActiveRename.accesskey                    "M">
+<!ENTITY TabGroupsManager.menuItemOpenWithHome.label                            "New Group with Homepage">
+<!ENTITY TabGroupsManager.menuItemOpenWithHome.accesskey                        "H">
+<!ENTITY TabGroupsManager.menuItemOpenActiveWithHome.label                      "New Focused Group with Homepage">
+<!ENTITY TabGroupsManager.menuItemOpenActiveWithHome.accesskey                  "I">
+<!ENTITY TabGroupsManager.menuItemOpenByRenameHistory.label                     "New Group by List">
+<!ENTITY TabGroupsManager.menuItemOpenByRenameHistory.accesskey                 "R">
+<!ENTITY TabGroupsManager.menuItemSleepActiveGroup.label                        "Hibernate Group">
+<!ENTITY TabGroupsManager.menuItemSleepActiveGroup.accesskey                    "S">
+<!ENTITY TabGroupsManager.menuItemCloseActiveGroup.label                        "Close Group">
+<!ENTITY TabGroupsManager.menuItemCloseActiveGroup.accesskey                    "C">
+<!ENTITY TabGroupsManager.menuItemSleepingGroups.label                          "Hibernated Groups List">
+<!ENTITY TabGroupsManager.menuItemSleepingGroups.accesskey                      "J">
+<!ENTITY TabGroupsManager.menuItemClosedGroups.label                            "Closed Groups List">
+<!ENTITY TabGroupsManager.menuItemClosedGroups.accesskey                        "D">
+<!ENTITY TabGroupsManager.menuItemBookmarkAllGroups.label                       "Bookmark All Groups">
+<!ENTITY TabGroupsManager.menuItemBookmarkAllGroups.accesskey                   "B">
+<!ENTITY TabGroupsManager.menuItemBackupSession.label                           "Session">
+<!ENTITY TabGroupsManager.menuItemBackupSession.accesskey                       "E">
+
+<!ENTITY TabGroupsManager.tabMenuSendToOtherGroup.label                         "Send to other Group">
+<!ENTITY TabGroupsManager.tabMenuSendToOtherGroup.accesskey                     "T">
+<!ENTITY TabGroupsManager.tabMenuCloseOtherTabInGroup.label                     "Close Other Tabs (in group)">
+<!ENTITY TabGroupsManager.tabMenuCloseOtherTabInGroup.accesskey                 "O">
+<!ENTITY TabGroupsManager.tabMenuCloseLeftTabInGroup.label                      "Close Left Tabs (in group)">
+<!ENTITY TabGroupsManager.tabMenuCloseLeftTabInGroup.accesskey                  "L">
+<!ENTITY TabGroupsManager.tabMenuSelectLeftTabInGroup.label                     "Select Left Tabs (in group, requires &quot;Multiple Tab Handler&quot;)">
+<!ENTITY TabGroupsManager.tabMenuSelectLeftTabInGroup.accesskey                 "M">
+<!ENTITY TabGroupsManager.tabMenuCloseRightTabInGroup.label                     "Close Right Tabs (in group)">
+<!ENTITY TabGroupsManager.tabMenuCloseRightTabInGroup.accesskey                 "R">
+<!ENTITY TabGroupsManager.tabMenuSelectRightTabInGroup.label                    "Select Right Tabs (in group, requires &quot;Multiple Tab Handler&quot;)">
+<!ENTITY TabGroupsManager.tabMenuSelectRightTabInGroup.accesskey                "S">
+
+<!ENTITY TabGroupsManager.prefpaneSession.title                                 "Session">
+<!ENTITY TabGroupsManager.sessionStoreStatus.label                              "State of SessionStore">
+<!ENTITY TabGroupsManager.disableSessionStore1.label                            "SessionStore Appears to be Disabled.">
+<!ENTITY TabGroupsManager.disableSessionStore2.label                            "SessionStore is necessary to restore Tabs, Groups + Hibernated Groups on re-start.">
+<!ENTITY TabGroupsManager.disableSessionStore3.label                            "Ensure SessionStore is enabled in Firefox's Options + any session manager add-ons.">
+<!ENTITY TabGroupsManager.disableSessionStore4.label                            "To enable SessionStore the following setting/s in BOLD must be corrected:">
+<!ENTITY TabGroupsManager.browserSessionstoreEnabled.label                      "browser.sessionstore.enabled = true">
+<!ENTITY TabGroupsManager.disableSessionStore5.label                            "">
+<!ENTITY TabGroupsManager.disableSessionStore6.label                            "Please do not edit &quot;about:config&quot; directly. Instead, correct the settings necessary to enable SessionStore from within Firefox Options or other add-ons.">
+
+<!ENTITY TabGroupsManager.saveDataBackup.label                                  "Maximum Number of Session Backups (0=disabled)">
+<!ENTITY TabGroupsManager.sessionBackupByWindowCloseCount.label                 "Session Backed-up: On Firefox Exit">
+<!ENTITY TabGroupsManager.sessionBackupByTimerCount.label                       "Session Backed-up: By Timer">
+<!ENTITY TabGroupsManager.sessionBackupByTimerInterval1.label                   "Interval">
+<!ENTITY TabGroupsManager.sessionBackupByTimerInterval2.label                   "(min)">
+
+<!ENTITY TabGroupsManager.sessionBackupDescription1.label                       "- MANUAL BACKUPS: There is no restriction in the number of manual backups as they are deleted manually.">
+<!ENTITY TabGroupsManager.sessionBackupDescription2.label                       "- REMOVED: Previous option for backing up hibernated groups has been omitted as they are now preserved automatically.">
+
+<!-- add --><!ENTITY TabGroupsManager.sessionMenu.label                                     "Session Menu">
+<!-- add --><!ENTITY TabGroupsManager.sessionMenuDisplay.label                              "Display the session menu (for backup &amp; restoring of sessions) in GroupBar menu.">
+<!-- add --><!ENTITY TabGroupsManager.sessionMenuDisplay.accesskey                          "M">
+
+<!ENTITY TabGroupsManager.saveData.label                                        "More Information on Saving Data with TGM">
+<!ENTITY TabGroupsManager.saveDataDescription1.label                            "- Hibernated Groups are shared between all open Firefox windows. Therefore, when one window is closed, Hibernated Groups are not lost.">
+<!ENTITY TabGroupsManager.saveDataDescription2.label                            "- Hibernated Group data is not recorded in SessionStore, but the file. The data recorded in the file is not a backup, but original data. Therefore, the file is recorded in the profile folder to save during TGM updates. When you uninstall TGM, you should delete this data manually.">
+<!ENTITY TabGroupsManager.saveDataDescription3.label                            "- Hibernated Groups are not lost when sessions are restored by other firefox add-ons.">
+<!ENTITY TabGroupsManager.saveDataDescription4.label                            "- TGM's Session Backup saves Groups, Hibernated Groups &amp; Suspended Groups.">
+
+<!ENTITY TabGroupsManager.prefpaneCompatibility.title                           "Compatibility">
+<!ENTITY TabGroupsManager.sessionManager.label                                  "Firefox Add-On: Session Manager">
+<!ENTITY TabGroupsManager.overrideSessionManagerRestoreSession.label            "Override the method of &quot;Restore Session&quot; (requires restart)">
+<!ENTITY TabGroupsManager.overrideSessionManagerRestoreSession.accesskey        "R">
+<!ENTITY TabGroupsManager.overrideSessionManagerRestoreSession.help             "    (TabGroups Manager can re-act to the operation of &quot;Restore Session&quot;)">
+<!ENTITY TabGroupsManager.treeStyleTab.label                                    "Firefox Add-On: Tree Style Tab">
+<!ENTITY TabGroupsManager.overrideTreeStyleTab.label                            "Override function of &quot;onTabMove&quot; (requires restart)">
+<!ENTITY TabGroupsManager.overrideTreeStyleTab.accesskey                        "S">
+<!ENTITY TabGroupsManager.overrideTreeStyleTab.help                             "    (To avoid the phenomenon of the tab's becoming the child of the previous tree when the selected Group is switched.)">
+<!ENTITY TabGroupsManager.overrideAttention1.label                              "When these options are checked they will override on memory.">
+<!ENTITY TabGroupsManager.overrideAttention2.label                              "Therefore, it's possible some problems may occur.">
+<!ENTITY TabGroupsManager.firefox35PlusMacOsx.label                             "Correct problem with &quot;Firefox 3.5&quot; and &quot;Mac OS X&quot;">
+<!ENTITY TabGroupsManager.adjustTopPositionOfGroup.label                        "Adjust the vertical position of Group tab. (requires restart)">
+<!ENTITY TabGroupsManager.adjustTopPositionOfGroupAttention.label               "Please use it only when the position of the Group tab is not correct.">
+
+<!ENTITY TabGroupsManager.prefpaneOther.title                                   "Other">
+<!ENTITY TabGroupsManager.hibernatedClosedGroup.label                           "Hibernated/Closed Group">
+<!ENTITY TabGroupsManager.groupRestoreOldPosition.label                         "Restore Hibernated/Closed Groups to original position.">
+<!ENTITY TabGroupsManager.groupRestoreOldPosition.accesskey                     "R">
+<!ENTITY TabGroupsManager.maxClosedGroupStoreCount.label                        "Number of Closed Groups to preserve (0=disabled):">
+<!ENTITY TabGroupsManager.autoRename.label                                      "Automatically Rename">
+<!ENTITY TabGroupsManager.disableAutoRenameTimePre.label                        "&quot;Automatically Rename&quot; is disabled">
+<!ENTITY TabGroupsManager.disableAutoRenameTimeAfter.label                      "after last use.">
+<!ENTITY TabGroupsManager.disableAutoRenameTime0.label                          "don't disable">
+<!ENTITY TabGroupsManager.disableAutoRenameTime0_5.label                        "30 seconds">
+<!ENTITY TabGroupsManager.disableAutoRenameTime1.label                          "1 minute">
+<!ENTITY TabGroupsManager.disableAutoRenameTime3.label                          "3 minutes">
+<!ENTITY TabGroupsManager.disableAutoRenameTime5.label                          "5 minutes">
+<!ENTITY TabGroupsManager.disableAutoRenameTime10.label                         "10 minutes">
+<!ENTITY TabGroupsManager.disableAutoRenameTime30.label                         "30 minutes">
+<!ENTITY TabGroupsManager.disableAutoRenameTime60.label                         "1 hour">
+<!ENTITY TabGroupsManager.focusTabWhenActiveTabClose.label                      "When Closing Current Tab">
+<!ENTITY TabGroupsManager.focusTabWhenActiveTabClose2.label                     "After closing current tab move focus to">
+<!ENTITY TabGroupsManager.focusTabWhenActiveTabClose.right.label                "Right Tab in Same Group">
+<!ENTITY TabGroupsManager.focusTabWhenActiveTabClose.left.label                 "Left Tab in Same Group">
+<!ENTITY TabGroupsManager.focusTabWhenActiveTabClose.first.label                "First Tab in Same Group">
+<!ENTITY TabGroupsManager.focusTabWhenActiveTabClose.last.label                 "Last Tab in Same Group">
+<!-- add --><!ENTITY TabGroupsManager.focusTabWhenActiveTabClose.latest.label               "Latest selected tab in Same Group">
+<!ENTITY TabGroupsManager.groupNotCloseWhenCloseAllTabsInGroup.label            "Keep Group open - even when all tabs are closed.">
+<!ENTITY TabGroupsManager.groupNotCloseWhenCloseAllTabsInGroup.accesskey        "C">
+<!-- add --><!ENTITY TabGroupsManager.multipleFirefox.label                                 "Multiple Firefox Windows">
+<!-- add --><!ENTITY TabGroupsManager.windowCloseWhenLastGroupClose.label                   "When last Group is closed or hibernated, the window is closed.">
+<!-- add --><!ENTITY TabGroupsManager.windowCloseWhenLastGroupClose.accesskey               "W">
+<!ENTITY TabGroupsManager.windowClose.label                                     "When closing one of multiple Firefox windows (exclude window with only one tab),">
+<!ENTITY TabGroupsManager.moveGroupBeforeWindowClose.label                      "Move groups to another window before closing.">
+<!ENTITY TabGroupsManager.notMoveGroupBeforeWindowClose.label                   "Close window and it's groups.">
+<!ENTITY TabGroupsManager.confirmAlwaysBeforeWindowClose.label                  "Confirm always.">
+<!-- add --><!ENTITY TabGroupsManager.firefoxClose.label                                    "When Firefox is closed">
+<!-- add --><!ENTITY TabGroupsManager.suspendWhenFirefoxClose.label                         "Suspend all non-selected Groups">
+<!-- add --><!ENTITY TabGroupsManager.suspendWhenFirefoxClose.accesskey                     "S">
+
+<!ENTITY TabGroupsManager.testing.title                                         "Testing">
+<!ENTITY TabGroupsManager.tabTree.label                                         "Relationship between a child and its parent of tab (requires restart)(testing)">
+<!ENTITY TabGroupsManager.tabTreeAnalysis.label                                 "Analyze why the tab opens (Override is used)">
+<!ENTITY TabGroupsManager.tabTreeOpenTabByExternalApplication.label             "The tab opened from an External Application is moved to &quot;External&quot; Group">
+<!ENTITY TabGroupsManager.tabTreeOpenTabByJavaScript.label                      "The tab opened with JavaScript always opens in the same Group as parent">
+<!ENTITY TabGroupsManager.tabTreeRecordParentAndChild.label                     "Record the relationship between a child and its parent of the tab">
+<!ENTITY TabGroupsManager.tabTreeDisplayParentAndChild.label                    "It is displayed by the background color of the tab">
+<!ENTITY TabGroupsManager.tabTreeFocusTabByParentAndChild.label                 "After closing current tab move focus to child or parent tab">
+<!ENTITY TabGroupsManager.tabTreeAnalysis.accesskey                             "A">
+<!ENTITY TabGroupsManager.tabTreeOpenTabByExternalApplication.accesskey         "E">
+<!ENTITY TabGroupsManager.tabTreeOpenTabByJavaScript.accesskey                  "J">
+<!ENTITY TabGroupsManager.tabTreeRecordParentAndChild.accesskey                 "P">
+<!ENTITY TabGroupsManager.tabTreeDisplayParentAndChild.accesskey                "B">
+<!ENTITY TabGroupsManager.tabTreeFocusTabByParentAndChild.accesskey             "F">
+<!ENTITY TabGroupsManager.testingDescription1.label                             "These functions are still testing.">
+<!ENTITY TabGroupsManager.testingDescription2.label                             "I will formally adopt upper three settings. Lower three settings are by-products of upper three settings. I have not decided whether to adopt lower three settings formally yet because the add-on of &quot;Tree Style Tab&quot; is more excellent than it.">
+<!ENTITY TabGroupsManager.testingDescription3.label                             "If I decided to adopt the function formally, I will make the function to preserve the tree structure etc. Because the function is independent with TGM, I might make it the different add-on.">
+<!ENTITY TabGroupsManager.testingDescription4.label                             "">

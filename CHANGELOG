@@ -1,0 +1,76 @@
+TabGroups Manager Changelog
+---------------------------
+
+List of Issues:
+http://code.google.com/p/tabgroupsmanager/issues
+
+
+Changelog
+---------
+
+[2014.12.21]:
+- Name: Lastest - TGM 005.
+- Version: 2014.12.21.005
+- File: addon-2014.12.21.005-fx.xpi
+- Issue: 
+- Changes:
+Fixed bug with 'hidden' attribute which caused incompatibility with TabMixPlus. Now multirow works! :) (Thanks micha and Onemen (TMP developer) for all your help). 
+We have reverted from 'collapsed' to 'hidden' doing it the right way: http://mxr.mozilla.org/mozilla-central/source/browser/base/content/tabbrowser.xml
+Fixed in Firefox >25 SessionStore initialize with promise initializeAfterOnLoad(), instead of the temporary fix patch. (fixed by micha. Thanks to Onemen (TMP developer) for support in this matter). 
+Fixed tab.group is not defined at startup since Fx25+, with new promise future. In FX25+ is mandatory (fixed by micha).
+Fixed SessionManager to TabmixSessionManager to get rid off depreciated message (fixed by micha).
+Added debug output to empty catch, so we get info for loadAllGroupsData() in debug mode (micha).
+Added spaces between transparency tab groups for personas themes to overlay.css (micha).
+
+[2014.09.18]:
+- Name: Lastest - TGM 004.
+- Version: 2014.09.18.004
+- File: addon-2014.09.18.004-fx.xpi
+- Issue: https://code.google.com/p/tabgroupsmanager/issues/detail?id=65
+- Changes:
+Fixed critical bug, TGM not working because of tab functions changed with new Firefox v+33.
+https://bugzilla.mozilla.org/show_bug.cgi?id=996053
+https://blog.mozilla.org/addons/2014/10/01/compatibility-for-firefox-33
+
+[2014.08.21]:
+- Name: TGM 003.
+- Version: 2014.08.21.003
+- File: addon-2014.08.21.003-fx.xpi
+- Changes:
+Fixes manual saving and loading session from TGM option Menu.
+Fixes loading session when Firefox loads. It will probably fix most horrible session restoring bugs.
+Fix to prevent showing two overlapped menu when right clicking a tab (fix by micha).
+Minor code fixes to prevent possible bugs.
+- Known issues:
+DO NOT install Firefox extension: "Classic Theme Restorer". It will break session restoring!!!
+Small bug which could open a Start group in other firefox window when manually restoring session.
+Still there are minor known issues like not getting good group order or tab order sometimes, or a group not getting back its name.
+Restoring could be very slow when having thousands of tabs in windows. In linux it works faster.
+There are other critical issues reported, and we will look into all of them. Thank you for your patience.
+- Tested with Windows and Linux in FF28 and FF31.
+- If TGM 002 works fine for you, do not update.
+
+
+[2013.07.07]:
+- Name: TGM 002.
+- Version: 2013.07.07.002
+- File: addon-2013.07.07.002-fx.xpi
+- Changes: Fixes multiple issues with tabs disappearing
+Issue 8 and Issue 11 should have been solved. 
+Fixes Drag and Drop a tab in the same Group could make the tab to disappear.
+Fixes Drag and Drop a tab to another Group could make the tab to disappear.
+Fixes tabs does not appear in Groups when upgrading to this version.
+
+
+[2013.04.10]:
+- Name: TGM 001.
+- Version: 2013.04.10.001
+- File: addon-2013.04.10.001-fx.xpi
+- Changes:
+Fixes compatibility issues with Firefox +20 and up. TabGroups Manager was throwing some exceptions at start up.
+
+
+[2011.11.28]:
+- Name: Original Axel Shootingstar version.
+- Version: 2011.11.28.1
+- File: addon-2011.11.28.1-fx.xpi
