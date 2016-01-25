@@ -68,7 +68,12 @@ var TabGroupsManagerGroupSettings=
       folderButton.appendChild(menupopup);
       let menuitem=document.createElementNS("http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul","menuitem");
       menuitem.setAttribute("label",this.menuitemExcludeFolderLabel);
-      menuitem.setAttribute("oncommand","TabGroupsManagerGroupSettings.deleteIconFolder( event );");
+      //menuitem.setAttribute("oncommand","TabGroupsManagerGroupSettings.deleteIconFolder( event );");
+      menuitem.addEventListener("command", function(event)
+      {
+        TabGroupsManagerGroupSettings.deleteIconFolder(event);
+      }, false);
+
       menupopup.appendChild(menuitem);
       let vbox=document.createElementNS("http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul","vbox");
       row.appendChild(vbox);

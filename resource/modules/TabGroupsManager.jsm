@@ -1,5 +1,7 @@
 var EXPORTED_SYMBOLS=["TabGroupsManagerJsm"];
 
+//The paths for all devtools JS modules have changed to resource://devtools/*.
+//See https://bugzil.la/1203159 for more information.
 Components.utils.import("resource://gre/modules/devtools/Console.jsm");
 //var {PrivateBrowsingUtils} = Components.utils.import("resource://gre/modules/PrivateBrowsingUtils.jsm");
 
@@ -397,6 +399,11 @@ TabGroupsManagerJsm.SearchPlugins.prototype.getSearchPlugins=function(visible){
 	});
   } else {
 	//on simple pref change later we can return result immediately
+	//https://developer.mozilla.org/en-US/docs/Mozilla/Tech/XPCOM/Reference/Interface/nsIBrowserSearchService#async_warning
+	//searchService.init(function() {
+	//    var engines = searchService.getEngines(count);
+	//});
+
 	return searchService.getEngines(count);
   }
 };
@@ -1216,7 +1223,12 @@ TabGroupsManagerJsm.displayError=
     return text;
   },
   showMessage:function(text){
-    Application.console.log(text);
+      try {
+        Services.console.logStringMessage(text);
+      } catch (ex) {
+        //use Fuel API for Firefox 3.6
+        Application.console.log(text);
+      }
   },
   alert:function(text){
     var promptService=Cc["@mozilla.org/embedcomp/prompt-service;1"].getService(Ci.nsIPromptService);
@@ -1390,7 +1402,8 @@ var Application = null;
 try {
 	Components.utils.import("resource://gre/modules/Services.jsm");
 	Application=Services.wm.getMostRecentWindow("navigator:browser");
-} catch (ex) { //use Fuel API for Fx 3.6
+} catch (ex) {
+    //use Fuel API for Firefox 3.6
 	Application=Cc["@mozilla.org/fuel/application;1"].getService(Ci.fuelIApplication); 
 }
 

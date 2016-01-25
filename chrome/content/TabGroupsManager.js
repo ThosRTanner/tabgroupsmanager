@@ -828,7 +828,13 @@ TabGroupsManager.KeyboardShortcut.prototype.setMyKeyBind=function(keyBind){
     }else{
       key.setAttribute("key",keyBind[i].keycode.substr(3));
     }
-    key.setAttribute("oncommand","TabGroupsManager.keyboardShortcut.onCommand( event );");
+
+    //key.setAttribute("oncommand","TabGroupsManager.keyboardShortcut.onCommand( event );");
+    key.addEventListener("command", function(event)
+    {
+      TabGroupsManager.keyboardShortcut.onCommand(event);
+    }, false);
+
     key.commandCode=keyBind[i].code;
     if(keyBind[i].params){
       key.commandParams=keyBind[i].params.slice(0);
@@ -994,14 +1000,36 @@ TabGroupsManager.Places=function(){
 TabGroupsManager.Places.prototype.addAllOpenInGroupMenuitem=function(target){
   target._openAllInNewGroup=document.createElement("menuitem");
   target._openAllInNewGroup.setAttribute("id","TabGroupsManagerMenuitemAllOpenInNewGroup");
-  target._openAllInNewGroup.setAttribute("oncommand","TabGroupsManager.places.menuitemAllOpenInNewGroupCommand( event );");
-  target._openAllInNewGroup.setAttribute("onclick","TabGroupsManager.places.menuitemAllOpenInNewGroupClick( event );");
+
+  //target._openAllInNewGroup.setAttribute("oncommand","TabGroupsManager.places.menuitemAllOpenInNewGroupCommand( event );");
+  target._openAllInNewGroup.addEventListener("command", function(event)
+  {
+    TabGroupsManager.places.menuitemAllOpenInNewGroupCommand(event);
+  }, false);
+
+  //target._openAllInNewGroup.setAttribute("onclick","TabGroupsManager.places.menuitemAllOpenInNewGroupClick( event );");
+  target._openAllInNewGroup.addEventListener("click", function(event)
+  {
+    TabGroupsManager.places.menuitemAllOpenInNewGroupClick(event);
+  }, false);
+
   target._openAllInNewGroup.setAttribute("label",this.allOpenInNewGroupString);
   target.appendChild(target._openAllInNewGroup);
   target._openAllInSelectedGroup=document.createElement("menuitem");
   target._openAllInSelectedGroup.setAttribute("id","TabGroupsManagerMenuitemAllOpenInSelectedGroup");
-  target._openAllInSelectedGroup.setAttribute("oncommand","TabGroupsManager.places.menuitemAllOpenInSelectedGroupCommand( event );");
-  target._openAllInSelectedGroup.setAttribute("onclick","TabGroupsManager.places.menuitemAllOpenInSelectedGroupClick( event );");
+
+  //target._openAllInSelectedGroup.setAttribute("oncommand","TabGroupsManager.places.menuitemAllOpenInSelectedGroupCommand( event );");
+  target._openAllInSelectedGroup.addEventListener("command", function(event)
+  {
+    TabGroupsManager.places.menuitemAllOpenInSelectedGroupCommand(event);
+  }, false);
+
+  //target._openAllInSelectedGroup.setAttribute("onclick","TabGroupsManager.places.menuitemAllOpenInSelectedGroupClick( event );");
+  target._openAllInSelectedGroup.addEventListener("click", function(event)
+  {
+    TabGroupsManager.places.menuitemAllOpenInSelectedGroupClick(event);
+  }, false);
+
   target._openAllInSelectedGroup.setAttribute("label",this.allOpenInSelectedGroupString);
   target.appendChild(target._openAllInSelectedGroup);
 };
@@ -1330,7 +1358,12 @@ TabGroupsManager.Session.prototype.makeRestoresSessionMenu=function(flgmntNode,l
     menuitem.setAttribute("value",one.leafName);
     menuitem.setAttribute("label",label);
     menuitem.setAttribute("tooltiptext",TabGroupsManager.strings.getString("SessionBackupTooltip"));
-    menuitem.setAttribute("oncommand","TabGroupsManager.session.restoreSessionCommand(event);");
+    //menuitem.setAttribute("oncommand","TabGroupsManager.session.restoreSessionCommand(event);");
+    menuitem.addEventListener("command", function(event)
+    {
+      TabGroupsManager.session.restoreSessionCommand(event);
+    }, false);
+
     flgmntNode.appendChild(menuitem);
   }
 };
@@ -1891,11 +1924,18 @@ TabGroupsManager.TabContextMenu.prototype.deleteMenu=function(){
   if(!menu){
     menu=document.getAnonymousElementByAttribute(gBrowser,"anonid","tabContextMenu");
   }
-  menu.removeChild(document.getElementById("TabGroupsManagerTabContextMenuCloseOtherTabMenuid"));
-  menu.removeChild(document.getElementById("TabGroupsManagerTabContextMenuCloseLeftTabMenuid"));
-  menu.removeChild(document.getElementById("TabGroupsManagerTabContextMenuSelectLeftTabMenuid"));
-  menu.removeChild(document.getElementById("TabGroupsManagerTabContextMenuCloseRightTabMenuid"));
-  menu.removeChild(document.getElementById("TabGroupsManagerTabContextMenuSelectRightTabMenuid"));
+  //fix deleting null items on exit (exception seen while debugging and reloading with F5).
+  var menuObject = document.getElementById("TabGroupsManagerTabContextMenuCloseOtherTabMenuid");
+  if (('undefined' !== typeof menuObject) && (menuObject)) { menu.removeChild(menuObject); }
+  menuObject = document.getElementById("TabGroupsManagerTabContextMenuCloseLeftTabMenuid");
+  if (('undefined' !== typeof menuObject) && (menuObject)) { menu.removeChild(menuObject); }
+  menuObject = document.getElementById("TabGroupsManagerTabContextMenuSelectLeftTabMenuid");
+  if (('undefined' !== typeof menuObject) && (menuObject)) { menu.removeChild(menuObject); }
+  menuObject = document.getElementById("TabGroupsManagerTabContextMenuCloseRightTabMenuid");
+  if (('undefined' !== typeof menuObject) && (menuObject)) { menu.removeChild(menuObject); }
+  menuObject = document.getElementById("TabGroupsManagerTabContextMenuSelectRightTabMenuid");
+  if (('undefined' !== typeof menuObject) && (menuObject)) { menu.removeChild(menuObject); }
+
   menu.removeEventListener("popupshowing",this.contextMenuPopup,false);
 };
 TabGroupsManager.TabContextMenu.prototype.makeOneMenuitem=function(id,name,command){
@@ -2768,7 +2808,12 @@ TabGroupsManager.LocalGroupIcons.prototype.makeIconListOneLine=function(parent,f
         menuitem.setAttribute("class","tabgroupsmanager-menuitem-icon-only");
         menuitem.setAttribute("validate","never");
         menuitem.setAttribute("tooltiptext",files[i].leafName);
-        menuitem.setAttribute("oncommand","TabGroupsManager.groupMenu.popupGroup.changeIconFromLocal( event );");
+        //menuitem.setAttribute("oncommand","TabGroupsManager.groupMenu.popupGroup.changeIconFromLocal( event );");
+        menuitem.addEventListener("command", function(event)
+        {
+          TabGroupsManager.groupMenu.popupGroup.changeIconFromLocal(event);
+        }, false);
+
         hbox.appendChild(menuitem);
       }
     }
@@ -2803,7 +2848,11 @@ TabGroupsManager.progressListenerForGroup.prototype.onStateChange=function(aWebP
     if(aFlag&Ci.nsIWebProgressListener.STATE_STOP){
       if(aWebProgress.document&&aWebProgress.document.location=="about:sessionrestore"){
         var button=aWebProgress.document.getElementById("errorTryAgain");
-        button.setAttribute("oncommand","getBrowserWindow().TabGroupsManager.session.restoreSessionFromAboutSessionRestore(); "+button.getAttribute("oncommand"));
+        //button.setAttribute("oncommand","getBrowserWindow().TabGroupsManager.session.restoreSessionFromAboutSessionRestore(); "+button.getAttribute("oncommand"));
+        button.addEventListener("command", function(event)
+        {
+          getBrowserWindow().TabGroupsManager.session.restoreSessionFromAboutSessionRestore(); +button.getAttribute("oncommand");
+        }, false);
       }
     }
   }
@@ -3072,7 +3121,8 @@ TabGroupsManager.GroupClass.prototype.addTabToTabArray=function(tab,fromSessionS
     if("TreeStyleTabService" in window){
       if(!fromSessionStore){
         if(TreeStyleTabService.hasChildTabs(tab)){
-          setTimeout(this.addChildTabOfTST,0,tab);
+          var _this=this;
+          setTimeout(function(){_this.addChildTabOfTST();},0,tab);
         }
       }
     }
@@ -3235,7 +3285,8 @@ TabGroupsManager.GroupClass.prototype.moveTabToLast=function(tab,firstTab,lastTa
 };
 TabGroupsManager.GroupClass.prototype.makeDummyTab=function(){
   let dummyTab=TabGroupsManager.overrideMethod.gBrowserAddTab("about:blank");
-  setTimeout(this.removeDummyTab,0,dummyTab);
+  var _this=this;
+  setTimeout(function(){_this.removeDummyTab();},0,dummyTab);
   return dummyTab;
 };
 TabGroupsManager.GroupClass.prototype.removeDummyTab=function(dummyTab){
@@ -4000,7 +4051,8 @@ TabGroupsManager.AllGroups.prototype.saveAllGroupsData=function(){
   if(TabGroupsManager.session.groupRestored<2 || this.updating==true){
     return;
   }
-  this.saveAllGroupsDataTimer=setTimeout(this.saveAllGroupsDataImmediately,this.saveAllGroupsDataTimeout,this);
+  var _this=this;
+  this.saveAllGroupsDataTimer=setTimeout(function(){_this.saveAllGroupsDataImmediately();},this.saveAllGroupsDataTimeout,this);
 };
 TabGroupsManager.AllGroups.prototype.saveAllGroupsDataImmediately=function(_this){
   /*SSTabRestoring fires on every tab restoring -> so let us save data only if groups are in status restored         */
@@ -5455,18 +5507,25 @@ TabGroupsManager.OverrideMethod=function(){
     if(!("tabBarWidthChange" in window)&&!("TabmixTabbar" in window)){
       var tabBar=TabGroupsManager.utils.getElementByIdAndAnonids("content","tabcontainer","arrowscrollbox");
       if(tabBar){
-        eval("tabBar.ensureElementIsVisible = "+tabBar.ensureElementIsVisible.toSource()
-          .replace("element.getBoundingClientRect();","TabGroupsManager.overrideMethod.getBoundingClientRectIfElementHidden( element );")
-        );
-        eval("tabBar._elementFromPoint = "+tabBar._elementFromPoint.toSource()
-          .replace(/(elements\[[^\]]+\]|element)\.getBoundingClientRect\(\)/g,"TabGroupsManager.overrideMethod.getBoundingClientRectIfElementHidden( $1 )")
-        );
+        tabBar.ensureElementIsVisible = tabBar.ensureElementIsVisible.toSource()
+            .replace("element.getBoundingClientRect();","TabGroupsManager.overrideMethod.getBoundingClientRectIfElementHidden( element )");
+        //eval("tabBar.ensureElementIsVisible = "+tabBar.ensureElementIsVisible.toSource()
+        //  .replace("element.getBoundingClientRect();","TabGroupsManager.overrideMethod.getBoundingClientRectIfElementHidden( element );")
+        //);
+
+        tabBar._elementFromPoint = tabBar._elementFromPoint.toSource()
+            .replace(/(elements\[[^\]]+\]|element)\.getBoundingClientRect\(\)/g,"TabGroupsManager.overrideMethod.getBoundingClientRectIfElementHidden( $1 )");
+        //eval("tabBar._elementFromPoint = "+tabBar._elementFromPoint.toSource()
+        //  .replace(/(elements\[[^\]]+\]|element)\.getBoundingClientRect\(\)/g,"TabGroupsManager.overrideMethod.getBoundingClientRectIfElementHidden( $1 )")
+        //);
       }
     }
     if("TabmixSessionManager" in window){
-      eval("TabmixSessionManager.loadOneWindow = "+TabmixSessionManager.loadOneWindow.toSource()
-        .replace("TabGroupsManagerJsm.applicationStatus.makeNewId()","group.id")
-      );
+      TabmixSessionManager.loadOneWindow = TabmixSessionManager.loadOneWindow.toSource()
+          .replace("TabGroupsManagerJsm.applicationStatus.makeNewId()","group.id");
+      //eval("TabmixSessionManager.loadOneWindow = "+TabmixSessionManager.loadOneWindow.toSource()
+      //  .replace("TabGroupsManagerJsm.applicationStatus.makeNewId()","group.id")
+      //);
     }
   }
   catch(e){

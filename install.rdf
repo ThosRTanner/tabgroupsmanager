@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <RDF xmlns="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:em="http://www.mozilla.org/2004/em-rdf#">
     <Description about="urn:mozilla:install-manifest">
-        <em:id>{ca526f8b-9e0a-4756-9077-19d6f3e64ea8}</em:id>
-        <em:name>TabGroups Manager</em:name>
-		<em:version>2014.12.21.005</em:version>
+        <em:id>{9b9a630c-a8c0-11e5-a190-6a611d5d46b0}</em:id>
+        <em:name>TabGroups Manager revived</em:name>
+		<em:version>2016.01.26.007</em:version>
         <em:type>2</em:type>
         <em:unpack>true</em:unpack>
         <!-- See homepage for attribution, John 201309070302 -4 -->
         <em:creator>TGM Extended Support</em:creator>
         <em:homepageURL>https://code.google.com/p/tabgroupsmanager/</em:homepageURL>
         <em:translator>locale de-DE: Christoph Koerner (Christoph.Krn)</em:translator>
-        <em:description>&quot;TabGroups Manager&quot; helps the management of the tab by dividing the tab into the groups.</em:description>
+        <em:description>&quot;TabGroups Manager revived&quot; helps the management of the tab by dividing the tab into the groups.</em:description>
         <em:optionsURL>chrome://tabgroupsmanager/content/options.xul</em:optionsURL>
         <!-- TODO:  Continue the localization, John 201309072314 -4 -->
         <!-- Case #0017 -->
@@ -19,7 +19,7 @@
                 <em:locale>de-DE</em:locale>
                 <em:homepageURL>https://code.google.com/p/tabgroupsmanager/wiki/de</em:homepageURL>
                 <!-- TODO:  Contact these people for updates, John 201309070304 -4 -->
-                <!-- <em:description>TabGroups Manager hilft bei der Verwaltung von Tabs, indem es das Einsortieren von Tabs in Gruppen ermoglicht.</em:description> -->
+                <!-- <em:description>TabGroups Manager revived hilft bei der Verwaltung von Tabs, indem es das Einsortieren von Tabs in Gruppen ermoglicht.</em:description> -->
                 <!-- <em:translator>locale de-DE: Christoph Korner (Christoph.Krn)</em:translator> -->
             </Description>
         </em:localized>
@@ -37,7 +37,7 @@
                 <em:id>{ec8030f7-c20a-464f-9b0e-13a3a9e97384}</em:id>
                 <!-- TODO:  Develop schedule for support, John 201309072316 -4 -->
                 <em:minVersion>3.6</em:minVersion>
-                <em:maxVersion>37.*</em:maxVersion>
+                <em:maxVersion>45.*</em:maxVersion>
             </Description>
         </em:targetApplication>
     </Description>

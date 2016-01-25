@@ -8,11 +8,21 @@ http://code.google.com/p/tabgroupsmanager/issues
 Changelog
 ---------
 
+[2016.01.26]
+- Name: TGM 007.
+- Version: 2016.01.26.007
+- File: addon-2016.01.26.007-fx.xpi
+- Issues: Check bitbucket
+- Changes:
+*Micha revisions from 252 to 282 in SVN. We will detail them in new bitbucket wiki.
+*Miguel revisions to be validated in AMO. Check bitbucket for lastest commits.
+
+
 [2014.12.21]:
-- Name: Lastest - TGM 005.
+- Name: TGM 005.
 - Version: 2014.12.21.005
 - File: addon-2014.12.21.005-fx.xpi
-- Issue: 
+- Issues:
 - Changes:
 Fixed bug with 'hidden' attribute which caused incompatibility with TabMixPlus. Now multirow works! :) (Thanks micha and Onemen (TMP developer) for all your help). 
 We have reverted from 'collapsed' to 'hidden' doing it the right way: http://mxr.mozilla.org/mozilla-central/source/browser/base/content/tabbrowser.xml
@@ -23,7 +33,7 @@ Added debug output to empty catch, so we get info for loadAllGroupsData() in deb
 Added spaces between transparency tab groups for personas themes to overlay.css (micha).
 
 [2014.09.18]:
-- Name: Lastest - TGM 004.
+- Name: TGM 004.
 - Version: 2014.09.18.004
 - File: addon-2014.09.18.004-fx.xpi
 - Issue: https://code.google.com/p/tabgroupsmanager/issues/detail?id=65
