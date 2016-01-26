@@ -1,6 +1,6 @@
 # TabGroupsManager revived Firefox Extension #
 
-### Development of compatibility fixes for TabGroupsManager ###
+### Development of compatibility fixes for TabGroupsManager - created by Axel Shootingstar###
 
 * TGM version compatible with lastest Firefox versions.
 * https://addons.mozilla.org/es/firefox/addon/tabgroups-manager-revived
