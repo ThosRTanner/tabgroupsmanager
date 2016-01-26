@@ -3,7 +3,7 @@
 ### Development of compatibility fixes for TabGroupsManager ###
 
 * TGM version compatible with lastest Firefox versions.
-* https://addons.mozilla.org/es/developers/addon/tabgroups-manager-revived
+* https://addons.mozilla.org/es/firefox/addon/tabgroups-manager-revived
 
 
 Added lastest version 007. It is still non-signed, we are trying to get verified. Please be carefull when installing it, it may have some bugs. Before installing make backup of all your tabs.
