@@ -3,12 +3,12 @@
     <Description about="urn:mozilla:install-manifest">
         <em:id>{9b9a630c-a8c0-11e5-a190-6a611d5d46b0}</em:id>
         <em:name>TabGroups Manager revived</em:name>
-		<em:version>2016.01.26.007</em:version>
+		<em:version>2016.02.03.008</em:version>
         <em:type>2</em:type>
         <em:unpack>true</em:unpack>
         <!-- See homepage for attribution, John 201309070302 -4 -->
         <em:creator>TGM Extended Support</em:creator>
-        <em:homepageURL>https://code.google.com/p/tabgroupsmanager/</em:homepageURL>
+        <em:homepageURL>https://bitbucket.org/tabgroupsmanager/tabgroupsmanager/</em:homepageURL>
         <em:translator>locale de-DE: Christoph Koerner (Christoph.Krn)</em:translator>
         <em:description>&quot;TabGroups Manager revived&quot; helps the management of the tab by dividing the tab into the groups.</em:description>
         <em:optionsURL>chrome://tabgroupsmanager/content/options.xul</em:optionsURL>
@@ -17,7 +17,7 @@
         <em:localized>
             <Description>
                 <em:locale>de-DE</em:locale>
-                <em:homepageURL>https://code.google.com/p/tabgroupsmanager/wiki/de</em:homepageURL>
+                <em:homepageURL>https://bitbucket.org/tabgroupsmanager/tabgroupsmanager/</em:homepageURL>
                 <!-- TODO:  Contact these people for updates, John 201309070304 -4 -->
                 <!-- <em:description>TabGroups Manager revived hilft bei der Verwaltung von Tabs, indem es das Einsortieren von Tabs in Gruppen ermoglicht.</em:description> -->
                 <!-- <em:translator>locale de-DE: Christoph Korner (Christoph.Krn)</em:translator> -->
@@ -26,7 +26,7 @@
         <em:localized>
             <Description>
                 <em:locale>ja</em:locale>
-                <em:homepageURL>https://code.google.com/p/tabgroupsmanager/wiki/ja</em:homepageURL>
+                <em:homepageURL>https://bitbucket.org/tabgroupsmanager/tabgroupsmanager/</em:homepageURL>
                 <!-- <em:description>「タブグループマネージャー」は、タブをグループに分割することによって、タブの管理を助けます。</em:description> -->
                 <!-- <em:translator>locale de-DE: Christoph Koerner (Christoph.Krn)</em:translator> -->
             </Description>

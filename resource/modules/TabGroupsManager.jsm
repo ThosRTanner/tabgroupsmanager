@@ -34,7 +34,6 @@ TabGroupsManagerJsm.initialize=function(){
     this.applicationStatus=new this.ApplicationStatus();
     this.utils=new this.Utils();
     this.saveData=new this.SaveData();
-    this.searchPlugins=new this.SearchPlugins();
     this.privateBrowsing=new this.PrivateBrowsing();
     this.quitApplicationObserver=new this.QuitApplicationObserver();
   }
@@ -127,9 +126,6 @@ TabGroupsManagerJsm.GlobalPreferences.prototype.observe=function(aSubject,aTopic
       TabGroupsManagerJsm.saveData.sessionBackupByTimerChange();
     break;
     case"openNewGroupOperation":
-    case"useSearchPlugin":
-      TabGroupsManagerJsm.searchPlugins.searchPluginSettingChange(this.prefBranch.getBoolPref("useSearchPlugin")&&this.prefBranch.getBoolPref("openNewGroupOperation"));
-    break;
     case"windowCloseWhenLastGroupClose":this.windowCloseWhenLastGroupClose=this.prefBranch.getBoolPref("windowCloseWhenLastGroupClose");break;
     case"suspendWhenFirefoxClose":this.suspendWhenFirefoxClose=this.prefBranch.getBoolPref("suspendWhenFirefoxClose");break;
     case"debug":this.debug=this.prefBranch.getBoolPref("debug");break;
@@ -370,130 +366,9 @@ TabGroupsManagerJsm.ApplicationStatus.prototype.modifyGroupId=function(groupData
     groupData.tabs[i]=JSON.stringify(tabData);
   }
 };
-TabGroupsManagerJsm.SearchPlugins=function(){
-  try
-  {
-    this.searchPluginHidden();
-  }
-  catch(e){
-    alertErrorIfDebug(e);
-  }
-};
-TabGroupsManagerJsm.SearchPlugins.prototype.getSearchPlugins=function(visible){
-  var searchService=Cc["@mozilla.org/browser/search-service;1"].getService(Ci.nsIBrowserSearchService);
-  var count={};
-  var tmp=this;
-  if (visible == true) {
-	//we have only a problem on fx startup due async changes in Bug 760036 
-	searchService.init(function() {
-		var localeNow=tmp.selectLocale();
-		var engines = searchService.getVisibleEngines(count);
-		for(var i=0;i<engines.length;i++){
-			if(engines[i].description&&engines[i].description.match(/\(TabGroupsManagerSearchPlugin\:default\,(.+?)\)/)){
-				var localeOfPlugin=RegExp.$1.split(",");
-				if(!tmp.checkSearchPluginLocale(localeOfPlugin,localeNow)){
-					engines[i].hidden=true;
-				}
-			}
-		}
-	});
-  } else {
-	//on simple pref change later we can return result immediately
-	//https://developer.mozilla.org/en-US/docs/Mozilla/Tech/XPCOM/Reference/Interface/nsIBrowserSearchService#async_warning
-	//searchService.init(function() {
-	//    var engines = searchService.getEngines(count);
-	//});
 
-	return searchService.getEngines(count);
-  }
-};
-TabGroupsManagerJsm.SearchPlugins.prototype.searchPluginHidden=function(){
-  this.getSearchPlugins(true);
-};
-TabGroupsManagerJsm.SearchPlugins.prototype.searchPluginSettingChange=function(display){
-  var localeNow=this.selectLocale();
-  var engines=this.getSearchPlugins(false);
-  for(var i=0;i<engines.length;i++){
-    if(engines[i].description&&engines[i].description.match(/\(TabGroupsManagerSearchPlugin\:default\,(.+?)\)/)){
-      var localeOfPlugin=RegExp.$1.split(",");
-      engines[i].hidden=this.checkSearchPluginLocale(localeOfPlugin,localeNow)?!display:true;
-    }
-  }
-};
-TabGroupsManagerJsm.SearchPlugins.prototype.registRemoveInQuitApplication=function(){
-  try
-  {
-    var searchPluginsFolder=TabGroupsManagerJsm.folderLocation.myRootFolder.appendWithClone("searchplugins");
-    var otherLocaleFolder=searchPluginsFolder.appendWithClone("otherlocale");
-    if(!this.needRegistRemoveInQuitApplication(searchPluginsFolder,otherLocaleFolder)){
-      return;
-    }
-    var nextUseLocale=this.selectLocale();
-    var searchPluginList=JSON.parse(searchPluginsFolder.readFileAsText("index.json"));
-    for(var i=0;i<searchPluginList.length;i++){
-      if(this.checkSearchPluginLocale(searchPluginList[i].locale,nextUseLocale)){
-        otherLocaleFolder.moveTo(searchPluginList[i].filename,searchPluginsFolder);
-      }else{
-        searchPluginsFolder.moveTo(searchPluginList[i].filename,otherLocaleFolder);
-      }
-    }
-  }
-  catch(e){
-    alertErrorIfDebug(e);
-  }
-};
-TabGroupsManagerJsm.SearchPlugins.prototype.checkSearchPluginLocale=function(localeOfPlugin,localeList){
-  for(var i=0;i<localeList.length;i++){
-    if(-1!=localeOfPlugin.indexOf(localeList[i])){
-      return true;
-    }
-  }
-  return false;
-};
-TabGroupsManagerJsm.SearchPlugins.prototype.selectLocale=function(){
-  try
-  {
-    let prefRoot=Cc['@mozilla.org/preferences-service;1'].getService(Ci.nsIPrefBranch);
-    let locale=prefRoot.getCharPref("general.useragent.locale");
-    var shortLocale=locale.split("-")[0];
-    var searchPluginsFolder=TabGroupsManagerJsm.folderLocation.myRootFolder.appendWithClone("searchplugins");
-    var localeList=JSON.parse(searchPluginsFolder.readFileAsText("localelist.json"));
-    if(-1!=localeList.indexOf(locale)){
-      return[locale];
-    }else if(-1!=localeList.indexOf(shortLocale)){
-      return[shortLocale];
-    }
-    var useLocale=new Array();
-    for(var i=0;i<localeList.length;i++){
-      if(localeList[i].split("-")[0]==shortLocale){
-        useLocale.push(localeList[i]);
-      }
-    }
-    if(useLocale.length>0){
-      return useLocale;
-    }
-  }
-  catch(e){
-    alertErrorIfDebug(e);
-  }
-  return["en-US"];
-};
-TabGroupsManagerJsm.SearchPlugins.prototype.needRegistRemoveInQuitApplication=function(searchPluginsFolder,otherLocaleFolder){
-  if(TabGroupsManagerJsm.globalPreferences.prefBranch.getCharPref("localeBak")=="development"){
-    return;
-  }
-  if(!otherLocaleFolder.existsAndIsFolder){
-    otherLocaleFolder.createFolder("");
-    return true;
-  }
-  let prefRoot=Cc['@mozilla.org/preferences-service;1'].getService(Ci.nsIPrefBranch);
-  let nextLocale=prefRoot.getCharPref("general.useragent.locale");
-  if(nextLocale!=TabGroupsManagerJsm.globalPreferences.prefBranch.getCharPref("localeBak")){
-    TabGroupsManagerJsm.globalPreferences.prefBranch.setCharPref("localeBak",nextLocale);
-    return true;
-  }
-  return false;
-};
+//Mozilla doesn't like the search plugins. Removed all code involved...
+
 TabGroupsManagerJsm.SaveData=function(){
   try
   {
@@ -1391,7 +1266,6 @@ TabGroupsManagerJsm.QuitApplicationObserver.prototype.quitApplicationGranted=fun
   TabGroupsManagerJsm.saveData.backupByWindowClose();
 };
 TabGroupsManagerJsm.QuitApplicationObserver.prototype.quitApplication=function(){
-  TabGroupsManagerJsm.searchPlugins.registRemoveInQuitApplication();
   TabGroupsManagerJsm.finalize();
 };
 const Cc=Components.classes;

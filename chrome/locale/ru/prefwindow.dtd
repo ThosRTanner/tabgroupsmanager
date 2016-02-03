@@ -157,13 +157,9 @@
 <!ENTITY TabGroupsManager.openNewGroupByShift.accesskey                         "О">
 <!ENTITY TabGroupsManager.openNewGroupByShift.help                              "не &quot;Shift + Левый-щелчок&quot; а &quot;Shift + Средний-щелчок&quot; или &quot;Shift + Ctrl + Левый-щелчок&quot;">
 <!ENTITY TabGroupsManager.searchFromSearchBar.label                             "Панель поиска">
-<!ENTITY TabGroupsManager.useSearchPlugin.label                                 "Включить поисковые дополнения от группировщика вкладок">
-<!ENTITY TabGroupsManager.useSearchPlugin.help                                  "Это тоже самое, что восстановливать это из Easy DragToGo, Second Search, Drag de Go и т.п. поисковым дополнением группровщика вкладок">
-<!ENTITY TabGroupsManager.useSearchPlugin.accesskey                             "П">
 <!ENTITY TabGroupsManager.defaultSearchPlugin.label                             "По умолчанию">
 <!ENTITY TabGroupsManager.defaultSearchPlugin.help                              "Восстановить поисковые дополнения группировщика вкладок по умолчанию.">
 <!ENTITY TabGroupsManager.defaultSearchPlugin.accesskey                         "У">
-<!ENTITY TabGroupsManager.useSearchPluginaction.label                           "Действия для поисковых дополнений ГВ">
 <!ENTITY TabGroupsManager.searchInCurrentTab                                    "Поиск в текущей вкладке">
 <!ENTITY TabGroupsManager.searchInNewTabActive                                  "Поиск в новой (активной) вкладке">
 <!ENTITY TabGroupsManager.searchInNewTabNotActive                               "Поиск в новой (на фоне) вкладке">

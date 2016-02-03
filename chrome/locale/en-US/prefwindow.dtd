@@ -157,13 +157,9 @@
 <!ENTITY TabGroupsManager.openNewGroupByShift.accesskey                         "S">
 <!ENTITY TabGroupsManager.openNewGroupByShift.help                              "not &quot;Shift + Left-click&quot; but &quot;Shift + Middle-click&quot; or &quot;Shift + Ctrl + Left-click&quot;">
 <!ENTITY TabGroupsManager.searchFromSearchBar.label                             "Search Bar">
-<!ENTITY TabGroupsManager.useSearchPlugin.label                                 "Enable TGM Search Plugin">
-<!ENTITY TabGroupsManager.useSearchPlugin.help                                  "It's the same when retrieving from Easy DragToGo, Second Search, Drag de Go etc by TGM's search plugin.">
-<!ENTITY TabGroupsManager.useSearchPlugin.accesskey                             "T">
 <!ENTITY TabGroupsManager.defaultSearchPlugin.label                             "Default">
 <!ENTITY TabGroupsManager.defaultSearchPlugin.help                              "Restore TabGroups Manager's default search plugins.">
 <!ENTITY TabGroupsManager.defaultSearchPlugin.accesskey                         "D">
-<!ENTITY TabGroupsManager.useSearchPluginaction.label                           "Operation of TGM Search Plugin">
 <!ENTITY TabGroupsManager.searchInCurrentTab                                    "Search in Current Tab">
 <!ENTITY TabGroupsManager.searchInNewTabActive                                  "Search in New Tab (Focused)">
 <!ENTITY TabGroupsManager.searchInNewTabNotActive                               "Search in New Tab (Background)">

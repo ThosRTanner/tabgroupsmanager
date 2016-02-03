@@ -52,7 +52,6 @@ var TabGroupsManagerOptions=
   },
   openNewGroupOperationOnCommand:function(){
     document.getElementById("TabGroupsManagerOpenNewGroupByShift").value=document.getElementById("TabGroupsManagerOpenNewGroupOperationCheckbox").checked;
-    document.getElementById("TabGroupsManagerUseSearchPlugin").value=document.getElementById("TabGroupsManagerOpenNewGroupOperationCheckbox").checked;
     this.disableChangeOpenNewGroupOperationChild();
   },
   sessionBackupByTimerCountChange:function(){
@@ -60,20 +59,8 @@ var TabGroupsManagerOptions=
   },
   disableChangeOpenNewGroupOperationChild:function(){
     var openNewGroupOperation=document.getElementById("TabGroupsManagerOpenNewGroupOperationCheckbox").checked;
-    var useSearchPlugin=document.getElementById("TabGroupsManagerUseSearchPluginCheckbox").checked;
     var disabled1=!openNewGroupOperation;
-    var disabled2=!(openNewGroupOperation&&useSearchPlugin);
     document.getElementById("TabGroupsManagerOpenNewGroupByShiftCheckbox").disabled=disabled1;
-    document.getElementById("TabGroupsManagerUseSearchPluginCheckbox").disabled=disabled1;
-    document.getElementById("TabGroupsManagerSearchNoneSupKeyMenu").disabled=disabled2;
-    document.getElementById("TabGroupsManagerSearchCtrlMenu").disabled=disabled2;
-    document.getElementById("TabGroupsManagerSearchShiftMenu").disabled=disabled2;
-    document.getElementById("TabGroupsManagerSearchCtrlShiftMenu").disabled=disabled2;
-    document.getElementById("TabGroupsManagerSearchMClickMenu").disabled=disabled2;
-    document.getElementById("TabGroupsManagerDefaultSearchPluginButton").disabled=disabled2;
-  },
-  restoreDefaultSearchPlugin:function(){
-    TabGroupsManagerJsm.searchPlugins.searchPluginSettingChange(true);
   },
   setKeyBindPage:function(){
     var keyBindStrings=document.getElementById("TabGroupsManagerStringsKeyBind");

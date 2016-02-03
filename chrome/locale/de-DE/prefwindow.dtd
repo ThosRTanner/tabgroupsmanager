@@ -157,13 +157,9 @@
 <!ENTITY TabGroupsManager.openNewGroupByShift.accesskey                         "S">
 <!ENTITY TabGroupsManager.openNewGroupByShift.help                              "Nicht &quot;Shift + Linksklick&quot;, sondern &quot;Shift + mittlere Maustaste&quot;\noder &quot;Shift + Strg + Klick mit linker Maustaste&quot;.">
 <!ENTITY TabGroupsManager.searchFromSearchBar.label                             "Suchleiste">
-<!ENTITY TabGroupsManager.useSearchPlugin.label                                 "TabGroups-Manager-Suchplugin verwenden">
-<!ENTITY TabGroupsManager.useSearchPlugin.help                                  "Sind &quot;Easy DragToGo&quot;, &quot;Second Search&quot; oder &quot;Drag de Go&quot; auf das TabGroups-Manager-Suchplugin konfiguriert, kann TabGroups Manager auch von dort aus ausgelöste Suchvorgänge verwalten.">
-<!ENTITY TabGroupsManager.useSearchPlugin.accesskey                             "u">
 <!ENTITY TabGroupsManager.defaultSearchPlugin.label                             "Auf Standardwerte zurücksetzen">
 <!ENTITY TabGroupsManager.defaultSearchPlugin.help                              "Setzt die Einstellungen für das TabGroups-Manager-Suchplugin auf ursprüngliche Einstellungen zurück.">
 <!ENTITY TabGroupsManager.defaultSearchPlugin.accesskey                         "z">
-<!ENTITY TabGroupsManager.useSearchPluginaction.label                           "Arbeitsweise des TabGroups-Manager-Suchplugins">
 <!ENTITY TabGroupsManager.searchInCurrentTab                                    "Suchergebnisse im momentanen Tab darstellen">
 <!ENTITY TabGroupsManager.searchInNewTabActive                                  "Für Sucherbegnisse neuen Tab erstellen">
 <!ENTITY TabGroupsManager.searchInNewTabNotActive                               "Für Sucherbegnisse neuen Tab erstellen, diesen aber nicht aktivieren">

@@ -157,13 +157,9 @@
 <!ENTITY TabGroupsManager.openNewGroupByShift.accesskey                         "S">
 <!ENTITY TabGroupsManager.openNewGroupByShift.help                              "リンクの場合は Shift＋左クリックではありません。Shift＋中クリック、Shift＋Ctrl＋左クリックで新しいタブを開いた場合です。">
 <!ENTITY TabGroupsManager.searchFromSearchBar.label                             "検索バー">
-<!ENTITY TabGroupsManager.useSearchPlugin.label                                 "TabGroups Manager 用の検索プラグインを使う">
-<!ENTITY TabGroupsManager.useSearchPlugin.help                                  "Easy DragToGo, セカンドサーチ, Drag de Go からTGM用プラグインで検索した場合も以下の設定に従います。">
-<!ENTITY TabGroupsManager.useSearchPlugin.accesskey                             "T">
 <!ENTITY TabGroupsManager.defaultSearchPlugin.label                             "デフォルト">
 <!ENTITY TabGroupsManager.defaultSearchPlugin.help                              "TabGroups Manager用検索プラグインをデフォルトに戻す">
 <!ENTITY TabGroupsManager.defaultSearchPlugin.accesskey                         "D">
-<!ENTITY TabGroupsManager.useSearchPluginaction.label                           "TabGroups Manager 用の検索プラグインの動作">
 <!ENTITY TabGroupsManager.searchInCurrentTab                                    "現在のタブで検索する">                                 <!-- 1 -->
 <!ENTITY TabGroupsManager.searchInNewTabActive                                  "新しいタブで検索する（アクティブ）">                   <!-- 2 -->
 <!ENTITY TabGroupsManager.searchInNewTabNotActive                               "新しいタブで検索する（バックグラウンド）">             <!-- 3 -->

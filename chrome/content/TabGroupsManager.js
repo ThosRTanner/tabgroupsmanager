@@ -75,7 +75,6 @@ TabGroupsManager.initialize=function(event){
     this.allGroups=new this.AllGroups();
     this.closedGroups=new this.GroupsStore(TabGroupsManagerJsm.saveData.getClosedGroups,this.preferences.maxClosedTabStoreCount,false,"TabGroupsManagerClosedGroupsMenuitemContextMenu");
     this.sleepingGroups=new this.GroupsStore(TabGroupsManagerJsm.saveData.getSleepingGroups,-1,true,"TabGroupsManagerSleepingGroupsMenuitemContextMenu");
-    this.searchPlugin=new this.SearchPlugin();
     this.session=new this.Session();
     this.groupBarDispHide=new this.GroupBarDispHide();
     this.keyboardShortcut=new this.KeyboardShortcut();
@@ -449,12 +448,6 @@ TabGroupsManager.Preferences=function(){
     this.ctrlTab=this.prefBranch.getIntPref("ctrlTab");
     this.openNewGroupOperation=this.prefBranch.getBoolPref("openNewGroupOperation");
     this.openNewGroupByShift=this.prefBranch.getBoolPref("openNewGroupByShift");
-    this.useSearchPlugin=this.prefBranch.getBoolPref("useSearchPlugin");
-    this.searchNoneSupKey=this.prefBranch.getIntPref("searchNoneSupKey");
-    this.searchCtrl=this.prefBranch.getIntPref("searchCtrl");
-    this.searchShift=this.prefBranch.getIntPref("searchShift");
-    this.searchCtrlShift=this.prefBranch.getIntPref("searchCtrlShift");
-    this.searchMClick=this.prefBranch.getIntPref("searchMClick");
     this.observe(null,"nsPref:changed","groupMenuOpen");
     this.observe(null,"nsPref:changed","groupMenuOpenActive");
     this.observe(null,"nsPref:changed","groupMenuOpenRename");
@@ -659,15 +652,7 @@ TabGroupsManager.Preferences.prototype.observe=function(aSubject,aTopic,aData){
     case"openNewGroupOperation":
       this.openNewGroupOperation=this.prefBranch.getBoolPref("openNewGroupOperation");
     break;
-    case"useSearchPlugin":
-      this.useSearchPlugin=this.prefBranch.getBoolPref("useSearchPlugin");
-    break;
     case"openNewGroupByShift":this.openNewGroupByShift=this.prefBranch.getBoolPref("openNewGroupByShift");break;
-    case"searchNoneSupKey":this.searchNoneSupKey=this.prefBranch.getIntPref("searchNoneSupKey");break;
-    case"searchCtrl":this.searchCtrl=this.prefBranch.getIntPref("searchCtrl");break;
-    case"searchShift":this.searchShift=this.prefBranch.getIntPref("searchShift");break;
-    case"searchCtrlShift":this.searchCtrlShift=this.prefBranch.getIntPref("searchCtrlShift");break;
-    case"searchMClick":this.searchMClick=this.prefBranch.getIntPref("searchMClick");break;
     case"groupMenuOpen":this.groupMenuOpen=this.prefBranch.getBoolPref("groupMenuOpen");document.getElementById("TabGroupsManagerGroupMenuOpen").hidden=!this.groupMenuOpen;document.getElementById("TabGroupsManagerGroupMenuSeparator1").hidden=!(this.groupMenuOpen || this.groupMenuOpenActive || this.groupMenuOpenRename || this.groupMenuOpenActiveRename || this.groupMenuOpenWithHome || this.groupMenuOpenActiveWithHome || this.groupMenuOpenByRenameHistory);break;
     case"groupMenuOpenActive":this.groupMenuOpenActive=this.prefBranch.getBoolPref("groupMenuOpenActive");document.getElementById("TabGroupsManagerGroupMenuOpenActive").hidden=!this.groupMenuOpenActive;document.getElementById("TabGroupsManagerGroupMenuSeparator1").hidden=!(this.groupMenuOpen || this.groupMenuOpenActive || this.groupMenuOpenRename || this.groupMenuOpenActiveRename || this.groupMenuOpenWithHome || this.groupMenuOpenActiveWithHome || this.groupMenuOpenByRenameHistory);break;
     case"groupMenuOpenRename":this.groupMenuOpenRename=this.prefBranch.getBoolPref("groupMenuOpenRename");document.getElementById("TabGroupsManagerGroupMenuOpenRename").hidden=!this.groupMenuOpenRename;document.getElementById("TabGroupsManagerGroupMenuSeparator1").hidden=!(this.groupMenuOpen || this.groupMenuOpenActive || this.groupMenuOpenRename || this.groupMenuOpenActiveRename || this.groupMenuOpenWithHome || this.groupMenuOpenActiveWithHome || this.groupMenuOpenByRenameHistory);break;
@@ -5013,92 +4998,6 @@ TabGroupsManager.GroupsStore.prototype.bookmarkOneGroup=function(group,folderNam
     }
   }
 };
-TabGroupsManager.SearchPlugin=function(){
-  try
-  {
-    this.engineIconURI=null;
-    /*modified*/ //this.searchService=Cc["@mozilla.org/browser/search-service;1"].getService(Ci.nsIBrowserSearchService);
-    this.searchBar=document.getElementById("searchbar");
-    this.searchWordTop=new RegExp(TabGroupsManager.strings.getString("SearchWordTopRegExp"));
-  }
-  catch(e){
-    TabGroupsManagerJsm.displayError.alertErrorIfDebug(e);
-  }
-};
-TabGroupsManager.SearchPlugin.prototype.makeGroupNameByUri=function(callerArguments){
-  callerArguments[0]=callerArguments[0].replace(/tabgroupsmanagersearchplugin=([^&]*)&?/,"");
-  var key=RegExp.$1;
-  try
-  {
-    if(key!=null&&key!=""&&callerArguments[0].match(new RegExp("[?&]"+key+"=([^&]*)"))){
-      var allSearchWord=decodeURIComponent(RegExp.$1);
-      return(allSearchWord.match(this.searchWordTop)?RegExp.lastMatch:allSearchWord).replace(/\+/g," ");
-    }
-  }
-  catch(e){
-  }
-  return TabGroupsManager.strings.getString("SearchResultDefaultName");
-};
-TabGroupsManager.SearchPlugin.prototype.mySearchByUri=function(aURI,aCharset,aPostData){
-  var groupName=this.makeGroupNameByUri(arguments);
-  var iconURIspec=this.engineIconURI?this.engineIconURI.spec:null;
-  switch(this.selectSearchFunction()){
-    case 0:
-      return null;
-    case 1:
-      var tmp=TabGroupsManager.overrideMethod.backup_gBrowser_loadURI.call(gBrowser,aURI,null,aCharset);
-      return tmp || gBrowser.selectedTab;
-    case 2:
-      var newTab=TabGroupsManager.overrideMethod.backup_gBrowser_addTab.call(gBrowser,aURI,null,aCharset,aPostData);
-      gBrowser.selectedTab=newTab;
-      return newTab;
-    case 3:
-      var newTab=TabGroupsManager.overrideMethod.backup_gBrowser_addTab.call(gBrowser,aURI,null,aCharset,aPostData);
-      return newTab;
-    case 4:
-      var newTab=TabGroupsManager.overrideMethod.backup_gBrowser_addTab.call(gBrowser,aURI,null,aCharset,aPostData);
-      TabGroupsManager.allGroups.openNewGroup(newTab,undefined,groupName,iconURIspec);
-      gBrowser.selectedTab=newTab;
-      return newTab;
-    case 5:
-      var newTab=TabGroupsManager.overrideMethod.backup_gBrowser_addTab.call(gBrowser,aURI,null,aCharset,aPostData);
-      TabGroupsManager.allGroups.openNewGroup(newTab,undefined,groupName,iconURIspec);
-      return newTab;
-    default:
-      return null;
-  }
-};
-TabGroupsManager.SearchPlugin.prototype.selectSearchFunction=function(){
-  if(TabGroupsManager.keyboardState.eventObject&&TabGroupsManager.keyboardState.eventObject.type=="click"&&TabGroupsManager.keyboardState.eventObject.button==1){
-    return TabGroupsManager.preferences.searchMClick;
-  }else if(TabGroupsManager.keyboardState.ctrlKey&&TabGroupsManager.keyboardState.shiftKey){
-    return TabGroupsManager.preferences.searchCtrlShift;
-  }else if(TabGroupsManager.keyboardState.ctrlKey){
-    return TabGroupsManager.preferences.searchCtrl;
-  }else if(TabGroupsManager.keyboardState.shiftKey){
-    return TabGroupsManager.preferences.searchShift;
-  }else{
-    return TabGroupsManager.preferences.searchNoneSupKey;
-  }
-};
-TabGroupsManager.SearchPlugin.prototype.mySearchCommand=function(aEvent,aEngine){
-  var textBox=this.searchBar._textbox;
-  var textValue=textBox.value;
-  if(aEvent&&aEvent.originalTarget.getAttribute("anonid")=="search-go-button"&&aEvent.button==2){
-    return;
-  }
-  if(textValue){
-    textBox._formHistSvc.addEntry(textBox.getAttribute("autocompletesearchparam"),textValue);
-  }
-  TabGroupsManager.keyboardState.eventObject=aEvent;
-  this.engineIconURI=aEngine.iconURI;
-  var submission=aEngine.getSubmission(textValue,null);
-  if(submission){
-    var tab=gBrowser.addTab(submission.uri.spec,undefined,undefined,submission.postData);
-  }
-  TabGroupsManager.keyboardState.eventObject=null;
-  this.engineIconURI=null;
-};
 TabGroupsManager.TabOpenStatus=function(){
   try
   {
@@ -5772,10 +5671,7 @@ TabGroupsManager.OverrideMethod.prototype.override_gBrowser_removeTab=function(a
   }
 };
 TabGroupsManager.OverrideMethod.prototype.override_gBrowser_addTab=function(aURI,aReferrerURI,aCharset,aPostData,aOwner,aAllowThirdPartyFixup){
-  if(aURI&&-1!=aURI.indexOf("tabgroupsmanagersearchplugin=")){
-    [aCharset,aPostData]=TabGroupsManager.overrideMethod.parseReferrerURI(arguments,aCharset,aPostData);
-    return TabGroupsManager.searchPlugin.mySearchByUri(aURI,aCharset,aPostData);
-  }else if(TabGroupsManager.preferences.openNewGroupByShift&&TabGroupsManager.keyboardState.shiftKey){
+  if(TabGroupsManager.preferences.openNewGroupByShift&&TabGroupsManager.keyboardState.shiftKey){
     let newTab=TabGroupsManager.overrideMethod.backup_gBrowser_addTab.apply(this,arguments);
     TabGroupsManager.allGroups.openNewGroup(newTab);
     return newTab;
@@ -5783,10 +5679,7 @@ TabGroupsManager.OverrideMethod.prototype.override_gBrowser_addTab=function(aURI
   return TabGroupsManager.overrideMethod.backup_gBrowser_addTab.apply(this,arguments);
 };
 TabGroupsManager.OverrideMethod.prototype.override_gBrowser_loadOneTab=function(aURI,aReferrerURI,aCharset,aPostData,aLoadInBackground,aAllowThirdPartyFixup){
-  if(aURI&&-1!=aURI.indexOf("tabgroupsmanagersearchplugin=")){
-    [aCharset,aPostData]=TabGroupsManager.overrideMethod.parseReferrerURI(arguments,aCharset,aPostData);
-    return TabGroupsManager.searchPlugin.mySearchByUri(aURI,aCharset,aPostData);
-  }else if(TabGroupsManager.preferences.openNewGroupByShift&&TabGroupsManager.keyboardState.shiftKey){
+  if(TabGroupsManager.preferences.openNewGroupByShift&&TabGroupsManager.keyboardState.shiftKey){
     let newTab=TabGroupsManager.overrideMethod.backup_gBrowser_addTab.call(this,aURI,aReferrerURI,aCharset,aPostData,undefined,aAllowThirdPartyFixup);
     TabGroupsManager.allGroups.openNewGroup(newTab);
     return newTab;
@@ -5794,9 +5687,7 @@ TabGroupsManager.OverrideMethod.prototype.override_gBrowser_loadOneTab=function(
   return TabGroupsManager.overrideMethod.backup_gBrowser_loadOneTab.apply(this,arguments);
 };
 TabGroupsManager.OverrideMethod.prototype.override_gBrowser_loadURI=function(aURI,aReferrerURI,aCharset){
-  if(aURI&&-1!=aURI.indexOf("tabgroupsmanagersearchplugin=")){
-    return TabGroupsManager.searchPlugin.mySearchByUri(aURI,aCharset);
-  }else if(TabGroupsManager.preferences.openNewGroupByShift&&TabGroupsManager.keyboardState.shiftKey){
+  if(TabGroupsManager.preferences.openNewGroupByShift&&TabGroupsManager.keyboardState.shiftKey){
     let newTab=TabGroupsManager.overrideMethod.backup_gBrowser_addTab.call(this,aURI,aReferrerURI,aCharset);
     TabGroupsManager.allGroups.openNewGroup(newTab);
     return newTab;
@@ -5804,9 +5695,7 @@ TabGroupsManager.OverrideMethod.prototype.override_gBrowser_loadURI=function(aUR
   return TabGroupsManager.overrideMethod.backup_gBrowser_loadURI.apply(this,arguments);
 };
 TabGroupsManager.OverrideMethod.prototype.override_gBrowser_loadURIWithFlags=function(aURI,aFlags,aReferrerURI,aCharset,aPostData){
-  if(aURI&&-1!=aURI.indexOf("tabgroupsmanagersearchplugin=")){
-    return TabGroupsManager.searchPlugin.mySearchByUri(aURI,aCharset,aPostData);
-  }else if(TabGroupsManager.preferences.openNewGroupByShift&&TabGroupsManager.keyboardState.shiftKey){
+  if(TabGroupsManager.preferences.openNewGroupByShift&&TabGroupsManager.keyboardState.shiftKey){
     let newTab=TabGroupsManager.overrideMethod.backup_gBrowser_addTab.call(this,aURI,aReferrerURI,aCharset,aPostData);
     TabGroupsManager.allGroups.openNewGroup(newTab);
     return newTab;
@@ -5814,9 +5703,7 @@ TabGroupsManager.OverrideMethod.prototype.override_gBrowser_loadURIWithFlags=fun
   return TabGroupsManager.overrideMethod.backup_gBrowser_loadURIWithFlags.apply(this,arguments);
 };
 TabGroupsManager.OverrideMethod.prototype.override_window_openUILinkIn=function(url,where,allowThirdPartyFixup,postData,referrerUrl){
-  if(url&&-1!=url.indexOf("tabgroupsmanagersearchplugin=")){
-    return TabGroupsManager.searchPlugin.mySearchByUri(url,undefined,postData);
-  }else if(TabGroupsManager.preferences.openNewGroupByShift&&TabGroupsManager.keyboardState.shiftKey){
+  if(TabGroupsManager.preferences.openNewGroupByShift&&TabGroupsManager.keyboardState.shiftKey){
     let newTab=TabGroupsManager.overrideMethod.backup_gBrowser_addTab.call(this,url,referrerUrl,undefined,postData);
     TabGroupsManager.allGroups.openNewGroup(newTab);
     return newTab;
@@ -5830,11 +5717,7 @@ TabGroupsManager.OverrideMethod.prototype.override_searchbar_handleSearchCommand
     engine=ss.selectedEngine || ss.getRecentEngines()[0];
     engine=ss.getSearchEngineFromName(engine.name);
   }
-  if(-1!=engine.description.indexOf("\(TabGroupsManagerSearchPlugin")){
-    TabGroupsManager.searchPlugin.mySearchCommand(aEvent,engine);
-  }else{
-    TabGroupsManager.overrideMethod.backup_searchbar_handleSearchCommand.apply(this,arguments);
-  }
+  TabGroupsManager.overrideMethod.backup_searchbar_handleSearchCommand.apply(this,arguments);
 };
 TabGroupsManager.OverrideMethod.prototype.tabCloseDisableCheck=function(aTab){
   try
