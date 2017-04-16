@@ -337,6 +337,23 @@ TabGroupsManager.utils.unHideTab=function(tab) {
 	gBrowser.showTab(tab);
   }
 };
+/**
+ * Function to search for strings in DataTransfer types
+ * Compatibility with >= FF51
+ * @param eventDataTransfer DataTransfer from a event.
+ * @param needle string to search for in DataTransfer types.
+ * @returns {boolean}
+ */
+TabGroupsManager.utils.dataTransferTypesContains=function(eventDataTransfer, needle) {
+  let result = false;
+  if (('undefined' !== typeof eventDataTransfer) && (eventDataTransfer) ) {
+    var dataTransferTypes = eventDataTransfer.mozTypesAt(0);
+    if ((dataTransferTypes.length > 0) && (dataTransferTypes.contains(needle))) {
+      result = true;
+    }
+  }
+  return result;
+};
 TabGroupsManager.tabMoveByTGM=
 {
   tabMovingByTGM:false,
@@ -2255,7 +2272,7 @@ TabGroupsManager.GroupDnDObserver.prototype.onDragOver=function(event,draggedTab
     return;
   }
   var session=Cc["@mozilla.org/widget/dragservice;1"].getService(Ci.nsIDragService).getCurrentSession();
-  if(event.dataTransfer.types.contains("application/x-tabgroupsmanager-grouptab")){
+  if(TabGroupsManager.utils.dataTransferTypesContains(event.dataTransfer, "application/x-tabgroupsmanager-grouptab")){
     var groupTab=this.supportDnD.getDragElementByTagName(session.sourceNode,"tab");
     if(groupTab){
       if(event.ctrlKey){
@@ -2269,7 +2286,7 @@ TabGroupsManager.GroupDnDObserver.prototype.onDragOver=function(event,draggedTab
       event.stopPropagation();
       event.dataTransfer.effectAllowed="all";
     }
-  }else if(event.dataTransfer.types.contains("application/x-moz-tabbrowser-tab")){
+  }else if((TabGroupsManager.utils.dataTransferTypesContains(event.dataTransfer, "application/x-moz-tabbrowser-tab")) || (TabGroupsManager.utils.dataTransferTypesContains(event.dataTransfer, "text/x-moz-text-internal")))  {
     var tab=draggedTab || this.supportDnD.getDragElementByTagName(session.sourceNode,"tab");
     if(tab){
       if(event.ctrlKey){
@@ -2283,12 +2300,12 @@ TabGroupsManager.GroupDnDObserver.prototype.onDragOver=function(event,draggedTab
       event.stopPropagation();
       event.dataTransfer.effectAllowed="all";
     }
-  }else if(event.dataTransfer.types.contains("text/x-moz-url")){
+  }else if(TabGroupsManager.utils.dataTransferTypesContains(event.dataTransfer, "text/x-moz-url")){
     this.supportDnD.setPlusPositionX((event.target.getBoundingClientRect().left+event.target.getBoundingClientRect().right)/ 2);
     event.preventDefault();
     event.stopPropagation();
     event.dataTransfer.effectAllowed="all";
-  }else if(event.dataTransfer.types.contains("text/plain")){
+  }else if(TabGroupsManager.utils.dataTransferTypesContains(event.dataTransfer, "text/plain")){
     event.preventDefault();
     event.stopPropagation();
     event.dataTransfer.effectAllowed="all";
@@ -2313,7 +2330,7 @@ TabGroupsManager.GroupDnDObserver.prototype.onDragEnd=function(event){
 TabGroupsManager.GroupDnDObserver.prototype.onDrop=function(event,draggedTab){
   this.supportDnD.hideAllNow();
   var session=Cc["@mozilla.org/widget/dragservice;1"].getService(Ci.nsIDragService).getCurrentSession();
-  if(event.dataTransfer.types.contains("application/x-tabgroupsmanager-grouptab")){
+  if(TabGroupsManager.utils.dataTransferTypesContains(event.dataTransfer, "application/x-tabgroupsmanager-grouptab")){
     var groupTab=this.supportDnD.getDragElementByTagName(session.sourceNode,"tab");
     if(groupTab){
       if(groupTab.parentNode==TabGroupsManager.allGroups.groupbar){
@@ -2325,7 +2342,7 @@ TabGroupsManager.GroupDnDObserver.prototype.onDrop=function(event,draggedTab){
       event.stopPropagation();
       return;
     }
-  }else if(event.dataTransfer.types.contains("application/x-moz-tabbrowser-tab")){
+  }else if ((TabGroupsManager.utils.dataTransferTypesContains(event.dataTransfer, "application/x-moz-tabbrowser-tab")) || (TabGroupsManager.utils.dataTransferTypesContains(event.dataTransfer, "text/x-moz-text-internal")))  {
     var tab=draggedTab || this.supportDnD.getDragElementByTagName(session.sourceNode,"tab");
     if(tab){
       if(tab.parentNode==gBrowser.tabContainer){
@@ -2337,7 +2354,7 @@ TabGroupsManager.GroupDnDObserver.prototype.onDrop=function(event,draggedTab){
       event.stopPropagation();
       return;
     }
-  }else if(event.dataTransfer.types.contains("text/x-moz-url")){
+  }else if(TabGroupsManager.utils.dataTransferTypesContains(event.dataTransfer, "text/x-moz-url")){
     var data=event.dataTransfer.getData("text/x-moz-url");
     var splitData=data.split(/\r?\n/);
     var tab=TabGroupsManager.overrideMethod.gBrowserAddTab(splitData[0]);
@@ -2345,7 +2362,7 @@ TabGroupsManager.GroupDnDObserver.prototype.onDrop=function(event,draggedTab){
     event.preventDefault();
     event.stopPropagation();
     return;
-  }else if(event.dataTransfer.types.contains("text/plain")){
+  }else if(TabGroupsManager.utils.dataTransferTypesContains(event.dataTransfer, "text/plain")){
     let text=event.dataTransfer.getData("text/plain");
     let group=event.target.group;
     let splitText=text?text.split(/\r?\n/)[0]:"";
@@ -2407,7 +2424,7 @@ TabGroupsManager.GroupBarDnDObserver.prototype.onDragOver=function(event,dragged
   }else if(event.originalTarget.className=="autorepeatbutton-down"){
     this.scrollbox.scrollByPixels(+20);
   }
-  if(event.dataTransfer.types.contains("application/x-tabgroupsmanager-grouptab")){
+  if(TabGroupsManager.utils.dataTransferTypesContains(event.dataTransfer, "application/x-tabgroupsmanager-grouptab")){
     var groupTab=this.supportDnD.getDragElementByTagName(session.sourceNode,"tab");
     if(groupTab){
       var firstGroupTab=TabGroupsManager.allGroups.firstChild;
@@ -2442,7 +2459,7 @@ TabGroupsManager.GroupBarDnDObserver.prototype.onDragOver=function(event,dragged
       event.stopPropagation();
       event.dataTransfer.effectAllowed="all";
     }
-  }else if(event.dataTransfer.types.contains("application/x-moz-tabbrowser-tab")){
+  }else if ((TabGroupsManager.utils.dataTransferTypesContains(event.dataTransfer, "application/x-moz-tabbrowser-tab")) || (TabGroupsManager.utils.dataTransferTypesContains(event.dataTransfer, "text/x-moz-text-internal")))  {
     var tab=draggedTab || this.supportDnD.getDragElementByTagName(session.sourceNode,"tab");
     if(tab){
       if(tab.group!=event.target.group){
@@ -2452,12 +2469,12 @@ TabGroupsManager.GroupBarDnDObserver.prototype.onDragOver=function(event,dragged
         event.dataTransfer.effectAllowed="all";
       }
     }
-  }else if(event.dataTransfer.types.contains("text/x-moz-url")){
+  }else if(TabGroupsManager.utils.dataTransferTypesContains(event.dataTransfer, "text/x-moz-url")){
     this.supportDnD.setPlusOPositionX(TabGroupsManager.allGroups.groupbar.lastChild.getBoundingClientRect().right);
     event.preventDefault();
     event.stopPropagation();
     event.dataTransfer.effectAllowed="all";
-  }else if(event.dataTransfer.types.contains("text/plain")){
+  }else if(TabGroupsManager.utils.dataTransferTypesContains(event.dataTransfer, "text/plain")){
     this.supportDnD.setPlusOPositionX(TabGroupsManager.allGroups.groupbar.lastChild.getBoundingClientRect().right);
     event.preventDefault();
     event.stopPropagation();
@@ -2470,7 +2487,7 @@ TabGroupsManager.GroupBarDnDObserver.prototype.onDragLeave=function(event){
 TabGroupsManager.GroupBarDnDObserver.prototype.onDrop=function(event,draggedTab){
   this.supportDnD.hideAllNow();
   var session=Cc["@mozilla.org/widget/dragservice;1"].getService(Ci.nsIDragService).getCurrentSession();
-  if(event.dataTransfer.types.contains("application/x-tabgroupsmanager-grouptab")){
+  if(TabGroupsManager.utils.dataTransferTypesContains(event.dataTransfer, "application/x-tabgroupsmanager-grouptab")){
     var groupTab=this.supportDnD.getDragElementByTagName(session.sourceNode,"tab");
     if(groupTab){
       var firstGroupTab=TabGroupsManager.allGroups.firstChild;
@@ -2506,7 +2523,7 @@ TabGroupsManager.GroupBarDnDObserver.prototype.onDrop=function(event,draggedTab)
       event.stopPropagation();
       return;
     }
-  }else if(event.dataTransfer.types.contains("application/x-moz-tabbrowser-tab")){
+  }else if ((TabGroupsManager.utils.dataTransferTypesContains(event.dataTransfer, "application/x-moz-tabbrowser-tab")) || (TabGroupsManager.utils.dataTransferTypesContains(event.dataTransfer, "text/x-moz-text-internal")))  {
     var tab=draggedTab || this.supportDnD.getDragElementByTagName(session.sourceNode,"tab");
     if(tab){
       if(tab.parentNode==gBrowser.tabContainer){
@@ -2518,7 +2535,7 @@ TabGroupsManager.GroupBarDnDObserver.prototype.onDrop=function(event,draggedTab)
       event.stopPropagation();
       return;
     }
-  }else if(event.dataTransfer.types.contains("text/x-moz-place")){
+  }else if(TabGroupsManager.utils.dataTransferTypesContains(event.dataTransfer, "text/x-moz-place")){
     var node=session.sourceNode.node;
     if(node){
       if(PlacesUtils.nodeIsBookmark(node)){
@@ -2533,7 +2550,7 @@ TabGroupsManager.GroupBarDnDObserver.prototype.onDrop=function(event,draggedTab)
         return;
       }
     }
-  }else if(event.dataTransfer.types.contains("text/x-moz-url")){
+  }else if(TabGroupsManager.utils.dataTransferTypesContains(event.dataTransfer, "text/x-moz-url")){
     var data=event.dataTransfer.getData("text/x-moz-url");
     var splitData=data.split(/\r?\n/);
     var url=splitData[0];
@@ -2545,7 +2562,7 @@ TabGroupsManager.GroupBarDnDObserver.prototype.onDrop=function(event,draggedTab)
     event.preventDefault();
     event.stopPropagation();
     return;
-  }else if(event.dataTransfer.types.contains("text/plain")){
+  }else if(TabGroupsManager.utils.dataTransferTypesContains(event.dataTransfer, "text/plain")){
     let text=event.dataTransfer.getData("text/plain");
     let splitText=text?text.split(/\r?\n/)[0]:"";
     if(splitText.match(/s?https?:\/\/[-_.!~*'()a-zA-Z0-9;\/?:\@&=+\$,%#]+/)){
@@ -2610,7 +2627,7 @@ TabGroupsManager.WindowDnDObserver.prototype.onDragOverDelegate=function(event){
 TabGroupsManager.WindowDnDObserver.prototype.onDragOver=function(event){
   this.supportDnD.hideAll();
   var session=Cc["@mozilla.org/widget/dragservice;1"].getService(Ci.nsIDragService).getCurrentSession();
-  if(event.dataTransfer.types.contains("application/x-tabgroupsmanager-grouptab")){
+  if(TabGroupsManager.utils.dataTransferTypesContains(event.dataTransfer, "application/x-tabgroupsmanager-grouptab")){
     var groupTab=this.supportDnD.getDragElementByParent(session.sourceNode,TabGroupsManager.allGroups.groupbar);
     if(groupTab){
       let parentChild=event.target.compareDocumentPosition(TabGroupsManager.xulElements.groupBar);
@@ -2628,7 +2645,7 @@ TabGroupsManager.WindowDnDObserver.prototype.onDragOver=function(event){
       event.dataTransfer.effectAllowed="all";
       return;
     }
-  }else if(event.dataTransfer.types.contains("application/x-moz-file")){
+  }else if(TabGroupsManager.utils.dataTransferTypesContains(event.dataTransfer, "application/x-moz-file")){
     var file=event.dataTransfer.mozGetDataAt("application/x-moz-file",0);
     if((file instanceof Ci.nsIFile)){
       if(file.leafName.match(this.groupDataExtRegExp)){
@@ -2650,7 +2667,7 @@ TabGroupsManager.WindowDnDObserver.prototype.onDragLeave=function(event){
 TabGroupsManager.WindowDnDObserver.prototype.onDrop=function(event){
   this.supportDnD.hideAllNow();
   var session=Cc["@mozilla.org/widget/dragservice;1"].getService(Ci.nsIDragService).getCurrentSession();
-  if(event.dataTransfer.types.contains("application/x-tabgroupsmanager-grouptab")){
+  if(TabGroupsManager.utils.dataTransferTypesContains(event.dataTransfer, "application/x-tabgroupsmanager-grouptab")){
     var groupTab=this.supportDnD.getDragElementByParent(session.sourceNode,TabGroupsManager.allGroups.groupbar);
     if(groupTab){
       let parentChild=event.target.compareDocumentPosition(TabGroupsManager.xulElements.groupBar);
@@ -2666,7 +2683,7 @@ TabGroupsManager.WindowDnDObserver.prototype.onDrop=function(event){
       event.stopPropagation();
       return;
     }
-  }else if(event.dataTransfer.types.contains("application/x-moz-file")){
+  }else if(TabGroupsManager.utils.dataTransferTypesContains(event.dataTransfer, "application/x-moz-file")){
     let nsIFile=event.dataTransfer.mozGetDataAt("application/x-moz-file",0);
     if(nsIFile instanceof Ci.nsIFile){
       let result=false;
@@ -5524,7 +5541,7 @@ TabGroupsManager.OverrideMethod.prototype.override_handleTabDrag=function(event)
   if(x1<=event.screenX&&event.screenX<=x2&&y1<=event.screenY&&event.screenY<=y2){
     event.dataTransfer={};
     event.dataTransfer.types={};
-    event.dataTransfer.types.contains=function(item){return item=="application/x-moz-tabbrowser-tab";};
+    event.dataTransfer.types.contains=function(item){return item=="application/x-moz-tabbrowser-tab" || item=="text/x-moz-text-internal";};
     let parentChild=event.target.compareDocumentPosition(TabGroupsManager.xulElements.groupTabs);
     if(parentChild==0 || parentChild==10){
       TabGroupsManager.groupDnDObserver.onDragOver(event,draggedTab);
@@ -5552,7 +5569,7 @@ TabGroupsManager.OverrideMethod.prototype.override_handleTabDrop=function(event)
   if(x1<=event.screenX&&event.screenX<=x2&&y1<=event.screenY&&event.screenY<=y2){
     event.dataTransfer={};
     event.dataTransfer.types={};
-    event.dataTransfer.types.contains=function(item){return item=="application/x-moz-tabbrowser-tab";};
+    event.dataTransfer.types.contains=function(item){return item=="application/x-moz-tabbrowser-tab" || item=="text/x-moz-text-internal";};
     let parentChild=event.target.compareDocumentPosition(TabGroupsManager.xulElements.groupTabs);
     if(parentChild==0 || parentChild==10){
       TabGroupsManager.groupDnDObserver.onDrop(event,this.draggedTab);

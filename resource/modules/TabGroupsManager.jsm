@@ -2,7 +2,7 @@ var EXPORTED_SYMBOLS=["TabGroupsManagerJsm"];
 
 //The paths for all devtools JS modules have changed to resource://devtools/*.
 //See https://bugzil.la/1203159 for more information.
-Components.utils.import("resource://gre/modules/devtools/Console.jsm");
+Components.utils.import("resource://gre/modules/Console.jsm");
 //var {PrivateBrowsingUtils} = Components.utils.import("resource://gre/modules/PrivateBrowsingUtils.jsm");
 
 var TabGroupsManagerJsm=

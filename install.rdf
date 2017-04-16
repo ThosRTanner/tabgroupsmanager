@@ -3,7 +3,7 @@
     <Description about="urn:mozilla:install-manifest">
         <em:id>{9b9a630c-a8c0-11e5-a190-6a611d5d46b0}</em:id>
         <em:name>TabGroups Manager revived</em:name>
-		<em:version>2016.02.03.008</em:version>
+		<em:version>2017.04.17.009</em:version>
         <em:type>2</em:type>
         <em:unpack>true</em:unpack>
         <!-- See homepage for attribution, John 201309070302 -4 -->
@@ -37,7 +37,7 @@
                 <em:id>{ec8030f7-c20a-464f-9b0e-13a3a9e97384}</em:id>
                 <!-- TODO:  Develop schedule for support, John 201309072316 -4 -->
                 <em:minVersion>3.6</em:minVersion>
-                <em:maxVersion>45.*</em:maxVersion>
+                <em:maxVersion>55.*</em:maxVersion>
             </Description>
         </em:targetApplication>
     </Description>

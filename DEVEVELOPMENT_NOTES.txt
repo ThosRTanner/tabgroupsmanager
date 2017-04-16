@@ -1,0 +1,10 @@
+04-17-2017:
+Firefox 51 and up fixes for issues with Tabs:
+https://developer.mozilla.org/es/docs/Web/API/DOMStringList
+https://bugzilla.mozilla.org/show_bug.cgi?id=1298243
+https://developer.mozilla.org/en-US/docs/Web/API/DataTransfer
+https://developer.mozilla.org/en-US/Firefox/Releases/52#DOM_HTML_DOM
+https://developer.mozilla.org/en-US/docs/Web/API/HTML_Drag_and_Drop_API/Drag_operations#Updates_to_DataTransfer.types
+https://developer.mozilla.org/en-US/docs/Web/API/HTML_Drag_and_Drop_API/Recommended_drag_types#Updates_to_DataTransfer.types
+https://www.fxsitecompat.com/en-CA/docs/2016/datatransfer-types-is-now-domstringlist-instead-of-array/
+https://addons.mozilla.org/es/firefox/addon/scrapbook/reviews/840502/
