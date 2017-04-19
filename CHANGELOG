@@ -7,10 +7,10 @@ https://bitbucket.org/tabgroupsmanager/tabgroupsmanager/issues?status=new&status
 
 Changelog
 ---------
-[2017.04.17]
-- Name: TGM 009.
-- Version: 2017.04.17.009
-- File: addon-2017.04.17.009-fx.xpi
+[2017.04.19.010]
+- Name: TGM 010.
+- Version: 2017.04.19.010
+- File: addon-2017.04.19.010-fx.xpi
 - Changes:
 Fixed issues with tab management with Firefox 51 and up. Drag and Drop did not work.
 

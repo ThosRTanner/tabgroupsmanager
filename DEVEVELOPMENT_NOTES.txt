@@ -1,4 +1,4 @@
-04-17-2017:
+2017.04.19.010:
 Firefox 51 and up fixes for issues with Tabs:
 https://developer.mozilla.org/es/docs/Web/API/DOMStringList
 https://bugzilla.mozilla.org/show_bug.cgi?id=1298243
