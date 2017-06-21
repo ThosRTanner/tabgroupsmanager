@@ -1,3 +1,7 @@
+2017.06.21.011:
+Palemoon and lower Firefox versions:
+https://bugzilla.mozilla.org/show_bug.cgi?id=1203159
+
 2017.04.19.010:
 Firefox 51 and up fixes for issues with Tabs:
 https://developer.mozilla.org/es/docs/Web/API/DOMStringList

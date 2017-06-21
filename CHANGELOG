@@ -7,6 +7,14 @@ https://bitbucket.org/tabgroupsmanager/tabgroupsmanager/issues?status=new&status
 
 Changelog
 ---------
+[2017.06.21.011]
+- Name: TGM 011.
+- Version: 2017.06.21.011
+- File: addon-2017.06.21.011-fx.xpi
+- Changes:
+Fixed compatibility Palemoon and maybe with older Firefox versions.
+Increased max version support to Firefox 56 and Palemoon 28.
+
 [2017.04.19.010]
 - Name: TGM 010.
 - Version: 2017.04.19.010
