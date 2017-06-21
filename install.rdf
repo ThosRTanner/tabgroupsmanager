@@ -37,7 +37,7 @@
                 <em:id>{ec8030f7-c20a-464f-9b0e-13a3a9e97384}</em:id>
                 <!-- TODO:  Develop schedule for support, John 201309072316 -4 -->
                 <em:minVersion>3.6</em:minVersion>
-                <em:maxVersion>56.*</em:maxVersion>
+                <em:maxVersion>*</em:maxVersion>
             </Description>
         </em:targetApplication>
         <em:targetApplication>
@@ -45,7 +45,7 @@
                 <!-- palemoon -->
                 <em:id>{8de7fcbb-c55c-4fbe-bfc5-fc555c87dbc4}</em:id>
                 <em:minVersion>3.6</em:minVersion>
-                <em:maxVersion>28.*</em:maxVersion>
+                <em:maxVersion>*</em:maxVersion>
             </Description>
         </em:targetApplication>
     </Description>
