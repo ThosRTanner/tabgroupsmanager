@@ -5419,6 +5419,39 @@ TabGroupsManager.OverrideMethod=function(){
   try
   {
     var toolbox=document.getElementById("navigator-toolbox");
+    // Object.prototype.watch() shim, based on Eli Grey's polyfill object.watch
+    if (!toolbox.watch) {
+      Object.defineProperty(toolbox, "watch", {
+        enumerable: false,
+        configurable: true,
+        writable: false,
+        value: function (prop, handler) {
+          var oldval = this[prop],
+              newval = oldval,
+              getter = function () {
+                return newval;
+              },
+              setter = function (val) {
+                oldval = newval;
+                return newval = handler.call(this, prop, oldval, val);
+              };
+
+          try {
+            if (delete this[prop]) { // can't watch constants
+              Object.defineProperty(this, prop, {
+                get: getter,
+                set: setter,
+                enumerable: true,
+                configurable: true
+              });
+            }
+          } catch(e) {
+            // This fails fatally on non-configurable props, so just
+            // ignore errors if it does.
+          }
+        }
+      });
+    }
     toolbox.watch("customizing",this.toolboxCustomizeChange);
     if(!("tabBarWidthChange" in window)&&!("TabmixTabbar" in window)){
       var tabBar=TabGroupsManager.utils.getElementByIdAndAnonids("content","tabcontainer","arrowscrollbox");
