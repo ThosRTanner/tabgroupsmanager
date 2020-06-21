@@ -72,7 +72,7 @@ pref("extensions.tabgroupsmanager.tabMenuSelectRightTabInGroup",true);
 pref("extensions.tabgroupsmanager.sessionBackupByWindowCloseCount",5);
 pref("extensions.tabgroupsmanager.sessionBackupByTimerCount",5);
 pref("extensions.tabgroupsmanager.sessionBackupByTimerInterval",60);
-pref("extensions.tabgroupsmanager.overrideSessionManagerRestoreSession",false);
+pref("extensions.tabgroupsmanager.useSessionManagerSessions",false);
 pref("extensions.tabgroupsmanager.overrideTreeStyleTab",false);
 pref("extensions.tabgroupsmanager.groupRestoreOldPosition",false);
 pref("extensions.tabgroupsmanager.maxClosedTabStoreCount",10);

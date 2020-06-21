@@ -1364,17 +1364,17 @@
     <prefpane id="TabGroupsManagerPrefpaneCompatibility" label="&TabGroupsManager.prefpaneCompatibility.title;">
         <preferences>
             <preference id="TabGroupsManagerOverrideSessionManagerRestoreSession"
-                        name="extensions.tabgroupsmanager.overrideSessionManagerRestoreSession" type="bool"/>
+                        name="extensions.tabgroupsmanager.useSessionManagerSessions" type="bool"/>
             <preference id="TabGroupsManagerOverrideTreeStyleTab"
                         name="extensions.tabgroupsmanager.overrideTreeStyleTab" type="bool"/>
         </preferences>
         <groupbox>
             <caption label="&TabGroupsManager.sessionManager.label;"/>
             <checkbox preference="TabGroupsManagerOverrideSessionManagerRestoreSession"
-                      label="&TabGroupsManager.overrideSessionManagerRestoreSession.label;"
-                      accesskey="&TabGroupsManager.overrideSessionManagerRestoreSession.accesskey;"/>
+                      label="&TabGroupsManager.useSessionManagerSessions.label;"
+                      accesskey="&TabGroupsManager.useSessionManagerSessions.accesskey;"/>
             <description
-                    style="margin-left:20px">&TabGroupsManager.overrideSessionManagerRestoreSession.help;</description>
+                    style="margin-left:20px">&TabGroupsManager.useSessionManagerSessions.help;</description>
         </groupbox>
         <groupbox>
             <caption label="&TabGroupsManager.treeStyleTab.label;"/>

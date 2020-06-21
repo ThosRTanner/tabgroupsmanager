@@ -240,9 +240,9 @@
 
 <!ENTITY TabGroupsManager.prefpaneCompatibility.title                           "Совместимость">
 <!ENTITY TabGroupsManager.sessionManager.label                                  "Управление сессиями">
-<!ENTITY TabGroupsManager.overrideSessionManagerRestoreSession.label            "Заменить способ &quot;Восстановления сессий&quot; (требуется перезапуск)">
-<!ENTITY TabGroupsManager.overrideSessionManagerRestoreSession.accesskey        "З">
-<!ENTITY TabGroupsManager.overrideSessionManagerRestoreSession.help             "    Группировщик вкладок сможет вновь использовать &quot;Восстановление сессий&quot;">
+<!ENTITY TabGroupsManager.useSessionManagerSessions.label            "Заменить способ &quot;Восстановления сессий&quot; (требуется перезапуск)">
+<!ENTITY TabGroupsManager.useSessionManagerSessions.accesskey        "З">
+<!ENTITY TabGroupsManager.useSessionManagerSessions.help             "    Группировщик вкладок сможет вновь использовать &quot;Восстановление сессий&quot;">
 <!ENTITY TabGroupsManager.treeStyleTab.label                                    "Tree Style Tab">
 <!ENTITY TabGroupsManager.overrideTreeStyleTab.label                            "Заменить функцию &quot;onTabMove&quot; (требуется перезапуск)">
 <!ENTITY TabGroupsManager.overrideTreeStyleTab.accesskey                        "З">

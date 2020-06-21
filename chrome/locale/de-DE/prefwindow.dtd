@@ -240,9 +240,9 @@
 
 <!ENTITY TabGroupsManager.prefpaneCompatibility.title                           "Kompatibilität">
 <!ENTITY TabGroupsManager.sessionManager.label                                  "Sitzungsmanager ">
-<!ENTITY TabGroupsManager.overrideSessionManagerRestoreSession.label            "Kontrolle über die Funktion &quot;Sitzung laden...&quot; übernehmen (Erfordert Firefox-Neustart)">
-<!ENTITY TabGroupsManager.overrideSessionManagerRestoreSession.accesskey        "R">
-<!ENTITY TabGroupsManager.overrideSessionManagerRestoreSession.help             "    Hiermit ist TabGroups Manager in der Lage, auf das Laden von Sitzungen durch &quot;Sitzungs-Manager&quot; zu reagieren (Funktion &quot;Sitzung laden...&quot;).">
+<!ENTITY TabGroupsManager.useSessionManagerSessions.label            "Kontrolle über die Funktion &quot;Sitzung laden...&quot; übernehmen (Erfordert Firefox-Neustart)">
+<!ENTITY TabGroupsManager.useSessionManagerSessions.accesskey        "R">
+<!ENTITY TabGroupsManager.useSessionManagerSessions.help             "    Hiermit ist TabGroups Manager in der Lage, auf das Laden von Sitzungen durch &quot;Sitzungs-Manager&quot; zu reagieren (Funktion &quot;Sitzung laden...&quot;).">
 <!-- add --><!ENTITY TabGroupsManager.treeStyleTab.label                                    "Baumstruktur-Tab">
 <!-- add --><!ENTITY TabGroupsManager.overrideTreeStyleTab.label                            "Überschreibe die Funktion des Add-Ons &quot;onTabMove&quot; (erfordert einen Neustart von Firefox)">
 <!-- add --><!ENTITY TabGroupsManager.overrideTreeStyleTab.accesskey                        "S">

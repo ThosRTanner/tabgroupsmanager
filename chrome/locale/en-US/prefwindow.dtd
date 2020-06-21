@@ -240,9 +240,9 @@
 
 <!ENTITY TabGroupsManager.prefpaneCompatibility.title                           "Compatibility">
 <!ENTITY TabGroupsManager.sessionManager.label                                  "Firefox Add-On: Session Manager">
-<!ENTITY TabGroupsManager.overrideSessionManagerRestoreSession.label            "Override the method of &quot;Restore Session&quot; (requires restart)">
-<!ENTITY TabGroupsManager.overrideSessionManagerRestoreSession.accesskey        "R">
-<!ENTITY TabGroupsManager.overrideSessionManagerRestoreSession.help             "    (TabGroups Manager can re-act to the operation of &quot;Restore Session&quot;)">
+<!ENTITY TabGroupsManager.useSessionManagerSessions.label            "Use Session Manager sessions">
+<!ENTITY TabGroupsManager.useSessionManagerSessions.accesskey        "R">
+<!ENTITY TabGroupsManager.useSessionManagerSessions.help             "    (TabGroups Manager can re-act to the operation of &quot;Restore Session&quot;)">
 <!ENTITY TabGroupsManager.treeStyleTab.label                                    "Firefox Add-On: Tree Style Tab">
 <!ENTITY TabGroupsManager.overrideTreeStyleTab.label                            "Override function of &quot;onTabMove&quot; (requires restart)">
 <!ENTITY TabGroupsManager.overrideTreeStyleTab.accesskey                        "S">

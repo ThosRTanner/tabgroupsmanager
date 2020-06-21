@@ -240,9 +240,9 @@
 
 <!ENTITY TabGroupsManager.prefpaneCompatibility.title                           "互換性">
 <!ENTITY TabGroupsManager.sessionManager.label                                  "セッションマネージャ">
-<!ENTITY TabGroupsManager.overrideSessionManagerRestoreSession.label            "セッション復元をオーバーライドする（要再起動）">
-<!ENTITY TabGroupsManager.overrideSessionManagerRestoreSession.accesskey        "S">
-<!ENTITY TabGroupsManager.overrideSessionManagerRestoreSession.help             "    セッション復元操作をした時に対応できるようになります。">
+<!ENTITY TabGroupsManager.useSessionManagerSessions.label            "セッション復元をオーバーライドする（要再起動）">
+<!ENTITY TabGroupsManager.useSessionManagerSessions.accesskey        "S">
+<!ENTITY TabGroupsManager.useSessionManagerSessions.help             "    セッション復元操作をした時に対応できるようになります。">
 <!ENTITY TabGroupsManager.treeStyleTab.label                                    "ツリー型タブ">
 <!ENTITY TabGroupsManager.overrideTreeStyleTab.label                            "onTabMove をオーバーライドする（要再起動）">
 <!ENTITY TabGroupsManager.overrideTreeStyleTab.accesskey                        "S">

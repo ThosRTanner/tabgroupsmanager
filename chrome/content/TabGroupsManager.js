@@ -13,13 +13,13 @@ var TabGroupsManager=
   initialized:false,
   apiEnabled:false,
   contextTargetHref: null,
-  
+
   //setup E10s message processing
   MESSAGES: [ 'sendToTGMChrome' ],
 
   receiveMessage: function(msg) {
 	if (msg.name != 'sendToTGMChrome') return;
-	
+
 	switch (msg.data.msgType) {
 		case "linkTarget": // set our target in chrome code
 			TabGroupsManager.contextTargetHref = msg.data.href;
@@ -30,15 +30,15 @@ var TabGroupsManager=
 //setup E10s message manager and framescript
 TabGroupsManager.addFrameScript=function(){
   let mm = null;
-	
+
   //use group mm browsers only for Fx > 32
   if (window.getGroupMessageManager) mm = window.getGroupMessageManager("browsers");
   else mm = window.messageManager;
-  		
+
   //enable delayed load for new tabs
   mm.loadFrameScript("chrome://tabgroupsmanager/content/TabGroupsManager-content.js", true);
 
-  //setup chrome message listener		
+  //setup chrome message listener
   for (let msg of this.MESSAGES) {
 	mm.addMessageListener(msg, this.receiveMessage);
   }
@@ -115,19 +115,24 @@ TabGroupsManager.initialize=function(event){
 	TabGroupsManagerJsm.displayError.alertErrorIfDebug(e);
   }
 };
+
 TabGroupsManager.initializeAfterOnLoad=function(){
   //prepare promiseInitialized request
+  //note that this looks racy to me as its waiting for promises to complete.
   var _this = this;
   var ss = Components.utils.import('resource:///modules/sessionstore/SessionStore.jsm');
-  var version = TabGroupsManager.preferences.firefoxVersion();
 
   var tabmixSessionsManager=("TMP_TabGroupsManager" in window)&&TMP_TabGroupsManager.tabmixSessionsManager();
-  if(TabGroupsManager.session.sessionRestoreManually ||!tabmixSessionsManager){
-	if(version > "28") {
+  const use_session_manager =
+    TabGroupsManager.preferences.prefBranch.getBoolPref("useSessionManagerSessions");
+
+  //Unfortunately session manager is bootstrappable and hence completely invisible,
+  //so we have to have a preference for it :-(
+  if (TabGroupsManager.session.sessionRestoreManually ||
+      (!tabmixSessionsManager && !use_session_manager)){
 		ss.SessionStore.promiseInitialized.then(function() {
 			_this.session.restoreGroupsAndSleepingGroupsAndClosedGroups();
 		});
-	} else this.session.restoreGroupsAndSleepingGroupsAndClosedGroups();
   }
   if(this.initialized){
     return;
@@ -145,15 +150,14 @@ TabGroupsManager.initializeAfterOnLoad=function(){
       }
     }
   }
-  catch(e){} 
+  catch(e){}
   this.tabContextMenu.makeMenu();
-  if(version > "28") {
-	  ss.SessionStore.promiseInitialized.then(function() {
-		_this.groupBarDispHide.firstStatusOfGroupBarDispHide();
-	  });
-  } else this.groupBarDispHide.firstStatusOfGroupBarDispHide();
+  ss.SessionStore.promiseInitialized.then(function() {
+  _this.groupBarDispHide.firstStatusOfGroupBarDispHide();
+  });
   setTimeout(function(){TabGroupsManager.onLoadDelay1000();},1000);
 };
+
 TabGroupsManager.onLoadDelay1000=function(){
   TabGroupsManager.overrideMethod.delayOverride();
   TabGroupsManager.overrideOtherAddOns.delayOverride();
@@ -162,9 +166,11 @@ TabGroupsManager.onLoadDelay1000=function(){
   }
   TabGroupsManager.allGroups.scrollInActiveGroup();
 };
+
 TabGroupsManager.callbackOpenUriInSelectedTab=function(uri){
   gBrowser.selectedTab=TabGroupsManager.overrideMethod.gBrowserAddTab(uri);
 };
+
 TabGroupsManager.finalize=function(){
   this.apiEnabled=false;
   TabGroupsManagerJsm.applicationStatus.removeWindow(window);
@@ -182,6 +188,7 @@ TabGroupsManager.finalize=function(){
   delete this.allGroups;
   TabGroupsManagerJsm.applicationStatus.dateBackup=new Date;
 };
+
 TabGroupsManager.afterQuitApplicationRequested=function(){
   this.allGroups.readDummyBlankPage();
   if(TabGroupsManagerJsm.globalPreferences.suspendWhenFirefoxClose){
@@ -209,10 +216,12 @@ TabGroupsManager.afterQuitApplicationRequested=function(){
     TabGroupsManagerJsm.displayError.alertErrorIfDebug(e);
   }
 };
+
 TabGroupsManager.utils=
 {
   nsIIOService:Cc["@mozilla.org/network/io-service;1"].getService(Ci.nsIIOService)
 };
+
 //add result and rename tmp to result because tmp will be 0 if nothing is found
 //id is content and arguments are content, tabbrowser, arrowscrollbox
 //it seems that from getAnonymousElementByAttribute() nothing will be found here
@@ -224,6 +233,7 @@ TabGroupsManager.utils.getElementByIdAndAnonids=function(id){
   }
   return result;
 };
+
 TabGroupsManager.utils.getElementByElementAndAnonids=function(element){
   var tmp=element;
   for(var i=1;i<arguments.length;i++){
@@ -231,6 +241,7 @@ TabGroupsManager.utils.getElementByElementAndAnonids=function(element){
   }
   return tmp;
 };
+
 TabGroupsManager.utils.isBlankTab=function(tab){
   if(tab.linkedBrowser.currentURI.spec=="about:blank"&&!tab.hasAttribute("busy")){
     try
@@ -246,6 +257,7 @@ TabGroupsManager.utils.isBlankTab=function(tab){
   }
   return false;
 };
+
 TabGroupsManager.utils.insertElementAfterAnonid=function(parent,anonid,element){
   if(!anonid){
     parent.insertBefore(element,parent.childNodes[0]);
@@ -259,6 +271,7 @@ TabGroupsManager.utils.insertElementAfterAnonid=function(parent,anonid,element){
   }
   parent.insertBefore(element,null);
 };
+
 TabGroupsManager.utils.deleteFromAnonidToAnonid=function(parent,from,to){
   var element=parent.firstChild;
   if(from){
@@ -272,6 +285,7 @@ TabGroupsManager.utils.deleteFromAnonidToAnonid=function(parent,from,to){
     element=nextElement;
   }
 };
+
 TabGroupsManager.utils.popupNotContextMenuOnRightClick=function(event){
   if(event.button==2){
     var element=event.currentTarget;
@@ -292,9 +306,11 @@ TabGroupsManager.utils.popupNotContextMenuOnRightClick=function(event){
     }
   }
 };
+
 TabGroupsManager.utils.createNewNsiUri=function(aSpec){
   return this.nsIIOService.newURI(aSpec,null,null);
 };
+
 TabGroupsManager.utils.getTabFromDOMWindow=function(DOMWindow){
   try
   {
@@ -308,6 +324,7 @@ TabGroupsManager.utils.getTabFromDOMWindow=function(DOMWindow){
   }
   return null;
 };
+
 TabGroupsManager.utils.setRemoveAttribute=function(element,key,value){
   if(value){
     element.setAttribute(key,value);
@@ -315,6 +332,7 @@ TabGroupsManager.utils.setRemoveAttribute=function(element,key,value){
     element.removeAttribute(key);
   }
 };
+
 TabGroupsManager.utils.traceProperty=function(root){
   let target=root;
   for(let i=1;i<arguments.length&&target;i++){
@@ -322,6 +340,7 @@ TabGroupsManager.utils.traceProperty=function(root){
   }
   return target;
 };
+
 TabGroupsManager.utils.hideTab=function(tab) {
   if (('undefined' !== typeof tab) && (tab) ) {
     tab.setAttribute("hidden","true");
@@ -329,6 +348,7 @@ TabGroupsManager.utils.hideTab=function(tab) {
 	gBrowser.hideTab(tab);
   }
 };
+
 TabGroupsManager.utils.unHideTab=function(tab) {
   if (('undefined' !== typeof tab) && (tab) ) {
     tab.removeAttribute("hidden");
@@ -337,6 +357,7 @@ TabGroupsManager.utils.unHideTab=function(tab) {
 	gBrowser.showTab(tab);
   }
 };
+
 /**
  * Function to search for strings in DataTransfer types
  * Compatibility with >= FF51
@@ -354,10 +375,13 @@ TabGroupsManager.utils.dataTransferTypesContains=function(eventDataTransfer, nee
   }
   return result;
 };
+
 TabGroupsManager.tabMoveByTGM=
 {
   tabMovingByTGM:false,
+
   cancelTabMoveEventOfTreeStyleTab:false,
+
   moveTabTo:function(tab,to){
     this.tabMovingByTGM=true;
     var backupNextTabOfTMP=gBrowser.mTabContainer.nextTab;
@@ -373,6 +397,7 @@ TabGroupsManager.tabMoveByTGM=
       }
     }
   },
+
   moveTabToWithoutTST:function(tab,to){
     if("treeStyleTab" in gBrowser){
       gBrowser.treeStyleTab.partTab(tab);
@@ -388,6 +413,7 @@ TabGroupsManager.tabMoveByTGM=
     }
   }
 };
+
 TabGroupsManager.XulElements=function(){
   this.groupBar=document.getElementById("TabGroupsManagerToolbar");
   this.groupTabs=document.getElementById("TabGroupsManagerGroupbar");
@@ -396,6 +422,7 @@ TabGroupsManager.XulElements=function(){
     this.tabBar=TabGroupsManager.utils.getElementByIdAndAnonids("content","strip");
   }
 };
+
 TabGroupsManager.Preferences=function(){
   try
   {
@@ -506,11 +533,13 @@ TabGroupsManager.Preferences=function(){
     TabGroupsManagerJsm.displayError.alertErrorIfDebug(e);
   }
 };
+
 TabGroupsManager.Preferences.prototype.destructor=function(){
   if(this.prefBranch){
     this.prefBranch.removeObserver("",this);
   }
 };
+
 TabGroupsManager.Preferences.prototype.observe=function(aSubject,aTopic,aData){
   if(aTopic!="nsPref:changed"){
     return;
@@ -701,6 +730,7 @@ TabGroupsManager.Preferences.prototype.observe=function(aSubject,aTopic,aData){
     case"debug":this.debug=this.prefBranch.getBoolPref("debug");break;
   }
 };
+
 TabGroupsManager.Preferences.prototype.setButtonType=function(id,value){
   let element=document.getElementById(id);
   if(element){
@@ -713,12 +743,15 @@ TabGroupsManager.Preferences.prototype.setButtonType=function(id,value){
     }
   }
 };
+
 TabGroupsManager.Preferences.prototype.firefoxVersionCompare=function(target){
   return this.versionComparator.compare(this.firefoxAppInfo.version,target);
 };
+
 TabGroupsManager.Preferences.prototype.firefoxVersion=function(){
   return this.firefoxAppInfo.version.substr(0, this.firefoxAppInfo.version.indexOf('.'));
 };
+
 TabGroupsManager.Preferences.prototype.addStyleSheet=function(text){
   var sss=Cc["@mozilla.org/content/style-sheet-service;1"].getService(Ci.nsIStyleSheetService);
   var uri=TabGroupsManager.utils.createNewNsiUri("data:text/css,"+encodeURIComponent("@namespace url(http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul); "+text));
@@ -726,6 +759,7 @@ TabGroupsManager.Preferences.prototype.addStyleSheet=function(text){
     sss.loadAndRegisterSheet(uri,sss.USER_SHEET);
   }
 };
+
 TabGroupsManager.Preferences.prototype.removeStyleSheet=function(text){
   var sss=Cc["@mozilla.org/content/style-sheet-service;1"].getService(Ci.nsIStyleSheetService);
   var uri=TabGroupsManager.utils.createNewNsiUri("data:text/css,"+encodeURIComponent("@namespace url(http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul); "+text));
@@ -733,6 +767,7 @@ TabGroupsManager.Preferences.prototype.removeStyleSheet=function(text){
     sss.unregisterSheet(uri,sss.USER_SHEET);
   }
 };
+
 TabGroupsManager.Preferences.prototype.addOrRemoveStyleSheet=function(flag,text){
   if(flag){
     this.addStyleSheet(text);
@@ -740,6 +775,7 @@ TabGroupsManager.Preferences.prototype.addOrRemoveStyleSheet=function(flag,text)
     this.removeStyleSheet(text);
   }
 };
+
 TabGroupsManager.Preferences.prototype.rewriteStyleSheet=function(base,oldStyle,newStyle){
   if(oldStyle==newStyle){
     return;
@@ -751,13 +787,16 @@ TabGroupsManager.Preferences.prototype.rewriteStyleSheet=function(base,oldStyle,
     this.addStyleSheet(base+" { "+newStyle+" } ");
   }
 };
+
 TabGroupsManager.Preferences.prototype.openPrefWindow=function(){
   window.openDialog("chrome://tabgroupsmanager/content/options.xul","TabGroupsManagerSettingsWindow","chrome,titlebar,toolbar,centerscreen");
 };
+
 TabGroupsManager.KeyboardShortcut=function(){
   this.keyset=null;
   this.setKeyBind();
 };
+
 TabGroupsManager.KeyboardShortcut.prototype.setKeyBind=function(){
   try
   {
@@ -770,6 +809,7 @@ TabGroupsManager.KeyboardShortcut.prototype.setKeyBind=function(){
     TabGroupsManagerJsm.displayError.alertErrorIfDebug(e);
   }
 };
+
 TabGroupsManager.KeyboardShortcut.prototype.removeKeybind=function(){
   if(this.keyset){
     for(var i=this.keyset.childNodes.length-1;i>=0;i--){
@@ -779,6 +819,7 @@ TabGroupsManager.KeyboardShortcut.prototype.removeKeybind=function(){
     this.keyset=null;
   }
 };
+
 TabGroupsManager.KeyboardShortcut.prototype.readKeyBindJson=function(){
   let keyBindTmp=JSON.parse(TabGroupsManager.preferences.keyBindJson);
   let keyBind=new Array();
@@ -799,6 +840,7 @@ TabGroupsManager.KeyboardShortcut.prototype.readKeyBindJson=function(){
   }
   return keyBind;
 };
+
 TabGroupsManager.KeyboardShortcut.prototype.deleteDuplicatedKeyBind=function(keyBind){
   if(TabGroupsManager.preferences.keyBindOverride){
     var keysetList=document.getElementsByTagName("keyset");
@@ -820,6 +862,7 @@ TabGroupsManager.KeyboardShortcut.prototype.deleteDuplicatedKeyBind=function(key
     }
   }
 };
+
 TabGroupsManager.KeyboardShortcut.prototype.setMyKeyBind=function(keyBind){
   this.keyset=document.documentElement.appendChild(document.createElement("keyset"));
   for(var i=0;i<keyBind.length;i++){
@@ -843,6 +886,7 @@ TabGroupsManager.KeyboardShortcut.prototype.setMyKeyBind=function(keyBind){
     }
   }
 };
+
 TabGroupsManager.KeyboardShortcut.prototype.onCommand=function(event){
   switch(event.target.commandCode){
     case 0:TabGroupsManager.command.OpenNewGroup();break;
@@ -871,6 +915,7 @@ TabGroupsManager.KeyboardShortcut.prototype.onCommand=function(event){
     case 61:TabGroupsManager.command.GroupBarMenu();break;
   }
 };
+
 TabGroupsManager.KeyboardState=function(){
   try
   {
@@ -890,6 +935,7 @@ TabGroupsManager.KeyboardState=function(){
     TabGroupsManagerJsm.displayError.alertErrorIfDebug(e);
   }
 };
+
 TabGroupsManager.KeyboardState.prototype.createEventListener=function(){
   window.addEventListener("click",this,true);
   window.addEventListener("mousedown",this,true);
@@ -898,6 +944,7 @@ TabGroupsManager.KeyboardState.prototype.createEventListener=function(){
   window.addEventListener("keyup",this,true);
   window.addEventListener("keypress",this,true);
 };
+
 TabGroupsManager.KeyboardState.prototype.destroyEventListener=function(){
   window.removeEventListener("click",this,true);
   window.removeEventListener("mousedown",this,true);
@@ -906,6 +953,7 @@ TabGroupsManager.KeyboardState.prototype.destroyEventListener=function(){
   window.removeEventListener("keyup",this,true);
   window.removeEventListener("keypress",this,true);
 };
+
 TabGroupsManager.KeyboardState.prototype.handleEvent=function(event){
   switch(event.type){
     case"click":
@@ -916,6 +964,7 @@ TabGroupsManager.KeyboardState.prototype.handleEvent=function(event){
     case"keypress":this.onKeyPress(event);break;
   }
 };
+
 TabGroupsManager.KeyboardState.prototype.onKeyPress=function(event){
   if(event.keyCode==event.DOM_VK_TAB&&!event.altKey&&this.isAccelKeyDown(event)){
     if(event.shiftKey){
@@ -935,6 +984,7 @@ TabGroupsManager.KeyboardState.prototype.onKeyPress=function(event){
     event.stopPropagation();
   }
 };
+
 TabGroupsManager.KeyboardState.prototype.selectObject=function(){
   if(this.eventObject){
     return this.eventObject;
@@ -943,22 +993,27 @@ TabGroupsManager.KeyboardState.prototype.selectObject=function(){
   }
   return null;
 };
+
 TabGroupsManager.KeyboardState.prototype.getCtrlKey=function(){
   var object=this.selectObject();
   return object?object.ctrlKey:this.fCtrlKey;
 };
+
 TabGroupsManager.KeyboardState.prototype.getShiftKey=function(){
   var object=this.selectObject();
   return object?object.shiftKey:this.fShiftKey;
 };
+
 TabGroupsManager.KeyboardState.prototype.getAltKey=function(){
   var object=this.selectObject();
   return object?object.altKey:this.fAltKey;
 };
+
 TabGroupsManager.KeyboardState.prototype.getMetaKey=function(){
   var object=this.selectObject();
   return object?object.metaKey:this.fMetaKey;
 };
+
 TabGroupsManager.KeyboardState.prototype.mouseButton=function(){
   var eventObject=this.selectObject();
   if(!eventObject){
@@ -966,6 +1021,7 @@ TabGroupsManager.KeyboardState.prototype.mouseButton=function(){
   }
   return eventObject.button;
 };
+
 TabGroupsManager.KeyboardState.prototype.getModifierKeys=function(event){
   try
   {
@@ -977,9 +1033,11 @@ TabGroupsManager.KeyboardState.prototype.getModifierKeys=function(event){
   catch(e){
   }
 };
+
 TabGroupsManager.KeyboardState.prototype.isAccelKeyDown=function(event){
   return(TabGroupsManager.preferences.isMac?event.metaKey:event.ctrlKey);
 };
+
 TabGroupsManager.Places=function(){
   try
   {
@@ -999,6 +1057,7 @@ TabGroupsManager.Places=function(){
     TabGroupsManagerJsm.displayError.alertErrorIfDebug(e);
   }
 };
+
 TabGroupsManager.Places.prototype.addAllOpenInGroupMenuitem=function(target){
   target._openAllInNewGroup=document.createElement("menuitem");
   target._openAllInNewGroup.setAttribute("id","TabGroupsManagerMenuitemAllOpenInNewGroup");
@@ -1035,15 +1094,18 @@ TabGroupsManager.Places.prototype.addAllOpenInGroupMenuitem=function(target){
   target._openAllInSelectedGroup.setAttribute("label",this.allOpenInSelectedGroupString);
   target.appendChild(target._openAllInSelectedGroup);
 };
+
 TabGroupsManager.Places.prototype.removeAllOpenInGroupMenuitem=function(target){
   target.removeChild(target._openAllInNewGroup);
   target.removeChild(target._openAllInSelectedGroup);
   delete target._openAllInNewGroup;
   delete target._openAllInSelectedGroup;
 };
+
 TabGroupsManager.Places.prototype.menuitemAllOpenInNewGroupCommand=function(event){
   this.allOpenInNewGroup(event.target.parentNode.parentNode.node);
 };
+
 TabGroupsManager.Places.prototype.menuitemAllOpenInNewGroupClick=function(event){
   if(event.button==1){
     this.allOpenInNewGroup(event.target.parentNode.parentNode.node);
@@ -1051,9 +1113,11 @@ TabGroupsManager.Places.prototype.menuitemAllOpenInNewGroupClick=function(event)
     event.stopPropagation();
   }
 };
+
 TabGroupsManager.Places.prototype.menuitemAllOpenInSelectedGroupCommand=function(event){
   this.allOpenInSelectedGroup(event.target.parentNode.parentNode.node);
 };
+
 TabGroupsManager.Places.prototype.menuitemAllOpenInSelectedGroupClick=function(event){
   if(event.button==1){
     this.allOpenInSelectedGroup(event.target.parentNode.parentNode.node);
@@ -1061,23 +1125,27 @@ TabGroupsManager.Places.prototype.menuitemAllOpenInSelectedGroupClick=function(e
     event.stopPropagation();
   }
 };
+
 TabGroupsManager.Places.prototype.handleEvent=function(event){
   switch(event.type){
     case"click":this.onClick(event);break;
     case"dblclick":this.onDblClick(event);break;
   }
 };
+
 TabGroupsManager.Places.prototype.onClick=function(event){
   switch(event.button){
     case 0:this.execBookmarkFolderClick(TabGroupsManagerJsm.globalPreferences.bookmarkFolderLClick,event);break;
     case 1:this.execBookmarkFolderClick(TabGroupsManagerJsm.globalPreferences.bookmarkFolderMClick,event);break;
   }
 };
+
 TabGroupsManager.Places.prototype.onDblClick=function(event){
   if(event.button==0){
     this.execBookmarkFolderClick(TabGroupsManagerJsm.globalPreferences.bookmarkFolderDblClick,event);
   }
 };
+
 TabGroupsManager.Places.prototype.execBookmarkFolderClick=function(no,event){
   if(no==-1){
     return;
@@ -1100,16 +1168,19 @@ TabGroupsManager.Places.prototype.execBookmarkFolderClick=function(no,event){
     event.stopPropagation();
   }
 };
+
 TabGroupsManager.Places.prototype.openInNewGroup=function(bookmarkItem){
   var groupName=bookmarkItem.title;
   var icon=bookmarkItem.icon?bookmarkItem.icon.spec:"";
   var newTab=TabGroupsManager.overrideMethod.gBrowserAddTab(bookmarkItem.uri);
   return TabGroupsManager.allGroups.openNewGroup(newTab,undefined,groupName,icon);
 };
+
 TabGroupsManager.Places.prototype.openInSelectedGroup=function(bookmarkItem){
   var group=this.openInNewGroup(bookmarkItem);
   TabGroupsManager.allGroups.selectedGroup=group;
 };
+
 TabGroupsManager.Places.prototype.allOpenInNewGroup=function(bookmarkFolder){
   if(!bookmarkFolder ||!PlacesUtils.nodeIsFolder(bookmarkFolder)){
     return null;
@@ -1142,6 +1213,7 @@ TabGroupsManager.Places.prototype.allOpenInNewGroup=function(bookmarkFolder){
   }
   return group;
 };
+
 TabGroupsManager.Places.prototype.allOpenInSelectedGroup=function(bookmarkFolder){
   var group=this.allOpenInNewGroup(bookmarkFolder);
   if(group){
@@ -1149,6 +1221,7 @@ TabGroupsManager.Places.prototype.allOpenInSelectedGroup=function(bookmarkFolder
   }
   return group;
 };
+
 TabGroupsManager.Session=function(){
   try
   {
@@ -1163,16 +1236,19 @@ TabGroupsManager.Session=function(){
     TabGroupsManagerJsm.displayError.alertErrorIfDebug(e);
   }
 };
+
 TabGroupsManager.Session.prototype.createEventListener=function(){
   gBrowser.tabContainer.addEventListener("SSTabRestoring",this,false);
   window.addEventListener("SSWindowStateBusy",this,false);
   window.addEventListener("SSWindowStateReady",this,false);
 };
+
 TabGroupsManager.Session.prototype.destroyEventListener=function(){
   gBrowser.tabContainer.removeEventListener("SSTabRestoring",this,false);
   window.removeEventListener("SSWindowStateBusy",this,false);
   window.removeEventListener("SSWindowStateReady",this,false);
 };
+
 TabGroupsManager.Session.prototype.handleEvent=function(event){
   try
   {
@@ -1186,13 +1262,16 @@ TabGroupsManager.Session.prototype.handleEvent=function(event){
     TabGroupsManagerJsm.displayError.alertErrorIfDebug(e);
   }
 };
+
 TabGroupsManager.Session.prototype.onSSWindowStateBusy=function(event){
   this.sessionRestoring=true;
 };
+
 TabGroupsManager.Session.prototype.onSSWindowStateReady=function(event){
   this.sessionRestoring=false;
   this.orphanTabsToGroup();
 };
+
 TabGroupsManager.Session.prototype.orphanTabsToGroup=function(){
   let group=TabGroupsManager.allGroups.getGroupById(-1)|| TabGroupsManager.allGroups.selectedGroup;
   for(let tab=gBrowser.tabContainer.firstChild;tab;tab=tab.nextSibling){
@@ -1201,12 +1280,14 @@ TabGroupsManager.Session.prototype.orphanTabsToGroup=function(){
     }
   }
 };
+
 TabGroupsManager.Session.prototype.onSSTabRestoring=function(event){
   TabGroupsManager.initializeAfterOnLoad();
   if(!this.disableOnSSTabRestoring){
     this.moveTabToGroupBySessionStore(event.originalTarget);
   }
 };
+
 TabGroupsManager.Session.prototype.moveTabToGroupBySessionStore=function(restoringTab){
   try
   {
@@ -1233,6 +1314,7 @@ TabGroupsManager.Session.prototype.moveTabToGroupBySessionStore=function(restori
     TabGroupsManagerJsm.displayError.alertErrorIfDebug(e);
   }
 };
+
 TabGroupsManager.Session.prototype.moveTabToGroupWithSuspend=function(group,tab){
   if(tab==gBrowser.selectedTab){
     group.suspended=false;
@@ -1377,9 +1459,11 @@ TabGroupsManager.Session.prototype.onHiddenBackupSessionMenu=function(event){
     menuitem=menuPopup.childNodes[2];
   }
 };
+
 TabGroupsManager.Session.prototype.restoreSessionCommand=function(event){
   TabGroupsManagerJsm.saveData.restoreSession(event.originalTarget.getAttribute("value"));
 };
+
 TabGroupsManager.Session.prototype.restoreSessionInit=function(){
   TabGroupsManager.allGroups.openNewGroup(null,-1,null,null);
   var groupTab=TabGroupsManager.allGroups.childNodes;
@@ -1389,14 +1473,17 @@ TabGroupsManager.Session.prototype.restoreSessionInit=function(){
   this.groupRestored=0;
   this.sessionRestoreManually=true;
 };
+
 TabGroupsManager.Session.prototype.restoreSessionFromAboutSessionRestore=function(){
   TabGroupsManager.allGroups.selectedGroup.id=-1;
   this.groupRestored=0;
   this.sessionRestoreManually=true;
 };
+
 TabGroupsManager.Session.prototype.menuitemDelete=function(event){
   TabGroupsManagerJsm.saveData.deleteSession(document.popupNode.getAttribute("value"));
 };
+
 TabGroupsManager.Session.prototype.setClosedTabJson=function(jsonData){
   window.removeEventListener("SSWindowStateBusy",this,false);
   window.removeEventListener("SSWindowStateReady",this,false);
@@ -1414,6 +1501,7 @@ TabGroupsManager.Session.prototype.setClosedTabJson=function(jsonData){
     window.addEventListener("SSWindowStateReady",this,false);
   }
 };
+
 TabGroupsManager.Session.prototype.getTabStateEx=function(tab){
   //when do we get no textbox in about:config? -> override this for E10s
   if (!tab.linkedBrowser.ownerDocument.defaultView.gMultiProcessBrowser){
@@ -1431,6 +1519,7 @@ TabGroupsManager.Session.prototype.getTabStateEx=function(tab){
   }
   return this.sessionStore.getTabState(tab);
 };
+
 TabGroupsManager.Session.prototype.duplicateTabEx=function(aWindow,tab){
   //when do we get no textbox in about:config? -> override this for E10s
   if (!tab.linkedBrowser.ownerDocument.defaultView.gMultiProcessBrowser){
@@ -1448,6 +1537,7 @@ TabGroupsManager.Session.prototype.duplicateTabEx=function(aWindow,tab){
   }
   return this.sessionStore.duplicateTab(aWindow,tab);
 };
+
 TabGroupsManager.Session.prototype.tmpOverrideGetElementByIdForAboutConfig=function(tab){
   //http://zpao.com/posts/session-restore-changes-in-firefox-15/ > '#' removed > fx 15
   //Bug 947212 - Broadcast form data and move it out of tabData.entries[] > fx 29
@@ -1459,7 +1549,9 @@ TabGroupsManager.Session.prototype.tmpOverrideGetElementByIdForAboutConfig=funct
   let textbox=ssData.entries[ssData.index-1].formdata["#textbox"];
   tab.linkedBrowser.contentDocument.getElementById=function(){return{value:textbox}};
 };
+
 TabGroupsManager.openMenu={};
+
 TabGroupsManager.openMenu.onShowing=function(event){
   this.onHidden(event);
   var flgmntNode=this.makeOpenGroupWithRegisteredNameFragment();
@@ -1467,6 +1559,7 @@ TabGroupsManager.openMenu.onShowing=function(event){
   var flgmntNode=this.makeOpenGroupWithHistoryFragment();
   TabGroupsManager.utils.insertElementAfterAnonid(event.originalTarget,"startHistory",flgmntNode);
 };
+
 TabGroupsManager.openMenu.onShowingRename=function(event){
   this.onHidden(event);
   var flgmntNode=this.makeOpenGroupWithRegisteredNameFragment(true);
@@ -1474,6 +1567,7 @@ TabGroupsManager.openMenu.onShowingRename=function(event){
   var flgmntNode=this.makeOpenGroupWithHistoryFragment(true);
   TabGroupsManager.utils.insertElementAfterAnonid(event.originalTarget,"startHistory",flgmntNode);
 };
+
 TabGroupsManager.openMenu.makeOpenGroupWithRegisteredNameFragment=function(rename){
   var flgmntNode=document.createDocumentFragment();
   var list=TabGroupsManagerJsm.globalPreferences.groupNameRegistered;
@@ -1501,6 +1595,7 @@ TabGroupsManager.openMenu.makeOpenGroupWithRegisteredNameFragment=function(renam
   }
   return flgmntNode;
 };
+
 TabGroupsManager.openMenu.makeOpenGroupWithHistoryFragment=function(rename){
   var flgmntNode=document.createDocumentFragment();
   var list=TabGroupsManagerJsm.globalPreferences.groupNameHistory;
@@ -1528,10 +1623,12 @@ TabGroupsManager.openMenu.makeOpenGroupWithHistoryFragment=function(rename){
   }
   return flgmntNode;
 };
+
 TabGroupsManager.openMenu.onHidden=function(event){
   TabGroupsManager.utils.deleteFromAnonidToAnonid(event.originalTarget,"start","end");
   TabGroupsManager.utils.deleteFromAnonidToAnonid(event.originalTarget,"startHistory","endHistory");
 };
+
 TabGroupsManager.openMenu.openNamedGroupByMenuitem=function(event){
   var name=event.target.getAttribute("label");
   var group=TabGroupsManager.allGroups.openNewGroup(null,null,name,null);
@@ -1547,6 +1644,7 @@ TabGroupsManager.openMenu.openNamedGroupByMenuitemClick=function(event){
     event.stopPropagation();
   }
 };
+
 TabGroupsManager.openMenu.renameGroupByMenuitem=function(event){
   var group=TabGroupsManager.groupMenu.popupGroup;
   if(group){
@@ -1555,6 +1653,7 @@ TabGroupsManager.openMenu.renameGroupByMenuitem=function(event){
   }
   event.stopPropagation();
 };
+
 TabGroupsManager.openMenu.menuitemDelete=function(event){
   var menuitem=document.popupNode;
   if(menuitem.groupNameIndex!=undefined){
@@ -1566,6 +1665,7 @@ TabGroupsManager.openMenu.menuitemDelete=function(event){
   }
   event.stopPropagation();
 };
+
 TabGroupsManager.openMenu.toRegisteredGroupName=function(event){
   var menuitem=document.popupNode;
   var name=TabGroupsManagerJsm.globalPreferences.groupNameHistory[menuitem.groupNameIndex];
@@ -1573,6 +1673,7 @@ TabGroupsManager.openMenu.toRegisteredGroupName=function(event){
   TabGroupsManagerJsm.globalPreferences.addGroupNameRegistered(name);
   event.stopPropagation();
 };
+
 TabGroupsManager.openMenu.registerGroupName=function(event){
   var name=window.prompt(TabGroupsManager.strings.getString("RenameDialogMessage"),"");
   if(name){
@@ -1580,13 +1681,16 @@ TabGroupsManager.openMenu.registerGroupName=function(event){
   }
   event.stopPropagation();
 };
+
 TabGroupsManager.openMenu.clearGroupNameHistory=function(event){
   TabGroupsManagerJsm.globalPreferences.clearGroupNameHistory();
   event.stopPropagation();
 };
+
 TabGroupsManager.ToolMenu=function(){
   document.getElementById("menu_ToolsPopup").addEventListener("popupshowing",this,false);
 };
+
 TabGroupsManager.ToolMenu.prototype.handleEvent=function(event){
   switch(event.type){
     case"popupshowing":
@@ -1594,10 +1698,12 @@ TabGroupsManager.ToolMenu.prototype.handleEvent=function(event){
     break;
   }
 };
+
 TabGroupsManager.EventListener=function(){
   this.groupSelecting=false;
   this.tabOpenTarget=null;
 };
+
 TabGroupsManager.EventListener.prototype.createEventListener=function(){
   var groupTabs=document.getElementById("TabGroupsManagerGroupbar");
   groupTabs.addEventListener("mousedown",this,true);
@@ -1617,6 +1723,7 @@ TabGroupsManager.EventListener.prototype.createEventListener=function(){
     contextMenu.addEventListener("popupshowing",this,false);
   }
 };
+
 TabGroupsManager.EventListener.prototype.destroyEventListener=function(){
   var groupTabs=document.getElementById("TabGroupsManagerGroupbar");
   groupTabs.removeEventListener("mousedown",this,true);
@@ -1634,6 +1741,7 @@ TabGroupsManager.EventListener.prototype.destroyEventListener=function(){
     contextMenu.removeEventListener("popupshowing",this,false);
   }
 };
+
 TabGroupsManager.EventListener.prototype.handleEvent=function(event){
   switch(event.type){
     case"mousedown":event.stopPropagation();break;
@@ -1649,6 +1757,7 @@ TabGroupsManager.EventListener.prototype.handleEvent=function(event){
     case"popupshowing":this.contentAreaContextMenuShowHideItems(event);break;
   }
 };
+
 TabGroupsManager.EventListener.prototype.onTabOpen=function(event){
   try
   {
@@ -1693,6 +1802,7 @@ TabGroupsManager.EventListener.prototype.onTabOpen=function(event){
     this.tabOpenTarget=null;
   }
 };
+
 TabGroupsManager.EventListener.prototype.onTabClose=function(event){
   var closeTab=event.originalTarget;
   if(closeTab.tabGroupsManagerTabTree){
@@ -1726,11 +1836,11 @@ TabGroupsManager.EventListener.prototype.onTabShow=function(event){
 TabGroupsManager.EventListener.prototype.onTabHide=function(event){
   var tab=event.target;
   let count = 0;
-  
+
   function checkTabGroup() {
 	count++;
-	var activeGroupPromise = new Promise( 
-		function(resolve, reject) {       
+	var activeGroupPromise = new Promise(
+		function(resolve, reject) {
 			setTimeout(function() {
 				if(typeof tab.group == "undefined" && count < 10) {
 					checkTabGroup();
@@ -1746,7 +1856,7 @@ TabGroupsManager.EventListener.prototype.onTabHide=function(event){
   }
 
   //check if tab.group is not defined at startup since Fx25+
-  if(TabGroupsManager.preferences.firefoxVersionCompare("28") == 1 && typeof tab.group == "undefined") { 		
+  if(TabGroupsManager.preferences.firefoxVersionCompare("28") == 1 && typeof tab.group == "undefined") {
 	checkTabGroup();
   } else {
 		if(tab.group.selected){
@@ -3100,7 +3210,7 @@ TabGroupsManager.GroupClass.prototype.addTabToTabArray=function(tab,fromSessionS
         this.moveTabToLast(tab,firstTab,lastTab);
       }
       this.sortTabArrayByTPos();
-	  
+
 	  switch(this.selected){
 			case false: TabGroupsManager.utils.hideTab(tab);break;
 			default: TabGroupsManager.utils.unHideTab(tab);break;
@@ -4058,7 +4168,7 @@ TabGroupsManager.AllGroups.prototype.saveAllGroupsData=function(){
 };
 TabGroupsManager.AllGroups.prototype.saveAllGroupsDataImmediately=function(_this){
   /*SSTabRestoring fires on every tab restoring -> so let us save data only if groups are in status restored         */
-  /*in other case we will fetch data from the groups but the restore is still in progress and datas are not complete */ 
+  /*in other case we will fetch data from the groups but the restore is still in progress and datas are not complete */
   /*so we lost our extData due the async stuff in sessionstore with fx > 29                                          */
   if(TabGroupsManager.session.groupRestored == 2) {
 	  if(_this==null){
@@ -5868,6 +5978,7 @@ TabGroupsManager.OverrideMethod.prototype.getBoundingClientRectIfElementHidden=f
   }
   return element.getBoundingClientRect();
 };
+
 TabGroupsManager.OverrideMethod.prototype.toolboxCustomizeChange=function(id,oldval,newval){
   if(newval==false){
     try
@@ -5882,9 +5993,11 @@ TabGroupsManager.OverrideMethod.prototype.toolboxCustomizeChange=function(id,old
     }
   }
 };
+
 TabGroupsManager.OverrideOtherAddOns=function(){
   this.overrideTreeStyleTab();
 };
+
 TabGroupsManager.OverrideOtherAddOns.prototype.delayOverride=function(){
   try
   {
@@ -5894,25 +6007,32 @@ TabGroupsManager.OverrideOtherAddOns.prototype.delayOverride=function(){
     TabGroupsManagerJsm.displayError.alertErrorIfDebug(e);
   }
 };
+
+//FIXME This no longer works, as session manager is now bootstrappable
+//In any case we should use this (possible) to force backup of our groups
 TabGroupsManager.OverrideOtherAddOns.prototype.overrideSessionManager=function(){
-  if(("gSessionManager" in window)&&TabGroupsManager.preferences.prefBranch.getBoolPref("overrideSessionManagerRestoreSession")){
+  if(("gSessionManager" in window)&&TabGroupsManager.preferences.prefBranch.getBoolPref("useSessionManagerSessions")){
     this.backup_gSessionManager_restoreSession=window.gSessionManager.restoreSession;
     window.gSessionManager.restoreSession=this.override_gSessionManager_restoreSession;
   }
 };
+
 TabGroupsManager.OverrideOtherAddOns.prototype.override_gSessionManager_restoreSession=function(){
   TabGroupsManager.session.restoreSessionInit();
   TabGroupsManager.overrideOtherAddOns.backup_gSessionManager_restoreSession.apply(this,arguments);
 };
+
 TabGroupsManager.OverrideOtherAddOns.prototype.overrideTreeStyleTab=function(){
   if(("TreeStyleTabBrowser" in window)&&TabGroupsManager.preferences.prefBranch.getBoolPref("overrideTreeStyleTab")){
     this.backup_gSessionManager_attachTabFromPosition=window.TreeStyleTabBrowser.prototype.attachTabFromPosition;
     window.TreeStyleTabBrowser.prototype.attachTabFromPosition=this.override_gSessionManager_attachTabFromPosition;
   }
 };
+
 TabGroupsManager.OverrideOtherAddOns.prototype.override_gSessionManager_attachTabFromPosition=function(){
   if(!TabGroupsManager.tabMoveByTGM.cancelTabMoveEventOfTreeStyleTab&&TabGroupsManager.session.groupRestored>=2){
     TabGroupsManager.overrideOtherAddOns.backup_gSessionManager_attachTabFromPosition.apply(this,arguments);
   }
 };
+
 window.addEventListener("load",TabGroupsManager.onLoad,false);
