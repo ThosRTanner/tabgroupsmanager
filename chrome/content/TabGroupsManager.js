@@ -245,6 +245,9 @@ TabGroupsManager.afterQuitApplicationRequested=function(){
   }
 };
 
+//------------------------------------------------------------------------------------
+
+
 TabGroupsManager.utils=
 {
   nsIIOService:Cc["@mozilla.org/network/io-service;1"].getService(Ci.nsIIOService)
@@ -442,6 +445,9 @@ TabGroupsManager.tabMoveByTGM=
   }
 };
 
+//------------------------------------------------------------------------------------
+
+
 TabGroupsManager.XulElements=function(){
   this.groupBar=document.getElementById("TabGroupsManagerToolbar");
   this.groupTabs=document.getElementById("TabGroupsManagerGroupbar");
@@ -450,6 +456,9 @@ TabGroupsManager.XulElements=function(){
     this.tabBar=TabGroupsManager.utils.getElementByIdAndAnonids("content","strip");
   }
 };
+
+//------------------------------------------------------------------------------------
+
 
 TabGroupsManager.Preferences=function(){
   try
@@ -822,6 +831,9 @@ TabGroupsManager.Preferences.prototype.openPrefWindow=function(){
   window.openDialog("chrome://tabgroupsmanager/content/options.xul","TabGroupsManagerSettingsWindow","chrome,titlebar,toolbar,centerscreen");
 };
 
+//------------------------------------------------------------------------------------
+
+
 TabGroupsManager.KeyboardShortcut=function(){
   this.keyset=null;
   this.setKeyBind();
@@ -946,6 +958,9 @@ TabGroupsManager.KeyboardShortcut.prototype.onCommand=function(event){
   }
 };
 
+//------------------------------------------------------------------------------------
+
+
 TabGroupsManager.KeyboardState=function(){
   try
   {
@@ -1067,6 +1082,9 @@ TabGroupsManager.KeyboardState.prototype.getModifierKeys=function(event){
 TabGroupsManager.KeyboardState.prototype.isAccelKeyDown=function(event){
   return(TabGroupsManager.preferences.isMac?event.metaKey:event.ctrlKey);
 };
+
+//------------------------------------------------------------------------------------
+
 
 TabGroupsManager.Places=function(){
   try
@@ -1251,6 +1269,9 @@ TabGroupsManager.Places.prototype.allOpenInSelectedGroup=function(bookmarkFolder
   }
   return group;
 };
+
+//------------------------------------------------------------------------------------
+
 
 TabGroupsManager.Session=function(){
   try
@@ -1580,6 +1601,9 @@ TabGroupsManager.Session.prototype.tmpOverrideGetElementByIdForAboutConfig=funct
   tab.linkedBrowser.contentDocument.getElementById=function(){return{value:textbox}};
 };
 
+//------------------------------------------------------------------------------------
+
+
 TabGroupsManager.openMenu={};
 
 TabGroupsManager.openMenu.onShowing=function(event){
@@ -1717,6 +1741,9 @@ TabGroupsManager.openMenu.clearGroupNameHistory=function(event){
   event.stopPropagation();
 };
 
+//------------------------------------------------------------------------------------
+
+
 TabGroupsManager.ToolMenu=function(){
   document.getElementById("menu_ToolsPopup").addEventListener("popupshowing",this,false);
 };
@@ -1728,6 +1755,9 @@ TabGroupsManager.ToolMenu.prototype.handleEvent=function(event){
     break;
   }
 };
+
+//------------------------------------------------------------------------------------
+
 
 TabGroupsManager.EventListener=function(){
   this.groupSelecting=false;
@@ -2042,6 +2072,10 @@ TabGroupsManager.EventListener.prototype.linkOpenInSelectedGroup=function(){
   var group=TabGroupsManager.allGroups.openNewGroup(newTab);
   TabGroupsManager.allGroups.selectedGroup=group;
 };
+
+//------------------------------------------------------------------------------------
+
+
 TabGroupsManager.TabContextMenu=function(){
 };
 TabGroupsManager.TabContextMenu.prototype.makeMenu=function(){
@@ -2259,6 +2293,10 @@ TabGroupsManager.TabContextMenu.prototype.existsRightTabInGroup=function(targetT
   }
   return false;
 };
+
+//------------------------------------------------------------------------------------
+
+
 TabGroupsManager.SupportDnD=function(){
   try
   {
@@ -2366,6 +2404,10 @@ TabGroupsManager.SupportDnD.prototype.hideAll=function(){
   this.stopDisplayTimer();
   this.displayIconTimer=setTimeout(function(_this){_this.hideAllNowCore();},0,this);
 };
+
+//------------------------------------------------------------------------------------
+
+
 TabGroupsManager.GroupDnDObserver=function(aSupportDnD){
   try
   {
@@ -2523,6 +2565,10 @@ TabGroupsManager.GroupDnDObserver.prototype.onDrop=function(event,draggedTab){
     return;
   }
 };
+
+//------------------------------------------------------------------------------------
+
+
 TabGroupsManager.GroupBarDnDObserver=function(aSupportDnD){
   try
   {
@@ -2722,6 +2768,11 @@ TabGroupsManager.GroupBarDnDObserver.prototype.onDrop=function(event,draggedTab)
     return;
   }
 };
+
+
+//------------------------------------------------------------------------------------
+
+
 TabGroupsManager.WindowDnDObserver=function(aSupportDnD){
   try
   {
@@ -2895,6 +2946,9 @@ TabGroupsManager.WindowDnDObserver.prototype.importSession=function(file,old){
   }
   return false;
 };
+
+//------------------------------------------------------------------------------------
+
 TabGroupsManager.GroupMenu=function(){
   this.popupGroupTab=null;
   this.popupGroup=null;
@@ -2918,6 +2972,9 @@ TabGroupsManager.GroupMenu.prototype.hiddenRenameSubmenu=function(event){
   TabGroupsManager.openMenu.onHidden(event);
   TabGroupsManager.localGroupIcons.removeMenu(event);
 };
+
+//------------------------------------------------------------------------------------
+
 TabGroupsManager.LocalGroupIcons=function(){
 };
 TabGroupsManager.LocalGroupIcons.prototype.removeMenu=function(event){
@@ -2971,6 +3028,10 @@ TabGroupsManager.LocalGroupIcons.prototype.makeIconListOneLine=function(parent,f
     }
   }
 };
+
+//------------------------------------------------------------------------------------
+
+
 TabGroupsManager.progressListenerForGroup=function(aOwnerGroup){
   try
   {
@@ -3011,6 +3072,9 @@ TabGroupsManager.progressListenerForGroup.prototype.onProgressChange=function(){
 TabGroupsManager.progressListenerForGroup.prototype.onStatusChange=function(){return 0;};
 TabGroupsManager.progressListenerForGroup.prototype.onSecurityChange=function(){return 0;};
 TabGroupsManager.progressListenerForGroup.prototype.onLinkIconAvailable=function(){return 0;};
+
+//------------------------------------------------------------------------------------
+
 TabGroupsManager.GroupClass=function(id,name,image){
   try
   {
@@ -4061,6 +4125,9 @@ TabGroupsManager.GroupClass.prototype.exportGroup=function(){
     break;
   }
 };
+
+//------------------------------------------------------------------------------------
+
 TabGroupsManager.AllGroups=function(){
   try
   {
@@ -4676,6 +4743,9 @@ TabGroupsManager.AllGroups.prototype.dummyBlankPageForTmpProgress=function(progr
   }
   progressClass.finalize();
 };
+
+//------------------------------------------------------------------------------------
+
 TabGroupsManager.GroupBarDispHide=function(){
   try
   {
@@ -4837,6 +4907,9 @@ TabGroupsManager.GroupBarDispHide.prototype.firstStatusOfGroupBarDispHide=functi
     this.hideGroupBarByTabCountDelay();
   }
 };
+
+//------------------------------------------------------------------------------------
+
 TabGroupsManager.GroupsStore=function(storeFunction,maxLength,saveWhenChangeing,menuitemContextMenu){
   try
   {
@@ -5161,6 +5234,9 @@ TabGroupsManager.GroupsStore.prototype.bookmarkOneGroup=function(group,folderNam
     }
   }
 };
+
+//------------------------------------------------------------------------------------
+
 TabGroupsManager.TabOpenStatus=function(){
   try
   {
@@ -5203,6 +5279,9 @@ TabGroupsManager.TabTree=function(aOwner){
     TabGroupsManagerJsm.displayError.alertErrorIfDebug(e);
   }
 };
+
+//------------------------------------------------------------------------------------
+
 TabGroupsManager.TabTree.prototype.getOuterBackgroundColor=function(){
   return this.owner.style.backgroundColor;
 };
@@ -5329,6 +5408,9 @@ TabGroupsManager.TabTree.prototype.parentTabIsRemoved=function(){
     delete this.owner.tabGroupsManagerTabTree;
   }
 };
+
+//------------------------------------------------------------------------------------
+
 TabGroupsManager.TabsInTitleBar=function(){
   document.documentElement.addEventListener("DOMAttrModified",this,false);
   document.getElementById("navigator-toolbox").addEventListener("DOMAttrModified",this,false);
@@ -5444,6 +5526,9 @@ TabGroupsManager.TabsInTitleBar.prototype.adjustToolBarSpace=function(toolBar,fl
     toolBar.style.paddingRight="";
   }
 };
+
+//------------------------------------------------------------------------------------
+
 TabGroupsManager.ForPanorama=function(){
   window.addEventListener("tabviewframeinitialized",this,false);
   window.addEventListener("tabviewhidden",this,false);
@@ -5561,6 +5646,9 @@ TabGroupsManager.ForPanorama.prototype.moveTabToGroup=function(tab,group){
   tab.group.removeTab(tab,undefined,true);
   group.addTab(tab);
 };
+
+//------------------------------------------------------------------------------------
+
 TabGroupsManager.OverrideMethod=function(){
   try
   {
@@ -6029,6 +6117,8 @@ TabGroupsManager.OverrideMethod.prototype.toolboxCustomizeChange=function(id,old
     }
   }
 };
+
+//------------------------------------------------------------------------------------
 
 TabGroupsManager.OverrideOtherAddOns=function(){
   this.overrideTreeStyleTab();
