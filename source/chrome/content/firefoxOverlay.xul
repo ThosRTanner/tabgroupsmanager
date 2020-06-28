@@ -15,6 +15,12 @@
   <script src="GroupBarDispHide.js"/>
   <script src="AllGroups.js"/>
   <script src="GroupClass.js"/>
+  <script src="ProgressListenerForGroup.js"/>
+  <script src="LocalGroupIcons.js"/>
+  <script src="GroupMenu.js"/>
+  <script src="WindowDnDObserver.js"/>
+  <script src="GroupBarDnDObserver.js"/>
+  <script src="GroupDnDObserver.js"/>
   <script src="command.js"/>
   <script src="APIs.js"/>
   <stringbundleset id="stringbundleset">
