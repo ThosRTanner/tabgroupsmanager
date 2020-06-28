@@ -738,25 +738,25 @@ TabGroupsManagerJsm.SaveData.prototype.loadTgmDataFromFile=function(nsIFile,read
 TabGroupsManagerJsm.SaveData.prototype.saveFileFromTgmData=function(nsIFile,permission){
   let converterStream=Cc["@mozilla.org/intl/converter-output-stream;1"].createInstance(Ci.nsIConverterOutputStream);
   let bufferSize=4096;
-	
+
   function writeLineSplitToConverterStream(text){
     for(let i=0;i<text.length;i+=bufferSize){
 		converterStream.writeString(text.substr(i,bufferSize));
 	}
 	converterStream.writeString("\n");
   };
-	
+
   try
   {
     if(nsIFile instanceof TabGroupsManagerJsm.NsIFileWrapper){
       nsIFile=nsIFile.nsIFile;
     }
     permission=permission || parseInt("0600", 8);
-   
+
     let charset="UTF-8";
     let flag=0x02 | 0x08 | 0x20;
     let fileStream=Cc["@mozilla.org/network/file-output-stream;1"].createInstance(Ci.nsIFileOutputStream);
-    
+
     try
     {
       fileStream.init(nsIFile,flag,permission,0);
@@ -1116,6 +1116,7 @@ TabGroupsManagerJsm.displayError=
     promptService.alert(null,"Firefox",text);
   },
   alertIfDebug:function(text){
+/**/showMessage(text)
     if(TabGroupsManagerJsm.globalPreferences.debug){
       this.alert(text);
     }
@@ -1157,12 +1158,13 @@ TabGroupsManagerJsm.PrivateBrowsing=function(){
     this.__defineGetter__("entering",this.getEntering);
     this.__defineGetter__("exiting",this.getExiting);
     this.__defineGetter__("enteringOrExiting",this.getEnteringOrExiting);
-	
+
 	this._info=Cc["@mozilla.org/xre/app-info;1"].getService(Ci.nsIXULAppInfo).version
 	this._version=this._info.substr(0,this._info.indexOf('.'));
-	
+
     //Mozilla removed old private browsing interface functionality for FX 20 and dummy interface with Bug 845063 for Fx 22
 	//https://developer.mozilla.org/en-US/docs/Updating_addons_broken_by_private_browsing_changes
+  //FIXME this stuff can probably all be removed.
 	if(this._version <  20){
 		this.nsIPrivateBrowsingService=Cc["@mozilla.org/privatebrowsing;1"].getService(Ci.nsIPrivateBrowsingService);
 		this._inPrivateBrowsing=this.nsIPrivateBrowsingService.privateBrowsingEnabled;
@@ -1284,7 +1286,7 @@ try {
 	Application=Services.wm.getMostRecentWindow("navigator:browser");
 } catch (ex) {
     //use Fuel API for Firefox 3.6
-	Application=Cc["@mozilla.org/fuel/application;1"].getService(Ci.fuelIApplication); 
+	Application=Cc["@mozilla.org/fuel/application;1"].getService(Ci.fuelIApplication);
 }
 
 const nsIWindowMediator=Cc["@mozilla.org/appshell/window-mediator;1"].getService(Ci.nsIWindowMediator);

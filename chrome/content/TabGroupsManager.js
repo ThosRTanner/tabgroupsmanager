@@ -108,7 +108,14 @@ TabGroupsManager.initialize=function(event){
         group.close();
       }
     }
+    //FIXME: this also seems screwy. why not load the groups up anyway?
     //we need this only on blank page on homepage startup - this will be called again later on session restore in mode 3
+    //Startup seems to work as follows:
+    //1) Blank session works same as select session. This ends up with getting
+    //   things in completely the wrong place. I suspect what should be done is to
+    //   save orphan tabs at the start of restore, not the end. or at least work them
+    //   out from the groupSelecting
+    //2) restore specified session seems to have the same problems. just more racily.
     if (TabGroupsManager.preferences.startupMode < 3) setTimeout(function(){TabGroupsManager.initializeAfterOnLoad();},10);
   }
   catch(e){
@@ -117,6 +124,13 @@ TabGroupsManager.initialize=function(event){
 };
 
 TabGroupsManager.initializeAfterOnLoad=function(){
+  //This check is because we call this from startup of in 'blank page' mode, and
+  //from restore tab function otherwise. this seems ropy. Which makes the whole thing
+  //very racy.
+  if(this.initialized){
+    return;
+  }
+  this.initialized=true;
   //prepare promiseInitialized request
   //note that this looks racy to me as its waiting for promises to complete.
   var _this = this;
@@ -128,21 +142,29 @@ TabGroupsManager.initializeAfterOnLoad=function(){
 
   //Unfortunately session manager is bootstrappable and hence completely invisible,
   //so we have to have a preference for it :-(
+  //FIXME Irrelevant. remove the whole thing.
+
+
+//2 5 1 4 6.
+//select gives 1
+//
+  //This is a right mess. The restore groups happens in the background and it's
+  //possible we could start restoring the session before these bits have finished
   if (TabGroupsManager.session.sessionRestoreManually ||
-      (!tabmixSessionsManager && !use_session_manager)){
+      (!tabmixSessionsManager /*&& !use_session_manager*/)){
 		ss.SessionStore.promiseInitialized.then(function() {
+/**/console.log("kick1")
 			_this.session.restoreGroupsAndSleepingGroupsAndClosedGroups();
 		});
   }
-  if(this.initialized){
-    return;
-  }
-  this.initialized=true;
+
+/**/console.log("kick2");
   try
   {
     if(TabGroupsManagerJsm.globalPreferences.prefService.getBranch("extensions.tabmix.sessions.").getBoolPref("manager")){
       try
       {
+/**/console.log("kick3");
         this.session.sessionStore.getWindowState(window);
       }
       catch(e){
@@ -153,17 +175,23 @@ TabGroupsManager.initializeAfterOnLoad=function(){
   catch(e){}
   this.tabContextMenu.makeMenu();
   ss.SessionStore.promiseInitialized.then(function() {
+/**/console.log("kick4");
   _this.groupBarDispHide.firstStatusOfGroupBarDispHide();
   });
+/**/console.log("kick5");
   setTimeout(function(){TabGroupsManager.onLoadDelay1000();},1000);
 };
 
 TabGroupsManager.onLoadDelay1000=function(){
+/**/console.log("kick6")
+//this can take effect *after* the first session has been restored when you select
+//restore from specific session without prompting...
   TabGroupsManager.overrideMethod.delayOverride();
   TabGroupsManager.overrideOtherAddOns.delayOverride();
   if(("TMP_eventListener" in window)&&!("TMP_TabGroupsManager" in window)){
     window.openDialog("chrome://tabgroupsmanager/content/versionAlertTMP.xul","TabGroupsManagerVersionAlertTMP","chrome,modal,dialog,centerscreen,resizable",TabGroupsManager.callbackOpenUriInSelectedTab);
   }
+  //if you are manually restoring, this important bit doesn't happen.
   TabGroupsManager.allGroups.scrollInActiveGroup();
 };
 
@@ -526,6 +554,8 @@ TabGroupsManager.Preferences=function(){
     if(this.tabTreeOpenTabByJavaScript){
       this.prefRoot.setBoolPref("browser.tabs.insertRelatedAfterCurrent",false);
     }
+    //I do not think we need this vvvvv as far as I can tell, the test it is used
+    //for is spurious.
     this.startupMode=this.prefRoot.getIntPref("browser.startup.page");
     this.debug=this.prefBranch.getBoolPref("debug");
   }
@@ -1269,20 +1299,10 @@ TabGroupsManager.Session.prototype.onSSWindowStateBusy=function(event){
 
 TabGroupsManager.Session.prototype.onSSWindowStateReady=function(event){
   this.sessionRestoring=false;
-  this.orphanTabsToGroup();
-};
-
-TabGroupsManager.Session.prototype.orphanTabsToGroup=function(){
-  let group=TabGroupsManager.allGroups.getGroupById(-1)|| TabGroupsManager.allGroups.selectedGroup;
-  for(let tab=gBrowser.tabContainer.firstChild;tab;tab=tab.nextSibling){
-    if(!tab.group){
-      group.addTab(tab);
-    }
-  }
 };
 
 TabGroupsManager.Session.prototype.onSSTabRestoring=function(event){
-  TabGroupsManager.initializeAfterOnLoad();
+  TabGroupsManager.initializeAfterOnLoad(); //FIXME <<= you have to be kidding!
   if(!this.disableOnSSTabRestoring){
     this.moveTabToGroupBySessionStore(event.originalTarget);
   }
@@ -1307,8 +1327,11 @@ TabGroupsManager.Session.prototype.moveTabToGroupBySessionStore=function(restori
     if(null==TabGroupsManagerJsm.applicationStatus.getGroupById(groupId)){
       var groupName=this.sessionStore.getTabValue(restoringTab,"TabGroupsManagerGroupName");
       var group=TabGroupsManager.allGroups.openNewGroupCore(groupId,groupName);
+/**/console.log("created", group)
       this.moveTabToGroupWithSuspend(group,restoringTab);
+      return;
     }
+    /**/console.log("yelp? this should NOT occur")
   }
   catch(e){
     TabGroupsManagerJsm.displayError.alertErrorIfDebug(e);
@@ -1325,6 +1348,7 @@ TabGroupsManager.Session.prototype.moveTabToGroupWithSuspend=function(group,tab)
     group.addTab(tab,true);
   }
 };
+
 TabGroupsManager.Session.prototype.allTabsMoveToGroup=function(){
   this.allTabsMovingToGroup=true;
   try
@@ -1361,27 +1385,33 @@ TabGroupsManager.Session.prototype.allTabsMoveToGroup=function(){
     }
   }
 };
+
 TabGroupsManager.Session.prototype.getGroupId=function(tab){
   return parseInt(this.sessionStore.getTabValue(tab,"TabGroupsManagerGroupId"),10);
 };
+
 TabGroupsManager.Session.prototype.setGroupNameAllTabsInGroup=function(group){
   for(var i=0;i<group.tabArray.length;i++){
     this.sessionStore.setTabValue(group.tabArray[i],"TabGroupsManagerGroupName",group.name);
   }
 };
+
 TabGroupsManager.Session.prototype.restoreGroupsAndSleepingGroupsAndClosedGroups=function(){
   if(this.groupRestored==0){
     TabGroupsManager.allGroups.loadAllGroupsData();
   }
 };
+
 TabGroupsManager.Session.prototype.backupByManually=function(){
   TabGroupsManagerJsm.saveData.backupByManually();
 };
+
 TabGroupsManager.Session.prototype.exportDataEmergency=function(message){
   let strings=window.TabGroupsManager.strings;
   alert(strings.getString(message)+strings.getString("ExportDataEmergency"));
   this.exportSession();
 };
+
 TabGroupsManager.Session.prototype.exportSession=function(){
   let nsIFilePicker=Ci.nsIFilePicker;
   let filePicker=Cc["@mozilla.org/filepicker;1"].createInstance(nsIFilePicker);
@@ -1813,9 +1843,15 @@ TabGroupsManager.EventListener.prototype.onTabClose=function(event){
   }
   TabGroupsManager.groupBarDispHide.hideGroupBarByTabCountDelay();
 };
+
 TabGroupsManager.EventListener.prototype.onTabSelect=function(event){
   var tab=gBrowser.selectedTab;
   if(tab.group==null){
+    //FIXME is it possible for the group to be null if we're not in the restoring code?
+    if (TabGroupsManager.session.sessionRestoring)
+    {
+      return; //It's being weird
+    }
     TabGroupsManager.allGroups.selectedGroup.addTab(tab);
   }
   if(!tab.group.selected){
