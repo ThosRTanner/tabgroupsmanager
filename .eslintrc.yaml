@@ -1,0 +1,323 @@
+---
+extends: eslint:all
+
+# Allow async/await
+parserOptions:
+  ecmaVersion: 8
+
+env:
+  es6: true
+
+# Cut down / configure the rules we don't like
+rules:
+
+  # I run this on windows
+  linebreak-style: off
+
+  # Comma styling - no space before, 1 after, end of line and no trailing
+  # Note: These are all default
+  comma-dangle: off
+  comma-style:
+  - error
+  - last
+  comma-spacing:
+  - error
+  - before: false
+    after: true
+
+  # 2 space indents. I suspect I should make this 4, but the rework
+  # would be tricky.
+  indent:
+  - error
+  - 2
+  - ArrayExpression: first
+    ObjectExpression: first
+    CallExpression:
+      arguments: first
+    flatTernaryExpressions: true
+    FunctionDeclaration:
+      parameters: first
+    FunctionExpression:
+      parameters: first
+    SwitchCase: 1
+
+  # One declaration per statement
+  one-var:
+  - error
+  - var: never
+    let: never
+    const: never
+
+  # Array brackets must have a newline if there are any newlines in the array
+  # list
+  array-bracket-newline:
+  - error
+  - multiline: true
+
+  array-element-newline:
+  - error
+  - consistent
+
+  array-bracket-spacing:
+  - error
+  - always
+
+  # Object brackets behave similarly to array brackets
+  object-curly-newline:
+  - error
+  - multiline: true
+
+  object-curly-spacing:
+  - error
+  - always
+
+  # Not quite sure how this is different to curly-newline
+  object-property-newline:
+  - error
+  - allowAllPropertiesOnSameLine: true
+
+  # only quote properties where needed
+  quote-props:
+  - error
+  - as-needed
+
+  # Always break after operators, not before.
+  operator-linebreak:
+  - error
+  - after
+
+  # allow anon function names if they can be worked out from context
+  func-names:
+  - error
+  - as-needed
+
+  # FIXME To be changed:
+  # Always break before (non assignment) operators, not after (see Knuth)
+  #operator-linebreak:
+  #- error
+  #- before
+  #- overrides:
+  #    "=": "after"
+  #    ":": "after"
+
+  # Dot operator appears to have a separate config
+  #dot-location:
+  #- error
+  #- property
+
+  # Unary operators should not have spaces apart from !
+  # I suspect the 1st two are default but the documentation is unclear.
+  space-unary-ops:
+  - error
+  - words: true
+    nonwords: false
+    overrides:
+      "!": true
+
+  # I don't know whether I ever want this on as in general getters and setters
+  # shouldn't be sorted and nor should eg hours, minutes, seconds type things.
+  sort-keys: "off"
+
+  # I'd like more control over this. Specifically I'd like to complain on
+  # unnecessarily bracketed arithmetic statements but expect them on logical
+  # operators. In fact I don't like how it works so much, I'll take the hit
+  # of temporarily disabling it when I need to.
+  #no-extra-parens:
+  #- error
+  #- all
+  #- nestedBinaryExpressions: false
+
+  # Always use double quotes
+  quotes:
+    - error
+    - double
+
+  # mozilla has some functions that start with a capital letter
+  new-cap:
+  - error
+  - capIsNewExceptions:
+    - AppendElement
+    - Constructor
+    - EnumerateAllFonts
+    - QueryInterface
+
+  # Arrow functions should be consistent, and everyone omits the brackets
+  # for a single parameter function
+  arrow-parens:
+  - error
+  - as-needed
+
+  # yoda conditions not allowed except for a <= b && b <= c (although eslint
+  # unhelpfully flexible about that and allows things such as 1 != x && x != 2
+  # which is just nasty).
+  yoda:
+  - error
+  - never
+  - exceptRange: true
+
+  # Unused variables are wrong except in parameter lists. Ignore ones beginning
+  # with _ in that case as JS doesn't allow you to not specify a name
+  no-unused-vars:
+  - error
+  - args: all
+    argsIgnorePattern: "^_"
+
+  # --------------------Function definition styles--------------------
+
+  # Don't require newlines before/after function parens
+  function-paren-newline: off
+
+  # no space between named / anonymous functions and paren, otherwise space
+  space-before-function-paren:
+  - error
+  - anonymous: never
+    named: never
+    asyncArrow: always
+
+  # Function declarations should be as function declarations, not assignments
+  # (I might change my mind on this as declarations get hoisted)
+  func-style:
+  - error
+  - declaration
+  - allowArrowFunctions: true
+
+  # Allow 5 parameters.
+  max-params:
+  - error
+  - 5
+
+  # --------------------Braces & blocks--------------------
+
+  brace-style:
+  - error
+  - allman
+
+  # No blank lines at beginning/end of blocks
+  padded-blocks:
+  - error
+  - never
+
+  # --------------------Commenting style--------------------
+
+  # Do not require first character of a comment to be upper case.
+  capitalized-comments: off
+
+  # I like inline comments
+  no-inline-comments: off
+
+  # No requirements currently for multiline comments. Too much work to fix
+  multiline-comment-style: off
+
+  # No requirement for spacing after a comment. Again, currently too
+  # inconsistent
+  spaced-comment: off
+
+  # Not entirely sure what the best settings for this are
+  lines-around-comment:
+  - error
+  - beforeBlockComment: true
+    allowBlockStart: true
+
+  # ------------------------------------------------------------------
+  # These should eventually be enabled
+
+  # Conflicts with the way you set up modules and also not sure how to
+  # deal with constructors.
+  no-implicit-globals: off
+
+  # Disallows magic numbers, which we should probably do, but there's
+  # a fair bit of +=1 and index into argument arrays
+  no-magic-numbers: off
+
+  # Currently allow use of console until I have proper logging subsystem
+  no-console: off
+
+  # Allow == and !=
+  eqeqeq: off
+  no-eq-null: off
+
+  # I would actually prefer this on, but currently the jslint I'm using doesn't
+  # understand templates, so it complains about unused variables.
+  prefer-template: off
+
+  # Disable all the max-per for now. Only for now care about line length and
+  # complexity
+  max-statements: off
+  max-lines-per-function: off
+  max-lines: off
+
+  # Arguably unicde flag is better, but jslint currently doesn't like it, and I
+  # don't hardcode unicode pairs into my regexps anyway for readability.
+  require-unicode-regexp: off
+
+  # ------------------------------------------------------------------
+  # disable
+
+  # This triggers on anything that looks like an fs call. Things
+  # other than filing systems have exists and open methods.
+  # In any case, calculating a filename is not unusual.
+  detect-non-literal-fs-filename: off
+
+  # camelcase is evil. Allow underscores
+  camelcase: off
+
+  # Allow assignment to function parameters. There are two places
+  # where this is an issue:
+  # 1) You also use the arguments array (should be an issue all by itself)
+  # 2) You mutate the properties of a passed in object (oh for 'const'). In
+  # most cases in this project, this is intentional.
+  no-param-reassign: off
+
+  # Allow use of ternaries and don't require them to be multiline
+  # I'd like a better specification of multiline ternary - the current options
+  # don't match the way I feel is most legible
+  no-ternary: off
+  no-nested-ternary: off
+  multiline-ternary: off
+
+  # seriously, this is an option?
+  no-continue: off
+
+  # leading underscores are fine
+  no-underscore-dangle: off
+
+  # Having this set generally confuses things if you have allman style braces,
+  # and I want to allow single line when applicable
+  implicit-arrow-linebreak: off
+
+  # Destructuring assignments seem designed to confuse
+  prefer-destructuring: off
+
+  # I like comments where I like comments
+  line-comment-position: off
+
+  # This doesn't look right to me for chaining promises
+  newline-per-chained-call: off
+
+  # Validate jsdoc is off. It doesn't allow me @constructor and so on
+  valid-jsdoc: off
+  #- error
+  #- requireReturn: false
+
+  require-jsdoc:
+  - error
+  - require:
+      FunctionDeclaration: true
+      MethodDefinition: true
+      ClassDeclaration: true
+      ArrowFunctionExpression: false
+      FunctionExpression: true
+
+  # We allow undefined because this is JS6 so we can't overwrite it and we
+  # have the shadowing warning turned on
+  no-undefined: off
+
+  # I do not want to force newlines in function call params.
+  function-call-argument-newline: off
+
+globals:
+  # Some firefox globals (though intl is standard js)
+  Components: false
+  DOMStringList: false
+  Intl: false
+  XPCNativeWrapper: false

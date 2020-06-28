@@ -1,0 +1,172 @@
+
+/*  skin/toolbar-button.css  */
+/* 横幅の狭いツールバーボタン */
+toolbarbutton.slimbutton
+{
+	padding-top: 3px !important;
+	padding-bottom: 3px !important;
+	-moz-padding-start: 0px !important;
+	-moz-padding-end: 1px !important;
+}
+toolbarbutton.slimbutton:hover,
+toolbarbutton.slimbutton[buttonover="true"]
+{
+	border-color: ThreeDHighlight ThreeDShadow ThreeDShadow ThreeDHighlight;
+}
+toolbarbutton.slimbutton:hover:active,
+toolbarbutton.slimbutton:active[open="true"]
+{
+	border-color: ThreeDShadow ThreeDHighlight ThreeDHighlight ThreeDShadow;
+
+	padding-top: 4px;
+	padding-bottom: 2px;
+	-moz-padding-start: 1px;
+	-moz-padding-end: 0px;
+}
+
+/* 右クリックでコンテキストメニューではないメニューを開くツールバーボタン */
+.tabgroupsmanager-toolbarbutton-notcontextmenu
+{
+	-moz-binding: url( "chrome://tabgroupsmanager/content/bindings.xml#toolbarbutton-notcontextmenu" );
+
+	-moz-box-align: center;
+/*	-moz-box-valign: middle;	*/
+	-moz-box-pack: center;
+	-moz-box-orient: vertical;
+
+	padding-top: 3px;
+	padding-bottom: 3px;
+	-moz-padding-start: 0px;
+	-moz-padding-end: 1px;
+}
+.tabgroupsmanager-toolbarbutton-notcontextmenu:hover,
+.tabgroupsmanager-toolbarbutton-notcontextmenu[buttonover="true"]
+{
+	border-color: ThreeDHighlight ThreeDShadow ThreeDShadow ThreeDHighlight;
+}
+.tabgroupsmanager-toolbarbutton-notcontextmenu:hover:active,
+.tabgroupsmanager-toolbarbutton-notcontextmenu[open="true"]
+{
+	border-color: ThreeDShadow ThreeDHighlight ThreeDHighlight ThreeDShadow;
+
+	padding-top: 4px;
+	padding-bottom: 2px;
+	-moz-padding-start: 1px;
+	-moz-padding-end: 0px;
+}
+
+/* 右クリックでコンテキストメニューではないメニューを開くツールバーボタン（タイプ：メニュー） */
+.tabgroupsmanager-toolbarbutton-notcontextmenu[type="menu"]
+{
+	-moz-binding: url( "chrome://tabgroupsmanager/content/bindings.xml#toolbarbutton-menu-notcontextmenu" );
+}
+
+/* 右クリックでコンテキストメニューではないメニューを開くツールバーボタン（タイプ：メニューボタン） */
+.tabgroupsmanager-toolbarbutton-notcontextmenu[type="menu-button"]
+{
+	-moz-binding: url( "chrome://tabgroupsmanager/content/bindings.xml#toolbarbutton-menubutton" );
+}
+
+/* グループバー 表示・非表示切り替えボタン */
+#TabGroupsManagerButtonHideGroup
+{
+	list-style-image: url( "chrome://tabgroupsmanager/skin/displarge.png" );
+}
+toolbar[iconsize="small"]
+#TabGroupsManagerButtonHideGroup
+{
+	list-style-image: url( "chrome://tabgroupsmanager/skin/dispsmall.png" );
+}
+
+/* 開くボタン */
+#TabGroupsManagerButtonOpen
+{
+	list-style-image: url( "chrome://tabgroupsmanager/skin/pluslarge.png" );
+}
+toolbar[iconsize="small"]
+#TabGroupsManagerButtonOpen
+{
+	list-style-image: url( "chrome://tabgroupsmanager/skin/plus.png" );
+}
+
+/* 開くボタン */
+#TabGroupsManagerButtonOpen2
+{
+	list-style-image: url( "chrome://tabgroupsmanager/skin/pluslarge.png" );
+}
+toolbar[iconsize="small"]
+#TabGroupsManagerButtonOpen2
+{
+	list-style-image: url( "chrome://tabgroupsmanager/skin/plus.png" );
+}
+
+/* 閉じるボタン */
+#TabGroupsManagerButtonClose
+{
+	list-style-image: url( "chrome://tabgroupsmanager/skin/minuslarge.png" );
+}
+toolbar[iconsize="small"]
+#TabGroupsManagerButtonClose
+{
+	list-style-image: url( "chrome://tabgroupsmanager/skin/minus.png" );
+}
+
+/* 休止ボタン */
+#TabGroupsManagerButtonSleep
+{
+	list-style-image: url( "chrome://tabgroupsmanager/skin/hibernatebutton.png" );
+	-moz-image-region: rect( 0px 336px 16px 320px);
+}
+#TabGroupsManagerButtonSleep[storecount="0"]	{ -moz-image-region: rect( 0px  16px 16px   0px); }
+#TabGroupsManagerButtonSleep[storecount="1"]	{ -moz-image-region: rect( 0px  32px 16px  16px); }
+#TabGroupsManagerButtonSleep[storecount="2"]	{ -moz-image-region: rect( 0px  48px 16px  32px); }
+#TabGroupsManagerButtonSleep[storecount="3"]	{ -moz-image-region: rect( 0px  64px 16px  48px); }
+#TabGroupsManagerButtonSleep[storecount="4"]	{ -moz-image-region: rect( 0px  80px 16px  64px); }
+#TabGroupsManagerButtonSleep[storecount="5"]	{ -moz-image-region: rect( 0px  96px 16px  80px); }
+#TabGroupsManagerButtonSleep[storecount="6"]	{ -moz-image-region: rect( 0px 112px 16px  96px); }
+#TabGroupsManagerButtonSleep[storecount="7"]	{ -moz-image-region: rect( 0px 128px 16px 112px); }
+#TabGroupsManagerButtonSleep[storecount="8"]	{ -moz-image-region: rect( 0px 144px 16px 128px); }
+#TabGroupsManagerButtonSleep[storecount="9"]	{ -moz-image-region: rect( 0px 160px 16px 144px); }
+#TabGroupsManagerButtonSleep[storecount="10"]	{ -moz-image-region: rect( 0px 176px 16px 160px); }
+#TabGroupsManagerButtonSleep[storecount="11"]	{ -moz-image-region: rect( 0px 192px 16px 176px); }
+#TabGroupsManagerButtonSleep[storecount="12"]	{ -moz-image-region: rect( 0px 208px 16px 192px); }
+#TabGroupsManagerButtonSleep[storecount="13"]	{ -moz-image-region: rect( 0px 224px 16px 208px); }
+#TabGroupsManagerButtonSleep[storecount="14"]	{ -moz-image-region: rect( 0px 240px 16px 224px); }
+#TabGroupsManagerButtonSleep[storecount="15"]	{ -moz-image-region: rect( 0px 256px 16px 240px); }
+#TabGroupsManagerButtonSleep[storecount="16"]	{ -moz-image-region: rect( 0px 272px 16px 256px); }
+#TabGroupsManagerButtonSleep[storecount="17"]	{ -moz-image-region: rect( 0px 288px 16px 272px); }
+#TabGroupsManagerButtonSleep[storecount="18"]	{ -moz-image-region: rect( 0px 304px 16px 288px); }
+#TabGroupsManagerButtonSleep[storecount="19"]	{ -moz-image-region: rect( 0px 320px 16px 304px); }
+
+/* 再起動ボタン */
+#TabGroupsManagerButtonRestart
+{
+	list-style-image: url( "chrome://tabgroupsmanager/skin/bluexl.png" );
+}
+toolbar[iconsize="small"]
+#TabGroupsManagerButtonRestart
+{
+	list-style-image: url( "chrome://tabgroupsmanager/skin/bluex.png" );
+}
+
+/* セッションバックアップボタン */
+#TabGroupsManagerButtonBackupSession
+{
+	list-style-image: url( "chrome://tabgroupsmanager/skin/backup_session_l.png" );
+}
+toolbar[iconsize="small"]
+#TabGroupsManagerButtonBackupSession
+{
+	list-style-image: url( "chrome://tabgroupsmanager/skin/backup_session.png" );
+}
+
+/* エクスポートセッションボタン */
+#TabGroupsManagerButtonExportSession
+{
+	list-style-image: url( "chrome://tabgroupsmanager/skin/export_session_l.png" );
+}
+toolbar[iconsize="small"]
+#TabGroupsManagerButtonExportSession
+{
+	list-style-image: url( "chrome://tabgroupsmanager/skin/export_session.png" );
+}
