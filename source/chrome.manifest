@@ -1,0 +1,13 @@
+content tabgroupsmanager    chrome/content/
+locale  tabgroupsmanager    en-US   chrome/locale/en-US/
+locale  tabgroupsmanager    de-DE   chrome/locale/de-DE/
+locale  tabgroupsmanager    ja      chrome/locale/ja/
+locale  tabgroupsmanager    ru      chrome/locale/ru/
+skin    tabgroupsmanager    classic/1.0	chrome/skin/
+
+overlay     chrome://browser/content/browser.xul                chrome://tabgroupsmanager/content/firefoxOverlay.xul
+overlay     chrome://browser/content/places/placesOverlay.xul   chrome://tabgroupsmanager/content/TgmPlaces.xul
+
+resource    tabgroupsmanager     resource/
+
+style       chrome://global/content/customizeToolbar.xul        chrome://tabgroupsmanager/skin/toolbar-button.css

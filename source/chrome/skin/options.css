@@ -1,0 +1,7 @@
+
+/* hibernate button */
+#TabGroupsManagerOptionsButtonSleep
+{
+	list-style-image: url( "chrome://tabgroupsmanager/skin/hibernatebutton.png" );
+	-moz-image-region: rect( 0px 16px 16px 0px);
+}
