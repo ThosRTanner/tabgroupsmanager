@@ -59,16 +59,19 @@ TabGroupsManager.Session.prototype.handleEvent = function (event)
 
 TabGroupsManager.Session.prototype.onSSWindowStateBusy = function (event)
 {
+  /**/console.log("busy");
   this.sessionRestoring = true;
 };
 
 TabGroupsManager.Session.prototype.onSSWindowStateReady = function (event)
 {
+  /**/console.log("ready", gBrowser.tabContainer.children.length);
   this.sessionRestoring = false;
 };
 
 TabGroupsManager.Session.prototype.onSSTabRestoring = function (event)
 {
+  /**/console.log("restore");
   TabGroupsManager.initializeAfterOnLoad(); //FIXME <<= you have to be kidding!
   if (!this.disableOnSSTabRestoring)
   {

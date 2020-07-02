@@ -299,6 +299,7 @@ TabGroupsManager.GroupClass.prototype.addTab = function (tab, fromSessionStore)
 {
   try
   {
+/**/console.log(tab, tab.label, tab.group, this, fromSessionStore, new Error())
     if (typeof tab.group != "undefined" && tab.group == this)
     {
       return;

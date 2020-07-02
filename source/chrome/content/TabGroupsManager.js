@@ -180,22 +180,19 @@ TabGroupsManager.initializeAfterOnLoad = function ()
   {
     ss.SessionStore.promiseInitialized.then(function ()
     {
-      /**/
-      console.log("kick1")
+      /**/console.log("kick1")
       _this.session.restoreGroupsAndSleepingGroupsAndClosedGroups();
     });
   }
 
-  /**/
-  console.log("kick2");
+  /**/console.log("kick2");
   try
   {
     if (TabGroupsManagerJsm.globalPreferences.prefService.getBranch("extensions.tabmix.sessions.").getBoolPref("manager"))
     {
       try
       {
-        /**/
-        console.log("kick3");
+        /**/console.log("kick3");
         this.session.sessionStore.getWindowState(window);
       }
       catch (e)
@@ -209,12 +206,10 @@ TabGroupsManager.initializeAfterOnLoad = function ()
   this.tabContextMenu.makeMenu();
   ss.SessionStore.promiseInitialized.then(function ()
   {
-    /**/
-    console.log("kick4");
+    /**/console.log("kick4");
     _this.groupBarDispHide.firstStatusOfGroupBarDispHide();
   });
-  /**/
-  console.log("kick5");
+  /**/console.log("kick5");
   setTimeout(function ()
   {
     TabGroupsManager.onLoadDelay1000();
@@ -223,8 +218,7 @@ TabGroupsManager.initializeAfterOnLoad = function ()
 
 TabGroupsManager.onLoadDelay1000 = function ()
 {
-  /**/
-  console.log("kick6")
+  /**/console.log("kick6")
   //this can take effect *after* the first session has been restored when you select
   //restore from specific session without prompting...
   TabGroupsManager.overrideMethod.delayOverride();
