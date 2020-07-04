@@ -1,14 +1,14 @@
 /*jshint browser: true, devel: true */
 /*eslint-env browser */
 
-/* globals TabGroupsManager, TabGroupsManagerJsm */
+/* globals TabGroupsManager, TabGroupsManagerJsm, gBrowser */
 
 TabGroupsManager.Session = function ()
 {
   try
   {
     this.groupRestored = 0;
-    this.sessionRestoring = null;
+    this.sessionRestoring = false;
     this.disableOnSSTabRestoring = false;
     this.sessionRestoreManually = false;
     this.sessionStore = Cc["@mozilla.org/browser/sessionstore;1"].getService(Ci.nsISessionStore);
@@ -57,25 +57,74 @@ TabGroupsManager.Session.prototype.handleEvent = function (event)
   }
 };
 
+//It looks as though in palemoon, we get
+//1) Busy
+//2) each window being restored
+//3) Ready
+//
+//but in basilisk, 3 happens before 2
+//
+//This means we have to restore the group information when we restore the first
+//tab
+//
 TabGroupsManager.Session.prototype.onSSWindowStateBusy = function (event)
 {
-  /**/console.log("busy");
+/**/console.log("busy");
+  this._restore_count = 0;
+  this._restore_groups = true;
+  this.groupRestored = 0; //FIXME Why is this exposed? And someone else controls it!
   this.sessionRestoring = true;
 };
 
 TabGroupsManager.Session.prototype.onSSWindowStateReady = function (event)
 {
-  /**/console.log("ready", gBrowser.tabContainer.children.length);
+  //this.sessionRestoring = false; //something horribly broken when running
+  /*
+  if (this._restore_groups)
+  {
+    this.restoreGroupsAndSleepingGroupsAndClosedGroups();
+    this._restore_groups = false;
+  }
+  */
+
+  //with palemoon including bunches of unrecognised exceptions
+//  this._restore_count = gBrowser.tabContainer.children.length;
+/**/console.log("start waiting", this._restore_count, gBrowser.tabContainer.children.length);
+  if (this._restore_count == 0)
+  {
+    this._restore_count = gBrowser.tabContainer.children.length;
+  }
+  else
+  {
+    this._restore_complete();
+  }
+};
+
+TabGroupsManager.Session.prototype._restore_complete = function ()
+{
   this.sessionRestoring = false;
+  TabGroupsManager.groupBarDispHide.firstStatusOfGroupBarDispHide();
+  TabGroupsManager.allGroups.scrollInActiveGroup();
+/**/console.log("complete");
 };
 
 TabGroupsManager.Session.prototype.onSSTabRestoring = function (event)
 {
-  /**/console.log("restore");
-  TabGroupsManager.initializeAfterOnLoad(); //FIXME <<= you have to be kidding!
-  if (!this.disableOnSSTabRestoring)
+  if (this._restore_groups)
+  {
+    this.restoreGroupsAndSleepingGroupsAndClosedGroups();
+    this._restore_groups = false;
+  }
+
+  if (! this.disableOnSSTabRestoring)
   {
     this.moveTabToGroupBySessionStore(event.originalTarget);
+  }
+  this._restore_count -= 1;
+/**/console.log("waiting", this._restore_count);
+  if (this._restore_count == 0)
+  {
+    this._restore_complete();
   }
 };
 
@@ -103,13 +152,10 @@ TabGroupsManager.Session.prototype.moveTabToGroupBySessionStore = function (rest
     {
       var groupName = this.sessionStore.getTabValue(restoringTab, "TabGroupsManagerGroupName");
       var group = TabGroupsManager.allGroups.openNewGroupCore(groupId, groupName);
-      /**/
-      console.log("created", group)
       this.moveTabToGroupWithSuspend(group, restoringTab);
       return;
     }
-    /**/
-    console.log("yelp? this should NOT occur")
+/**/console.log("yelp? this should NOT occur")
   }
   catch (e)
   {
@@ -312,6 +358,7 @@ TabGroupsManager.Session.prototype.restoreSessionCommand = function (event)
 
 TabGroupsManager.Session.prototype.restoreSessionInit = function ()
 {
+/**/console.log("restoreSessionInit", new Error())
   TabGroupsManager.allGroups.openNewGroup(null, -1, null, null);
   var groupTab = TabGroupsManager.allGroups.childNodes;
   for (var i = groupTab.length - 2; i >= 0; i--)
@@ -324,6 +371,7 @@ TabGroupsManager.Session.prototype.restoreSessionInit = function ()
 
 TabGroupsManager.Session.prototype.restoreSessionFromAboutSessionRestore = function ()
 {
+/**/console.log("restoreSessionFromAboutSessionRestore", new Error())
   TabGroupsManager.allGroups.selectedGroup.id = -1;
   this.groupRestored = 0;
   this.sessionRestoreManually = true;

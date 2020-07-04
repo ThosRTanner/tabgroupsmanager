@@ -180,8 +180,15 @@ TabGroupsManager.initializeAfterOnLoad = function ()
   {
     ss.SessionStore.promiseInitialized.then(function ()
     {
-      /**/console.log("kick1")
-      _this.session.restoreGroupsAndSleepingGroupsAndClosedGroups();
+      try
+      {
+        /**/console.log("kick1")
+        //_this.session.restoreGroupsAndSleepingGroupsAndClosedGroups();
+      }
+      catch (err)
+      {
+        /**/console.log("bad things happened", err);
+      }
     });
   }
 
@@ -206,8 +213,16 @@ TabGroupsManager.initializeAfterOnLoad = function ()
   this.tabContextMenu.makeMenu();
   ss.SessionStore.promiseInitialized.then(function ()
   {
-    /**/console.log("kick4");
-    _this.groupBarDispHide.firstStatusOfGroupBarDispHide();
+    try
+    {
+      /**/console.log("kick4");
+      //Can't do this here apparently?
+      //_this.groupBarDispHide.firstStatusOfGroupBarDispHide();
+    }
+    catch (err)
+    {
+      /**/console.log("bad things happened", err);
+    }
   });
   /**/console.log("kick5");
   setTimeout(function ()
@@ -218,17 +233,24 @@ TabGroupsManager.initializeAfterOnLoad = function ()
 
 TabGroupsManager.onLoadDelay1000 = function ()
 {
-  /**/console.log("kick6")
-  //this can take effect *after* the first session has been restored when you select
-  //restore from specific session without prompting...
-  TabGroupsManager.overrideMethod.delayOverride();
-  TabGroupsManager.overrideOtherAddOns.delayOverride();
-  if (("TMP_eventListener" in window) && !("TMP_TabGroupsManager" in window))
+  try
   {
-    window.openDialog("chrome://tabgroupsmanager/content/versionAlertTMP.xul", "TabGroupsManagerVersionAlertTMP", "chrome,modal,dialog,centerscreen,resizable", TabGroupsManager.callbackOpenUriInSelectedTab);
+    /**/console.log("kick6")
+    //this can take effect *after* the first session has been restored when you select
+    //restore from specific session without prompting...
+    TabGroupsManager.overrideMethod.delayOverride();
+    TabGroupsManager.overrideOtherAddOns.delayOverride();
+    if (("TMP_eventListener" in window) && !("TMP_TabGroupsManager" in window))
+    {
+      window.openDialog("chrome://tabgroupsmanager/content/versionAlertTMP.xul", "TabGroupsManagerVersionAlertTMP", "chrome,modal,dialog,centerscreen,resizable", TabGroupsManager.callbackOpenUriInSelectedTab);
+    }
+    //if you are manually restoring, this important bit doesn't happen.
+    //TabGroupsManager.allGroups.scrollInActiveGroup();
   }
-  //if you are manually restoring, this important bit doesn't happen.
-  TabGroupsManager.allGroups.scrollInActiveGroup();
+  catch (err)
+  {
+    /**/console.log("bad things happened", err);
+  }
 };
 
 TabGroupsManager.callbackOpenUriInSelectedTab = function (uri)

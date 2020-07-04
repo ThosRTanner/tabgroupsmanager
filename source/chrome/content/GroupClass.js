@@ -299,7 +299,6 @@ TabGroupsManager.GroupClass.prototype.addTab = function (tab, fromSessionStore)
 {
   try
   {
-/**/console.log(tab, tab.label, tab.group, this, fromSessionStore, new Error())
     if (typeof tab.group != "undefined" && tab.group == this)
     {
       return;
@@ -660,18 +659,21 @@ TabGroupsManager.GroupClass.prototype.removeTab = function (tab, fromTabCloseEve
   {
     delete tab.TabGroupsManagerSwapBrowsersAndCloseOtherFlag;
   }
-  else if (!TabGroupsManagerJsm.privateBrowsing.enteringOrExiting && this.tabArray.length <= 1 && TabGroupsManager.preferences.groupNotCloseWhenCloseAllTabsInGroup && fromTabCloseEvent)
+  else if (! TabGroupsManagerJsm.privateBrowsing.enteringOrExiting &&
+           this.tabArray.length <= 1 &&
+           TabGroupsManager.preferences.groupNotCloseWhenCloseAllTabsInGroup &&
+           fromTabCloseEvent)
   {
     this.addTab(("TMP_BrowserOpenTab" in window) ? TMP_BrowserOpenTab(null, true) : TabGroupsManager.overrideMethod.gBrowserAddTab("about:blank"));
   }
-  if (this.tabArray.length <= 1 && !notClose)
+  if (this.tabArray.length <= 1 && ! notClose)
   {
     if (TabGroupsManager.allGroups.childNodes.length == 1)
     {
       var group = TabGroupsManager.allGroups.openNewGroup(null, null, null, null, "TMP_BrowserOpenTab");
       TabGroupsManager.allGroups.selectedGroup = group;
     }
-    else if (this.selected)
+    else if (this.selected && ! TabGroupsManager.session.sessionRestoring)
     {
       TabGroupsManager.allGroups.selectNextGroup();
     }
@@ -1067,7 +1069,7 @@ TabGroupsManager.GroupClass.prototype.close = function ()
   {
     TabGroupsManager.allGroups.openNewGroup();
   }
-  if (this.selected)
+  if (this.selected && ! TabGroupsManager.session.sessionRestoring)
   {
     TabGroupsManager.allGroups.selectNextGroup();
   }
@@ -1083,7 +1085,9 @@ TabGroupsManager.GroupClass.prototype.close = function ()
     }, 0);
     TabGroupsManager.allGroups.saveAllGroupsData();
   }
-  if (lastGroup && TabGroupsManagerJsm.applicationStatus.windows.length > 1 && TabGroupsManagerJsm.globalPreferences.windowCloseWhenLastGroupClose)
+  if (lastGroup &&
+      TabGroupsManagerJsm.applicationStatus.windows.length > 1 &&
+      TabGroupsManagerJsm.globalPreferences.windowCloseWhenLastGroupClose)
   {
     window.close();
   }

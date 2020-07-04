@@ -284,6 +284,7 @@ TabGroupsManager.AllGroups.prototype.loadAllGroupsData = function ()
     try
     {
       let jsonText = TabGroupsManager.session.sessionStore.getWindowValue(window, "TabGroupsManagerAllGroupsData");
+console.log(jsonText);
       if (jsonText != null && jsonText != "")
       {
         var allGroupsData = JSON.parse(jsonText);
@@ -299,14 +300,18 @@ TabGroupsManager.AllGroups.prototype.loadAllGroupsData = function ()
       }
     }
     catch (e)
-    { //show errors as window is not tracked during startup caused by small delay on initialisation > Fx33
+    {
+      //show errors as window is not tracked during startup caused by small
+      //delay on initialisation > Fx33
+/**/console.log(e)
       TabGroupsManagerJsm.displayError.alertErrorIfDebug(e);
     }
     if (TabGroupsManager.session.sessionRestoring)
     {
+      //Seriously, this being set seems to imply the preferences menu is open..
       if (TabGroupsManagerJsm.globalPreferences.lastSessionFinalized)
       {
-        TabGroupsManager.session.allTabsMoveToGroup();
+        //TabGroupsManager.session.allTabsMoveToGroup();
       }
     }
     else
@@ -316,10 +321,12 @@ TabGroupsManager.AllGroups.prototype.loadAllGroupsData = function ()
   }
   catch (e)
   {
+    /**/console.log(e)
     TabGroupsManagerJsm.displayError.alertErrorIfDebug(e);
   }
   finally
   {
+    /**/console.log("done")
     TabGroupsManager.session.groupRestored = 2;
   }
 };
