@@ -9,7 +9,7 @@ TabGroupsManager.utils = {
 //add result and rename tmp to result because tmp will be 0 if nothing is found
 //id is content and arguments are content, tabbrowser, arrowscrollbox
 //it seems that from getAnonymousElementByAttribute() nothing will be found here
-TabGroupsManager.utils.getElementByIdAndAnonids = function (id)
+TabGroupsManager.utils.getElementByIdAndAnonids = function(id)
 {
   var result;
   var tmp = document.getElementById(id);
@@ -20,7 +20,7 @@ TabGroupsManager.utils.getElementByIdAndAnonids = function (id)
   return result;
 };
 
-TabGroupsManager.utils.getElementByElementAndAnonids = function (element)
+TabGroupsManager.utils.getElementByElementAndAnonids = function(element)
 {
   var tmp = element;
   for (var i = 1; i < arguments.length; i++)
@@ -30,7 +30,7 @@ TabGroupsManager.utils.getElementByElementAndAnonids = function (element)
   return tmp;
 };
 
-TabGroupsManager.utils.isBlankTab = function (tab)
+TabGroupsManager.utils.isBlankTab = function(tab)
 {
   if (tab.linkedBrowser.currentURI.spec == "about:blank" && !tab.hasAttribute("busy"))
   {
@@ -50,7 +50,7 @@ TabGroupsManager.utils.isBlankTab = function (tab)
   return false;
 };
 
-TabGroupsManager.utils.insertElementAfterAnonid = function (parent, anonid, element)
+TabGroupsManager.utils.insertElementAfterAnonid = function(parent, anonid, element)
 {
   if (!anonid)
   {
@@ -68,7 +68,7 @@ TabGroupsManager.utils.insertElementAfterAnonid = function (parent, anonid, elem
   parent.insertBefore(element, null);
 };
 
-TabGroupsManager.utils.deleteFromAnonidToAnonid = function (parent, from, to)
+TabGroupsManager.utils.deleteFromAnonidToAnonid = function(parent, from, to)
 {
   var element = parent.firstChild;
   if (from)
@@ -85,7 +85,7 @@ TabGroupsManager.utils.deleteFromAnonidToAnonid = function (parent, from, to)
   }
 };
 
-TabGroupsManager.utils.popupNotContextMenuOnRightClick = function (event)
+TabGroupsManager.utils.popupNotContextMenuOnRightClick = function(event)
 {
   if (event.button == 2)
   {
@@ -113,12 +113,12 @@ TabGroupsManager.utils.popupNotContextMenuOnRightClick = function (event)
   }
 };
 
-TabGroupsManager.utils.createNewNsiUri = function (aSpec)
+TabGroupsManager.utils.createNewNsiUri = function(aSpec)
 {
   return this.nsIIOService.newURI(aSpec, null, null);
 };
 
-TabGroupsManager.utils.getTabFromDOMWindow = function (DOMWindow)
+TabGroupsManager.utils.getTabFromDOMWindow = function(DOMWindow)
 {
   try
   {
@@ -135,7 +135,7 @@ TabGroupsManager.utils.getTabFromDOMWindow = function (DOMWindow)
   return null;
 };
 
-TabGroupsManager.utils.setRemoveAttribute = function (element, key, value)
+TabGroupsManager.utils.setRemoveAttribute = function(element, key, value)
 {
   if (value)
   {
@@ -147,7 +147,7 @@ TabGroupsManager.utils.setRemoveAttribute = function (element, key, value)
   }
 };
 
-TabGroupsManager.utils.traceProperty = function (root)
+TabGroupsManager.utils.traceProperty = function(root)
 {
   let target = root;
   for (let i = 1; i < arguments.length && target; i++)
@@ -157,7 +157,7 @@ TabGroupsManager.utils.traceProperty = function (root)
   return target;
 };
 
-TabGroupsManager.utils.hideTab = function (tab)
+TabGroupsManager.utils.hideTab = function(tab)
 {
   if (('undefined' !== typeof tab) && (tab))
   {
@@ -167,7 +167,7 @@ TabGroupsManager.utils.hideTab = function (tab)
   }
 };
 
-TabGroupsManager.utils.unHideTab = function (tab)
+TabGroupsManager.utils.unHideTab = function(tab)
 {
   if (('undefined' !== typeof tab) && (tab))
   {
@@ -185,7 +185,7 @@ TabGroupsManager.utils.unHideTab = function (tab)
  * @param needle string to search for in DataTransfer types.
  * @returns {boolean}
  */
-TabGroupsManager.utils.dataTransferTypesContains = function (eventDataTransfer, needle)
+TabGroupsManager.utils.dataTransferTypesContains = function(eventDataTransfer, needle)
 {
   let result = false;
   if (('undefined' !== typeof eventDataTransfer) && (eventDataTransfer))

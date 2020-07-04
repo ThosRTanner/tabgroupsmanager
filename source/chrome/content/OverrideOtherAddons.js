@@ -3,12 +3,12 @@
 
 /* globals TabGroupsManager, TabGroupsManagerJsm */
 
-TabGroupsManager.OverrideOtherAddOns = function ()
+TabGroupsManager.OverrideOtherAddOns = function()
 {
   this.overrideTreeStyleTab();
 };
 
-TabGroupsManager.OverrideOtherAddOns.prototype.delayOverride = function ()
+TabGroupsManager.OverrideOtherAddOns.prototype.delayOverride = function()
 {
   /*
   try
@@ -24,7 +24,7 @@ TabGroupsManager.OverrideOtherAddOns.prototype.delayOverride = function ()
 /*
 //FIXME This no longer works, as session manager is now bootstrappable
 //In any case we should use this (possible) to force backup of our groups
-TabGroupsManager.OverrideOtherAddOns.prototype.overrideSessionManager = function ()
+TabGroupsManager.OverrideOtherAddOns.prototype.overrideSessionManager = function()
 {
   if (("gSessionManager" in window) && TabGroupsManager.preferences.prefBranch.getBoolPref("useSessionManagerSessions"))
   {
@@ -33,13 +33,13 @@ TabGroupsManager.OverrideOtherAddOns.prototype.overrideSessionManager = function
   }
 };
 
-TabGroupsManager.OverrideOtherAddOns.prototype.override_gSessionManager_restoreSession = function ()
+TabGroupsManager.OverrideOtherAddOns.prototype.override_gSessionManager_restoreSession = function()
 {
   TabGroupsManager.session.restoreSessionInit();
   TabGroupsManager.overrideOtherAddOns.backup_gSessionManager_restoreSession.apply(this, arguments);
 };
 */
-TabGroupsManager.OverrideOtherAddOns.prototype.overrideTreeStyleTab = function ()
+TabGroupsManager.OverrideOtherAddOns.prototype.overrideTreeStyleTab = function()
 {
   if (("TreeStyleTabBrowser" in window) && TabGroupsManager.preferences.prefBranch.getBoolPref("overrideTreeStyleTab"))
   {
@@ -48,7 +48,7 @@ TabGroupsManager.OverrideOtherAddOns.prototype.overrideTreeStyleTab = function (
   }
 };
 
-TabGroupsManager.OverrideOtherAddOns.prototype.override_TreestyleTabBrowser_attachTabFromPosition = function ()
+TabGroupsManager.OverrideOtherAddOns.prototype.override_TreestyleTabBrowser_attachTabFromPosition = function()
 {
   if (!TabGroupsManager.tabMoveByTGM.cancelTabMoveEventOfTreeStyleTab && TabGroupsManager.session.groupRestored >= 2)
   {

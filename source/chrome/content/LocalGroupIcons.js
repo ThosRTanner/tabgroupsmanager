@@ -3,14 +3,14 @@
 
 /* globals TabGroupsManager, TabGroupsManagerJsm */
 
-TabGroupsManager.LocalGroupIcons = function () {};
+TabGroupsManager.LocalGroupIcons = function() {};
 
-TabGroupsManager.LocalGroupIcons.prototype.removeMenu = function (event)
+TabGroupsManager.LocalGroupIcons.prototype.removeMenu = function(event)
 {
   TabGroupsManager.utils.deleteFromAnonidToAnonid(event.target, "start_icon", "end_icon");
 };
 
-TabGroupsManager.LocalGroupIcons.prototype.createMenu = function (event)
+TabGroupsManager.LocalGroupIcons.prototype.createMenu = function(event)
 {
   this.removeMenu(event);
   let flgmntNode = document.createDocumentFragment();
@@ -35,7 +35,7 @@ TabGroupsManager.LocalGroupIcons.prototype.createMenu = function (event)
   }
 };
 
-TabGroupsManager.LocalGroupIcons.prototype.makeIconListOneLine = function (parent, folder, folderName)
+TabGroupsManager.LocalGroupIcons.prototype.makeIconListOneLine = function(parent, folder, folderName)
 {
   if (folder.exists)
   {
@@ -54,7 +54,7 @@ TabGroupsManager.LocalGroupIcons.prototype.makeIconListOneLine = function (paren
         menuitem.setAttribute("validate", "never");
         menuitem.setAttribute("tooltiptext", files[i].leafName);
         //menuitem.setAttribute("oncommand","TabGroupsManager.groupMenu.popupGroup.changeIconFromLocal( event );");
-        menuitem.addEventListener("command", function (event)
+        menuitem.addEventListener("command", function(event)
         {
           TabGroupsManager.groupMenu.popupGroup.changeIconFromLocal(event);
         }, false);

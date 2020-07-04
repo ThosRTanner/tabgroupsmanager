@@ -5,7 +5,7 @@
 
 TabGroupsManager.openMenu = {};
 
-TabGroupsManager.openMenu.onShowing = function (event)
+TabGroupsManager.openMenu.onShowing = function(event)
 {
   this.onHidden(event);
   var flgmntNode = this.makeOpenGroupWithRegisteredNameFragment();
@@ -14,7 +14,7 @@ TabGroupsManager.openMenu.onShowing = function (event)
   TabGroupsManager.utils.insertElementAfterAnonid(event.originalTarget, "startHistory", flgmntNode);
 };
 
-TabGroupsManager.openMenu.onShowingRename = function (event)
+TabGroupsManager.openMenu.onShowingRename = function(event)
 {
   this.onHidden(event);
   var flgmntNode = this.makeOpenGroupWithRegisteredNameFragment(true);
@@ -23,7 +23,7 @@ TabGroupsManager.openMenu.onShowingRename = function (event)
   TabGroupsManager.utils.insertElementAfterAnonid(event.originalTarget, "startHistory", flgmntNode);
 };
 
-TabGroupsManager.openMenu.makeOpenGroupWithRegisteredNameFragment = function (rename)
+TabGroupsManager.openMenu.makeOpenGroupWithRegisteredNameFragment = function(rename)
 {
   var flgmntNode = document.createDocumentFragment();
   var list = TabGroupsManagerJsm.globalPreferences.groupNameRegistered;
@@ -57,7 +57,7 @@ TabGroupsManager.openMenu.makeOpenGroupWithRegisteredNameFragment = function (re
   return flgmntNode;
 };
 
-TabGroupsManager.openMenu.makeOpenGroupWithHistoryFragment = function (rename)
+TabGroupsManager.openMenu.makeOpenGroupWithHistoryFragment = function(rename)
 {
   var flgmntNode = document.createDocumentFragment();
   var list = TabGroupsManagerJsm.globalPreferences.groupNameHistory;
@@ -91,13 +91,13 @@ TabGroupsManager.openMenu.makeOpenGroupWithHistoryFragment = function (rename)
   return flgmntNode;
 };
 
-TabGroupsManager.openMenu.onHidden = function (event)
+TabGroupsManager.openMenu.onHidden = function(event)
 {
   TabGroupsManager.utils.deleteFromAnonidToAnonid(event.originalTarget, "start", "end");
   TabGroupsManager.utils.deleteFromAnonidToAnonid(event.originalTarget, "startHistory", "endHistory");
 };
 
-TabGroupsManager.openMenu.openNamedGroupByMenuitem = function (event)
+TabGroupsManager.openMenu.openNamedGroupByMenuitem = function(event)
 {
   var name = event.target.getAttribute("label");
   var group = TabGroupsManager.allGroups.openNewGroup(null, null, name, null);
@@ -109,7 +109,7 @@ TabGroupsManager.openMenu.openNamedGroupByMenuitem = function (event)
   event.stopPropagation();
 };
 
-TabGroupsManager.openMenu.openNamedGroupByMenuitemClick = function (event)
+TabGroupsManager.openMenu.openNamedGroupByMenuitemClick = function(event)
 {
   if (event.button == 1)
   {
@@ -118,7 +118,7 @@ TabGroupsManager.openMenu.openNamedGroupByMenuitemClick = function (event)
   }
 };
 
-TabGroupsManager.openMenu.renameGroupByMenuitem = function (event)
+TabGroupsManager.openMenu.renameGroupByMenuitem = function(event)
 {
   var group = TabGroupsManager.groupMenu.popupGroup;
   if (group)
@@ -129,7 +129,7 @@ TabGroupsManager.openMenu.renameGroupByMenuitem = function (event)
   event.stopPropagation();
 };
 
-TabGroupsManager.openMenu.menuitemDelete = function (event)
+TabGroupsManager.openMenu.menuitemDelete = function(event)
 {
   var menuitem = document.popupNode;
   if (menuitem.groupNameIndex != undefined)
@@ -146,7 +146,7 @@ TabGroupsManager.openMenu.menuitemDelete = function (event)
   event.stopPropagation();
 };
 
-TabGroupsManager.openMenu.toRegisteredGroupName = function (event)
+TabGroupsManager.openMenu.toRegisteredGroupName = function(event)
 {
   var menuitem = document.popupNode;
   var name = TabGroupsManagerJsm.globalPreferences.groupNameHistory[menuitem.groupNameIndex];
@@ -155,7 +155,7 @@ TabGroupsManager.openMenu.toRegisteredGroupName = function (event)
   event.stopPropagation();
 };
 
-TabGroupsManager.openMenu.registerGroupName = function (event)
+TabGroupsManager.openMenu.registerGroupName = function(event)
 {
   var name = window.prompt(TabGroupsManager.strings.getString("RenameDialogMessage"), "");
   if (name)
@@ -165,7 +165,7 @@ TabGroupsManager.openMenu.registerGroupName = function (event)
   event.stopPropagation();
 };
 
-TabGroupsManager.openMenu.clearGroupNameHistory = function (event)
+TabGroupsManager.openMenu.clearGroupNameHistory = function(event)
 {
   TabGroupsManagerJsm.globalPreferences.clearGroupNameHistory();
   event.stopPropagation();

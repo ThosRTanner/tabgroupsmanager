@@ -3,7 +3,7 @@
 
 /* globals TabGroupsManager, TabGroupsManagerJsm */
 
-TabGroupsManager.TabTree = function (aOwner)
+TabGroupsManager.TabTree = function(aOwner)
 {
   try
   {
@@ -21,18 +21,18 @@ TabGroupsManager.TabTree = function (aOwner)
   }
 };
 
-TabGroupsManager.TabTree.prototype.getOuterBackgroundColor = function ()
+TabGroupsManager.TabTree.prototype.getOuterBackgroundColor = function()
 {
   return this.owner.style.backgroundColor;
 };
 
-TabGroupsManager.TabTree.prototype.setOuterBackgroundColor = function (value)
+TabGroupsManager.TabTree.prototype.setOuterBackgroundColor = function(value)
 {
   this.owner.style.backgroundImage = "none";
   this.owner.style.backgroundColor = value;
 };
 
-TabGroupsManager.TabTree.prototype.getInnerBackgroundColor = function ()
+TabGroupsManager.TabTree.prototype.getInnerBackgroundColor = function()
 {
   var tmp = document.getAnonymousElementByAttribute(this.owner, "class", "tab-text");
   if (!tmp)
@@ -42,7 +42,7 @@ TabGroupsManager.TabTree.prototype.getInnerBackgroundColor = function ()
   return tmp.style.backgroundColor;
 };
 
-TabGroupsManager.TabTree.prototype.setInnerBackgroundColor = function (value)
+TabGroupsManager.TabTree.prototype.setInnerBackgroundColor = function(value)
 {
   var tmp = document.getAnonymousElementByAttribute(this.owner, "class", "tab-text");
   if (!tmp)
@@ -52,7 +52,7 @@ TabGroupsManager.TabTree.prototype.setInnerBackgroundColor = function (value)
   tmp.style.backgroundColor = value;
 };
 
-TabGroupsManager.TabTree.prototype.addTabToTree = function (tab, insertIndex)
+TabGroupsManager.TabTree.prototype.addTabToTree = function(tab, insertIndex)
 {
   if (!this.childTabs)
   {
@@ -93,7 +93,7 @@ TabGroupsManager.TabTree.prototype.addTabToTree = function (tab, insertIndex)
   }
 };
 
-TabGroupsManager.TabTree.prototype.searchLastTabInTabToTree = function (tab)
+TabGroupsManager.TabTree.prototype.searchLastTabInTabToTree = function(tab)
 {
   var tabTree = tab.tabGroupsManagerTabTree;
   if (tabTree && tabTree.childTabs)
@@ -106,7 +106,7 @@ TabGroupsManager.TabTree.prototype.searchLastTabInTabToTree = function (tab)
   }
 };
 
-TabGroupsManager.TabTree.prototype.removeTabFromTree = function (tabClose)
+TabGroupsManager.TabTree.prototype.removeTabFromTree = function(tabClose)
 {
   try
   {
@@ -185,7 +185,7 @@ TabGroupsManager.TabTree.prototype.removeTabFromTree = function (tabClose)
   }
 };
 
-TabGroupsManager.TabTree.prototype.parentTabIsRemoved = function ()
+TabGroupsManager.TabTree.prototype.parentTabIsRemoved = function()
 {
   if (TabGroupsManager.preferences.tabTreeDisplayParentAndChild)
   {

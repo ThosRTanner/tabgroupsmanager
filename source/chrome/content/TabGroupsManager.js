@@ -21,7 +21,7 @@ var TabGroupsManager = {
   //setup E10s message processing
   MESSAGES: ['sendToTGMChrome'],
 
-  receiveMessage: function (msg)
+  receiveMessage: function(msg)
   {
     if (msg.name != 'sendToTGMChrome') return;
 
@@ -34,7 +34,7 @@ var TabGroupsManager = {
   }
 };
 //setup E10s message manager and framescript
-TabGroupsManager.addFrameScript = function ()
+TabGroupsManager.addFrameScript = function()
 {
   let mm = null;
 
@@ -52,7 +52,7 @@ TabGroupsManager.addFrameScript = function ()
   }
 };
 
-TabGroupsManager.onLoad = function (event)
+TabGroupsManager.onLoad = function(event)
 {
   window.removeEventListener("load", arguments.callee, false);
   if (document.getElementById("TabGroupsManagerToolbar"))
@@ -62,13 +62,13 @@ TabGroupsManager.onLoad = function (event)
   }
 };
 
-TabGroupsManager.onUnload = function (event)
+TabGroupsManager.onUnload = function(event)
 {
   window.removeEventListener("unload", arguments.callee, false);
   TabGroupsManager.finalize();
 };
 
-TabGroupsManager.initialize = function (event)
+TabGroupsManager.initialize = function(event)
 {
   try
   {
@@ -147,7 +147,7 @@ TabGroupsManager.initialize = function (event)
   }
 };
 
-TabGroupsManager.initializeAfterOnLoad = function ()
+TabGroupsManager.initializeAfterOnLoad = function()
 {
   //This check is because we call this from startup of in 'blank page' mode, and
   //from restore tab function otherwise. this seems ropy. Which makes the whole thing
@@ -170,28 +170,6 @@ TabGroupsManager.initializeAfterOnLoad = function ()
   //so we have to have a preference for it :-(
   //FIXME Irrelevant. remove the whole thing.
 
-  //2 5 1 4 6.
-  //select gives 1
-  //
-  //This is a right mess. The restore groups happens in the background and it's
-  //possible we could start restoring the session before these bits have finished
-  if (TabGroupsManager.session.sessionRestoreManually ||
-    (!tabmixSessionsManager /*&& !use_session_manager*/ ))
-  {
-    ss.SessionStore.promiseInitialized.then(function ()
-    {
-      try
-      {
-        /**/console.log("kick1")
-        //_this.session.restoreGroupsAndSleepingGroupsAndClosedGroups();
-      }
-      catch (err)
-      {
-        /**/console.log("bad things happened", err);
-      }
-    });
-  }
-
   /**/console.log("kick2");
   try
   {
@@ -211,19 +189,6 @@ TabGroupsManager.initializeAfterOnLoad = function ()
   catch (e)
   {}
   this.tabContextMenu.makeMenu();
-  ss.SessionStore.promiseInitialized.then(function ()
-  {
-    try
-    {
-      /**/console.log("kick4");
-      //Can't do this here apparently?
-      //_this.groupBarDispHide.firstStatusOfGroupBarDispHide();
-    }
-    catch (err)
-    {
-      /**/console.log("bad things happened", err);
-    }
-  });
   /**/console.log("kick5");
   setTimeout(function ()
   {
@@ -231,11 +196,11 @@ TabGroupsManager.initializeAfterOnLoad = function ()
   }, 1000);
 };
 
-TabGroupsManager.onLoadDelay1000 = function ()
+TabGroupsManager.onLoadDelay1000 = function()
 {
   try
   {
-    /**/console.log("kick6")
+/**/console.log("kick6")
     //this can take effect *after* the first session has been restored when you select
     //restore from specific session without prompting...
     TabGroupsManager.overrideMethod.delayOverride();
@@ -244,21 +209,19 @@ TabGroupsManager.onLoadDelay1000 = function ()
     {
       window.openDialog("chrome://tabgroupsmanager/content/versionAlertTMP.xul", "TabGroupsManagerVersionAlertTMP", "chrome,modal,dialog,centerscreen,resizable", TabGroupsManager.callbackOpenUriInSelectedTab);
     }
-    //if you are manually restoring, this important bit doesn't happen.
-    //TabGroupsManager.allGroups.scrollInActiveGroup();
   }
   catch (err)
   {
-    /**/console.log("bad things happened", err);
+/**/console.log("bad things happened", err)
   }
 };
 
-TabGroupsManager.callbackOpenUriInSelectedTab = function (uri)
+TabGroupsManager.callbackOpenUriInSelectedTab = function(uri)
 {
   gBrowser.selectedTab = TabGroupsManager.overrideMethod.gBrowserAddTab(uri);
 };
 
-TabGroupsManager.finalize = function ()
+TabGroupsManager.finalize = function()
 {
   this.apiEnabled = false;
   TabGroupsManagerJsm.applicationStatus.removeWindow(window);
@@ -278,7 +241,7 @@ TabGroupsManager.finalize = function ()
   TabGroupsManagerJsm.applicationStatus.dateBackup = new Date;
 };
 
-TabGroupsManager.afterQuitApplicationRequested = function ()
+TabGroupsManager.afterQuitApplicationRequested = function()
 {
   this.allGroups.readDummyBlankPage();
   if (TabGroupsManagerJsm.globalPreferences.suspendWhenFirefoxClose)

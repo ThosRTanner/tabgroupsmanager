@@ -3,12 +3,12 @@
 
 /* globals TabGroupsManager, TabGroupsManagerJsm */
 
-TabGroupsManager.ToolMenu = function ()
+TabGroupsManager.ToolMenu = function()
 {
   document.getElementById("menu_ToolsPopup").addEventListener("popupshowing", this, false);
 };
 
-TabGroupsManager.ToolMenu.prototype.handleEvent = function (event)
+TabGroupsManager.ToolMenu.prototype.handleEvent = function(event)
 {
   switch (event.type)
   {

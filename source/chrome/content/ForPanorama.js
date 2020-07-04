@@ -3,13 +3,13 @@
 
 /* globals TabGroupsManager, TabGroupsManagerJsm */
 
-TabGroupsManager.ForPanorama = function ()
+TabGroupsManager.ForPanorama = function()
 {
   window.addEventListener("tabviewframeinitialized", this, false);
   window.addEventListener("tabviewhidden", this, false);
 };
 
-TabGroupsManager.ForPanorama.prototype.handleEvent = function (event)
+TabGroupsManager.ForPanorama.prototype.handleEvent = function(event)
 {
   switch (event.type)
   {
@@ -22,13 +22,13 @@ TabGroupsManager.ForPanorama.prototype.handleEvent = function (event)
   }
 };
 
-TabGroupsManager.ForPanorama.prototype.onTabViewFrameInitialized = function (event)
+TabGroupsManager.ForPanorama.prototype.onTabViewFrameInitialized = function(event)
 {
   TabView._window = TabView._window || TabView._iframe.contentWindow;
   TabGroupsManager.overrideMethod.overrideTabViewFunctions();
 };
 
-TabGroupsManager.ForPanorama.prototype.onTabViewShow = function ()
+TabGroupsManager.ForPanorama.prototype.onTabViewShow = function()
 {
   try
   {
@@ -86,7 +86,7 @@ TabGroupsManager.ForPanorama.prototype.onTabViewShow = function ()
   }
 };
 
-TabGroupsManager.ForPanorama.prototype.onTabViewHidden = function (event)
+TabGroupsManager.ForPanorama.prototype.onTabViewHidden = function(event)
 {
   try
   {
@@ -163,7 +163,7 @@ TabGroupsManager.ForPanorama.prototype.onTabViewHidden = function (event)
   }
 };
 
-TabGroupsManager.ForPanorama.prototype.moveTabToPanoramaGroup = function (tab, panoramaGroupItem)
+TabGroupsManager.ForPanorama.prototype.moveTabToPanoramaGroup = function(tab, panoramaGroupItem)
 {
   let tabItem = tab._tabViewTabItem;
   if (tabItem.parent)
@@ -180,7 +180,7 @@ TabGroupsManager.ForPanorama.prototype.moveTabToPanoramaGroup = function (tab, p
   });
 };
 
-TabGroupsManager.ForPanorama.prototype.moveTabToGroup = function (tab, group)
+TabGroupsManager.ForPanorama.prototype.moveTabToGroup = function(tab, group)
 {
   tab.group.removeTab(tab, undefined, true);
   group.addTab(tab);

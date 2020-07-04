@@ -3,26 +3,26 @@
 
 /* globals TabGroupsManager, TabGroupsManagerJsm */
 
-TabGroupsManager.AllGroups = function ()
+TabGroupsManager.AllGroups = function()
 {
   try
   {
     this.updating = false;
     this.saveAllGroupsDataTimer = null;
     this.saveAllGroupsDataTimeout = 100;
-    this.__defineGetter__("groupbar", function ()
+    this.__defineGetter__("groupbar", function()
     {
       return document.getElementById("TabGroupsManagerGroupbar");
     });
-    this.__defineGetter__("childNodes", function ()
+    this.__defineGetter__("childNodes", function()
     {
       return this.groupbar.childNodes;
     });
-    this.__defineGetter__("firstChild", function ()
+    this.__defineGetter__("firstChild", function()
     {
       return this.groupbar.firstChild;
     });
-    this.__defineGetter__("lastChild", function ()
+    this.__defineGetter__("lastChild", function()
     {
       return this.groupbar.lastChild;
     });
@@ -35,17 +35,17 @@ TabGroupsManager.AllGroups = function ()
   }
 };
 
-TabGroupsManager.AllGroups.prototype.getSelectedGroup = function ()
+TabGroupsManager.AllGroups.prototype.getSelectedGroup = function()
 {
   return this.groupbar.selectedItem.group;
 };
 
-TabGroupsManager.AllGroups.prototype.setSelectedGroup = function (value)
+TabGroupsManager.AllGroups.prototype.setSelectedGroup = function(value)
 {
   this.groupbar.selectedItem = value.groupTab;
 };
 
-TabGroupsManager.AllGroups.prototype.selectNextGroup = function ()
+TabGroupsManager.AllGroups.prototype.selectNextGroup = function()
 {
   var selectedIndex = this.groupbar.selectedIndex;
   for (var i = selectedIndex + 1; i < this.childNodes.length; i++)
@@ -73,22 +73,22 @@ TabGroupsManager.AllGroups.prototype.selectNextGroup = function ()
   return null;
 };
 
-TabGroupsManager.AllGroups.prototype.selectLeftGroup = function ()
+TabGroupsManager.AllGroups.prototype.selectLeftGroup = function()
 {
   this.groupbar.advanceSelectedTab(-1, true);
 };
 
-TabGroupsManager.AllGroups.prototype.selectRightGroup = function ()
+TabGroupsManager.AllGroups.prototype.selectRightGroup = function()
 {
   this.groupbar.advanceSelectedTab(1, true);
 };
 
-TabGroupsManager.AllGroups.prototype.selectLastGroup = function ()
+TabGroupsManager.AllGroups.prototype.selectLastGroup = function()
 {
   this.childNodes[this.childNodes.length - 1].group.setSelected();
 };
 
-TabGroupsManager.AllGroups.prototype.selectNthGroup = function (n)
+TabGroupsManager.AllGroups.prototype.selectNthGroup = function(n)
 {
   if (this.childNodes.length > n)
   {
@@ -96,13 +96,13 @@ TabGroupsManager.AllGroups.prototype.selectNthGroup = function (n)
   }
 };
 
-TabGroupsManager.AllGroups.prototype.getGroupById = function (id)
+TabGroupsManager.AllGroups.prototype.getGroupById = function(id)
 {
   var groupTab = document.getElementById("_group" + id);
   return groupTab ? groupTab.group : null;
 };
 
-TabGroupsManager.AllGroups.prototype.openNewGroup = function (tab, id, name, image, forTabMixPlus)
+TabGroupsManager.AllGroups.prototype.openNewGroup = function(tab, id, name, image, forTabMixPlus)
 {
   var group = this.openNewGroupCore(id, name, image);
   if (!tab)
@@ -120,14 +120,14 @@ TabGroupsManager.AllGroups.prototype.openNewGroup = function (tab, id, name, ima
   return group;
 };
 
-TabGroupsManager.AllGroups.prototype.openNewGroupActive = function (tab, id, name, image)
+TabGroupsManager.AllGroups.prototype.openNewGroupActive = function(tab, id, name, image)
 {
   var group = this.openNewGroup(tab, id, name, image);
   this.selectedGroup = group;
   return group;
 };
 
-TabGroupsManager.AllGroups.prototype.openNewGroupRename = function (tab, id, name, image)
+TabGroupsManager.AllGroups.prototype.openNewGroupRename = function(tab, id, name, image)
 {
   name = window.prompt(TabGroupsManager.strings.getString("RenameDialogMessage"), "");
   if (name !== null)
@@ -140,7 +140,7 @@ TabGroupsManager.AllGroups.prototype.openNewGroupRename = function (tab, id, nam
   return null;
 };
 
-TabGroupsManager.AllGroups.prototype.openNewGroupRenameActive = function (tab, id, name, image)
+TabGroupsManager.AllGroups.prototype.openNewGroupRenameActive = function(tab, id, name, image)
 {
   var group = this.openNewGroupRename(tab, id, name, image);
   if (group)
@@ -150,7 +150,7 @@ TabGroupsManager.AllGroups.prototype.openNewGroupRenameActive = function (tab, i
   return group;
 };
 
-TabGroupsManager.AllGroups.prototype.openNewGroupHome = function (tab, id, name, image)
+TabGroupsManager.AllGroups.prototype.openNewGroupHome = function(tab, id, name, image)
 {
   if (name == null)
   {
@@ -163,14 +163,14 @@ TabGroupsManager.AllGroups.prototype.openNewGroupHome = function (tab, id, name,
   return group;
 };
 
-TabGroupsManager.AllGroups.prototype.openNewGroupHomeActive = function (tab, id, name, image)
+TabGroupsManager.AllGroups.prototype.openNewGroupHomeActive = function(tab, id, name, image)
 {
   var group = this.openNewGroupHome(tab, id, name, image);
   this.selectedGroup = group;
   return group;
 };
 
-TabGroupsManager.AllGroups.prototype.openNewGroupCore = function (id, name, image)
+TabGroupsManager.AllGroups.prototype.openNewGroupCore = function(id, name, image)
 {
   var group = new TabGroupsManager.GroupClass(id, name, image);
   if (!this.groupbar.selectedItem)
@@ -181,22 +181,22 @@ TabGroupsManager.AllGroups.prototype.openNewGroupCore = function (id, name, imag
   return group;
 };
 
-TabGroupsManager.AllGroups.prototype.sleepActiveGroup = function ()
+TabGroupsManager.AllGroups.prototype.sleepActiveGroup = function()
 {
   this.selectedGroup.sleepGroup();
 };
 
-TabGroupsManager.AllGroups.prototype.closeActiveGroup = function ()
+TabGroupsManager.AllGroups.prototype.closeActiveGroup = function()
 {
   this.selectedGroup.closeAllTabsAndGroup();
 };
 
-TabGroupsManager.AllGroups.prototype.suspendActiveGroup = function ()
+TabGroupsManager.AllGroups.prototype.suspendActiveGroup = function()
 {
   this.selectedGroup.suspendGroup();
 };
 
-TabGroupsManager.AllGroups.prototype.saveAllGroupsDataTimerChancel = function ()
+TabGroupsManager.AllGroups.prototype.saveAllGroupsDataTimerChancel = function()
 {
   if (this.saveAllGroupsDataTimer != null)
   {
@@ -205,7 +205,7 @@ TabGroupsManager.AllGroups.prototype.saveAllGroupsDataTimerChancel = function ()
   }
 };
 
-TabGroupsManager.AllGroups.prototype.saveAllGroupsData = function ()
+TabGroupsManager.AllGroups.prototype.saveAllGroupsData = function()
 {
   this.saveAllGroupsDataTimerChancel();
   if (TabGroupsManager.session.groupRestored < 2 || this.updating == true)
@@ -219,7 +219,7 @@ TabGroupsManager.AllGroups.prototype.saveAllGroupsData = function ()
   }, this.saveAllGroupsDataTimeout, this);
 };
 
-TabGroupsManager.AllGroups.prototype.saveAllGroupsDataImmediately = function (_this)
+TabGroupsManager.AllGroups.prototype.saveAllGroupsDataImmediately = function(_this)
 {
   /*SSTabRestoring fires on every tab restoring -> so let us save data only if groups are in status restored         */
   /*in other case we will fetch data from the groups but the restore is still in progress and datas are not complete */
@@ -253,7 +253,7 @@ TabGroupsManager.AllGroups.prototype.saveAllGroupsDataImmediately = function (_t
   }
 };
 
-TabGroupsManager.AllGroups.prototype.beginUpdate = function ()
+TabGroupsManager.AllGroups.prototype.beginUpdate = function()
 {
   this.updating = true;
   setTimeout(function (_this)
@@ -262,13 +262,13 @@ TabGroupsManager.AllGroups.prototype.beginUpdate = function ()
   }, 0, this);
 };
 
-TabGroupsManager.AllGroups.prototype.endUpdate = function ()
+TabGroupsManager.AllGroups.prototype.endUpdate = function()
 {
   this.updating = false;
   this.saveAllGroupsData();
 };
 
-TabGroupsManager.AllGroups.prototype.endUpdateByTimer = function ()
+TabGroupsManager.AllGroups.prototype.endUpdateByTimer = function()
 {
   if (this.updating)
   {
@@ -276,7 +276,7 @@ TabGroupsManager.AllGroups.prototype.endUpdateByTimer = function ()
   }
 };
 
-TabGroupsManager.AllGroups.prototype.loadAllGroupsData = function ()
+TabGroupsManager.AllGroups.prototype.loadAllGroupsData = function()
 {
   TabGroupsManager.session.groupRestored = 1;
   try
@@ -331,7 +331,7 @@ console.log(jsonText);
   }
 };
 
-TabGroupsManager.AllGroups.prototype.dispHideAllGroupIcon = function ()
+TabGroupsManager.AllGroups.prototype.dispHideAllGroupIcon = function()
 {
   var value = TabGroupsManager.preferences.dispGroupTabIcon;
   for (var i = 0; i < this.childNodes.length; i++)
@@ -340,7 +340,7 @@ TabGroupsManager.AllGroups.prototype.dispHideAllGroupIcon = function ()
   }
 };
 
-TabGroupsManager.AllGroups.prototype.dispHideAllGroupTabCount = function ()
+TabGroupsManager.AllGroups.prototype.dispHideAllGroupTabCount = function()
 {
   var value = TabGroupsManager.preferences.dispGroupTabCount;
   for (var i = 0; i < this.childNodes.length; i++)
@@ -349,7 +349,7 @@ TabGroupsManager.AllGroups.prototype.dispHideAllGroupTabCount = function ()
   }
 };
 
-TabGroupsManager.AllGroups.prototype.dispAllGroupLabel = function ()
+TabGroupsManager.AllGroups.prototype.dispAllGroupLabel = function()
 {
   for (var i = 0; i < this.childNodes.length; i++)
   {
@@ -357,7 +357,7 @@ TabGroupsManager.AllGroups.prototype.dispAllGroupLabel = function ()
   }
 };
 
-TabGroupsManager.AllGroups.prototype.mouseCommand = function (no)
+TabGroupsManager.AllGroups.prototype.mouseCommand = function(no)
 {
   switch (no & 255)
   {
@@ -397,7 +397,7 @@ TabGroupsManager.AllGroups.prototype.mouseCommand = function (no)
   }
 };
 
-TabGroupsManager.AllGroups.prototype.setMinWidthAllGroup = function ()
+TabGroupsManager.AllGroups.prototype.setMinWidthAllGroup = function()
 {
   for (var i = 0; i < this.childNodes.length; i++)
   {
@@ -405,7 +405,7 @@ TabGroupsManager.AllGroups.prototype.setMinWidthAllGroup = function ()
   }
 };
 
-TabGroupsManager.AllGroups.prototype.setMaxWidthAllGroup = function ()
+TabGroupsManager.AllGroups.prototype.setMaxWidthAllGroup = function()
 {
   for (var i = 0; i < this.childNodes.length; i++)
   {
@@ -413,7 +413,7 @@ TabGroupsManager.AllGroups.prototype.setMaxWidthAllGroup = function ()
   }
 };
 
-TabGroupsManager.AllGroups.prototype.setReduceAllGroup = function ()
+TabGroupsManager.AllGroups.prototype.setReduceAllGroup = function()
 {
   for (var i = 0; i < this.childNodes.length; i++)
   {
@@ -424,7 +424,7 @@ TabGroupsManager.AllGroups.prototype.setReduceAllGroup = function ()
   }
 };
 
-TabGroupsManager.AllGroups.prototype.setCropAllGroup = function ()
+TabGroupsManager.AllGroups.prototype.setCropAllGroup = function()
 {
   const GroupTabCropString = ["none", "start", "end", "center"];
   var value = GroupTabCropString[TabGroupsManager.preferences.groupTabCrop];
@@ -434,7 +434,7 @@ TabGroupsManager.AllGroups.prototype.setCropAllGroup = function ()
   }
 };
 
-TabGroupsManager.AllGroups.prototype.scrollInActiveGroup = function (smooth)
+TabGroupsManager.AllGroups.prototype.scrollInActiveGroup = function(smooth)
 {
   var scrollbox = document.getElementById("TabGroupsManagerGroupBarScrollbox");
   if (smooth || !scrollbox.smoothScroll)
@@ -449,7 +449,7 @@ TabGroupsManager.AllGroups.prototype.scrollInActiveGroup = function (smooth)
   }
 };
 
-TabGroupsManager.AllGroups.prototype.changeGroupOrderInsertBefore = function (srcGroup, dstIndex, isCopy)
+TabGroupsManager.AllGroups.prototype.changeGroupOrderInsertBefore = function(srcGroup, dstIndex, isCopy)
 {
   if (isCopy)
   {
@@ -471,7 +471,7 @@ TabGroupsManager.AllGroups.prototype.changeGroupOrderInsertBefore = function (sr
   return this.changeGroupOrder(srcGroup, dstIndex);
 };
 
-TabGroupsManager.AllGroups.prototype.changeGroupOrder = function (srcGroup, dstIndex)
+TabGroupsManager.AllGroups.prototype.changeGroupOrder = function(srcGroup, dstIndex)
 {
   var srcIndex = srcGroup.groupTab.parentNode.getIndexOfItem(srcGroup.groupTab);
   if (srcIndex == dstIndex)
@@ -503,7 +503,7 @@ TabGroupsManager.AllGroups.prototype.changeGroupOrder = function (srcGroup, dstI
   return true;
 };
 
-TabGroupsManager.AllGroups.prototype.bookmarkAllGroups = function ()
+TabGroupsManager.AllGroups.prototype.bookmarkAllGroups = function()
 {
   var folderName = window.prompt(TabGroupsManager.strings.getString("EnterBookmarkFolderName"), "");
   if (folderName)
@@ -512,7 +512,7 @@ TabGroupsManager.AllGroups.prototype.bookmarkAllGroups = function ()
   }
 };
 
-TabGroupsManager.AllGroups.prototype.bookmarkAllGroupsCore = function (folderName, parentFolder)
+TabGroupsManager.AllGroups.prototype.bookmarkAllGroupsCore = function(folderName, parentFolder)
 {
   var places = Cc["@mozilla.org/browser/nav-bookmarks-service;1"].getService(Ci.nsINavBookmarksService);
   if (!parentFolder)
@@ -528,7 +528,7 @@ TabGroupsManager.AllGroups.prototype.bookmarkAllGroupsCore = function (folderNam
   TabGroupsManager.sleepingGroups.bookmarkAllStoredGroup(sleepingFolderId);
 };
 
-TabGroupsManager.AllGroups.prototype.listMoveGroup = function ()
+TabGroupsManager.AllGroups.prototype.listMoveGroup = function()
 {
   var groupArray = new Array();
   for (var i = 0; i < this.childNodes.length; i++)
@@ -542,7 +542,7 @@ TabGroupsManager.AllGroups.prototype.listMoveGroup = function ()
   return groupArray;
 };
 
-TabGroupsManager.AllGroups.prototype.moveAllGroupsToMainWindow = function ()
+TabGroupsManager.AllGroups.prototype.moveAllGroupsToMainWindow = function()
 {
   var groupArray = this.listMoveGroup();
   var targetWindow = TabGroupsManagerJsm.applicationStatus.searchMainWindow(window);
@@ -552,7 +552,7 @@ TabGroupsManager.AllGroups.prototype.moveAllGroupsToMainWindow = function ()
   }
 };
 
-TabGroupsManager.AllGroups.prototype.moveGroupToSameWindow = function (groupTab, event, isCopy)
+TabGroupsManager.AllGroups.prototype.moveGroupToSameWindow = function(groupTab, event, isCopy)
 {
   if (groupTab == event.target && !isCopy)
   {
@@ -563,7 +563,7 @@ TabGroupsManager.AllGroups.prototype.moveGroupToSameWindow = function (groupTab,
   return TabGroupsManager.allGroups.changeGroupOrderInsertBefore(groupTab.group, dropGroupIndex, isCopy);
 };
 
-TabGroupsManager.AllGroups.prototype.makeNewTabAndSwapWithOtherWindow = function (newGroup, fromTab)
+TabGroupsManager.AllGroups.prototype.makeNewTabAndSwapWithOtherWindow = function(newGroup, fromTab)
 {
   var newTab = TabGroupsManager.overrideMethod.gBrowserAddTab("about:blank");
   newTab.linkedBrowser.stop();
@@ -572,7 +572,7 @@ TabGroupsManager.AllGroups.prototype.makeNewTabAndSwapWithOtherWindow = function
   return newTab;
 };
 
-TabGroupsManager.AllGroups.prototype.moveGroupToOtherWindow = function (fromGroupTab, event, isCopy)
+TabGroupsManager.AllGroups.prototype.moveGroupToOtherWindow = function(fromGroupTab, event, isCopy)
 {
   var fromGroup = fromGroupTab.group;
   var fromWindow = fromGroupTab.ownerDocument.defaultView;
@@ -628,7 +628,7 @@ TabGroupsManager.AllGroups.prototype.moveGroupToOtherWindow = function (fromGrou
   return newGroup;
 };
 
-TabGroupsManager.AllGroups.prototype.dropPositionX = function (sourceTab, targetTab, clientX)
+TabGroupsManager.AllGroups.prototype.dropPositionX = function(sourceTab, targetTab, clientX)
 {
   var left = targetTab.getBoundingClientRect().left;
   var right = targetTab.getBoundingClientRect().right;
@@ -646,7 +646,7 @@ TabGroupsManager.AllGroups.prototype.dropPositionX = function (sourceTab, target
   return (clientX < ((left + right) / 2)) ? left : right;
 };
 
-TabGroupsManager.AllGroups.prototype.dropPositionIsRight = function (sourceTab, targetTab, clientX, isCopy)
+TabGroupsManager.AllGroups.prototype.dropPositionIsRight = function(sourceTab, targetTab, clientX, isCopy)
 {
   var left = targetTab.getBoundingClientRect().left;
   var right = targetTab.getBoundingClientRect().right;
@@ -664,12 +664,12 @@ TabGroupsManager.AllGroups.prototype.dropPositionIsRight = function (sourceTab, 
   return (clientX < ((left + right) / 2)) ? 0 : 1;
 };
 
-TabGroupsManager.AllGroups.prototype.checkCurrentTabInTabsOfMTH = function (tabs)
+TabGroupsManager.AllGroups.prototype.checkCurrentTabInTabsOfMTH = function(tabs)
 {
   return (-1 != tabs.indexOf(gBrowser.selectedTab));
 };
 
-TabGroupsManager.AllGroups.prototype.searchCurrentTabWithoutTabsOfMTH = function ()
+TabGroupsManager.AllGroups.prototype.searchCurrentTabWithoutTabsOfMTH = function()
 {
   var group = gBrowser.selectedTab.group;
   var candidateTab = null;
@@ -704,7 +704,7 @@ TabGroupsManager.AllGroups.prototype.searchCurrentTabWithoutTabsOfMTH = function
   return candidateTab;
 };
 
-TabGroupsManager.AllGroups.prototype.moveCurrentTabWithoutTabsOfMTH = function (tabs)
+TabGroupsManager.AllGroups.prototype.moveCurrentTabWithoutTabsOfMTH = function(tabs)
 {
   if (!this.checkCurrentTabInTabsOfMTH(tabs))
   {
@@ -725,7 +725,7 @@ TabGroupsManager.AllGroups.prototype.moveCurrentTabWithoutTabsOfMTH = function (
   }
 };
 
-TabGroupsManager.AllGroups.prototype.moveTabToGroupInSameWindow = function (tab, group, isCopy)
+TabGroupsManager.AllGroups.prototype.moveTabToGroupInSameWindow = function(tab, group, isCopy)
 {
   if (group)
   {
@@ -747,7 +747,7 @@ TabGroupsManager.AllGroups.prototype.moveTabToGroupInSameWindow = function (tab,
   }
 };
 
-TabGroupsManager.AllGroups.prototype.moveTabToGroupInOtherWindow = function (fromTab, newGroup, isCopy)
+TabGroupsManager.AllGroups.prototype.moveTabToGroupInOtherWindow = function(fromTab, newGroup, isCopy)
 {
   var fromWindow = fromTab.ownerDocument.defaultView;
   newGroup = newGroup || TabGroupsManager.allGroups.openNewGroupCore();
@@ -764,7 +764,7 @@ TabGroupsManager.AllGroups.prototype.moveTabToGroupInOtherWindow = function (fro
   }
 };
 
-TabGroupsManager.AllGroups.prototype.checkMultipleTabHandler = function (fromTab, fromWindow)
+TabGroupsManager.AllGroups.prototype.checkMultipleTabHandler = function(fromTab, fromWindow)
 {
   if ("MultipleTabService" in fromWindow)
   {
@@ -779,7 +779,7 @@ TabGroupsManager.AllGroups.prototype.checkMultipleTabHandler = function (fromTab
   return [fromTab];
 };
 
-TabGroupsManager.AllGroups.prototype.countNonSuspendedGroups = function ()
+TabGroupsManager.AllGroups.prototype.countNonSuspendedGroups = function()
 {
   var count = 0;
   for (var i = 0; i < this.childNodes.length; i++)
@@ -792,7 +792,7 @@ TabGroupsManager.AllGroups.prototype.countNonSuspendedGroups = function ()
   return count;
 };
 
-TabGroupsManager.AllGroups.prototype.makeNonSuspendedGroupsList = function ()
+TabGroupsManager.AllGroups.prototype.makeNonSuspendedGroupsList = function()
 {
   let list = new Array();
   for (let i = 0; i < this.childNodes.length; i++)
@@ -805,7 +805,7 @@ TabGroupsManager.AllGroups.prototype.makeNonSuspendedGroupsList = function ()
   return list;
 };
 
-TabGroupsManager.AllGroups.prototype.suspendAllNonSelectedGroups = function ()
+TabGroupsManager.AllGroups.prototype.suspendAllNonSelectedGroups = function()
 {
   let data = {
     object: this,
@@ -820,7 +820,7 @@ TabGroupsManager.AllGroups.prototype.suspendAllNonSelectedGroups = function ()
   this.saveAllGroupsDataImmediately();
 };
 
-TabGroupsManager.AllGroups.prototype.suspendAllNonSelectedGroupsProgressFunction = function (progressWindow, progressClass)
+TabGroupsManager.AllGroups.prototype.suspendAllNonSelectedGroupsProgressFunction = function(progressWindow, progressClass)
 {
   try
   {
@@ -832,7 +832,7 @@ TabGroupsManager.AllGroups.prototype.suspendAllNonSelectedGroupsProgressFunction
   }
 };
 
-TabGroupsManager.AllGroups.prototype.suspendAllNonSelectedGroupsProgressFunctionLoop = function (index, progressWindow, progressClass)
+TabGroupsManager.AllGroups.prototype.suspendAllNonSelectedGroupsProgressFunctionLoop = function(index, progressWindow, progressClass)
 {
   try
   {
@@ -862,7 +862,7 @@ TabGroupsManager.AllGroups.prototype.suspendAllNonSelectedGroupsProgressFunction
   }
 };
 
-TabGroupsManager.AllGroups.prototype.readDummyBlankPage = function ()
+TabGroupsManager.AllGroups.prototype.readDummyBlankPage = function()
 {
   let linkedBrowser = gBrowser.selectedTab.linkedBrowser;
   if (linkedBrowser.currentURI.spec == "about:blank")
@@ -871,7 +871,7 @@ TabGroupsManager.AllGroups.prototype.readDummyBlankPage = function ()
   }
 };
 
-TabGroupsManager.AllGroups.prototype.waitDummyBlankPage = function ()
+TabGroupsManager.AllGroups.prototype.waitDummyBlankPage = function()
 {
   if (gBrowser.selectedTab.linkedBrowser.currentURI.spec != "about:blank")
   {
@@ -886,7 +886,7 @@ TabGroupsManager.AllGroups.prototype.waitDummyBlankPage = function ()
   window.openDialog("chrome://tabgroupsmanager/content/ProgressmeterDialog.xul", "_blank", "chrome,modal,dialog,centerscreen,resizable,close=no,titlebar=no", data);
 };
 
-TabGroupsManager.AllGroups.prototype.dummyBlankPageForTmpProgress = function (progressWindow, progressClass, index)
+TabGroupsManager.AllGroups.prototype.dummyBlankPageForTmpProgress = function(progressWindow, progressClass, index)
 {
   try
   {

@@ -3,11 +3,11 @@
 
 /* globals TabGroupsManager, TabGroupsManagerJsm */
 
-TabGroupsManager.GroupBarDispHide = function ()
+TabGroupsManager.GroupBarDispHide = function()
 {
   try
   {
-    this.__defineGetter__("dispGroupBar", function ()
+    this.__defineGetter__("dispGroupBar", function()
     {
       return this.fDispGroupBar;
     });
@@ -40,52 +40,52 @@ TabGroupsManager.GroupBarDispHide = function ()
   }
 };
 
-TabGroupsManager.GroupBarDispHide.prototype.setContentClickEvent = function ()
+TabGroupsManager.GroupBarDispHide.prototype.setContentClickEvent = function()
 {
   var contentArea = document.getAnonymousElementByAttribute(document.getElementById("content"), "anonid", "panelcontainer");
   contentArea.addEventListener("click", this.contentAreaClick, false);
 };
 
-TabGroupsManager.GroupBarDispHide.prototype.removeContentClickEvent = function ()
+TabGroupsManager.GroupBarDispHide.prototype.removeContentClickEvent = function()
 {
   var contentArea = document.getAnonymousElementByAttribute(document.getElementById("content"), "anonid", "panelcontainer");
   contentArea.removeEventListener("click", this.contentAreaClick, false);
 };
 
-TabGroupsManager.GroupBarDispHide.prototype.setMouseoverEvent = function ()
+TabGroupsManager.GroupBarDispHide.prototype.setMouseoverEvent = function()
 {
   let eventArea = document.getElementById((TabGroupsManager.preferences.groupBarPosition == 2) ? "browser-bottombox" : "navigator-toolbox");
   eventArea.addEventListener("mouseover", this.onMouseoverToolbox, false);
   eventArea.addEventListener("dragenter", this.onMouseoverToolbox, false);
 };
 
-TabGroupsManager.GroupBarDispHide.prototype.removeMouseoverEvent = function ()
+TabGroupsManager.GroupBarDispHide.prototype.removeMouseoverEvent = function()
 {
   let eventArea = document.getElementById((TabGroupsManager.preferences.groupBarPosition == 2) ? "browser-bottombox" : "navigator-toolbox");
   eventArea.removeEventListener("mouseover", this.onMouseoverToolbox, false);
   eventArea.removeEventListener("dragenter", this.onMouseoverToolbox, false);
 };
 
-TabGroupsManager.GroupBarDispHide.prototype.setMouseoutEvent = function ()
+TabGroupsManager.GroupBarDispHide.prototype.setMouseoutEvent = function()
 {
   var contentArea = document.getAnonymousElementByAttribute(document.getElementById("content"), 'anonid', 'panelcontainer');
   contentArea.addEventListener("mouseover", this.onMouseoutToolbox, false);
   contentArea.addEventListener("mouseout", this.onMouseoverToolbox2, false);
 };
 
-TabGroupsManager.GroupBarDispHide.prototype.removeMouseoutEvent = function ()
+TabGroupsManager.GroupBarDispHide.prototype.removeMouseoutEvent = function()
 {
   var contentArea = document.getAnonymousElementByAttribute(document.getElementById("content"), 'anonid', 'panelcontainer');
   contentArea.removeEventListener("mouseover", this.onMouseoutToolbox, false);
   contentArea.removeEventListener("mouseout", this.onMouseoverToolbox2, false);
 };
 
-TabGroupsManager.GroupBarDispHide.prototype.contentAreaClick = function (event)
+TabGroupsManager.GroupBarDispHide.prototype.contentAreaClick = function(event)
 {
   TabGroupsManager.groupBarDispHide.dispGroupBar = false;
 };
 
-TabGroupsManager.GroupBarDispHide.prototype.setDispGroupBar = function (value)
+TabGroupsManager.GroupBarDispHide.prototype.setDispGroupBar = function(value)
 {
   if (!value && document.getElementById("navigator-toolbox").customizing)
   {
@@ -103,13 +103,13 @@ TabGroupsManager.GroupBarDispHide.prototype.setDispGroupBar = function (value)
   }
 };
 
-TabGroupsManager.GroupBarDispHide.prototype.toggleDispGroupBar = function ()
+TabGroupsManager.GroupBarDispHide.prototype.toggleDispGroupBar = function()
 {
   this.dispGroupBar = !this.fDispGroupBar;
   TabGroupsManager.allGroups.groupbar.selectedItem.focus();
 };
 
-TabGroupsManager.GroupBarDispHide.prototype.onMouseoverToolbox = function (event)
+TabGroupsManager.GroupBarDispHide.prototype.onMouseoverToolbox = function(event)
 {
   let tabBarRect = TabGroupsManager.xulElements.tabBar.getBoundingClientRect();
   if (tabBarRect.top <= event.clientY && event.clientY <= tabBarRect.bottom)
@@ -119,7 +119,7 @@ TabGroupsManager.GroupBarDispHide.prototype.onMouseoverToolbox = function (event
   TabGroupsManager.groupBarDispHide.dispGroupBar = true;
 };
 
-TabGroupsManager.GroupBarDispHide.prototype.onMouseoverToolbox2 = function ()
+TabGroupsManager.GroupBarDispHide.prototype.onMouseoverToolbox2 = function()
 {
   if (this.hideBarTimer != null)
   {
@@ -128,7 +128,7 @@ TabGroupsManager.GroupBarDispHide.prototype.onMouseoverToolbox2 = function ()
   }
 };
 
-TabGroupsManager.GroupBarDispHide.prototype.onMouseoutToolbox = function ()
+TabGroupsManager.GroupBarDispHide.prototype.onMouseoutToolbox = function()
 {
   if (this.hideBarTimer != null)
   {
@@ -141,7 +141,7 @@ TabGroupsManager.GroupBarDispHide.prototype.onMouseoutToolbox = function ()
   }, TabGroupsManager.preferences.hideGroupBarByMouseoutTimer);
 };
 
-TabGroupsManager.GroupBarDispHide.prototype.dispGroupBarByGroupCount = function ()
+TabGroupsManager.GroupBarDispHide.prototype.dispGroupBarByGroupCount = function()
 {
   if (TabGroupsManager.allGroups.childNodes.length != 1)
   {
@@ -153,7 +153,7 @@ TabGroupsManager.GroupBarDispHide.prototype.dispGroupBarByGroupCount = function 
   }
 };
 
-TabGroupsManager.GroupBarDispHide.prototype.hideGroupBarByGroupCount = function ()
+TabGroupsManager.GroupBarDispHide.prototype.hideGroupBarByGroupCount = function()
 {
   if (TabGroupsManager.allGroups.childNodes.length == 1)
   {
@@ -168,7 +168,7 @@ TabGroupsManager.GroupBarDispHide.prototype.hideGroupBarByGroupCount = function 
   }
 };
 
-TabGroupsManager.GroupBarDispHide.prototype.dispGroupBarByTabCount = function ()
+TabGroupsManager.GroupBarDispHide.prototype.dispGroupBarByTabCount = function()
 {
   if (TabGroupsManager.allGroups.childNodes.length != 1 || gBrowser.mTabContainer.childNodes.length != 1)
   {
@@ -183,7 +183,7 @@ TabGroupsManager.GroupBarDispHide.prototype.dispGroupBarByTabCount = function ()
   }
 };
 
-TabGroupsManager.GroupBarDispHide.prototype.hideGroupBarByTabCountDelay = function ()
+TabGroupsManager.GroupBarDispHide.prototype.hideGroupBarByTabCountDelay = function()
 {
   setTimeout(function ()
   {
@@ -191,7 +191,7 @@ TabGroupsManager.GroupBarDispHide.prototype.hideGroupBarByTabCountDelay = functi
   }, 0);
 };
 
-TabGroupsManager.GroupBarDispHide.prototype.hideGroupBarByTabCount = function ()
+TabGroupsManager.GroupBarDispHide.prototype.hideGroupBarByTabCount = function()
 {
   if (TabGroupsManager.allGroups.childNodes.length == 1 && gBrowser.mTabContainer.childNodes.length == 1)
   {
@@ -211,7 +211,7 @@ TabGroupsManager.GroupBarDispHide.prototype.hideGroupBarByTabCount = function ()
   }
 };
 
-TabGroupsManager.GroupBarDispHide.prototype.saveGroupBarDispHideToSessionStore = function ()
+TabGroupsManager.GroupBarDispHide.prototype.saveGroupBarDispHideToSessionStore = function()
 {
   try
   {
@@ -221,7 +221,7 @@ TabGroupsManager.GroupBarDispHide.prototype.saveGroupBarDispHideToSessionStore =
   {}
 };
 
-TabGroupsManager.GroupBarDispHide.prototype.firstStatusOfGroupBarDispHide = function ()
+TabGroupsManager.GroupBarDispHide.prototype.firstStatusOfGroupBarDispHide = function()
 {
   let oldStatus = "";
   try

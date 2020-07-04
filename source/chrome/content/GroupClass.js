@@ -3,7 +3,7 @@
 
 /* globals TabGroupsManager, TabGroupsManagerJsm */
 
-TabGroupsManager.GroupClass = function (id, name, image)
+TabGroupsManager.GroupClass = function(id, name, image)
 {
   try
   {
@@ -23,31 +23,31 @@ TabGroupsManager.GroupClass = function (id, name, image)
     this.autoRenameBak = null;
     this.autoRenameIndex = -1;
     this.autoRenameDisableTimer = null;
-    this.__defineGetter__("selected", function ()
+    this.__defineGetter__("selected", function()
     {
       return this.groupTab.selected;
     });
-    this.__defineGetter__("selectedTab", function ()
+    this.__defineGetter__("selectedTab", function()
     {
       return this._selectedTab;
     });
     this.__defineSetter__("selectedTab", this.setSelectedTab);
-    this.__defineGetter__("id", function ()
+    this.__defineGetter__("id", function()
     {
       return this._id;
     });
     this.__defineSetter__("id", this.setID);
-    this.__defineGetter__("name", function ()
+    this.__defineGetter__("name", function()
     {
       return this._name;
     });
     this.__defineSetter__("name", this.setName);
-    this.__defineGetter__("image", function ()
+    this.__defineGetter__("image", function()
     {
       return this._image;
     });
     this.__defineSetter__("image", this.setImage);
-    this.__defineGetter__("disableAutoRename", function ()
+    this.__defineGetter__("disableAutoRename", function()
     {
       return this._disableAutoRename;
     });
@@ -55,26 +55,26 @@ TabGroupsManager.GroupClass = function (id, name, image)
     this.__defineGetter__("firstTab", this.getFirstTabInGroup);
     this.__defineGetter__("lastTab", this.getLastTabInGroup);
     this.__defineGetter__("last2Tab", this.getLast2TabInGroup);
-    this.__defineGetter__("suspended", function ()
+    this.__defineGetter__("suspended", function()
     {
       return this._suspended;
     });
     this.__defineSetter__("suspended", this.setSuspended);
-    this.__defineGetter__("displayTabCount", function ()
+    this.__defineGetter__("displayTabCount", function()
     {
       return this.suspended ? this.suspendArray.length : this.tabArray.length;
     });
-    this.__defineGetter__("busy", function ()
+    this.__defineGetter__("busy", function()
     {
       return this._busy;
     });
     this.__defineSetter__("busy", this.setBusy);
-    this.__defineGetter__("unread", function ()
+    this.__defineGetter__("unread", function()
     {
       return this._unread;
     });
     this.__defineSetter__("unread", this.setUnread);
-    this.__defineGetter__("busyTabCount", function ()
+    this.__defineGetter__("busyTabCount", function()
     {
       return this._busyTabCount;
     });
@@ -91,7 +91,7 @@ TabGroupsManager.GroupClass = function (id, name, image)
   }
 };
 
-TabGroupsManager.GroupClass.prototype.setSelectedTab = function (tab)
+TabGroupsManager.GroupClass.prototype.setSelectedTab = function(tab)
 {
   this._selectedTab = tab;
   if (gBrowser.selectedTab != tab && this.selected)
@@ -100,7 +100,7 @@ TabGroupsManager.GroupClass.prototype.setSelectedTab = function (tab)
   }
 };
 
-TabGroupsManager.GroupClass.prototype.setID = function (value)
+TabGroupsManager.GroupClass.prototype.setID = function(value)
 {
   if (this._id != value)
   {
@@ -109,7 +109,7 @@ TabGroupsManager.GroupClass.prototype.setID = function (value)
   }
 };
 
-TabGroupsManager.GroupClass.prototype.setName = function (name)
+TabGroupsManager.GroupClass.prototype.setName = function(name)
 {
   this.reassignGroupIdFromMinus2();
   this._name = name;
@@ -118,20 +118,20 @@ TabGroupsManager.GroupClass.prototype.setName = function (name)
   TabGroupsManager.allGroups.saveAllGroupsData();
 };
 
-TabGroupsManager.GroupClass.prototype.setImage = function (image)
+TabGroupsManager.GroupClass.prototype.setImage = function(image)
 {
   this._image = image;
   this.groupTab.setAttribute("image", this.image);
   TabGroupsManager.allGroups.saveAllGroupsData();
 };
 
-TabGroupsManager.GroupClass.prototype.setDisableAutoRename = function (value)
+TabGroupsManager.GroupClass.prototype.setDisableAutoRename = function(value)
 {
   this._disableAutoRename = value;
   TabGroupsManager.allGroups.saveAllGroupsData();
 };
 
-TabGroupsManager.GroupClass.prototype.setBusyTabCount = function (value)
+TabGroupsManager.GroupClass.prototype.setBusyTabCount = function(value)
 {
   if (this._busyTabCount != value)
   {
@@ -151,7 +151,7 @@ TabGroupsManager.GroupClass.prototype.setBusyTabCount = function (value)
   }
 };
 
-TabGroupsManager.GroupClass.prototype.setBusy = function (value)
+TabGroupsManager.GroupClass.prototype.setBusy = function(value)
 {
   if (this._busy != value)
   {
@@ -160,7 +160,7 @@ TabGroupsManager.GroupClass.prototype.setBusy = function (value)
   }
 };
 
-TabGroupsManager.GroupClass.prototype.setUnread = function (value)
+TabGroupsManager.GroupClass.prototype.setUnread = function(value)
 {
   if (this._unread != value)
   {
@@ -169,12 +169,12 @@ TabGroupsManager.GroupClass.prototype.setUnread = function (value)
   }
 };
 
-TabGroupsManager.GroupClass.prototype.setSuspended = function (value)
+TabGroupsManager.GroupClass.prototype.setSuspended = function(value)
 {
   return value ? this.suspendGroup() : this.unsuspendGroup();
 };
 
-TabGroupsManager.GroupClass.prototype.setRemoveGroupTabAttribute = function (key, value)
+TabGroupsManager.GroupClass.prototype.setRemoveGroupTabAttribute = function(key, value)
 {
   if (value)
   {
@@ -186,7 +186,7 @@ TabGroupsManager.GroupClass.prototype.setRemoveGroupTabAttribute = function (key
   }
 };
 
-TabGroupsManager.GroupClass.prototype.makeGroupTab = function ()
+TabGroupsManager.GroupClass.prototype.makeGroupTab = function()
 {
   var groupTab = TabGroupsManager.allGroups.groupbar.appendItem();
   groupTab.className = "tabgroupsmanager-grouptab";
@@ -205,7 +205,7 @@ TabGroupsManager.GroupClass.prototype.makeGroupTab = function ()
   return groupTab;
 };
 
-TabGroupsManager.GroupClass.prototype.relateGroupTab = function (groupTab)
+TabGroupsManager.GroupClass.prototype.relateGroupTab = function(groupTab)
 {
   this.groupTab = groupTab;
   groupTab.group = this;
@@ -221,7 +221,7 @@ TabGroupsManager.GroupClass.prototype.relateGroupTab = function (groupTab)
   }
 };
 
-TabGroupsManager.GroupClass.prototype.setSelected = function ()
+TabGroupsManager.GroupClass.prototype.setSelected = function()
 {
   if (!this.selected)
   {
@@ -229,12 +229,12 @@ TabGroupsManager.GroupClass.prototype.setSelected = function ()
   }
 };
 
-TabGroupsManager.GroupClass.prototype.sortTabArrayByTPos = function ()
+TabGroupsManager.GroupClass.prototype.sortTabArrayByTPos = function()
 {
   this.tabArray.sort(this.sortTabArrayByTPosFunction);
 };
 
-TabGroupsManager.GroupClass.prototype.sortTabArrayByTPosFunction = function (a, b)
+TabGroupsManager.GroupClass.prototype.sortTabArrayByTPosFunction = function(a, b)
 {
   try
   {
@@ -245,7 +245,7 @@ TabGroupsManager.GroupClass.prototype.sortTabArrayByTPosFunction = function (a, 
   return 0;
 };
 
-TabGroupsManager.GroupClass.prototype.displayGroupBusy = function ()
+TabGroupsManager.GroupClass.prototype.displayGroupBusy = function()
 {
   var busyTabCount = 0;
   for (var i = 0; i < this.tabArray.length; i++)
@@ -259,7 +259,7 @@ TabGroupsManager.GroupClass.prototype.displayGroupBusy = function ()
   this.busy = (busyTabCount > 0);
 };
 
-TabGroupsManager.GroupClass.prototype.dispGroupLabel = function ()
+TabGroupsManager.GroupClass.prototype.dispGroupLabel = function()
 {
   this.groupTab.setAttribute("label", this.name || TabGroupsManager.strings.getString("NewGroupName"));
   if (this.groupTab.tabCount != null && this.groupTab.hideTabCount != null)
@@ -285,17 +285,17 @@ TabGroupsManager.GroupClass.prototype.dispGroupLabel = function ()
   this.groupTab.tooltipText = this.name + " (" + this.displayTabCount + ")" + this.suspendTitleList;
 };
 
-TabGroupsManager.GroupClass.prototype.dispHideTabCount = function (value)
+TabGroupsManager.GroupClass.prototype.dispHideTabCount = function(value)
 {
   this.groupTab.hideTabCount = !value;
 };
 
-TabGroupsManager.GroupClass.prototype.dispHideGroupIcon = function (value)
+TabGroupsManager.GroupClass.prototype.dispHideGroupIcon = function(value)
 {
   this.groupTab.hideIcon = !value;
 };
 
-TabGroupsManager.GroupClass.prototype.addTab = function (tab, fromSessionStore)
+TabGroupsManager.GroupClass.prototype.addTab = function(tab, fromSessionStore)
 {
   try
   {
@@ -335,7 +335,7 @@ TabGroupsManager.GroupClass.prototype.addTab = function (tab, fromSessionStore)
   }
 };
 
-TabGroupsManager.GroupClass.prototype.addTabToTabArray = function (tab, fromSessionStore)
+TabGroupsManager.GroupClass.prototype.addTabToTabArray = function(tab, fromSessionStore)
 {
   try
   {
@@ -409,7 +409,7 @@ TabGroupsManager.GroupClass.prototype.addTabToTabArray = function (tab, fromSess
   }
 };
 
-TabGroupsManager.GroupClass.prototype.addChildTabOfTST = function (parentTab)
+TabGroupsManager.GroupClass.prototype.addChildTabOfTST = function(parentTab)
 {
   let tabList = TreeStyleTabService.getChildTabs(parentTab);
   for (let i = 0; i < tabList.length; i++)
@@ -418,7 +418,7 @@ TabGroupsManager.GroupClass.prototype.addChildTabOfTST = function (parentTab)
   }
 };
 
-TabGroupsManager.GroupClass.prototype.addTabToSuspendArray = function (tab)
+TabGroupsManager.GroupClass.prototype.addTabToSuspendArray = function(tab)
 {
   tab.group = this;
   this.suspendArray.push(TabGroupsManager.session.getTabStateEx(tab));
@@ -433,7 +433,7 @@ TabGroupsManager.GroupClass.prototype.addTabToSuspendArray = function (tab)
   TabGroupsManager.allGroups.saveAllGroupsDataImmediately();
 };
 
-TabGroupsManager.GroupClass.prototype.dndMoveTabToGroup = function (tab)
+TabGroupsManager.GroupClass.prototype.dndMoveTabToGroup = function(tab)
 {
   this.addTab(tab);
   if (this.displayTabCount == 1 && this.name == "")
@@ -442,7 +442,7 @@ TabGroupsManager.GroupClass.prototype.dndMoveTabToGroup = function (tab)
   }
 };
 
-TabGroupsManager.GroupClass.prototype.getNextTabWhenTabRemove = function (targetTab)
+TabGroupsManager.GroupClass.prototype.getNextTabWhenTabRemove = function(targetTab)
 {
   switch (TabGroupsManager.preferences.focusTabWhenActiveTabClosed)
   {
@@ -461,7 +461,7 @@ TabGroupsManager.GroupClass.prototype.getNextTabWhenTabRemove = function (target
   }
 };
 
-TabGroupsManager.GroupClass.prototype.getNextTabInGroup = function (targetTab)
+TabGroupsManager.GroupClass.prototype.getNextTabInGroup = function(targetTab)
 {
   if (this.tabArray.length > 1)
   {
@@ -476,7 +476,7 @@ TabGroupsManager.GroupClass.prototype.getNextTabInGroup = function (targetTab)
   return null;
 };
 
-TabGroupsManager.GroupClass.prototype.getPreviousTabInGroup = function (targetTab)
+TabGroupsManager.GroupClass.prototype.getPreviousTabInGroup = function(targetTab)
 {
   if (this.tabArray.length > 1)
   {
@@ -491,7 +491,7 @@ TabGroupsManager.GroupClass.prototype.getPreviousTabInGroup = function (targetTa
   return null;
 };
 
-TabGroupsManager.GroupClass.prototype.getFirstTabInGroup = function (excludeTab)
+TabGroupsManager.GroupClass.prototype.getFirstTabInGroup = function(excludeTab)
 {
   this.sortTabArrayByTPos();
   for (var i = 0; i < this.tabArray.length; i++)
@@ -504,7 +504,7 @@ TabGroupsManager.GroupClass.prototype.getFirstTabInGroup = function (excludeTab)
   return null;
 };
 
-TabGroupsManager.GroupClass.prototype.getLastTabInGroup = function (excludeTab)
+TabGroupsManager.GroupClass.prototype.getLastTabInGroup = function(excludeTab)
 {
   this.sortTabArrayByTPos();
   for (var i = this.tabArray.length - 1; i >= 0; i--)
@@ -517,7 +517,7 @@ TabGroupsManager.GroupClass.prototype.getLastTabInGroup = function (excludeTab)
   return null;
 };
 
-TabGroupsManager.GroupClass.prototype.getLatestSelectedTabInGroup = function (targetTab)
+TabGroupsManager.GroupClass.prototype.getLatestSelectedTabInGroup = function(targetTab)
 {
   this.sortTabArrayByTPos();
   let targetIndex = this.tabArray.indexOf(targetTab);
@@ -544,43 +544,43 @@ TabGroupsManager.GroupClass.prototype.getLatestSelectedTabInGroup = function (ta
   return this.tabArray[latestIndex];
 };
 
-TabGroupsManager.GroupClass.prototype.getFirstLastTabInGroup = function ()
+TabGroupsManager.GroupClass.prototype.getFirstLastTabInGroup = function()
 {
   this.sortTabArrayByTPos();
   return [this.tabArray[0], this.tabArray[this.tabArray.length - 1]];
 };
 
-TabGroupsManager.GroupClass.prototype.getLast2TabInGroup = function ()
+TabGroupsManager.GroupClass.prototype.getLast2TabInGroup = function()
 {
   this.sortTabArrayByTPos();
   return (this.tabArray.length > 1) ? this.tabArray[this.tabArray.length - 2] : null;
 };
 
-TabGroupsManager.GroupClass.prototype.getRightLeftTabInGroup = function (targetTab)
+TabGroupsManager.GroupClass.prototype.getRightLeftTabInGroup = function(targetTab)
 {
   var tab = this.getNextTabInGroup(targetTab);
   return tab ? tab : this.getPreviousTabInGroup(targetTab);
 };
 
-TabGroupsManager.GroupClass.prototype.getLeftRightTabInGroup = function (targetTab)
+TabGroupsManager.GroupClass.prototype.getLeftRightTabInGroup = function(targetTab)
 {
   var tab = this.getPreviousTabInGroup(targetTab);
   return tab ? tab : this.getNextTabInGroup(targetTab);
 };
 
-TabGroupsManager.GroupClass.prototype.getRightLoopTabInGroup = function (targetTab)
+TabGroupsManager.GroupClass.prototype.getRightLoopTabInGroup = function(targetTab)
 {
   var tab = this.getNextTabInGroup(targetTab);
   return tab ? tab : this.getFirstTabInGroup(targetTab);
 };
 
-TabGroupsManager.GroupClass.prototype.getLeftLoopTabInGroup = function (targetTab)
+TabGroupsManager.GroupClass.prototype.getLeftLoopTabInGroup = function(targetTab)
 {
   var tab = this.getPreviousTabInGroup(targetTab);
   return tab ? tab : this.getLastTabInGroup(targetTab);
 };
 
-TabGroupsManager.GroupClass.prototype.selectRightLoopTabInGroup = function ()
+TabGroupsManager.GroupClass.prototype.selectRightLoopTabInGroup = function()
 {
   var newSelectedTab = this.getRightLoopTabInGroup(this.selectedTab);
   if (newSelectedTab)
@@ -589,7 +589,7 @@ TabGroupsManager.GroupClass.prototype.selectRightLoopTabInGroup = function ()
   }
 };
 
-TabGroupsManager.GroupClass.prototype.selectLeftLoopTabInGroup = function ()
+TabGroupsManager.GroupClass.prototype.selectLeftLoopTabInGroup = function()
 {
   var newSelectedTab = this.getLeftLoopTabInGroup(this.selectedTab);
   if (newSelectedTab)
@@ -598,13 +598,13 @@ TabGroupsManager.GroupClass.prototype.selectLeftLoopTabInGroup = function ()
   }
 };
 
-TabGroupsManager.GroupClass.prototype.selectLastTabInGroup = function ()
+TabGroupsManager.GroupClass.prototype.selectLastTabInGroup = function()
 {
   this.sortTabArrayByTPos();
   this.selectedTab = this.tabArray[this.tabArray.length - 1];
 };
 
-TabGroupsManager.GroupClass.prototype.selectNthTabInGroup = function (n)
+TabGroupsManager.GroupClass.prototype.selectNthTabInGroup = function(n)
 {
   this.sortTabArrayByTPos();
   if (this.tabArray.length > n)
@@ -613,7 +613,7 @@ TabGroupsManager.GroupClass.prototype.selectNthTabInGroup = function (n)
   }
 };
 
-TabGroupsManager.GroupClass.prototype.moveTabToLast = function (tab, firstTab, lastTab)
+TabGroupsManager.GroupClass.prototype.moveTabToLast = function(tab, firstTab, lastTab)
 {
   if (lastTab == null)
   {
@@ -634,7 +634,7 @@ TabGroupsManager.GroupClass.prototype.moveTabToLast = function (tab, firstTab, l
   }
 };
 
-TabGroupsManager.GroupClass.prototype.makeDummyTab = function ()
+TabGroupsManager.GroupClass.prototype.makeDummyTab = function()
 {
   let dummyTab = TabGroupsManager.overrideMethod.gBrowserAddTab("about:blank");
   var _this = this;
@@ -645,7 +645,7 @@ TabGroupsManager.GroupClass.prototype.makeDummyTab = function ()
   return dummyTab;
 };
 
-TabGroupsManager.GroupClass.prototype.removeDummyTab = function (dummyTab)
+TabGroupsManager.GroupClass.prototype.removeDummyTab = function(dummyTab)
 {
   if (dummyTab && dummyTab.group && dummyTab.group.tabArray.length > 1 && TabGroupsManager.utils.isBlankTab(dummyTab))
   {
@@ -653,7 +653,7 @@ TabGroupsManager.GroupClass.prototype.removeDummyTab = function (dummyTab)
   }
 };
 
-TabGroupsManager.GroupClass.prototype.removeTab = function (tab, fromTabCloseEvent, notClose)
+TabGroupsManager.GroupClass.prototype.removeTab = function(tab, fromTabCloseEvent, notClose)
 {
   if (tab.TabGroupsManagerSwapBrowsersAndCloseOtherFlag)
   {
@@ -710,7 +710,7 @@ TabGroupsManager.GroupClass.prototype.removeTab = function (tab, fromTabCloseEve
   }
 };
 
-TabGroupsManager.GroupClass.prototype.unlinkTab = function (tab, notDeleteFromTabArray)
+TabGroupsManager.GroupClass.prototype.unlinkTab = function(tab, notDeleteFromTabArray)
 {
   if (tab.group != this)
   {
@@ -729,12 +729,12 @@ TabGroupsManager.GroupClass.prototype.unlinkTab = function (tab, notDeleteFromTa
   tab.group = null;
 };
 
-TabGroupsManager.GroupClass.prototype.deleteBlankTab = function ()
+TabGroupsManager.GroupClass.prototype.deleteBlankTab = function()
 {
   return;
 };
 
-TabGroupsManager.GroupClass.prototype.renameDialog = function ()
+TabGroupsManager.GroupClass.prototype.renameDialog = function()
 {
   let oldName = this.name;
   let oldIcon = this.image;
@@ -753,13 +753,13 @@ TabGroupsManager.GroupClass.prototype.renameDialog = function ()
   }
 };
 
-TabGroupsManager.GroupClass.prototype.changeIconFromLocal = function (event)
+TabGroupsManager.GroupClass.prototype.changeIconFromLocal = function(event)
 {
   this.image = event.target.image;
   TabGroupsManager.allGroups.saveAllGroupsDataImmediately();
 };
 
-TabGroupsManager.GroupClass.prototype.renameByText = function (text)
+TabGroupsManager.GroupClass.prototype.renameByText = function(text)
 {
   if (text)
   {
@@ -769,7 +769,7 @@ TabGroupsManager.GroupClass.prototype.renameByText = function (text)
   }
 };
 
-TabGroupsManager.GroupClass.prototype.disableAutoRenameByTimer = function ()
+TabGroupsManager.GroupClass.prototype.disableAutoRenameByTimer = function()
 {
   if (TabGroupsManager.preferences.autoRenameDisableTime > 0)
   {
@@ -783,7 +783,7 @@ TabGroupsManager.GroupClass.prototype.disableAutoRenameByTimer = function ()
   }
 };
 
-TabGroupsManager.GroupClass.prototype.autoRenameNameIcon = function (tab)
+TabGroupsManager.GroupClass.prototype.autoRenameNameIcon = function(tab)
 {
   tab = tab || this.selectedTab;
   if (tab)
@@ -804,7 +804,7 @@ TabGroupsManager.GroupClass.prototype.autoRenameNameIcon = function (tab)
   }
 };
 
-TabGroupsManager.GroupClass.prototype.autoRenameNameOnly = function ()
+TabGroupsManager.GroupClass.prototype.autoRenameNameOnly = function()
 {
   if (this.selectedTab)
   {
@@ -817,7 +817,7 @@ TabGroupsManager.GroupClass.prototype.autoRenameNameOnly = function ()
   }
 };
 
-TabGroupsManager.GroupClass.prototype.autoRenameIconOnly = function ()
+TabGroupsManager.GroupClass.prototype.autoRenameIconOnly = function()
 {
   if (this.selectedTab)
   {
@@ -826,12 +826,12 @@ TabGroupsManager.GroupClass.prototype.autoRenameIconOnly = function ()
   }
 };
 
-TabGroupsManager.GroupClass.prototype.autoRenameDisable = function (event)
+TabGroupsManager.GroupClass.prototype.autoRenameDisable = function(event)
 {
   this.disableAutoRename = event.target.hasAttribute("checked");
 };
 
-TabGroupsManager.GroupClass.prototype.autoRename = function (input)
+TabGroupsManager.GroupClass.prototype.autoRename = function(input)
 {
   var splitInput = input.split(TabGroupsManager.titleSplitRegExp);
   for (var i = splitInput.length - 1; i >= 0; i--)
@@ -869,7 +869,7 @@ TabGroupsManager.GroupClass.prototype.autoRename = function (input)
   }
 };
 
-TabGroupsManager.GroupClass.prototype.closeAllTabsAndGroup = function ()
+TabGroupsManager.GroupClass.prototype.closeAllTabsAndGroup = function()
 {
   if (!this.checkProtectedOfTabMixPlus(TabGroupsManager.strings.getString("ConfirmCloseGroupWhenTabProtected")))
   {
@@ -885,7 +885,7 @@ TabGroupsManager.GroupClass.prototype.closeAllTabsAndGroup = function ()
   }
 };
 
-TabGroupsManager.GroupClass.prototype.sleepGroup = function ()
+TabGroupsManager.GroupClass.prototype.sleepGroup = function()
 {
   if (!this.checkProtectedOfTabMixPlus(TabGroupsManager.strings.getString("ConfirmSleepGroupWhenTabProtected")))
   {
@@ -894,12 +894,12 @@ TabGroupsManager.GroupClass.prototype.sleepGroup = function ()
   TabGroupsManager.sleepingGroups.addGroup(this.getGroupDataWithAllTabs(), this);
 };
 
-TabGroupsManager.GroupClass.prototype.suspendToggle = function (event)
+TabGroupsManager.GroupClass.prototype.suspendToggle = function(event)
 {
   this.suspended = event.target.hasAttribute("checked");
 };
 
-TabGroupsManager.GroupClass.prototype.suspendGroup = function (notConfirm)
+TabGroupsManager.GroupClass.prototype.suspendGroup = function(notConfirm)
 {
   try
   {
@@ -946,7 +946,7 @@ TabGroupsManager.GroupClass.prototype.suspendGroup = function (notConfirm)
   }
 };
 
-TabGroupsManager.GroupClass.prototype.unsuspendGroup = function ()
+TabGroupsManager.GroupClass.prototype.unsuspendGroup = function()
 {
   if (this._suspended)
   {
@@ -964,7 +964,7 @@ TabGroupsManager.GroupClass.prototype.unsuspendGroup = function ()
   return false;
 };
 
-TabGroupsManager.GroupClass.prototype.openTabInGroup = function ()
+TabGroupsManager.GroupClass.prototype.openTabInGroup = function()
 {
   TabGroupsManager.eventListener.tabOpenTarget = this;
   try
@@ -978,7 +978,7 @@ TabGroupsManager.GroupClass.prototype.openTabInGroup = function ()
   return tab;
 };
 
-TabGroupsManager.GroupClass.prototype.duplicateTabsInGroup = function (oldTabArrayOriginal)
+TabGroupsManager.GroupClass.prototype.duplicateTabsInGroup = function(oldTabArrayOriginal)
 {
   let oldTabArray = oldTabArrayOriginal.slice();
   let newTabArray = new Array(oldTabArray.length);
@@ -997,7 +997,7 @@ TabGroupsManager.GroupClass.prototype.duplicateTabsInGroup = function (oldTabArr
   return newTabArray;
 };
 
-TabGroupsManager.GroupClass.prototype.restoreTabs = function (arrayOfTabs)
+TabGroupsManager.GroupClass.prototype.restoreTabs = function(arrayOfTabs)
 {
   try
   {
@@ -1018,7 +1018,7 @@ TabGroupsManager.GroupClass.prototype.restoreTabs = function (arrayOfTabs)
   }
 };
 
-TabGroupsManager.GroupClass.prototype.checkProtectedOfTabMixPlus = function (message, confirmResult)
+TabGroupsManager.GroupClass.prototype.checkProtectedOfTabMixPlus = function(message, confirmResult)
 {
   var protectedCount = 0;
   for (var i = 0; i < this.tabArray.length; i++)
@@ -1049,7 +1049,7 @@ TabGroupsManager.GroupClass.prototype.checkProtectedOfTabMixPlus = function (mes
   return true;
 };
 
-TabGroupsManager.GroupClass.prototype.removeAllProgressListener = function ()
+TabGroupsManager.GroupClass.prototype.removeAllProgressListener = function()
 {
   for (var i = 0; i < this.tabArray.length; i++)
   {
@@ -1062,7 +1062,7 @@ TabGroupsManager.GroupClass.prototype.removeAllProgressListener = function ()
   }
 };
 
-TabGroupsManager.GroupClass.prototype.close = function ()
+TabGroupsManager.GroupClass.prototype.close = function()
 {
   let lastGroup = (TabGroupsManager.allGroups.childNodes.length == 1);
   if (lastGroup)
@@ -1097,14 +1097,14 @@ TabGroupsManager.GroupClass.prototype.close = function ()
   }
 };
 
-TabGroupsManager.GroupClass.prototype.removeTabWithoutClosedTabsList = function (tab)
+TabGroupsManager.GroupClass.prototype.removeTabWithoutClosedTabsList = function(tab)
 {
   let closedTabsJson = TabGroupsManager.session.sessionStore.getClosedTabData(window);
   gBrowser.removeTab(tab);
   TabGroupsManager.session.setClosedTabJson(closedTabsJson);
 };
 
-TabGroupsManager.GroupClass.prototype.removeAllTabsWithoutClosedTabsList = function ()
+TabGroupsManager.GroupClass.prototype.removeAllTabsWithoutClosedTabsList = function()
 {
   if (this.tabArray.length <= 0)
   {
@@ -1120,7 +1120,7 @@ TabGroupsManager.GroupClass.prototype.removeAllTabsWithoutClosedTabsList = funct
   TabGroupsManager.session.setClosedTabJson(closedTabsJson);
 };
 
-TabGroupsManager.GroupClass.prototype.initDefaultGroupAndModifyId = function ()
+TabGroupsManager.GroupClass.prototype.initDefaultGroupAndModifyId = function()
 {
   if (this.id == -1)
   {
@@ -1147,7 +1147,7 @@ TabGroupsManager.GroupClass.prototype.initDefaultGroupAndModifyId = function ()
   }
 };
 
-TabGroupsManager.GroupClass.prototype.getGroupDataBase = function ()
+TabGroupsManager.GroupClass.prototype.getGroupDataBase = function()
 {
   var groupData = {
     type: TabGroupsManagerJsm.constValues.groupDataType,
@@ -1168,7 +1168,7 @@ TabGroupsManager.GroupClass.prototype.getGroupDataBase = function ()
   return groupData;
 };
 
-TabGroupsManager.GroupClass.prototype.setGroupDataBase = function (groupData)
+TabGroupsManager.GroupClass.prototype.setGroupDataBase = function(groupData)
 {
   this._disableAutoRename = groupData.disableAutoRename;
   if (groupData.tabViewBounds)
@@ -1177,7 +1177,7 @@ TabGroupsManager.GroupClass.prototype.setGroupDataBase = function (groupData)
   }
 };
 
-TabGroupsManager.GroupClass.prototype.getGroupDataWithoutTabs = function ()
+TabGroupsManager.GroupClass.prototype.getGroupDataWithoutTabs = function()
 {
   var groupData = this.getGroupDataBase();
   groupData.suspended = this.suspended;
@@ -1189,7 +1189,7 @@ TabGroupsManager.GroupClass.prototype.getGroupDataWithoutTabs = function ()
   return groupData;
 };
 
-TabGroupsManager.GroupClass.prototype.setGroupDataWithoutTabs = function (groupData)
+TabGroupsManager.GroupClass.prototype.setGroupDataWithoutTabs = function(groupData)
 {
   this.setGroupDataBase(groupData);
   this.suspended = groupData.suspended;
@@ -1206,7 +1206,7 @@ TabGroupsManager.GroupClass.prototype.setGroupDataWithoutTabs = function (groupD
   }
 };
 
-TabGroupsManager.GroupClass.prototype.reassignGroupIdFromMinus2 = function ()
+TabGroupsManager.GroupClass.prototype.reassignGroupIdFromMinus2 = function()
 {
   if (this.id == -2)
   {
@@ -1222,7 +1222,7 @@ TabGroupsManager.GroupClass.prototype.reassignGroupIdFromMinus2 = function ()
   }
 };
 
-TabGroupsManager.GroupClass.prototype.getGroupDataWithAllTabs = function ()
+TabGroupsManager.GroupClass.prototype.getGroupDataWithAllTabs = function()
 {
   this.reassignGroupIdFromMinus2();
   var groupData = this.getGroupDataBase();
@@ -1251,7 +1251,7 @@ TabGroupsManager.GroupClass.prototype.getGroupDataWithAllTabs = function ()
   return groupData;
 };
 
-TabGroupsManager.GroupClass.prototype.setGroupDataWithAllTabs = function (groupData, tabObject)
+TabGroupsManager.GroupClass.prototype.setGroupDataWithAllTabs = function(groupData, tabObject)
 {
   this.setGroupDataBase(groupData);
   if (tabObject == null)
@@ -1273,7 +1273,7 @@ TabGroupsManager.GroupClass.prototype.setGroupDataWithAllTabs = function (groupD
   TabGroupsManager.allGroups.saveAllGroupsDataImmediately();
 };
 
-TabGroupsManager.GroupClass.prototype.mouseCommand = function (no)
+TabGroupsManager.GroupClass.prototype.mouseCommand = function(no)
 {
   switch (no)
   {
@@ -1295,7 +1295,7 @@ TabGroupsManager.GroupClass.prototype.mouseCommand = function (no)
   }
 };
 
-TabGroupsManager.GroupClass.prototype.bookmarkThisGroup = function ()
+TabGroupsManager.GroupClass.prototype.bookmarkThisGroup = function()
 {
   var folderName = window.prompt(TabGroupsManager.strings.getString("EnterBookmarkFolderName"), this.name);
   if (folderName)
@@ -1304,7 +1304,7 @@ TabGroupsManager.GroupClass.prototype.bookmarkThisGroup = function ()
   }
 };
 
-TabGroupsManager.GroupClass.prototype.bookmarkThisGroupCore = function (folderName, parentFolder)
+TabGroupsManager.GroupClass.prototype.bookmarkThisGroupCore = function(folderName, parentFolder)
 {
   var places = Cc["@mozilla.org/browser/nav-bookmarks-service;1"].getService(Ci.nsINavBookmarksService);
   if (!folderName)
@@ -1355,7 +1355,7 @@ TabGroupsManager.GroupClass.prototype.bookmarkThisGroupCore = function (folderNa
   }
 };
 
-TabGroupsManager.GroupClass.prototype.reloadTabsInGroup = function ()
+TabGroupsManager.GroupClass.prototype.reloadTabsInGroup = function()
 {
   for (var i = 0; i < this.tabArray.length; i++)
   {
@@ -1379,7 +1379,7 @@ TabGroupsManager.GroupClass.prototype.reloadTabsInGroup = function ()
   }
 };
 
-TabGroupsManager.GroupClass.prototype.isBlank = function ()
+TabGroupsManager.GroupClass.prototype.isBlank = function()
 {
   if (this.suspended)
   {
@@ -1403,7 +1403,7 @@ TabGroupsManager.GroupClass.prototype.isBlank = function ()
   return false;
 };
 
-TabGroupsManager.GroupClass.prototype.getFirstTabVisible = function ()
+TabGroupsManager.GroupClass.prototype.getFirstTabVisible = function()
 {
   let index;
   if (window.getComputedStyle(gBrowser.mTabContainer.parentNode, null).direction == "rtl" && !gBrowser.mTabContainer.hasAttribute("multibar"))
@@ -1427,7 +1427,7 @@ TabGroupsManager.GroupClass.prototype.getFirstTabVisible = function ()
   return gBrowser.mTabContainer.isTabVisible(index);
 };
 
-TabGroupsManager.GroupClass.prototype.getLastTabVisible = function ()
+TabGroupsManager.GroupClass.prototype.getLastTabVisible = function()
 {
   let index;
   if (window.getComputedStyle(gBrowser.mTabContainer.parentNode, null).direction == "rtl" && !gBrowser.mTabContainer.hasAttribute("multibar"))
@@ -1451,7 +1451,7 @@ TabGroupsManager.GroupClass.prototype.getLastTabVisible = function ()
   return gBrowser.mTabContainer.isTabVisible(index);
 };
 
-TabGroupsManager.GroupClass.prototype.duplicateGroup = function ()
+TabGroupsManager.GroupClass.prototype.duplicateGroup = function()
 {
   try
   {
@@ -1503,7 +1503,7 @@ TabGroupsManager.GroupClass.prototype.duplicateGroup = function ()
   return newGroup;
 };
 
-TabGroupsManager.GroupClass.prototype.exportGroup = function ()
+TabGroupsManager.GroupClass.prototype.exportGroup = function()
 {
   let nsIFilePicker = Ci.nsIFilePicker;
   let filePicker = Cc["@mozilla.org/filepicker;1"].createInstance(nsIFilePicker);

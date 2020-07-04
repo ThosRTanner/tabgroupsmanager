@@ -3,7 +3,7 @@
 
 /* globals TabGroupsManager, TabGroupsManagerJsm */
 
-TabGroupsManager.SupportDnD = function ()
+TabGroupsManager.SupportDnD = function()
 {
   try
   {
@@ -26,7 +26,7 @@ TabGroupsManager.SupportDnD = function ()
   }
 };
 
-TabGroupsManager.SupportDnD.prototype.getDragElementByParent = function (element, parent)
+TabGroupsManager.SupportDnD.prototype.getDragElementByParent = function(element, parent)
 {
   while (element)
   {
@@ -40,7 +40,7 @@ TabGroupsManager.SupportDnD.prototype.getDragElementByParent = function (element
   return null;
 };
 
-TabGroupsManager.SupportDnD.prototype.getDragElementByTagName = function (element, tagName)
+TabGroupsManager.SupportDnD.prototype.getDragElementByTagName = function(element, tagName)
 {
   var xulTagName = "xul:" + tagName;
   while (element)
@@ -54,19 +54,19 @@ TabGroupsManager.SupportDnD.prototype.getDragElementByTagName = function (elemen
   return null;
 };
 
-TabGroupsManager.SupportDnD.prototype.setAllowPositionX = function (positionX)
+TabGroupsManager.SupportDnD.prototype.setAllowPositionX = function(positionX)
 {
   this.dropAllow.style.left = positionX + "px";
   this.selectDisplayIconTimer(this.dropAllow);
 };
 
-TabGroupsManager.SupportDnD.prototype.setPlusPositionX = function (positionX)
+TabGroupsManager.SupportDnD.prototype.setPlusPositionX = function(positionX)
 {
   this.dropPlus.style.left = positionX + "px";
   this.selectDisplayIconTimer(this.dropPlus);
 };
 
-TabGroupsManager.SupportDnD.prototype.setPlusOPositionX = function (positionX, ctrlKey)
+TabGroupsManager.SupportDnD.prototype.setPlusOPositionX = function(positionX, ctrlKey)
 {
   this.dropPlusNewGroup.style.left = positionX + "px";
   if (ctrlKey != undefined)
@@ -81,26 +81,26 @@ TabGroupsManager.SupportDnD.prototype.setPlusOPositionX = function (positionX, c
   }
 };
 
-TabGroupsManager.SupportDnD.prototype.setZZZPosition = function (positionX, positionY)
+TabGroupsManager.SupportDnD.prototype.setZZZPosition = function(positionX, positionY)
 {
   this.dropZZZ.style.left = positionX + "px";
   this.dropZZZ.style.top = positionY + "px";
   this.selectDisplayIconTimer(this.dropZZZ);
 };
 
-TabGroupsManager.SupportDnD.prototype.setZZZPositionX = function (positionX)
+TabGroupsManager.SupportDnD.prototype.setZZZPositionX = function(positionX)
 {
   this.dropZZZ.style.left = positionX + "px";
   this.selectDisplayIconTimer(this.dropZZZ);
 };
 
-TabGroupsManager.SupportDnD.prototype.setSuspendPositionX = function (positionX)
+TabGroupsManager.SupportDnD.prototype.setSuspendPositionX = function(positionX)
 {
   this.dropSuspend.style.left = positionX + "px";
   this.selectDisplayIconTimer(this.dropSuspend);
 };
 
-TabGroupsManager.SupportDnD.prototype.stopDisplayTimer = function ()
+TabGroupsManager.SupportDnD.prototype.stopDisplayTimer = function()
 {
   if (('undefined' !== typeof this.displayIconTimer) && (this.displayIconTimer))
   {
@@ -109,7 +109,7 @@ TabGroupsManager.SupportDnD.prototype.stopDisplayTimer = function ()
   this.displayIconTimer = null;
 };
 
-TabGroupsManager.SupportDnD.prototype.selectDisplayIcon = function (displayIconList)
+TabGroupsManager.SupportDnD.prototype.selectDisplayIcon = function(displayIconList)
 {
   this.stopDisplayTimer();
   for (let i = 0; i < this.icons.length; i++)
@@ -118,7 +118,7 @@ TabGroupsManager.SupportDnD.prototype.selectDisplayIcon = function (displayIconL
   }
 };
 
-TabGroupsManager.SupportDnD.prototype.selectDisplayIconTimer = function ()
+TabGroupsManager.SupportDnD.prototype.selectDisplayIconTimer = function()
 {
   this.stopDisplayTimer();
   let displayIconList = new Array();
@@ -132,13 +132,13 @@ TabGroupsManager.SupportDnD.prototype.selectDisplayIconTimer = function ()
   }, 0, this);
 };
 
-TabGroupsManager.SupportDnD.prototype.hideAllNow = function ()
+TabGroupsManager.SupportDnD.prototype.hideAllNow = function()
 {
   this.hideAllNowCore();
   this.hideAll();
 };
 
-TabGroupsManager.SupportDnD.prototype.hideAllNowCore = function ()
+TabGroupsManager.SupportDnD.prototype.hideAllNowCore = function()
 {
   this.stopDisplayTimer();
   if (('undefined' !== typeof this.icons) && (this.icons))
@@ -150,7 +150,7 @@ TabGroupsManager.SupportDnD.prototype.hideAllNowCore = function ()
   }
 };
 
-TabGroupsManager.SupportDnD.prototype.hideAll = function ()
+TabGroupsManager.SupportDnD.prototype.hideAll = function()
 {
   this.stopDisplayTimer();
   this.displayIconTimer = setTimeout(function (_this)
