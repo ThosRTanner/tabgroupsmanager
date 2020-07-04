@@ -3,7 +3,7 @@
 
 /* globals TabGroupsManager, TabGroupsManagerJsm */
 
-TabGroupsManager.progressListenerForGroup = function(aOwnerGroup)
+TabGroupsManager.ProgressListenerForGroup = function(aOwnerGroup)
 {
   try
   {
@@ -16,7 +16,7 @@ TabGroupsManager.progressListenerForGroup = function(aOwnerGroup)
   }
 };
 
-TabGroupsManager.progressListenerForGroup.prototype.QueryInterface = function(aIID)
+TabGroupsManager.ProgressListenerForGroup.prototype.QueryInterface = function(aIID)
 {
   if (aIID.equals(Ci.nsIWebProgressListener) ||
     aIID.equals(Ci.nsISupportsWeakReference) ||
@@ -27,7 +27,7 @@ TabGroupsManager.progressListenerForGroup.prototype.QueryInterface = function(aI
   throw Components.results.NS_NOINTERFACE;
 };
 
-TabGroupsManager.progressListenerForGroup.prototype.onStateChange = function(aWebProgress, aRequest, aFlag, aStatus)
+TabGroupsManager.ProgressListenerForGroup.prototype.onStateChange = function(aWebProgress, aRequest, aFlag, aStatus)
 {
   if (aFlag & this.startAndStop)
   {
@@ -52,27 +52,27 @@ TabGroupsManager.progressListenerForGroup.prototype.onStateChange = function(aWe
   return 0;
 };
 
-TabGroupsManager.progressListenerForGroup.prototype.onLocationChange = function(aProgress, aRequest, aURI)
+TabGroupsManager.ProgressListenerForGroup.prototype.onLocationChange = function(aProgress, aRequest, aURI)
 {
   return 0;
 };
 
-TabGroupsManager.progressListenerForGroup.prototype.onProgressChange = function()
+TabGroupsManager.ProgressListenerForGroup.prototype.onProgressChange = function()
 {
   return 0;
 };
 
-TabGroupsManager.progressListenerForGroup.prototype.onStatusChange = function()
+TabGroupsManager.ProgressListenerForGroup.prototype.onStatusChange = function()
 {
   return 0;
 };
 
-TabGroupsManager.progressListenerForGroup.prototype.onSecurityChange = function()
+TabGroupsManager.ProgressListenerForGroup.prototype.onSecurityChange = function()
 {
   return 0;
 };
 
-TabGroupsManager.progressListenerForGroup.prototype.onLinkIconAvailable = function()
+TabGroupsManager.ProgressListenerForGroup.prototype.onLinkIconAvailable = function()
 {
   return 0;
 };

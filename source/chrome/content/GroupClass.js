@@ -79,7 +79,7 @@ TabGroupsManager.GroupClass = function(id, name, image)
       return this._busyTabCount;
     });
     this.__defineSetter__("busyTabCount", this.setBusyTabCount);
-    this.progressListener = new TabGroupsManager.progressListenerForGroup(this);
+    this.progressListener = new TabGroupsManager.ProgressListenerForGroup(this);
     this.groupTab = this.makeGroupTab();
     this.relateGroupTab(this.groupTab);
     TabGroupsManager.allGroups.saveAllGroupsData();
