@@ -3,7 +3,7 @@
 
 /* globals TabGroupsManager, TabGroupsManagerJsm */
 
-TabGroupsManager.WindowDnDObserver = function (aSupportDnD)
+TabGroupsManager.WindowDnDObserver = function(aSupportDnD)
 {
   try
   {
@@ -18,7 +18,7 @@ TabGroupsManager.WindowDnDObserver = function (aSupportDnD)
   }
 };
 
-TabGroupsManager.WindowDnDObserver.prototype.createEventListener = function ()
+TabGroupsManager.WindowDnDObserver.prototype.createEventListener = function()
 {
   window.addEventListener("dragenter", this, true);
   window.addEventListener("dragover", this, true);
@@ -26,7 +26,7 @@ TabGroupsManager.WindowDnDObserver.prototype.createEventListener = function ()
   window.addEventListener("drop", this, true);
 };
 
-TabGroupsManager.WindowDnDObserver.prototype.destroyEventListener = function ()
+TabGroupsManager.WindowDnDObserver.prototype.destroyEventListener = function()
 {
   window.removeEventListener("dragenter", this, true);
   window.removeEventListener("dragover", this, true);
@@ -34,7 +34,7 @@ TabGroupsManager.WindowDnDObserver.prototype.destroyEventListener = function ()
   window.removeEventListener("drop", this, true);
 };
 
-TabGroupsManager.WindowDnDObserver.prototype.handleEvent = function (event)
+TabGroupsManager.WindowDnDObserver.prototype.handleEvent = function(event)
 {
   switch (event.type)
   {
@@ -51,7 +51,7 @@ TabGroupsManager.WindowDnDObserver.prototype.handleEvent = function (event)
   }
 };
 
-TabGroupsManager.WindowDnDObserver.prototype.onDragOverDelegate = function (event)
+TabGroupsManager.WindowDnDObserver.prototype.onDragOverDelegate = function(event)
 {
   if (!this.reentryFlag)
   {
@@ -72,7 +72,7 @@ TabGroupsManager.WindowDnDObserver.prototype.onDragOverDelegate = function (even
   }
 };
 
-TabGroupsManager.WindowDnDObserver.prototype.onDragOver = function (event)
+TabGroupsManager.WindowDnDObserver.prototype.onDragOver = function(event)
 {
   this.supportDnD.hideAll();
   var session = Cc["@mozilla.org/widget/dragservice;1"].getService(Ci.nsIDragService).getCurrentSession();
@@ -123,12 +123,12 @@ TabGroupsManager.WindowDnDObserver.prototype.onDragOver = function (event)
   }
 };
 
-TabGroupsManager.WindowDnDObserver.prototype.onDragLeave = function (event)
+TabGroupsManager.WindowDnDObserver.prototype.onDragLeave = function(event)
 {
   this.supportDnD.hideAll();
 };
 
-TabGroupsManager.WindowDnDObserver.prototype.onDrop = function (event)
+TabGroupsManager.WindowDnDObserver.prototype.onDrop = function(event)
 {
   this.supportDnD.hideAllNow();
   var session = Cc["@mozilla.org/widget/dragservice;1"].getService(Ci.nsIDragService).getCurrentSession();
@@ -183,7 +183,7 @@ TabGroupsManager.WindowDnDObserver.prototype.onDrop = function (event)
   }
 };
 
-TabGroupsManager.WindowDnDObserver.prototype.importGroup = function (file, files)
+TabGroupsManager.WindowDnDObserver.prototype.importGroup = function(file, files)
 {
   if (files)
   {
@@ -205,7 +205,7 @@ TabGroupsManager.WindowDnDObserver.prototype.importGroup = function (file, files
   return false;
 };
 
-TabGroupsManager.WindowDnDObserver.prototype.importGroupFromJson = function (groupDataJson)
+TabGroupsManager.WindowDnDObserver.prototype.importGroupFromJson = function(groupDataJson)
 {
   try
   {
@@ -223,7 +223,7 @@ TabGroupsManager.WindowDnDObserver.prototype.importGroupFromJson = function (gro
   return false;
 };
 
-TabGroupsManager.WindowDnDObserver.prototype.importSession = function (file, old)
+TabGroupsManager.WindowDnDObserver.prototype.importSession = function(file, old)
 {
   try
   {

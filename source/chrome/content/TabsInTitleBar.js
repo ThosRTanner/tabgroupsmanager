@@ -3,7 +3,7 @@
 
 /* globals TabGroupsManager, TabGroupsManagerJsm */
 
-TabGroupsManager.TabsInTitleBar = function ()
+TabGroupsManager.TabsInTitleBar = function()
 {
   document.documentElement.addEventListener("DOMAttrModified", this, false);
   document.getElementById("navigator-toolbox").addEventListener("DOMAttrModified", this, false);
@@ -12,7 +12,7 @@ TabGroupsManager.TabsInTitleBar = function ()
   this.topToolBarBak = this.searchTopToolBar();
 };
 
-TabGroupsManager.TabsInTitleBar.prototype.handleEvent = function (event)
+TabGroupsManager.TabsInTitleBar.prototype.handleEvent = function(event)
 {
   switch (event.type)
   {
@@ -25,7 +25,7 @@ TabGroupsManager.TabsInTitleBar.prototype.handleEvent = function (event)
   }
 };
 
-TabGroupsManager.TabsInTitleBar.prototype.onDOMAttrModified = function (event)
+TabGroupsManager.TabsInTitleBar.prototype.onDOMAttrModified = function(event)
 {
   switch (event.attrName)
   {
@@ -46,7 +46,7 @@ TabGroupsManager.TabsInTitleBar.prototype.onDOMAttrModified = function (event)
   }
 };
 
-TabGroupsManager.TabsInTitleBar.prototype.onDblClick = function (event)
+TabGroupsManager.TabsInTitleBar.prototype.onDblClick = function(event)
 {
   if (document.documentElement.getAttribute("tabsintitlebar"))
   {
@@ -59,7 +59,7 @@ TabGroupsManager.TabsInTitleBar.prototype.onDblClick = function (event)
   }
 };
 
-TabGroupsManager.TabsInTitleBar.prototype.onToolBarOrderChanged = function ()
+TabGroupsManager.TabsInTitleBar.prototype.onToolBarOrderChanged = function()
 {
   let topToolBar = this.searchTopToolBar();
   if (topToolBar != this.topToolBarBak)
@@ -87,7 +87,7 @@ TabGroupsManager.TabsInTitleBar.prototype.onToolBarOrderChanged = function ()
   }
 };
 
-TabGroupsManager.TabsInTitleBar.prototype.onTabsInTitleBarChanged = function (event)
+TabGroupsManager.TabsInTitleBar.prototype.onTabsInTitleBarChanged = function(event)
 {
   let topToolBar = this.searchTopToolBar();
   if (topToolBar.id != "TabsToolbar")
@@ -99,7 +99,7 @@ TabGroupsManager.TabsInTitleBar.prototype.onTabsInTitleBarChanged = function (ev
   this.topToolBarBak = topToolBar;
 };
 
-TabGroupsManager.TabsInTitleBar.prototype.searchTopToolBar = function ()
+TabGroupsManager.TabsInTitleBar.prototype.searchTopToolBar = function()
 {
   let toolBox = document.getElementById("navigator-toolbox");
   let topToolBar = null;
@@ -119,7 +119,7 @@ TabGroupsManager.TabsInTitleBar.prototype.searchTopToolBar = function ()
   return topToolBar;
 };
 
-TabGroupsManager.TabsInTitleBar.prototype.tabBarSpaceCollapse = function (flag)
+TabGroupsManager.TabsInTitleBar.prototype.tabBarSpaceCollapse = function(flag)
 {
   let tabsToolBar = TabGroupsManager.xulElements.tabBar;
   for (let i = 0; i < tabsToolBar.childNodes.length; i++)
@@ -144,7 +144,7 @@ TabGroupsManager.TabsInTitleBar.prototype.tabBarSpaceCollapse = function (flag)
   }
 };
 
-TabGroupsManager.TabsInTitleBar.prototype.adjustTitleBarMargin = function (topToolBar, flag)
+TabGroupsManager.TabsInTitleBar.prototype.adjustTitleBarMargin = function(topToolBar, flag)
 {
   let titleBar = document.getElementById("titlebar");
   titleBar.style.marginBottom = "";
@@ -156,7 +156,7 @@ TabGroupsManager.TabsInTitleBar.prototype.adjustTitleBarMargin = function (topTo
   }
 };
 
-TabGroupsManager.TabsInTitleBar.prototype.adjustToolBarSpace = function (toolBar, flag)
+TabGroupsManager.TabsInTitleBar.prototype.adjustToolBarSpace = function(toolBar, flag)
 {
   if (flag)
   {

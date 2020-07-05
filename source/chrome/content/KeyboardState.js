@@ -3,7 +3,7 @@
 
 /* globals TabGroupsManager, TabGroupsManagerJsm */
 
-TabGroupsManager.KeyboardState = function ()
+TabGroupsManager.KeyboardState = function()
 {
   try
   {
@@ -25,7 +25,7 @@ TabGroupsManager.KeyboardState = function ()
   }
 };
 
-TabGroupsManager.KeyboardState.prototype.createEventListener = function ()
+TabGroupsManager.KeyboardState.prototype.createEventListener = function()
 {
   window.addEventListener("click", this, true);
   window.addEventListener("mousedown", this, true);
@@ -35,7 +35,7 @@ TabGroupsManager.KeyboardState.prototype.createEventListener = function ()
   window.addEventListener("keypress", this, true);
 };
 
-TabGroupsManager.KeyboardState.prototype.destroyEventListener = function ()
+TabGroupsManager.KeyboardState.prototype.destroyEventListener = function()
 {
   window.removeEventListener("click", this, true);
   window.removeEventListener("mousedown", this, true);
@@ -45,7 +45,7 @@ TabGroupsManager.KeyboardState.prototype.destroyEventListener = function ()
   window.removeEventListener("keypress", this, true);
 };
 
-TabGroupsManager.KeyboardState.prototype.handleEvent = function (event)
+TabGroupsManager.KeyboardState.prototype.handleEvent = function(event)
 {
   switch (event.type)
   {
@@ -62,7 +62,7 @@ TabGroupsManager.KeyboardState.prototype.handleEvent = function (event)
   }
 };
 
-TabGroupsManager.KeyboardState.prototype.onKeyPress = function (event)
+TabGroupsManager.KeyboardState.prototype.onKeyPress = function(event)
 {
   if (event.keyCode == event.DOM_VK_TAB && !event.altKey && this.isAccelKeyDown(event))
   {
@@ -97,7 +97,7 @@ TabGroupsManager.KeyboardState.prototype.onKeyPress = function (event)
   }
 };
 
-TabGroupsManager.KeyboardState.prototype.selectObject = function ()
+TabGroupsManager.KeyboardState.prototype.selectObject = function()
 {
   if (this.eventObject)
   {
@@ -110,31 +110,31 @@ TabGroupsManager.KeyboardState.prototype.selectObject = function ()
   return null;
 };
 
-TabGroupsManager.KeyboardState.prototype.getCtrlKey = function ()
+TabGroupsManager.KeyboardState.prototype.getCtrlKey = function()
 {
   var object = this.selectObject();
   return object ? object.ctrlKey : this.fCtrlKey;
 };
 
-TabGroupsManager.KeyboardState.prototype.getShiftKey = function ()
+TabGroupsManager.KeyboardState.prototype.getShiftKey = function()
 {
   var object = this.selectObject();
   return object ? object.shiftKey : this.fShiftKey;
 };
 
-TabGroupsManager.KeyboardState.prototype.getAltKey = function ()
+TabGroupsManager.KeyboardState.prototype.getAltKey = function()
 {
   var object = this.selectObject();
   return object ? object.altKey : this.fAltKey;
 };
 
-TabGroupsManager.KeyboardState.prototype.getMetaKey = function ()
+TabGroupsManager.KeyboardState.prototype.getMetaKey = function()
 {
   var object = this.selectObject();
   return object ? object.metaKey : this.fMetaKey;
 };
 
-TabGroupsManager.KeyboardState.prototype.mouseButton = function ()
+TabGroupsManager.KeyboardState.prototype.mouseButton = function()
 {
   var eventObject = this.selectObject();
   if (!eventObject)
@@ -144,7 +144,7 @@ TabGroupsManager.KeyboardState.prototype.mouseButton = function ()
   return eventObject.button;
 };
 
-TabGroupsManager.KeyboardState.prototype.getModifierKeys = function (event)
+TabGroupsManager.KeyboardState.prototype.getModifierKeys = function(event)
 {
   try
   {
@@ -157,7 +157,7 @@ TabGroupsManager.KeyboardState.prototype.getModifierKeys = function (event)
   {}
 };
 
-TabGroupsManager.KeyboardState.prototype.isAccelKeyDown = function (event)
+TabGroupsManager.KeyboardState.prototype.isAccelKeyDown = function(event)
 {
   return (TabGroupsManager.preferences.isMac ? event.metaKey : event.ctrlKey);
 };

@@ -7,7 +7,7 @@ TabGroupsManager.tabMoveByTGM = {
 
   cancelTabMoveEventOfTreeStyleTab: false,
 
-  moveTabTo: function (tab, to)
+  moveTabTo: function(tab, to)
   {
     this.tabMovingByTGM = true;
     var backupNextTabOfTMP = gBrowser.mTabContainer.nextTab;
@@ -25,7 +25,7 @@ TabGroupsManager.tabMoveByTGM = {
     }
   },
 
-  moveTabToWithoutTST: function (tab, to)
+  moveTabToWithoutTST: function(tab, to)
   {
     if ("treeStyleTab" in gBrowser)
     {

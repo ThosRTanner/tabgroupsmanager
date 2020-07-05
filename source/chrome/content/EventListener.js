@@ -3,13 +3,13 @@
 
 /* globals TabGroupsManager, TabGroupsManagerJsm */
 
-TabGroupsManager.EventListener = function ()
+TabGroupsManager.EventListener = function()
 {
   this.groupSelecting = false;
   this.tabOpenTarget = null;
 };
 
-TabGroupsManager.EventListener.prototype.createEventListener = function ()
+TabGroupsManager.EventListener.prototype.createEventListener = function()
 {
   var groupTabs = document.getElementById("TabGroupsManagerGroupbar");
   groupTabs.addEventListener("mousedown", this, true);
@@ -32,7 +32,7 @@ TabGroupsManager.EventListener.prototype.createEventListener = function ()
   }
 };
 
-TabGroupsManager.EventListener.prototype.destroyEventListener = function ()
+TabGroupsManager.EventListener.prototype.destroyEventListener = function()
 {
   var groupTabs = document.getElementById("TabGroupsManagerGroupbar");
   groupTabs.removeEventListener("mousedown", this, true);
@@ -53,7 +53,7 @@ TabGroupsManager.EventListener.prototype.destroyEventListener = function ()
   }
 };
 
-TabGroupsManager.EventListener.prototype.handleEvent = function (event)
+TabGroupsManager.EventListener.prototype.handleEvent = function(event)
 {
   switch (event.type)
   {
@@ -93,7 +93,7 @@ TabGroupsManager.EventListener.prototype.handleEvent = function (event)
   }
 };
 
-TabGroupsManager.EventListener.prototype.onTabOpen = function (event)
+TabGroupsManager.EventListener.prototype.onTabOpen = function(event)
 {
   try
   {
@@ -156,7 +156,7 @@ TabGroupsManager.EventListener.prototype.onTabOpen = function (event)
   }
 };
 
-TabGroupsManager.EventListener.prototype.onTabClose = function (event)
+TabGroupsManager.EventListener.prototype.onTabClose = function(event)
 {
   var closeTab = event.originalTarget;
   if (closeTab.tabGroupsManagerTabTree)
@@ -170,7 +170,7 @@ TabGroupsManager.EventListener.prototype.onTabClose = function (event)
   TabGroupsManager.groupBarDispHide.hideGroupBarByTabCountDelay();
 };
 
-TabGroupsManager.EventListener.prototype.onTabSelect = function (event)
+TabGroupsManager.EventListener.prototype.onTabSelect = function(event)
 {
   var tab = gBrowser.selectedTab;
   if (tab.group == null)
@@ -194,7 +194,7 @@ TabGroupsManager.EventListener.prototype.onTabSelect = function (event)
   tab.tgmSelectedTime = (new Date()).getTime();
 };
 
-TabGroupsManager.EventListener.prototype.onTabShow = function (event)
+TabGroupsManager.EventListener.prototype.onTabShow = function(event)
 {
   var tab = event.target;
   if (!tab.group.selected)
@@ -203,7 +203,7 @@ TabGroupsManager.EventListener.prototype.onTabShow = function (event)
   }
 };
 
-TabGroupsManager.EventListener.prototype.onTabHide = function (event)
+TabGroupsManager.EventListener.prototype.onTabHide = function(event)
 {
   var tab = event.target;
   let count = 0;
@@ -212,7 +212,7 @@ TabGroupsManager.EventListener.prototype.onTabHide = function (event)
   {
     count++;
     var activeGroupPromise = new Promise(
-      function (resolve, reject)
+      function(resolve, reject)
       {
         setTimeout(function ()
         {
@@ -226,6 +226,7 @@ TabGroupsManager.EventListener.prototype.onTabHide = function (event)
 
     activeGroupPromise.then(function (tab)
     {
+      //FIXME This spews like crazy because tab or tab.group is undefined
       if (tab.group.selected)
       {
         TabGroupsManager.utils.unHideTab(tab);
@@ -247,7 +248,7 @@ TabGroupsManager.EventListener.prototype.onTabHide = function (event)
   }
 };
 
-TabGroupsManager.EventListener.prototype.onTabMove = function (event)
+TabGroupsManager.EventListener.prototype.onTabMove = function(event)
 {
   var tab = event.originalTarget;
   if (!TabGroupsManager.eventListener.groupSelecting)
@@ -263,7 +264,7 @@ TabGroupsManager.EventListener.prototype.onTabMove = function (event)
   }
 };
 
-TabGroupsManager.EventListener.prototype.onGroupSelect = function (event)
+TabGroupsManager.EventListener.prototype.onGroupSelect = function(event)
 {
   if (TabGroupsManager.session.allTabsMovingToGroup)
   {
@@ -340,7 +341,7 @@ TabGroupsManager.EventListener.prototype.onGroupSelect = function (event)
   }
 };
 
-TabGroupsManager.EventListener.prototype.onGroupClick = function (event)
+TabGroupsManager.EventListener.prototype.onGroupClick = function(event)
 {
   var group = event.target.group;
   if (group)
@@ -364,7 +365,7 @@ TabGroupsManager.EventListener.prototype.onGroupClick = function (event)
   event.stopPropagation();
 };
 
-TabGroupsManager.EventListener.prototype.onGroupDblClick = function (event)
+TabGroupsManager.EventListener.prototype.onGroupDblClick = function(event)
 {
   if (event.button == 0)
   {
@@ -381,7 +382,7 @@ TabGroupsManager.EventListener.prototype.onGroupDblClick = function (event)
   event.stopPropagation();
 };
 
-TabGroupsManager.EventListener.prototype.onGroupBarClick = function (event)
+TabGroupsManager.EventListener.prototype.onGroupBarClick = function(event)
 {
   switch (event.button)
   {
@@ -394,7 +395,7 @@ TabGroupsManager.EventListener.prototype.onGroupBarClick = function (event)
   }
 };
 
-TabGroupsManager.EventListener.prototype.onGroupBarDblClick = function (event)
+TabGroupsManager.EventListener.prototype.onGroupBarDblClick = function(event)
 {
   switch (event.button)
   {
@@ -404,100 +405,100 @@ TabGroupsManager.EventListener.prototype.onGroupBarDblClick = function (event)
   }
 };
 
-TabGroupsManager.EventListener.prototype.onButtonOpenCommand = function (event)
+TabGroupsManager.EventListener.prototype.onButtonOpenCommand = function(event)
 {
   TabGroupsManager.allGroups.mouseCommand(TabGroupsManager.preferences.buttonOpenLClick);
   event.stopPropagation();
 };
 
-TabGroupsManager.EventListener.prototype.onButtonOpenClick = function (event)
+TabGroupsManager.EventListener.prototype.onButtonOpenClick = function(event)
 {
   if (event.button == 1) TabGroupsManager.allGroups.mouseCommand(TabGroupsManager.preferences.buttonOpenMClick);
   event.stopPropagation();
 };
 
-TabGroupsManager.EventListener.prototype.onButtonOpenDblClick = function (event)
+TabGroupsManager.EventListener.prototype.onButtonOpenDblClick = function(event)
 {
   if (event.button == 0) TabGroupsManager.allGroups.mouseCommand(TabGroupsManager.preferences.buttonOpenDblClick);
   event.stopPropagation();
 };
 
-TabGroupsManager.EventListener.prototype.onButtonSleepCommand = function (event)
+TabGroupsManager.EventListener.prototype.onButtonSleepCommand = function(event)
 {
   TabGroupsManager.allGroups.mouseCommand(TabGroupsManager.preferences.buttonSleepLClick);
   event.stopPropagation();
 };
 
-TabGroupsManager.EventListener.prototype.onButtonSleepClick = function (event)
+TabGroupsManager.EventListener.prototype.onButtonSleepClick = function(event)
 {
   if (event.button == 1) TabGroupsManager.allGroups.mouseCommand(TabGroupsManager.preferences.buttonSleepMClick);
   event.stopPropagation();
 };
 
-TabGroupsManager.EventListener.prototype.onButtonSleepDblClick = function (event)
+TabGroupsManager.EventListener.prototype.onButtonSleepDblClick = function(event)
 {
   if (event.button == 0) TabGroupsManager.allGroups.mouseCommand(TabGroupsManager.preferences.buttonSleepDblClick);
   event.stopPropagation();
 };
 
-TabGroupsManager.EventListener.prototype.onButtonCloseCommand = function (event)
+TabGroupsManager.EventListener.prototype.onButtonCloseCommand = function(event)
 {
   TabGroupsManager.allGroups.mouseCommand(TabGroupsManager.preferences.buttonCloseLClick);
   event.stopPropagation();
 };
 
-TabGroupsManager.EventListener.prototype.onButtonCloseClick = function (event)
+TabGroupsManager.EventListener.prototype.onButtonCloseClick = function(event)
 {
   if (event.button == 1) TabGroupsManager.allGroups.mouseCommand(TabGroupsManager.preferences.buttonCloseMClick);
   event.stopPropagation();
 };
 
-TabGroupsManager.EventListener.prototype.onButtonCloseDblClick = function (event)
+TabGroupsManager.EventListener.prototype.onButtonCloseDblClick = function(event)
 {
   if (event.button == 0) TabGroupsManager.allGroups.mouseCommand(TabGroupsManager.preferences.buttonCloseDblClick);
   event.stopPropagation();
 };
 
-TabGroupsManager.EventListener.prototype.onButtonDispMClick = function (event)
+TabGroupsManager.EventListener.prototype.onButtonDispMClick = function(event)
 {
   if (event.button == 1) TabGroupsManager.allGroups.mouseCommand(TabGroupsManager.preferences.buttonDispMClick);
   event.stopPropagation();
 };
 
-TabGroupsManager.EventListener.prototype.onShowingSleepingGroupsMenu = function (event)
+TabGroupsManager.EventListener.prototype.onShowingSleepingGroupsMenu = function(event)
 {
   TabGroupsManager.sleepingGroups.createMenu(event.currentTarget);
 };
 
-TabGroupsManager.EventListener.prototype.onHiddenSleepingGroupsMenu = function (event)
+TabGroupsManager.EventListener.prototype.onHiddenSleepingGroupsMenu = function(event)
 {
   TabGroupsManager.sleepingGroups.destroyMenu(event.currentTarget);
 };
 
-TabGroupsManager.EventListener.prototype.onShowingClosedGroupsMenu = function (event)
+TabGroupsManager.EventListener.prototype.onShowingClosedGroupsMenu = function(event)
 {
   TabGroupsManager.closedGroups.createMenu(event.currentTarget);
 };
 
-TabGroupsManager.EventListener.prototype.onHiddenClosedGroupsMenu = function (event)
+TabGroupsManager.EventListener.prototype.onHiddenClosedGroupsMenu = function(event)
 {
   TabGroupsManager.closedGroups.destroyMenu(event.currentTarget);
 };
 
-TabGroupsManager.EventListener.prototype.contentAreaContextMenuShowHideItems = function ()
+TabGroupsManager.EventListener.prototype.contentAreaContextMenuShowHideItems = function()
 {
   document.getElementById("TabGroupsManagerLinkOpenInNewGroup").hidden = !gContextMenu.onLink;
   document.getElementById("TabGroupsManagerLinkOpenInSelectedGroup").hidden = !gContextMenu.onLink;
   document.getElementById("TabGroupsManagerLinkOpenInNewGroupSeparator").hidden = !gContextMenu.onLink;
 };
 
-TabGroupsManager.EventListener.prototype.linkOpenInNewGroup = function ()
+TabGroupsManager.EventListener.prototype.linkOpenInNewGroup = function()
 {
   var newTab = TabGroupsManager.overrideMethod.gBrowserAddTab(TabGroupsManager.contextTargetHref);
   TabGroupsManager.allGroups.openNewGroup(newTab);
 };
 
-TabGroupsManager.EventListener.prototype.linkOpenInSelectedGroup = function ()
+TabGroupsManager.EventListener.prototype.linkOpenInSelectedGroup = function()
 {
   var newTab = TabGroupsManager.overrideMethod.gBrowserAddTab(TabGroupsManager.contextTargetHref);
   var group = TabGroupsManager.allGroups.openNewGroup(newTab);

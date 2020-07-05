@@ -3,7 +3,7 @@
 
 /* globals TabGroupsManager, TabGroupsManagerJsm */
 
-TabGroupsManager.OverrideMethod = function ()
+TabGroupsManager.OverrideMethod = function()
 {
   try
   {
@@ -16,15 +16,15 @@ TabGroupsManager.OverrideMethod = function ()
         enumerable: false,
         configurable: true,
         writable: false,
-        value: function (prop, handler)
+        value: function(prop, handler)
         {
           var oldval = this[prop],
             newval = oldval,
-            getter = function ()
+            getter = function()
             {
               return newval;
             },
-            setter = function (val)
+            setter = function(val)
             {
               oldval = newval;
               return newval = handler.call(this, prop, oldval, val);
@@ -85,7 +85,7 @@ TabGroupsManager.OverrideMethod = function ()
   }
 };
 
-TabGroupsManager.OverrideMethod.prototype.delayOverride = function ()
+TabGroupsManager.OverrideMethod.prototype.delayOverride = function()
 {
   this.setOverride();
   if (TabGroupsManager.preferences.openNewGroupOperation)
@@ -94,7 +94,7 @@ TabGroupsManager.OverrideMethod.prototype.delayOverride = function ()
   }
 };
 
-TabGroupsManager.OverrideMethod.prototype.setOverride = function ()
+TabGroupsManager.OverrideMethod.prototype.setOverride = function()
 {
   if (gBrowser.tabContainer._handleTabDrag)
   {
@@ -141,7 +141,7 @@ TabGroupsManager.OverrideMethod.prototype.setOverride = function ()
   }
 };
 
-TabGroupsManager.OverrideMethod.prototype.setOverrideForNewGroup = function ()
+TabGroupsManager.OverrideMethod.prototype.setOverrideForNewGroup = function()
 {
   this.backup_gBrowser_addTab = gBrowser.addTab;
   gBrowser.addTab = this.override_gBrowser_addTab;
@@ -161,7 +161,7 @@ TabGroupsManager.OverrideMethod.prototype.setOverrideForNewGroup = function ()
   }
 };
 
-TabGroupsManager.OverrideMethod.prototype.parseReferrerURI = function (arg, aCharset, aPostData)
+TabGroupsManager.OverrideMethod.prototype.parseReferrerURI = function(arg, aCharset, aPostData)
 {
   if (arg.length == 2 && typeof arg[1] == "object" && !(arg[1] instanceof Ci.nsIURI))
   {
@@ -171,7 +171,7 @@ TabGroupsManager.OverrideMethod.prototype.parseReferrerURI = function (arg, aCha
   return [aCharset, aPostData];
 };
 
-TabGroupsManager.OverrideMethod.prototype.gBrowserAddTab = function ()
+TabGroupsManager.OverrideMethod.prototype.gBrowserAddTab = function()
 {
   if (this.backup_gBrowser_addTab)
   {
@@ -183,7 +183,7 @@ TabGroupsManager.OverrideMethod.prototype.gBrowserAddTab = function ()
   }
 };
 
-TabGroupsManager.OverrideMethod.prototype.override_handleTabDrag = function (event)
+TabGroupsManager.OverrideMethod.prototype.override_handleTabDrag = function(event)
 {
   var draggedTab = this.draggedTab;
   if (!draggedTab)
@@ -207,7 +207,7 @@ TabGroupsManager.OverrideMethod.prototype.override_handleTabDrag = function (eve
   {
     event.dataTransfer = {};
     event.dataTransfer.types = {};
-    event.dataTransfer.types.contains = function (item)
+    event.dataTransfer.types.contains = function(item)
     {
       return item == "application/x-moz-tabbrowser-tab" || item == "text/x-moz-text-internal";
     };
@@ -234,7 +234,7 @@ TabGroupsManager.OverrideMethod.prototype.override_handleTabDrag = function (eve
   return TabGroupsManager.overrideMethod.bakup_handleTabDrag.apply(this, arguments);
 };
 
-TabGroupsManager.OverrideMethod.prototype.override_handleTabDrop = function (event)
+TabGroupsManager.OverrideMethod.prototype.override_handleTabDrop = function(event)
 {
   let groupBarBox = TabGroupsManager.xulElements.groupBar.boxObject;
   let x1 = groupBarBox.screenX;
@@ -245,7 +245,7 @@ TabGroupsManager.OverrideMethod.prototype.override_handleTabDrop = function (eve
   {
     event.dataTransfer = {};
     event.dataTransfer.types = {};
-    event.dataTransfer.types.contains = function (item)
+    event.dataTransfer.types.contains = function(item)
     {
       return item == "application/x-moz-tabbrowser-tab" || item == "text/x-moz-text-internal";
     };
@@ -264,15 +264,15 @@ TabGroupsManager.OverrideMethod.prototype.override_handleTabDrop = function (eve
   return TabGroupsManager.overrideMethod.bakup_handleTabDrop.apply(this, arguments);
 };
 
-TabGroupsManager.OverrideMethod.prototype.override_TabView__window_UI_showTabView = function (zoomOut)
+TabGroupsManager.OverrideMethod.prototype.override_TabView__window_UI_showTabView = function(zoomOut)
 {
   TabGroupsManager.forPanorama.onTabViewShow();
   return TabGroupsManager.overrideMethod.backup_TabView__window_UI_showTabView.apply(this, arguments);
 };
 
-TabGroupsManager.OverrideMethod.prototype.overrideTabViewFunctions = function ()
+TabGroupsManager.OverrideMethod.prototype.overrideTabViewFunctions = function()
 {
-  TabView._window.GroupItems._updateTabBar = function () {};
+  TabView._window.GroupItems._updateTabBar = function() {};
   TabView._window.UI._removeTabActionHandlers();
   TabGroupsManager.overrideMethod.backup_TabView__eventListeners_open = TabView._window.UI._eventListeners.open;
   TabGroupsManager.overrideMethod.backup_TabView__eventListeners_close = TabView._window.UI._eventListeners.close;
@@ -294,7 +294,7 @@ TabGroupsManager.OverrideMethod.prototype.overrideTabViewFunctions = function ()
   TabView._window.UI.showTabView = TabGroupsManager.overrideMethod.override_TabView__window_UI_showTabView;
 };
 
-TabGroupsManager.OverrideMethod.prototype.override_TabView__eventListeners_open = function (tab)
+TabGroupsManager.OverrideMethod.prototype.override_TabView__eventListeners_open = function(tab)
 {
   if (TabView._window.UI.isTabViewVisible())
   {
@@ -302,7 +302,7 @@ TabGroupsManager.OverrideMethod.prototype.override_TabView__eventListeners_open 
   }
 };
 
-TabGroupsManager.OverrideMethod.prototype.override_TabView__eventListeners_close = function (tab)
+TabGroupsManager.OverrideMethod.prototype.override_TabView__eventListeners_close = function(tab)
 {
   if (TabView._window.UI.isTabViewVisible())
   {
@@ -310,7 +310,7 @@ TabGroupsManager.OverrideMethod.prototype.override_TabView__eventListeners_close
   }
 };
 
-TabGroupsManager.OverrideMethod.prototype.override_TabView__eventListeners_move = function (tab)
+TabGroupsManager.OverrideMethod.prototype.override_TabView__eventListeners_move = function(tab)
 {
   if (TabView._window.UI.isTabViewVisible())
   {
@@ -318,7 +318,7 @@ TabGroupsManager.OverrideMethod.prototype.override_TabView__eventListeners_move 
   }
 };
 
-TabGroupsManager.OverrideMethod.prototype.override_TabView__eventListeners_select = function (tab)
+TabGroupsManager.OverrideMethod.prototype.override_TabView__eventListeners_select = function(tab)
 {
   if (TabView._window.UI.isTabViewVisible())
   {
@@ -326,7 +326,7 @@ TabGroupsManager.OverrideMethod.prototype.override_TabView__eventListeners_selec
   }
 };
 
-TabGroupsManager.OverrideMethod.prototype.override_TabView__eventListeners_pinned = function (tab)
+TabGroupsManager.OverrideMethod.prototype.override_TabView__eventListeners_pinned = function(tab)
 {
   if (TabView._window.UI.isTabViewVisible())
   {
@@ -334,7 +334,7 @@ TabGroupsManager.OverrideMethod.prototype.override_TabView__eventListeners_pinne
   }
 };
 
-TabGroupsManager.OverrideMethod.prototype.override_TabView__eventListeners_unpinned = function (tab)
+TabGroupsManager.OverrideMethod.prototype.override_TabView__eventListeners_unpinned = function(tab)
 {
   if (TabView._window.UI.isTabViewVisible())
   {
@@ -342,7 +342,7 @@ TabGroupsManager.OverrideMethod.prototype.override_TabView__eventListeners_unpin
   }
 };
 
-TabGroupsManager.OverrideMethod.prototype.override_gBrowser__beginRemoveTab = function (aTab, aTabWillBeMoved, aCloseWindowWithLastTab, aCloseWindowFastpath)
+TabGroupsManager.OverrideMethod.prototype.override_gBrowser__beginRemoveTab = function(aTab, aTabWillBeMoved, aCloseWindowWithLastTab, aCloseWindowFastpath)
 {
   if (1 == (this.mTabs.length - this._removingTabs.length))
   {
@@ -351,7 +351,7 @@ TabGroupsManager.OverrideMethod.prototype.override_gBrowser__beginRemoveTab = fu
   return TabGroupsManager.overrideMethod.backup_gBrowser__beginRemoveTab.apply(this, arguments);
 };
 
-TabGroupsManager.OverrideMethod.prototype.override_gBrowser__endRemoveTab = function (args)
+TabGroupsManager.OverrideMethod.prototype.override_gBrowser__endRemoveTab = function(args)
 {
   if (args._endRemoveArgs)
   {
@@ -364,7 +364,7 @@ TabGroupsManager.OverrideMethod.prototype.override_gBrowser__endRemoveTab = func
   TabGroupsManager.overrideMethod.backup_gBrowser__endRemoveTab.apply(this, arguments);
 };
 
-TabGroupsManager.OverrideMethod.prototype.override_window_canQuitApplication = function ()
+TabGroupsManager.OverrideMethod.prototype.override_window_canQuitApplication = function()
 {
   TabGroupsManagerJsm.quitApplicationObserver.inCanQuitApplication = true;
   let result = true;
@@ -383,7 +383,7 @@ TabGroupsManager.OverrideMethod.prototype.override_window_canQuitApplication = f
   return result
 };
 
-TabGroupsManager.OverrideMethod.prototype.override_gBrowser_swapBrowsersAndCloseOther = function (aOurTab, aOtherTab)
+TabGroupsManager.OverrideMethod.prototype.override_gBrowser_swapBrowsersAndCloseOther = function(aOurTab, aOtherTab)
 {
   let tabGroupsManagerBackupProgressListener = aOurTab.group.progressListener;
   try
@@ -404,7 +404,7 @@ TabGroupsManager.OverrideMethod.prototype.override_gBrowser_swapBrowsersAndClose
   }
 };
 
-TabGroupsManager.OverrideMethod.prototype.override_nsBrowserAccess_prototype_openURI = function (aURI, aOpener, aWhere, aContext)
+TabGroupsManager.OverrideMethod.prototype.override_nsBrowserAccess_prototype_openURI = function(aURI, aOpener, aWhere, aContext)
 {
   if (aContext != Ci.nsIBrowserDOMWindow.OPEN_EXTERNAL || aURI || aURI.schemeIs("chrome"))
   {
@@ -417,7 +417,7 @@ TabGroupsManager.OverrideMethod.prototype.override_nsBrowserAccess_prototype_ope
   return TabGroupsManager.overrideMethod.backup_nsBrowserAccess_prototype_openURI.apply(this, arguments);
 };
 
-TabGroupsManager.OverrideMethod.prototype.override_window_handleLinkClick = function (event, href, linkNode)
+TabGroupsManager.OverrideMethod.prototype.override_window_handleLinkClick = function(event, href, linkNode)
 {
   if (event.button != 2)
   {
@@ -430,12 +430,12 @@ TabGroupsManager.OverrideMethod.prototype.override_window_handleLinkClick = func
   return TabGroupsManager.overrideMethod.backup_window_handleLinkClick.apply(this, arguments);
 };
 
-TabGroupsManager.OverrideMethod.prototype.override_WindowIsClosing = function ()
+TabGroupsManager.OverrideMethod.prototype.override_WindowIsClosing = function()
 {
   return TabGroupsManager.overrideMethod.backup_WindowIsClosing.apply(this, arguments) && TabGroupsManager.overrideMethod.methodInWindowOnCloseForTGM();
 };
 
-TabGroupsManager.OverrideMethod.prototype.override_gBrowser_removeTab = function (aTab, aParams)
+TabGroupsManager.OverrideMethod.prototype.override_gBrowser_removeTab = function(aTab, aParams)
 {
   if (!TabGroupsManager.overrideMethod.tabCloseDisableCheck(aTab))
   {
@@ -443,7 +443,7 @@ TabGroupsManager.OverrideMethod.prototype.override_gBrowser_removeTab = function
   }
 };
 
-TabGroupsManager.OverrideMethod.prototype.override_gBrowser_addTab = function (aURI, aReferrerURI, aCharset, aPostData, aOwner, aAllowThirdPartyFixup)
+TabGroupsManager.OverrideMethod.prototype.override_gBrowser_addTab = function(aURI, aReferrerURI, aCharset, aPostData, aOwner, aAllowThirdPartyFixup)
 {
   if (TabGroupsManager.preferences.openNewGroupByShift && TabGroupsManager.keyboardState.shiftKey)
   {
@@ -454,7 +454,7 @@ TabGroupsManager.OverrideMethod.prototype.override_gBrowser_addTab = function (a
   return TabGroupsManager.overrideMethod.backup_gBrowser_addTab.apply(this, arguments);
 };
 
-TabGroupsManager.OverrideMethod.prototype.override_gBrowser_loadOneTab = function (aURI, aReferrerURI, aCharset, aPostData, aLoadInBackground, aAllowThirdPartyFixup)
+TabGroupsManager.OverrideMethod.prototype.override_gBrowser_loadOneTab = function(aURI, aReferrerURI, aCharset, aPostData, aLoadInBackground, aAllowThirdPartyFixup)
 {
   if (TabGroupsManager.preferences.openNewGroupByShift && TabGroupsManager.keyboardState.shiftKey)
   {
@@ -465,7 +465,7 @@ TabGroupsManager.OverrideMethod.prototype.override_gBrowser_loadOneTab = functio
   return TabGroupsManager.overrideMethod.backup_gBrowser_loadOneTab.apply(this, arguments);
 };
 
-TabGroupsManager.OverrideMethod.prototype.override_gBrowser_loadURI = function (aURI, aReferrerURI, aCharset)
+TabGroupsManager.OverrideMethod.prototype.override_gBrowser_loadURI = function(aURI, aReferrerURI, aCharset)
 {
   if (TabGroupsManager.preferences.openNewGroupByShift && TabGroupsManager.keyboardState.shiftKey)
   {
@@ -476,7 +476,7 @@ TabGroupsManager.OverrideMethod.prototype.override_gBrowser_loadURI = function (
   return TabGroupsManager.overrideMethod.backup_gBrowser_loadURI.apply(this, arguments);
 };
 
-TabGroupsManager.OverrideMethod.prototype.override_gBrowser_loadURIWithFlags = function (aURI, aFlags, aReferrerURI, aCharset, aPostData)
+TabGroupsManager.OverrideMethod.prototype.override_gBrowser_loadURIWithFlags = function(aURI, aFlags, aReferrerURI, aCharset, aPostData)
 {
   if (TabGroupsManager.preferences.openNewGroupByShift && TabGroupsManager.keyboardState.shiftKey)
   {
@@ -487,7 +487,7 @@ TabGroupsManager.OverrideMethod.prototype.override_gBrowser_loadURIWithFlags = f
   return TabGroupsManager.overrideMethod.backup_gBrowser_loadURIWithFlags.apply(this, arguments);
 };
 
-TabGroupsManager.OverrideMethod.prototype.override_window_openUILinkIn = function (url, where, allowThirdPartyFixup, postData, referrerUrl)
+TabGroupsManager.OverrideMethod.prototype.override_window_openUILinkIn = function(url, where, allowThirdPartyFixup, postData, referrerUrl)
 {
   if (TabGroupsManager.preferences.openNewGroupByShift && TabGroupsManager.keyboardState.shiftKey)
   {
@@ -498,7 +498,7 @@ TabGroupsManager.OverrideMethod.prototype.override_window_openUILinkIn = functio
   return TabGroupsManager.overrideMethod.backup_window_openUILinkIn.apply(this, arguments);
 };
 
-TabGroupsManager.OverrideMethod.prototype.override_searchbar_handleSearchCommand = function (aEvent, aOverride)
+TabGroupsManager.OverrideMethod.prototype.override_searchbar_handleSearchCommand = function(aEvent, aOverride)
 {
   var engine = document.getElementById("searchbar").currentEngine;
   if (("getSecondSearch" in window) && aOverride)
@@ -510,7 +510,7 @@ TabGroupsManager.OverrideMethod.prototype.override_searchbar_handleSearchCommand
   TabGroupsManager.overrideMethod.backup_searchbar_handleSearchCommand.apply(this, arguments);
 };
 
-TabGroupsManager.OverrideMethod.prototype.tabCloseDisableCheck = function (aTab)
+TabGroupsManager.OverrideMethod.prototype.tabCloseDisableCheck = function(aTab)
 {
   try
   {
@@ -551,7 +551,7 @@ TabGroupsManager.OverrideMethod.prototype.tabCloseDisableCheck = function (aTab)
   return false;
 };
 
-TabGroupsManager.OverrideMethod.prototype.methodInWindowOnCloseForTGM = function ()
+TabGroupsManager.OverrideMethod.prototype.methodInWindowOnCloseForTGM = function()
 {
   if (TabGroupsManagerJsm.applicationStatus.windows.length <= 1)
   {
@@ -588,13 +588,13 @@ TabGroupsManager.OverrideMethod.prototype.methodInWindowOnCloseForTGM = function
   return true;
 };
 
-TabGroupsManager.OverrideMethod.prototype.arrowScrollBoxScrollByIndex = function (index)
+TabGroupsManager.OverrideMethod.prototype.arrowScrollBoxScrollByIndex = function(index)
 {
   index = index / Math.abs(index) || 0;
   this.scrollByPixels(index * 100);
 };
 
-TabGroupsManager.OverrideMethod.prototype.confirmWhenWindowClose = function ()
+TabGroupsManager.OverrideMethod.prototype.confirmWhenWindowClose = function()
 {
   var prompt = Cc["@mozilla.org/embedcomp/prompt-service;1"].getService(Ci.nsIPromptService);
   var title = TabGroupsManager.strings.getString("DialogTitle");
@@ -626,7 +626,7 @@ TabGroupsManager.OverrideMethod.prototype.confirmWhenWindowClose = function ()
   }
 };
 
-TabGroupsManager.OverrideMethod.prototype.getBoundingClientRectIfElementHidden = function (element)
+TabGroupsManager.OverrideMethod.prototype.getBoundingClientRectIfElementHidden = function(element)
 {
   if (element.hidden)
   {
@@ -656,7 +656,7 @@ TabGroupsManager.OverrideMethod.prototype.getBoundingClientRectIfElementHidden =
   return element.getBoundingClientRect();
 };
 
-TabGroupsManager.OverrideMethod.prototype.toolboxCustomizeChange = function (id, oldval, newval)
+TabGroupsManager.OverrideMethod.prototype.toolboxCustomizeChange = function(id, oldval, newval)
 {
   if (newval == false)
   {

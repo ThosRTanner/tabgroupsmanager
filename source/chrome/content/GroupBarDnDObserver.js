@@ -1,5 +1,5 @@
 
-TabGroupsManager.GroupBarDnDObserver = function (aSupportDnD)
+TabGroupsManager.GroupBarDnDObserver = function(aSupportDnD)
 {
   try
   {
@@ -14,7 +14,7 @@ TabGroupsManager.GroupBarDnDObserver = function (aSupportDnD)
   }
 };
 
-TabGroupsManager.GroupBarDnDObserver.prototype.createEventListener = function ()
+TabGroupsManager.GroupBarDnDObserver.prototype.createEventListener = function()
 {
   TabGroupsManager.xulElements.groupBar.addEventListener("dragenter", this, false);
   TabGroupsManager.xulElements.groupBar.addEventListener("dragover", this, false);
@@ -22,7 +22,7 @@ TabGroupsManager.GroupBarDnDObserver.prototype.createEventListener = function ()
   TabGroupsManager.xulElements.groupBar.addEventListener("drop", this, false);
 };
 
-TabGroupsManager.GroupBarDnDObserver.prototype.destroyEventListener = function ()
+TabGroupsManager.GroupBarDnDObserver.prototype.destroyEventListener = function()
 {
   TabGroupsManager.xulElements.groupBar.removeEventListener("dragenter", this, false);
   TabGroupsManager.xulElements.groupBar.removeEventListener("dragover", this, false);
@@ -30,7 +30,7 @@ TabGroupsManager.GroupBarDnDObserver.prototype.destroyEventListener = function (
   TabGroupsManager.xulElements.groupBar.removeEventListener("drop", this, false);
 };
 
-TabGroupsManager.GroupBarDnDObserver.prototype.handleEvent = function (event)
+TabGroupsManager.GroupBarDnDObserver.prototype.handleEvent = function(event)
 {
   switch (event.type)
   {
@@ -47,12 +47,12 @@ TabGroupsManager.GroupBarDnDObserver.prototype.handleEvent = function (event)
   }
 };
 
-TabGroupsManager.GroupBarDnDObserver.prototype.checkPointInRect = function (point, rect)
+TabGroupsManager.GroupBarDnDObserver.prototype.checkPointInRect = function(point, rect)
 {
   return (rect[0] <= point[0] && point[0] < rect[2] && rect[1] <= point[1] && point[1] < rect[3]);
 };
 
-TabGroupsManager.GroupBarDnDObserver.prototype.onDragOver = function (event, draggedTab)
+TabGroupsManager.GroupBarDnDObserver.prototype.onDragOver = function(event, draggedTab)
 {
   this.supportDnD.hideAll();
   if (event.originalTarget == document.getElementById("TabGroupsManagerGroupBarDropPlus"))
@@ -146,12 +146,12 @@ TabGroupsManager.GroupBarDnDObserver.prototype.onDragOver = function (event, dra
   }
 };
 
-TabGroupsManager.GroupBarDnDObserver.prototype.onDragLeave = function (event)
+TabGroupsManager.GroupBarDnDObserver.prototype.onDragLeave = function(event)
 {
   this.supportDnD.hideAll();
 };
 
-TabGroupsManager.GroupBarDnDObserver.prototype.onDrop = function (event, draggedTab)
+TabGroupsManager.GroupBarDnDObserver.prototype.onDrop = function(event, draggedTab)
 {
   this.supportDnD.hideAllNow();
   var session = Cc["@mozilla.org/widget/dragservice;1"].getService(Ci.nsIDragService).getCurrentSession();

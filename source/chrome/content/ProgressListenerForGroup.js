@@ -3,7 +3,7 @@
 
 /* globals TabGroupsManager, TabGroupsManagerJsm */
 
-TabGroupsManager.progressListenerForGroup = function (aOwnerGroup)
+TabGroupsManager.ProgressListenerForGroup = function(aOwnerGroup)
 {
   try
   {
@@ -16,7 +16,7 @@ TabGroupsManager.progressListenerForGroup = function (aOwnerGroup)
   }
 };
 
-TabGroupsManager.progressListenerForGroup.prototype.QueryInterface = function (aIID)
+TabGroupsManager.ProgressListenerForGroup.prototype.QueryInterface = function(aIID)
 {
   if (aIID.equals(Ci.nsIWebProgressListener) ||
     aIID.equals(Ci.nsISupportsWeakReference) ||
@@ -27,7 +27,9 @@ TabGroupsManager.progressListenerForGroup.prototype.QueryInterface = function (a
   throw Components.results.NS_NOINTERFACE;
 };
 
-TabGroupsManager.progressListenerForGroup.prototype.onStateChange = function (aWebProgress, aRequest, aFlag, aStatus)
+//FIXME Deals with about:sessionrestore which happens when browser can't recover
+//sessions. I'm not entirely sre how to cause that to happen but this looks wrong
+TabGroupsManager.ProgressListenerForGroup.prototype.onStateChange = function(aWebProgress, aRequest, aFlag, aStatus)
 {
   if (aFlag & this.startAndStop)
   {
@@ -40,40 +42,44 @@ TabGroupsManager.progressListenerForGroup.prototype.onStateChange = function (aW
     {
       if (aWebProgress.document && aWebProgress.document.location == "about:sessionrestore")
       {
+        //FIXME It seems hard to believe this does anything useful.
+/**/console.log(aWebProgress, aRequest, aFlag, aStatus)
         var button = aWebProgress.document.getElementById("errorTryAgain");
         //button.setAttribute("oncommand","getBrowserWindow().TabGroupsManager.session.restoreSessionFromAboutSessionRestore(); "+button.getAttribute("oncommand"));
-        button.addEventListener("command", function (event)
+        button.addEventListener("command", function(event)
         {
-          getBrowserWindow().TabGroupsManager.session.restoreSessionFromAboutSessionRestore(); + button.getAttribute("oncommand");
+          getBrowserWindow().TabGroupsManager.session.restoreSessionFromAboutSessionRestore();
+          +button.getAttribute("oncommand");
         }, false);
       }
     }
   }
-  return 0;
 };
 
-TabGroupsManager.progressListenerForGroup.prototype.onLocationChange = function (aProgress, aRequest, aURI)
+//seems you don't need to provide these methods if they do nothing
+/*
+TabGroupsManager.ProgressListenerForGroup.prototype.onLocationChange = function(aProgress, aRequest, aURI)
 {
   return 0;
 };
 
-TabGroupsManager.progressListenerForGroup.prototype.onProgressChange = function ()
+TabGroupsManager.ProgressListenerForGroup.prototype.onProgressChange = function()
 {
   return 0;
 };
 
-TabGroupsManager.progressListenerForGroup.prototype.onStatusChange = function ()
+TabGroupsManager.ProgressListenerForGroup.prototype.onStatusChange = function()
 {
   return 0;
 };
 
-TabGroupsManager.progressListenerForGroup.prototype.onSecurityChange = function ()
+TabGroupsManager.ProgressListenerForGroup.prototype.onSecurityChange = function()
 {
   return 0;
 };
 
-TabGroupsManager.progressListenerForGroup.prototype.onLinkIconAvailable = function ()
+TabGroupsManager.ProgressListenerForGroup.prototype.onLinkIconAvailable = function()
 {
   return 0;
 };
-
+*/

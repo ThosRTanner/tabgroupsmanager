@@ -3,13 +3,13 @@
 
 /* globals TabGroupsManager, TabGroupsManagerJsm */
 
-TabGroupsManager.KeyboardShortcut = function ()
+TabGroupsManager.KeyboardShortcut = function()
 {
   this.keyset = null;
   this.setKeyBind();
 };
 
-TabGroupsManager.KeyboardShortcut.prototype.setKeyBind = function ()
+TabGroupsManager.KeyboardShortcut.prototype.setKeyBind = function()
 {
   try
   {
@@ -24,7 +24,7 @@ TabGroupsManager.KeyboardShortcut.prototype.setKeyBind = function ()
   }
 };
 
-TabGroupsManager.KeyboardShortcut.prototype.removeKeybind = function ()
+TabGroupsManager.KeyboardShortcut.prototype.removeKeybind = function()
 {
   if (this.keyset)
   {
@@ -37,7 +37,7 @@ TabGroupsManager.KeyboardShortcut.prototype.removeKeybind = function ()
   }
 };
 
-TabGroupsManager.KeyboardShortcut.prototype.readKeyBindJson = function ()
+TabGroupsManager.KeyboardShortcut.prototype.readKeyBindJson = function()
 {
   let keyBindTmp = JSON.parse(TabGroupsManager.preferences.keyBindJson);
   let keyBind = new Array();
@@ -63,7 +63,7 @@ TabGroupsManager.KeyboardShortcut.prototype.readKeyBindJson = function ()
   return keyBind;
 };
 
-TabGroupsManager.KeyboardShortcut.prototype.deleteDuplicatedKeyBind = function (keyBind)
+TabGroupsManager.KeyboardShortcut.prototype.deleteDuplicatedKeyBind = function(keyBind)
 {
   if (TabGroupsManager.preferences.keyBindOverride)
   {
@@ -92,7 +92,7 @@ TabGroupsManager.KeyboardShortcut.prototype.deleteDuplicatedKeyBind = function (
   }
 };
 
-TabGroupsManager.KeyboardShortcut.prototype.setMyKeyBind = function (keyBind)
+TabGroupsManager.KeyboardShortcut.prototype.setMyKeyBind = function(keyBind)
 {
   this.keyset = document.documentElement.appendChild(document.createElement("keyset"));
   for (var i = 0; i < keyBind.length; i++)
@@ -109,7 +109,7 @@ TabGroupsManager.KeyboardShortcut.prototype.setMyKeyBind = function (keyBind)
     }
 
     //key.setAttribute("oncommand","TabGroupsManager.keyboardShortcut.onCommand( event );");
-    key.addEventListener("command", function (event)
+    key.addEventListener("command", function(event)
     {
       TabGroupsManager.keyboardShortcut.onCommand(event);
     }, false);
@@ -122,7 +122,7 @@ TabGroupsManager.KeyboardShortcut.prototype.setMyKeyBind = function (keyBind)
   }
 };
 
-TabGroupsManager.KeyboardShortcut.prototype.onCommand = function (event)
+TabGroupsManager.KeyboardShortcut.prototype.onCommand = function(event)
 {
   switch (event.target.commandCode)
   {

@@ -3,9 +3,9 @@
 
 /* globals TabGroupsManager, TabGroupsManagerJsm */
 
-TabGroupsManager.TabContextMenu = function () {};
+TabGroupsManager.TabContextMenu = function() {};
 
-TabGroupsManager.TabContextMenu.prototype.makeMenu = function ()
+TabGroupsManager.TabContextMenu.prototype.makeMenu = function()
 {
   var flgmntNode = document.createDocumentFragment();
   flgmntNode.appendChild(document.createElement("menuseparator"));
@@ -31,7 +31,7 @@ TabGroupsManager.TabContextMenu.prototype.makeMenu = function ()
   menu.addEventListener("popupshowing", this.contextMenuPopup, false);
 };
 
-TabGroupsManager.TabContextMenu.prototype.deleteMenu = function ()
+TabGroupsManager.TabContextMenu.prototype.deleteMenu = function()
 {
   let menu = gBrowser.tabContextMenu;
   if (!menu)
@@ -68,7 +68,7 @@ TabGroupsManager.TabContextMenu.prototype.deleteMenu = function ()
   menu.removeEventListener("popupshowing", this.contextMenuPopup, false);
 };
 
-TabGroupsManager.TabContextMenu.prototype.makeOneMenuitem = function (id, name, command)
+TabGroupsManager.TabContextMenu.prototype.makeOneMenuitem = function(id, name, command)
 {
   var menuitem = document.createElement("menuitem");
   menuitem.setAttribute("id", "TabGroupsManager" + id + "Menuid");
@@ -78,7 +78,7 @@ TabGroupsManager.TabContextMenu.prototype.makeOneMenuitem = function (id, name, 
   return menuitem;
 };
 
-TabGroupsManager.TabContextMenu.prototype.contextMenuPopup = function ()
+TabGroupsManager.TabContextMenu.prototype.contextMenuPopup = function()
 {
   var tabContextMenuSendToOtherGroup = document.getElementById("TabGroupsManagerTabContextMenuSendToOtherGroup");
   var tabContextMenuCloseOtherTab = document.getElementById("TabGroupsManagerTabContextMenuCloseOtherTabMenuid");
@@ -111,7 +111,7 @@ TabGroupsManager.TabContextMenu.prototype.contextMenuPopup = function ()
   tabContextMenuCloseRightTab.setAttribute("disabled", disabledRight);
 };
 
-TabGroupsManager.TabContextMenu.prototype.sendToMenuPopup = function (event)
+TabGroupsManager.TabContextMenu.prototype.sendToMenuPopup = function(event)
 {
   TabGroupsManager.tabContextMenu.sendToMenuHidden(event);
   var flgmntNode = document.createDocumentFragment();
@@ -154,19 +154,19 @@ TabGroupsManager.TabContextMenu.prototype.sendToMenuPopup = function (event)
   sendToMenuPopup.appendChild(flgmntNode);
 };
 
-TabGroupsManager.TabContextMenu.prototype.sendToMenuHidden = function (event)
+TabGroupsManager.TabContextMenu.prototype.sendToMenuHidden = function(event)
 {
   var sendToMenuPopup = event.target;
   TabGroupsManager.utils.deleteFromAnonidToAnonid(sendToMenuPopup);
 };
 
-TabGroupsManager.TabContextMenu.prototype.sendTabToNewGroup = function (event)
+TabGroupsManager.TabContextMenu.prototype.sendTabToNewGroup = function(event)
 {
   var tab = document.popupNode;
   TabGroupsManager.allGroups.moveTabToGroupInSameWindow(tab, null, event.ctrlKey);
 };
 
-TabGroupsManager.TabContextMenu.prototype.sendTabToGroup = function (event)
+TabGroupsManager.TabContextMenu.prototype.sendTabToGroup = function(event)
 {
   var tab = document.popupNode;
   var groupId = event.target.getAttribute("value") - 0;
@@ -174,14 +174,14 @@ TabGroupsManager.TabContextMenu.prototype.sendTabToGroup = function (event)
   TabGroupsManager.allGroups.moveTabToGroupInSameWindow(tab, group, event.ctrlKey);
 };
 
-TabGroupsManager.TabContextMenu.prototype.sendTabToSleepingGroup = function (event)
+TabGroupsManager.TabContextMenu.prototype.sendTabToSleepingGroup = function(event)
 {
   var tab = document.popupNode;
   var groupId = event.target.getAttribute("value") - 0;
   TabGroupsManager.sleepingGroups.sendTabToGroupsStore(tab, groupId);
 };
 
-TabGroupsManager.TabContextMenu.prototype.closeLeftTabInGroup = function ()
+TabGroupsManager.TabContextMenu.prototype.closeLeftTabInGroup = function()
 {
   var targetTab = document.popupNode;
   var targetGroup = targetTab.group;
@@ -200,7 +200,7 @@ TabGroupsManager.TabContextMenu.prototype.closeLeftTabInGroup = function ()
   }
 };
 
-TabGroupsManager.TabContextMenu.prototype.closeRightTabInGroup = function ()
+TabGroupsManager.TabContextMenu.prototype.closeRightTabInGroup = function()
 {
   var targetTab = document.popupNode;
   var targetGroup = targetTab.group;
@@ -219,7 +219,7 @@ TabGroupsManager.TabContextMenu.prototype.closeRightTabInGroup = function ()
   }
 };
 
-TabGroupsManager.TabContextMenu.prototype.selectLeftTabInGroupWithHTM = function ()
+TabGroupsManager.TabContextMenu.prototype.selectLeftTabInGroupWithHTM = function()
 {
   var targetTab = document.popupNode;
   var targetGroup = targetTab.group;
@@ -238,7 +238,7 @@ TabGroupsManager.TabContextMenu.prototype.selectLeftTabInGroupWithHTM = function
   }
 };
 
-TabGroupsManager.TabContextMenu.prototype.selectRightTabInGroupWithHTM = function ()
+TabGroupsManager.TabContextMenu.prototype.selectRightTabInGroupWithHTM = function()
 {
   var targetTab = document.popupNode;
   var targetGroup = targetTab.group;
@@ -257,13 +257,13 @@ TabGroupsManager.TabContextMenu.prototype.selectRightTabInGroupWithHTM = functio
   }
 };
 
-TabGroupsManager.TabContextMenu.prototype.closeOtherTabInGroup = function ()
+TabGroupsManager.TabContextMenu.prototype.closeOtherTabInGroup = function()
 {
   TabGroupsManager.tabContextMenu.closeRightTabInGroup();
   TabGroupsManager.tabContextMenu.closeLeftTabInGroup();
 };
 
-TabGroupsManager.TabContextMenu.prototype.existsLeftTabInGroup = function (targetTab)
+TabGroupsManager.TabContextMenu.prototype.existsLeftTabInGroup = function(targetTab)
 {
   var targetGroup = targetTab.group;
   for (var tab = targetTab.previousSibling; tab; tab = tab.previousSibling)
@@ -276,7 +276,7 @@ TabGroupsManager.TabContextMenu.prototype.existsLeftTabInGroup = function (targe
   return false;
 };
 
-TabGroupsManager.TabContextMenu.prototype.existsRightTabInGroup = function (targetTab)
+TabGroupsManager.TabContextMenu.prototype.existsRightTabInGroup = function(targetTab)
 {
   var targetGroup = targetTab.group;
   for (var tab = targetTab.nextSibling; tab; tab = tab.nextSibling)

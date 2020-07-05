@@ -3,7 +3,7 @@
 
 /* globals TabGroupsManager, TabGroupsManagerJsm */
 
-TabGroupsManager.TabOpenStatus = function ()
+TabGroupsManager.TabOpenStatus = function()
 {
   try
   {
@@ -19,20 +19,20 @@ TabGroupsManager.TabOpenStatus = function ()
   }
 };
 
-TabGroupsManager.TabOpenStatus.prototype.getColor = function ()
+TabGroupsManager.TabOpenStatus.prototype.getColor = function()
 {
   this.colorIndex = (this.colorIndex + 1) % this.colorArray.length;
   return this.colorArray[this.colorIndex];
 };
 
-TabGroupsManager.TabOpenStatus.prototype.clearOpenerData = function ()
+TabGroupsManager.TabOpenStatus.prototype.clearOpenerData = function()
 {
   this.openerDOMWindow = null;
   this.openerContext = null;
   this.openerTab = null;
 };
 
-TabGroupsManager.TabOpenStatus.prototype.setOpenerData = function (aOpener, aContext)
+TabGroupsManager.TabOpenStatus.prototype.setOpenerData = function(aOpener, aContext)
 {
   this.openerDOMWindow = aOpener;
   this.openerContext = aContext;

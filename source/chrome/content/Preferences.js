@@ -3,7 +3,7 @@
 
 /* globals TabGroupsManager, TabGroupsManagerJsm */
 
-TabGroupsManager.Preferences = function ()
+TabGroupsManager.Preferences = function()
 {
   try
   {
@@ -107,13 +107,11 @@ TabGroupsManager.Preferences = function ()
     this.tabTreeRecordParentAndChild = this.prefBranch.getBoolPref("tabTreeRecordParentAndChild");
     this.tabTreeDisplayParentAndChild = this.prefBranch.getBoolPref("tabTreeDisplayParentAndChild");
     this.tabTreeFocusTabByParentAndChild = this.prefBranch.getBoolPref("tabTreeFocusTabByParentAndChild");
+    //FIXME seriously? why are we setting this?
     if (this.tabTreeOpenTabByJavaScript)
     {
       this.prefRoot.setBoolPref("browser.tabs.insertRelatedAfterCurrent", false);
     }
-    //I do not think we need this vvvvv as far as I can tell, the test it is used
-    //for is spurious.
-    this.startupMode = this.prefRoot.getIntPref("browser.startup.page");
     this.debug = this.prefBranch.getBoolPref("debug");
   }
   catch (e)
@@ -122,7 +120,7 @@ TabGroupsManager.Preferences = function ()
   }
 };
 
-TabGroupsManager.Preferences.prototype.destructor = function ()
+TabGroupsManager.Preferences.prototype.destructor = function()
 {
   if (this.prefBranch)
   {
@@ -130,7 +128,7 @@ TabGroupsManager.Preferences.prototype.destructor = function ()
   }
 };
 
-TabGroupsManager.Preferences.prototype.observe = function (aSubject, aTopic, aData)
+TabGroupsManager.Preferences.prototype.observe = function(aSubject, aTopic, aData)
 {
   if (aTopic != "nsPref:changed")
   {
@@ -444,7 +442,7 @@ TabGroupsManager.Preferences.prototype.observe = function (aSubject, aTopic, aDa
   }
 };
 
-TabGroupsManager.Preferences.prototype.setButtonType = function (id, value)
+TabGroupsManager.Preferences.prototype.setButtonType = function(id, value)
 {
   let element = document.getElementById(id);
   if (element)
@@ -464,17 +462,17 @@ TabGroupsManager.Preferences.prototype.setButtonType = function (id, value)
   }
 };
 
-TabGroupsManager.Preferences.prototype.firefoxVersionCompare = function (target)
+TabGroupsManager.Preferences.prototype.firefoxVersionCompare = function(target)
 {
   return this.versionComparator.compare(this.firefoxAppInfo.version, target);
 };
 
-TabGroupsManager.Preferences.prototype.firefoxVersion = function ()
+TabGroupsManager.Preferences.prototype.firefoxVersion = function()
 {
   return this.firefoxAppInfo.version.substr(0, this.firefoxAppInfo.version.indexOf('.'));
 };
 
-TabGroupsManager.Preferences.prototype.addStyleSheet = function (text)
+TabGroupsManager.Preferences.prototype.addStyleSheet = function(text)
 {
   var sss = Cc["@mozilla.org/content/style-sheet-service;1"].getService(Ci.nsIStyleSheetService);
   var uri = TabGroupsManager.utils.createNewNsiUri("data:text/css," + encodeURIComponent("@namespace url(http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul); " + text));
@@ -484,7 +482,7 @@ TabGroupsManager.Preferences.prototype.addStyleSheet = function (text)
   }
 };
 
-TabGroupsManager.Preferences.prototype.removeStyleSheet = function (text)
+TabGroupsManager.Preferences.prototype.removeStyleSheet = function(text)
 {
   var sss = Cc["@mozilla.org/content/style-sheet-service;1"].getService(Ci.nsIStyleSheetService);
   var uri = TabGroupsManager.utils.createNewNsiUri("data:text/css," + encodeURIComponent("@namespace url(http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul); " + text));
@@ -494,7 +492,7 @@ TabGroupsManager.Preferences.prototype.removeStyleSheet = function (text)
   }
 };
 
-TabGroupsManager.Preferences.prototype.addOrRemoveStyleSheet = function (flag, text)
+TabGroupsManager.Preferences.prototype.addOrRemoveStyleSheet = function(flag, text)
 {
   if (flag)
   {
@@ -506,7 +504,7 @@ TabGroupsManager.Preferences.prototype.addOrRemoveStyleSheet = function (flag, t
   }
 };
 
-TabGroupsManager.Preferences.prototype.rewriteStyleSheet = function (base, oldStyle, newStyle)
+TabGroupsManager.Preferences.prototype.rewriteStyleSheet = function(base, oldStyle, newStyle)
 {
   if (oldStyle == newStyle)
   {
@@ -522,7 +520,7 @@ TabGroupsManager.Preferences.prototype.rewriteStyleSheet = function (base, oldSt
   }
 };
 
-TabGroupsManager.Preferences.prototype.openPrefWindow = function ()
+TabGroupsManager.Preferences.prototype.openPrefWindow = function()
 {
   window.openDialog("chrome://tabgroupsmanager/content/options.xul", "TabGroupsManagerSettingsWindow", "chrome,titlebar,toolbar,centerscreen");
 };

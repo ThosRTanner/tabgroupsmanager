@@ -1,14 +1,14 @@
 /*jshint browser: true, devel: true */
 /*eslint-env browser */
 
-/* globals TabGroupsManager, TabGroupsManagerJsm */
+/* globals TabGroupsManager, TabGroupsManagerJsm, gBrowser */
 
-TabGroupsManager.Session = function ()
+TabGroupsManager.Session = function()
 {
   try
   {
     this.groupRestored = 0;
-    this.sessionRestoring = null;
+    this.sessionRestoring = false;
     this.disableOnSSTabRestoring = false;
     this.sessionRestoreManually = false;
     this.sessionStore = Cc["@mozilla.org/browser/sessionstore;1"].getService(Ci.nsISessionStore);
@@ -20,21 +20,21 @@ TabGroupsManager.Session = function ()
   }
 };
 
-TabGroupsManager.Session.prototype.createEventListener = function ()
+TabGroupsManager.Session.prototype.createEventListener = function()
 {
   gBrowser.tabContainer.addEventListener("SSTabRestoring", this, false);
   window.addEventListener("SSWindowStateBusy", this, false);
   window.addEventListener("SSWindowStateReady", this, false);
 };
 
-TabGroupsManager.Session.prototype.destroyEventListener = function ()
+TabGroupsManager.Session.prototype.destroyEventListener = function()
 {
   gBrowser.tabContainer.removeEventListener("SSTabRestoring", this, false);
   window.removeEventListener("SSWindowStateBusy", this, false);
   window.removeEventListener("SSWindowStateReady", this, false);
 };
 
-TabGroupsManager.Session.prototype.handleEvent = function (event)
+TabGroupsManager.Session.prototype.handleEvent = function(event)
 {
   try
   {
@@ -57,29 +57,66 @@ TabGroupsManager.Session.prototype.handleEvent = function (event)
   }
 };
 
-TabGroupsManager.Session.prototype.onSSWindowStateBusy = function (event)
+//It looks as though in palemoon, we get
+//1) Busy
+//2) each window being restored
+//3) Ready
+//
+//but in basilisk, 3 happens before 2
+//
+//This means we have to restore the group information when we restore the first
+//tab
+//
+TabGroupsManager.Session.prototype.onSSWindowStateBusy = function(event)
 {
-  /**/console.log("busy");
+/**/console.log("busy");
+  this._restore_count = 0;
+  this._restore_groups = true;
+  this.groupRestored = 0; //FIXME Why is this exposed? And someone else controls it!
   this.sessionRestoring = true;
 };
 
-TabGroupsManager.Session.prototype.onSSWindowStateReady = function (event)
+TabGroupsManager.Session.prototype.onSSWindowStateReady = function(event)
 {
-  /**/console.log("ready", gBrowser.tabContainer.children.length);
-  this.sessionRestoring = false;
-};
-
-TabGroupsManager.Session.prototype.onSSTabRestoring = function (event)
-{
-  /**/console.log("restore");
-  TabGroupsManager.initializeAfterOnLoad(); //FIXME <<= you have to be kidding!
-  if (!this.disableOnSSTabRestoring)
+/**/console.log("start waiting", this._restore_count, gBrowser.tabContainer.children.length);
+  if (this._restore_count == 0)
   {
-    this.moveTabToGroupBySessionStore(event.originalTarget);
+    this._restore_count = gBrowser.tabContainer.children.length;
+  }
+  else
+  {
+    this._restore_complete();
   }
 };
 
-TabGroupsManager.Session.prototype.moveTabToGroupBySessionStore = function (restoringTab)
+TabGroupsManager.Session.prototype._restore_complete = function()
+{
+  this.sessionRestoring = false;
+  TabGroupsManager.groupBarDispHide.firstStatusOfGroupBarDispHide();
+  TabGroupsManager.allGroups.scrollInActiveGroup();
+/**/console.log("complete");
+};
+
+TabGroupsManager.Session.prototype.onSSTabRestoring = function(event)
+{
+  if (this._restore_groups)
+  {
+    this.restoreGroupsAndSleepingGroupsAndClosedGroups();
+    this._restore_groups = false;
+  }
+
+  if (! this.disableOnSSTabRestoring)
+  {
+    this.moveTabToGroupBySessionStore(event.originalTarget);
+  }
+  this._restore_count -= 1;
+  if (this._restore_count == 0)
+  {
+    this._restore_complete();
+  }
+};
+
+TabGroupsManager.Session.prototype.moveTabToGroupBySessionStore = function(restoringTab)
 {
   try
   {
@@ -103,13 +140,10 @@ TabGroupsManager.Session.prototype.moveTabToGroupBySessionStore = function (rest
     {
       var groupName = this.sessionStore.getTabValue(restoringTab, "TabGroupsManagerGroupName");
       var group = TabGroupsManager.allGroups.openNewGroupCore(groupId, groupName);
-      /**/
-      console.log("created", group)
       this.moveTabToGroupWithSuspend(group, restoringTab);
       return;
     }
-    /**/
-    console.log("yelp? this should NOT occur")
+/**/console.log("yelp? this should NOT occur")
   }
   catch (e)
   {
@@ -117,7 +151,7 @@ TabGroupsManager.Session.prototype.moveTabToGroupBySessionStore = function (rest
   }
 };
 
-TabGroupsManager.Session.prototype.moveTabToGroupWithSuspend = function (group, tab)
+TabGroupsManager.Session.prototype.moveTabToGroupWithSuspend = function(group, tab)
 {
   if (tab == gBrowser.selectedTab)
   {
@@ -132,7 +166,7 @@ TabGroupsManager.Session.prototype.moveTabToGroupWithSuspend = function (group, 
   }
 };
 
-TabGroupsManager.Session.prototype.allTabsMoveToGroup = function ()
+TabGroupsManager.Session.prototype.allTabsMoveToGroup = function()
 {
   this.allTabsMovingToGroup = true;
   try
@@ -179,12 +213,12 @@ TabGroupsManager.Session.prototype.allTabsMoveToGroup = function ()
   }
 };
 
-TabGroupsManager.Session.prototype.getGroupId = function (tab)
+TabGroupsManager.Session.prototype.getGroupId = function(tab)
 {
   return parseInt(this.sessionStore.getTabValue(tab, "TabGroupsManagerGroupId"), 10);
 };
 
-TabGroupsManager.Session.prototype.setGroupNameAllTabsInGroup = function (group)
+TabGroupsManager.Session.prototype.setGroupNameAllTabsInGroup = function(group)
 {
   for (var i = 0; i < group.tabArray.length; i++)
   {
@@ -192,7 +226,7 @@ TabGroupsManager.Session.prototype.setGroupNameAllTabsInGroup = function (group)
   }
 };
 
-TabGroupsManager.Session.prototype.restoreGroupsAndSleepingGroupsAndClosedGroups = function ()
+TabGroupsManager.Session.prototype.restoreGroupsAndSleepingGroupsAndClosedGroups = function()
 {
   if (this.groupRestored == 0)
   {
@@ -200,19 +234,19 @@ TabGroupsManager.Session.prototype.restoreGroupsAndSleepingGroupsAndClosedGroups
   }
 };
 
-TabGroupsManager.Session.prototype.backupByManually = function ()
+TabGroupsManager.Session.prototype.backupByManually = function()
 {
   TabGroupsManagerJsm.saveData.backupByManually();
 };
 
-TabGroupsManager.Session.prototype.exportDataEmergency = function (message)
+TabGroupsManager.Session.prototype.exportDataEmergency = function(message)
 {
   let strings = window.TabGroupsManager.strings;
   alert(strings.getString(message) + strings.getString("ExportDataEmergency"));
   this.exportSession();
 };
 
-TabGroupsManager.Session.prototype.exportSession = function ()
+TabGroupsManager.Session.prototype.exportSession = function()
 {
   let nsIFilePicker = Ci.nsIFilePicker;
   let filePicker = Cc["@mozilla.org/filepicker;1"].createInstance(nsIFilePicker);
@@ -235,7 +269,7 @@ TabGroupsManager.Session.prototype.exportSession = function ()
   }
 };
 
-TabGroupsManager.Session.prototype.onShowingBackupSessionMenu = function (event)
+TabGroupsManager.Session.prototype.onShowingBackupSessionMenu = function(event)
 {
   var menuPopup = event.originalTarget;
   TabGroupsManager.session.onHiddenBackupSessionMenu(event);
@@ -253,7 +287,7 @@ TabGroupsManager.Session.prototype.onShowingBackupSessionMenu = function (event)
   menuPopup.appendChild(flgmntNode);
 };
 
-TabGroupsManager.Session.prototype.makeRestoresSessionMenu = function (flgmntNode, list, reverseSort)
+TabGroupsManager.Session.prototype.makeRestoresSessionMenu = function(flgmntNode, list, reverseSort)
 {
   if (list.length <= 0)
   {
@@ -285,7 +319,7 @@ TabGroupsManager.Session.prototype.makeRestoresSessionMenu = function (flgmntNod
     menuitem.setAttribute("label", label);
     menuitem.setAttribute("tooltiptext", TabGroupsManager.strings.getString("SessionBackupTooltip"));
     //menuitem.setAttribute("oncommand","TabGroupsManager.session.restoreSessionCommand(event);");
-    menuitem.addEventListener("command", function (event)
+    menuitem.addEventListener("command", function(event)
     {
       TabGroupsManager.session.restoreSessionCommand(event);
     }, false);
@@ -294,7 +328,7 @@ TabGroupsManager.Session.prototype.makeRestoresSessionMenu = function (flgmntNod
   }
 };
 
-TabGroupsManager.Session.prototype.onHiddenBackupSessionMenu = function (event)
+TabGroupsManager.Session.prototype.onHiddenBackupSessionMenu = function(event)
 {
   var menuPopup = event.originalTarget;
   menuitem = menuPopup.childNodes[2];
@@ -305,12 +339,12 @@ TabGroupsManager.Session.prototype.onHiddenBackupSessionMenu = function (event)
   }
 };
 
-TabGroupsManager.Session.prototype.restoreSessionCommand = function (event)
+TabGroupsManager.Session.prototype.restoreSessionCommand = function(event)
 {
   TabGroupsManagerJsm.saveData.restoreSession(event.originalTarget.getAttribute("value"));
 };
 
-TabGroupsManager.Session.prototype.restoreSessionInit = function ()
+TabGroupsManager.Session.prototype.restoreSessionInit = function()
 {
   TabGroupsManager.allGroups.openNewGroup(null, -1, null, null);
   var groupTab = TabGroupsManager.allGroups.childNodes;
@@ -322,19 +356,20 @@ TabGroupsManager.Session.prototype.restoreSessionInit = function ()
   this.sessionRestoreManually = true;
 };
 
-TabGroupsManager.Session.prototype.restoreSessionFromAboutSessionRestore = function ()
+TabGroupsManager.Session.prototype.restoreSessionFromAboutSessionRestore = function()
 {
+/**/console.log("restoreSessionFromAboutSessionRestore", new Error())
   TabGroupsManager.allGroups.selectedGroup.id = -1;
   this.groupRestored = 0;
   this.sessionRestoreManually = true;
 };
 
-TabGroupsManager.Session.prototype.menuitemDelete = function (event)
+TabGroupsManager.Session.prototype.menuitemDelete = function(event)
 {
   TabGroupsManagerJsm.saveData.deleteSession(document.popupNode.getAttribute("value"));
 };
 
-TabGroupsManager.Session.prototype.setClosedTabJson = function (jsonData)
+TabGroupsManager.Session.prototype.setClosedTabJson = function(jsonData)
 {
   window.removeEventListener("SSWindowStateBusy", this, false);
   window.removeEventListener("SSWindowStateReady", this, false);
@@ -362,7 +397,7 @@ TabGroupsManager.Session.prototype.setClosedTabJson = function (jsonData)
   }
 };
 
-TabGroupsManager.Session.prototype.getTabStateEx = function (tab)
+TabGroupsManager.Session.prototype.getTabStateEx = function(tab)
 {
   //when do we get no textbox in about:config? -> override this for E10s
   if (!tab.linkedBrowser.ownerDocument.defaultView.gMultiProcessBrowser)
@@ -383,7 +418,7 @@ TabGroupsManager.Session.prototype.getTabStateEx = function (tab)
   return this.sessionStore.getTabState(tab);
 };
 
-TabGroupsManager.Session.prototype.duplicateTabEx = function (aWindow, tab)
+TabGroupsManager.Session.prototype.duplicateTabEx = function(aWindow, tab)
 {
   //when do we get no textbox in about:config? -> override this for E10s
   if (!tab.linkedBrowser.ownerDocument.defaultView.gMultiProcessBrowser)
@@ -404,7 +439,7 @@ TabGroupsManager.Session.prototype.duplicateTabEx = function (aWindow, tab)
   return this.sessionStore.duplicateTab(aWindow, tab);
 };
 
-TabGroupsManager.Session.prototype.tmpOverrideGetElementByIdForAboutConfig = function (tab)
+TabGroupsManager.Session.prototype.tmpOverrideGetElementByIdForAboutConfig = function(tab)
 {
   //http://zpao.com/posts/session-restore-changes-in-firefox-15/ > '#' removed > fx 15
   //Bug 947212 - Broadcast form data and move it out of tabData.entries[] > fx 29
@@ -412,9 +447,11 @@ TabGroupsManager.Session.prototype.tmpOverrideGetElementByIdForAboutConfig = fun
   //let textbox = state.formdata.id["textbox"];
 
   //no reason to fix this, there is always a textbox element for about:config - not sure when this will be called
+  //FIXME There isn't always a textbox - if it's on the here be  dragons page,
+  //      there isn't one.
   let ssData = tab.linkedBrowser.__SS_data;
   let textbox = ssData.entries[ssData.index - 1].formdata["#textbox"];
-  tab.linkedBrowser.contentDocument.getElementById = function ()
+  tab.linkedBrowser.contentDocument.getElementById = function()
   {
     return {
       value: textbox

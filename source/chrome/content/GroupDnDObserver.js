@@ -3,7 +3,7 @@
 
 /* globals TabGroupsManager, TabGroupsManagerJsm */
 
-TabGroupsManager.GroupDnDObserver = function (aSupportDnD)
+TabGroupsManager.GroupDnDObserver = function(aSupportDnD)
 {
   try
   {
@@ -16,7 +16,7 @@ TabGroupsManager.GroupDnDObserver = function (aSupportDnD)
   }
 };
 
-TabGroupsManager.GroupDnDObserver.prototype.createEventListener = function ()
+TabGroupsManager.GroupDnDObserver.prototype.createEventListener = function()
 {
   var _this = this;
   var groupBar = document.getElementById("TabGroupsManagerGroupbar");
@@ -28,7 +28,7 @@ TabGroupsManager.GroupDnDObserver.prototype.createEventListener = function ()
   groupBar.addEventListener("dragend", this, false);
 };
 
-TabGroupsManager.GroupDnDObserver.prototype.destroyEventListener = function ()
+TabGroupsManager.GroupDnDObserver.prototype.destroyEventListener = function()
 {
   var _this = this;
   var groupBar = document.getElementById("TabGroupsManagerGroupbar");
@@ -40,7 +40,7 @@ TabGroupsManager.GroupDnDObserver.prototype.destroyEventListener = function ()
   groupBar.removeEventListener("dragend", this, false);
 };
 
-TabGroupsManager.GroupDnDObserver.prototype.handleEvent = function (event)
+TabGroupsManager.GroupDnDObserver.prototype.handleEvent = function(event)
 {
   switch (event.type)
   {
@@ -63,7 +63,7 @@ TabGroupsManager.GroupDnDObserver.prototype.handleEvent = function (event)
   }
 };
 
-TabGroupsManager.GroupDnDObserver.prototype.onDragStart = function (event)
+TabGroupsManager.GroupDnDObserver.prototype.onDragStart = function(event)
 {
   event.dataTransfer.setDragImage(event.target, event.target.clientWidth / 2, -20);
   event.dataTransfer.setData("application/x-tabgroupsmanager-grouptab", "GroupTab");
@@ -71,7 +71,7 @@ TabGroupsManager.GroupDnDObserver.prototype.onDragStart = function (event)
   this.dragStartY = event.screenY;
 };
 
-TabGroupsManager.GroupDnDObserver.prototype.onDragOver = function (event, draggedTab)
+TabGroupsManager.GroupDnDObserver.prototype.onDragOver = function(event, draggedTab)
 {
   this.supportDnD.hideAll();
   if (event.target.parentNode != TabGroupsManager.allGroups.groupbar)
@@ -138,13 +138,13 @@ TabGroupsManager.GroupDnDObserver.prototype.onDragOver = function (event, dragge
   }
 };
 
-TabGroupsManager.GroupDnDObserver.prototype.onDragLeave = function (event)
+TabGroupsManager.GroupDnDObserver.prototype.onDragLeave = function(event)
 {
   this.supportDnD.hideAll();
   event.stopPropagation();
 };
 
-TabGroupsManager.GroupDnDObserver.prototype.onDragEnd = function (event)
+TabGroupsManager.GroupDnDObserver.prototype.onDragEnd = function(event)
 {
   if (event.dataTransfer.dropEffect == "none")
   {
@@ -161,7 +161,7 @@ TabGroupsManager.GroupDnDObserver.prototype.onDragEnd = function (event)
   }
 };
 
-TabGroupsManager.GroupDnDObserver.prototype.onDrop = function (event, draggedTab)
+TabGroupsManager.GroupDnDObserver.prototype.onDrop = function(event, draggedTab)
 {
   this.supportDnD.hideAllNow();
   var session = Cc["@mozilla.org/widget/dragservice;1"].getService(Ci.nsIDragService).getCurrentSession();

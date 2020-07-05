@@ -3,7 +3,7 @@
 
 /* globals TabGroupsManager, TabGroupsManagerJsm */
 
-TabGroupsManager.GroupsStore = function (storeFunction, maxLength, saveWhenChangeing, menuitemContextMenu)
+TabGroupsManager.GroupsStore = function(storeFunction, maxLength, saveWhenChangeing, menuitemContextMenu)
 {
   try
   {
@@ -12,22 +12,22 @@ TabGroupsManager.GroupsStore = function (storeFunction, maxLength, saveWhenChang
     this.menuitemContextMenu = menuitemContextMenu;
     this.__defineGetter__("store", storeFunction);
     var _this = this;
-    this.menuitemCommandEvent = function (event)
+    this.menuitemCommandEvent = function(event)
     {
       _this.onMenuitemCommand(event);
     };
 
-    this.menuitemClickEvent = function (event)
+    this.menuitemClickEvent = function(event)
     {
       _this.onMenuitemClick(event);
     };
 
-    this.contextCommandEvent = function (event)
+    this.contextCommandEvent = function(event)
     {
       _this.onContextMenuCommand(event);
     };
 
-    this.contextClickEvent = function (event)
+    this.contextClickEvent = function(event)
     {
       _this.onContextMenuClick(event);
     };
@@ -40,7 +40,7 @@ TabGroupsManager.GroupsStore = function (storeFunction, maxLength, saveWhenChang
 };
 
 
-TabGroupsManager.GroupsStore.prototype.addGroup = function (groupData, closeGroup)
+TabGroupsManager.GroupsStore.prototype.addGroup = function(groupData, closeGroup)
 {
   var groupDataTmp = this.pop(groupData.id);
   if (groupDataTmp)
@@ -65,7 +65,7 @@ TabGroupsManager.GroupsStore.prototype.addGroup = function (groupData, closeGrou
 };
 
 
-TabGroupsManager.GroupsStore.prototype.sendTabToGroupsStore = function (tab, groupId)
+TabGroupsManager.GroupsStore.prototype.sendTabToGroupsStore = function(tab, groupId)
 {
   var groupData = this.peek(groupId);
   if (groupData)
@@ -78,7 +78,7 @@ TabGroupsManager.GroupsStore.prototype.sendTabToGroupsStore = function (tab, gro
   }
 };
 
-TabGroupsManager.GroupsStore.prototype.restoreGroup = function (groupId)
+TabGroupsManager.GroupsStore.prototype.restoreGroup = function(groupId)
 {
   var groupData = this.pop(groupId);
   if (groupData)
@@ -103,7 +103,7 @@ TabGroupsManager.GroupsStore.prototype.restoreGroup = function (groupId)
   }
 };
 
-TabGroupsManager.GroupsStore.prototype.restoreGroupPart = function (groupId, tabObject)
+TabGroupsManager.GroupsStore.prototype.restoreGroupPart = function(groupId, tabObject)
 {
   var groupData = this.peek(groupId);
   if (groupData)
@@ -148,7 +148,7 @@ TabGroupsManager.GroupsStore.prototype.restoreGroupPart = function (groupId, tab
   return false;
 };
 
-TabGroupsManager.GroupsStore.prototype.restoreLatestGroup = function ()
+TabGroupsManager.GroupsStore.prototype.restoreLatestGroup = function()
 {
   if (this.store.length > 0)
   {
@@ -156,20 +156,20 @@ TabGroupsManager.GroupsStore.prototype.restoreLatestGroup = function ()
   }
 };
 
-TabGroupsManager.GroupsStore.prototype.setMaxLength = function (value)
+TabGroupsManager.GroupsStore.prototype.setMaxLength = function(value)
 {
   this.maxLength = value;
   this.storeLimitCheck();
   TabGroupsManagerJsm.saveData.saveLatestData();
 };
 
-TabGroupsManager.GroupsStore.prototype.clear = function ()
+TabGroupsManager.GroupsStore.prototype.clear = function()
 {
   this.store.splice(0, this.store.length);
   TabGroupsManagerJsm.saveData.saveLatestData();
 };
 
-TabGroupsManager.GroupsStore.prototype.createMenu = function (menuPopup)
+TabGroupsManager.GroupsStore.prototype.createMenu = function(menuPopup)
 {
   this.destroyMenu(menuPopup);
   let insertPosition = menuPopup.firstChild;
@@ -203,7 +203,7 @@ TabGroupsManager.GroupsStore.prototype.createMenu = function (menuPopup)
   }
 };
 
-TabGroupsManager.GroupsStore.prototype.destroyMenu = function (menuPopup)
+TabGroupsManager.GroupsStore.prototype.destroyMenu = function(menuPopup)
 {
   while (true)
   {
@@ -218,12 +218,12 @@ TabGroupsManager.GroupsStore.prototype.destroyMenu = function (menuPopup)
   }
 };
 
-TabGroupsManager.GroupsStore.prototype.onMenuitemCommand = function (event)
+TabGroupsManager.GroupsStore.prototype.onMenuitemCommand = function(event)
 {
   this.restoreGroup(event.originalTarget.getAttribute("value") - 0);
 };
 
-TabGroupsManager.GroupsStore.prototype.onMenuitemClick = function (event)
+TabGroupsManager.GroupsStore.prototype.onMenuitemClick = function(event)
 {
   if (event.button == 1)
   {
@@ -232,7 +232,7 @@ TabGroupsManager.GroupsStore.prototype.onMenuitemClick = function (event)
   }
 };
 
-TabGroupsManager.GroupsStore.prototype.onShowingMenuitemContextMenu = function (event)
+TabGroupsManager.GroupsStore.prototype.onShowingMenuitemContextMenu = function(event)
 {
   var group = this.peek(document.popupNode.getAttribute("value") - 0);
   if (!group || !group.tabs)
@@ -266,19 +266,19 @@ TabGroupsManager.GroupsStore.prototype.onShowingMenuitemContextMenu = function (
   TabGroupsManager.utils.insertElementAfterAnonid(event.target, null, flgmntNode);
 };
 
-TabGroupsManager.GroupsStore.prototype.onHiddenMenuitemContextMenu = function (event)
+TabGroupsManager.GroupsStore.prototype.onHiddenMenuitemContextMenu = function(event)
 {
   TabGroupsManager.utils.deleteFromAnonidToAnonid(event.target, null, "end");
 };
 
-TabGroupsManager.GroupsStore.prototype.onContextMenuCommand = function (event)
+TabGroupsManager.GroupsStore.prototype.onContextMenuCommand = function(event)
 {
   var groupId = document.popupNode.getAttribute("value") - 0;
   var tabObject = event.target.tabObject;
   this.restoreGroupPart(groupId, tabObject);
 };
 
-TabGroupsManager.GroupsStore.prototype.onContextMenuClick = function (event)
+TabGroupsManager.GroupsStore.prototype.onContextMenuClick = function(event)
 {
   if (event.button == 1)
   {
@@ -296,7 +296,7 @@ TabGroupsManager.GroupsStore.prototype.onContextMenuClick = function (event)
   }
 };
 
-TabGroupsManager.GroupsStore.prototype.pop = function (groupId)
+TabGroupsManager.GroupsStore.prototype.pop = function(groupId)
 {
   for (var i = 0; i < this.store.length; i++)
   {
@@ -310,7 +310,7 @@ TabGroupsManager.GroupsStore.prototype.pop = function (groupId)
   return null;
 };
 
-TabGroupsManager.GroupsStore.prototype.peek = function (groupId)
+TabGroupsManager.GroupsStore.prototype.peek = function(groupId)
 {
   for (var i = 0; i < this.store.length; i++)
   {
@@ -322,7 +322,7 @@ TabGroupsManager.GroupsStore.prototype.peek = function (groupId)
   return null;
 };
 
-TabGroupsManager.GroupsStore.prototype.storeLimitCheck = function ()
+TabGroupsManager.GroupsStore.prototype.storeLimitCheck = function()
 {
   if (this.maxLength >= 0)
   {
@@ -330,7 +330,7 @@ TabGroupsManager.GroupsStore.prototype.storeLimitCheck = function ()
   }
 };
 
-TabGroupsManager.GroupsStore.prototype.getGroupById = function (id)
+TabGroupsManager.GroupsStore.prototype.getGroupById = function(id)
 {
   for (var i = 0; i < this.store.length; i++)
   {
@@ -342,7 +342,7 @@ TabGroupsManager.GroupsStore.prototype.getGroupById = function (id)
   return null;
 };
 
-TabGroupsManager.GroupsStore.prototype.bookmarkAllStoredGroup = function (parentFolder)
+TabGroupsManager.GroupsStore.prototype.bookmarkAllStoredGroup = function(parentFolder)
 {
   for (var i = 0; i < this.store.length; i++)
   {
@@ -351,7 +351,7 @@ TabGroupsManager.GroupsStore.prototype.bookmarkAllStoredGroup = function (parent
   }
 };
 
-TabGroupsManager.GroupsStore.prototype.setSleepGroupsImage = function ()
+TabGroupsManager.GroupsStore.prototype.setSleepGroupsImage = function()
 {
   var sleepButton = document.getElementById("TabGroupsManagerButtonSleep");
   if (sleepButton)
@@ -360,7 +360,7 @@ TabGroupsManager.GroupsStore.prototype.setSleepGroupsImage = function ()
   }
 };
 
-TabGroupsManager.GroupsStore.prototype.sendToClosedGroup = function (event)
+TabGroupsManager.GroupsStore.prototype.sendToClosedGroup = function(event)
 {
   var id = document.popupNode.getAttribute("value") - 0;
   var group = TabGroupsManager.sleepingGroups.pop(id);
@@ -369,7 +369,7 @@ TabGroupsManager.GroupsStore.prototype.sendToClosedGroup = function (event)
   TabGroupsManagerJsm.saveData.saveLatestData();
 };
 
-TabGroupsManager.GroupsStore.prototype.sendToClosedGroupClick = function (event)
+TabGroupsManager.GroupsStore.prototype.sendToClosedGroupClick = function(event)
 {
   if (event.button == 1)
   {
@@ -381,7 +381,7 @@ TabGroupsManager.GroupsStore.prototype.sendToClosedGroupClick = function (event)
   }
 };
 
-TabGroupsManager.GroupsStore.prototype.sendThisGroupToHibernatedGroup = function ()
+TabGroupsManager.GroupsStore.prototype.sendThisGroupToHibernatedGroup = function()
 {
   var id = document.popupNode.getAttribute("value") - 0;
   var group = TabGroupsManager.closedGroups.pop(id);
@@ -390,14 +390,14 @@ TabGroupsManager.GroupsStore.prototype.sendThisGroupToHibernatedGroup = function
   TabGroupsManagerJsm.saveData.saveLatestData();
 };
 
-TabGroupsManager.GroupsStore.prototype.deleteThisGroup = function ()
+TabGroupsManager.GroupsStore.prototype.deleteThisGroup = function()
 {
   var id = document.popupNode.getAttribute("value") - 0;
   var group = TabGroupsManager.closedGroups.pop(id);
   TabGroupsManagerJsm.saveData.saveLatestData();
 };
 
-TabGroupsManager.GroupsStore.prototype.bookmarkSleepingGroup = function ()
+TabGroupsManager.GroupsStore.prototype.bookmarkSleepingGroup = function()
 {
   var id = document.popupNode.getAttribute("value") - 0;
   var group = TabGroupsManager.sleepingGroups.peek(id);
@@ -408,7 +408,7 @@ TabGroupsManager.GroupsStore.prototype.bookmarkSleepingGroup = function ()
   }
 };
 
-TabGroupsManager.GroupsStore.prototype.renameStoredGroup = function ()
+TabGroupsManager.GroupsStore.prototype.renameStoredGroup = function()
 {
   var group = this.peek(document.popupNode.getAttribute("value") - 0);
   let oldName = group.name;
@@ -429,7 +429,7 @@ TabGroupsManager.GroupsStore.prototype.renameStoredGroup = function ()
   }
 };
 
-TabGroupsManager.GroupsStore.prototype.bookmarkOneGroup = function (group, folderName, parentFolder)
+TabGroupsManager.GroupsStore.prototype.bookmarkOneGroup = function(group, folderName, parentFolder)
 {
   var places = Cc["@mozilla.org/browser/nav-bookmarks-service;1"].getService(Ci.nsINavBookmarksService);
   if (!folderName)

@@ -2,7 +2,7 @@
 /*eslint-env browser */
 /* globals TabGroupsManager */
 
-TabGroupsManager.XulElements = function ()
+TabGroupsManager.XulElements = function()
 {
   this.groupBar = document.getElementById("TabGroupsManagerToolbar");
   this.groupTabs = document.getElementById("TabGroupsManagerGroupbar");
