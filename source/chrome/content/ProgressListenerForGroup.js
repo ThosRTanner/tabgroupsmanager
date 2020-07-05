@@ -27,6 +27,8 @@ TabGroupsManager.ProgressListenerForGroup.prototype.QueryInterface = function(aI
   throw Components.results.NS_NOINTERFACE;
 };
 
+//FIXME Deals with about:sessionrestore which happens when browser can't recover
+//sessions. I'm not entirely sre how to cause that to happen but this looks wrong
 TabGroupsManager.ProgressListenerForGroup.prototype.onStateChange = function(aWebProgress, aRequest, aFlag, aStatus)
 {
   if (aFlag & this.startAndStop)
@@ -40,18 +42,22 @@ TabGroupsManager.ProgressListenerForGroup.prototype.onStateChange = function(aWe
     {
       if (aWebProgress.document && aWebProgress.document.location == "about:sessionrestore")
       {
+        //FIXME It seems hard to believe this does anything useful.
+/**/console.log(aWebProgress, aRequest, aFlag, aStatus)
         var button = aWebProgress.document.getElementById("errorTryAgain");
         //button.setAttribute("oncommand","getBrowserWindow().TabGroupsManager.session.restoreSessionFromAboutSessionRestore(); "+button.getAttribute("oncommand"));
         button.addEventListener("command", function(event)
         {
-          getBrowserWindow().TabGroupsManager.session.restoreSessionFromAboutSessionRestore(); + button.getAttribute("oncommand");
+          getBrowserWindow().TabGroupsManager.session.restoreSessionFromAboutSessionRestore();
+          +button.getAttribute("oncommand");
         }, false);
       }
     }
   }
-  return 0;
 };
 
+//seems you don't need to provide these methods if they do nothing
+/*
 TabGroupsManager.ProgressListenerForGroup.prototype.onLocationChange = function(aProgress, aRequest, aURI)
 {
   return 0;
@@ -76,4 +82,4 @@ TabGroupsManager.ProgressListenerForGroup.prototype.onLinkIconAvailable = functi
 {
   return 0;
 };
-
+*/

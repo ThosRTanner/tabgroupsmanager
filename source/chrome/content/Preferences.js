@@ -107,13 +107,11 @@ TabGroupsManager.Preferences = function()
     this.tabTreeRecordParentAndChild = this.prefBranch.getBoolPref("tabTreeRecordParentAndChild");
     this.tabTreeDisplayParentAndChild = this.prefBranch.getBoolPref("tabTreeDisplayParentAndChild");
     this.tabTreeFocusTabByParentAndChild = this.prefBranch.getBoolPref("tabTreeFocusTabByParentAndChild");
+    //FIXME seriously? why are we setting this?
     if (this.tabTreeOpenTabByJavaScript)
     {
       this.prefRoot.setBoolPref("browser.tabs.insertRelatedAfterCurrent", false);
     }
-    //I do not think we need this vvvvv as far as I can tell, the test it is used
-    //for is spurious.
-    this.startupMode = this.prefRoot.getIntPref("browser.startup.page");
     this.debug = this.prefBranch.getBoolPref("debug");
   }
   catch (e)

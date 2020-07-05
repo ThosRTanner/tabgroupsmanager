@@ -226,6 +226,7 @@ TabGroupsManager.EventListener.prototype.onTabHide = function(event)
 
     activeGroupPromise.then(function (tab)
     {
+      //FIXME This spews like crazy because tab or tab.group is undefined
       if (tab.group.selected)
       {
         TabGroupsManager.utils.unHideTab(tab);
