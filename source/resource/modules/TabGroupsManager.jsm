@@ -879,6 +879,7 @@ TabGroupsManagerJsm.SaveData.prototype.restoreSession = function (filename)
 TabGroupsManagerJsm.SaveData.prototype.restoreSessionFromData = function (sessionData)
 {
   this.backupSwapSession();
+/**/console.log(sessionData)
   this.data = sessionData;
   this.sleepButtonImageChange();
   for (var i = 0; i < TabGroupsManagerJsm.applicationStatus.windows.length; i++)

@@ -346,7 +346,6 @@ TabGroupsManager.Session.prototype.restoreSessionCommand = function(event)
 
 TabGroupsManager.Session.prototype.restoreSessionInit = function()
 {
-/**/console.log("restoreSessionInit", new Error())
   TabGroupsManager.allGroups.openNewGroup(null, -1, null, null);
   var groupTab = TabGroupsManager.allGroups.childNodes;
   for (var i = groupTab.length - 2; i >= 0; i--)
@@ -448,6 +447,8 @@ TabGroupsManager.Session.prototype.tmpOverrideGetElementByIdForAboutConfig = fun
   //let textbox = state.formdata.id["textbox"];
 
   //no reason to fix this, there is always a textbox element for about:config - not sure when this will be called
+  //FIXME There isn't always a textbox - if it's on the here be  dragons page,
+  //      there isn't one.
   let ssData = tab.linkedBrowser.__SS_data;
   let textbox = ssData.entries[ssData.index - 1].formdata["#textbox"];
   tab.linkedBrowser.contentDocument.getElementById = function()
