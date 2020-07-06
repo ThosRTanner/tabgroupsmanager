@@ -11,20 +11,20 @@
     <em:creator>ThosRTanner</em:creator>
     <em:homepageURL>https://github.com/ThosRTanner/tabgroupsmanager/wiki</em:homepageURL>
 
-    <em:developer>Aexl Shootingstar</em:developer>
+    <em:developer>Axel Shootingstar</em:developer>
     <em:developer>TGM Extended Support</em:developer>
     <em:developer>ThosRTanner</em:developer>
 
     <em:translator>locale de-DE: Christoph Koerner (Christoph.Krn)</em:translator>
 
-    <em:description>&quot;TabGroups Manager reloaded&quot; helps the management of tabs by dividing them into the groups.</em:description>
+    <em:description>Manage tabs by dividing them into groups</em:description>
 
     <em:optionsURL>chrome://tabgroupsmanager/content/options.xul</em:optionsURL>
 
     <em:localized>
       <Description>
         <em:locale>de-DE</em:locale>
-        <em:description>TabGroups Manager revived hilft bei der Verwaltung von Tabs, indem es das Einsortieren von Tabs in Gruppen ermoglicht.</em:description>
+        <em:description>Verwaltung von Tabs, indem es das Einsortieren von Tabs in Gruppen ermoglicht.</em:description>
       </Description>
     </em:localized>
     <em:localized>
