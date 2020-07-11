@@ -3,8 +3,8 @@
      xmlns:em="http://www.mozilla.org/2004/em-rdf#">
   <Description about="urn:mozilla:install-manifest">
     <em:id>tabgroupsmanager@thosrtanner.github.com</em:id>
-    <em:name>TabGroups Manager reloaded</em:name>
-    <em:version>1.0.0 (pre-prelease)</em:version>
+    <em:name>Tab Groups Manager reloaded</em:name>
+    <em:version>1.0.0</em:version>
     <em:type>2</em:type>
     <em:unpack>true</em:unpack>
 
