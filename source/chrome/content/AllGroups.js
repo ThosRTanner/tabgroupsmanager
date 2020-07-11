@@ -284,7 +284,6 @@ TabGroupsManager.AllGroups.prototype.loadAllGroupsData = function()
     try
     {
       let jsonText = TabGroupsManager.session.sessionStore.getWindowValue(window, "TabGroupsManagerAllGroupsData");
-console.log(jsonText);
       if (jsonText != null && jsonText != "")
       {
         var allGroupsData = JSON.parse(jsonText);
@@ -303,7 +302,6 @@ console.log(jsonText);
     {
       //show errors as window is not tracked during startup caused by small
       //delay on initialisation > Fx33
-/**/console.log(e)
       TabGroupsManagerJsm.displayError.alertErrorIfDebug(e);
     }
     if (TabGroupsManager.session.sessionRestoring)
@@ -321,12 +319,10 @@ console.log(jsonText);
   }
   catch (e)
   {
-    /**/console.log(e)
     TabGroupsManagerJsm.displayError.alertErrorIfDebug(e);
   }
   finally
   {
-    /**/console.log("done")
     TabGroupsManager.session.groupRestored = 2;
   }
 };

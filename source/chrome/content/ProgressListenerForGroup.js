@@ -28,7 +28,7 @@ TabGroupsManager.ProgressListenerForGroup.prototype.QueryInterface = function(aI
 };
 
 //FIXME Deals with about:sessionrestore which happens when browser can't recover
-//sessions. I'm not entirely sre how to cause that to happen but this looks wrong
+//sessions. I'm not entirely sure how to cause that to happen but this looks wrong
 TabGroupsManager.ProgressListenerForGroup.prototype.onStateChange = function(aWebProgress, aRequest, aFlag, aStatus)
 {
   if (aFlag & this.startAndStop)

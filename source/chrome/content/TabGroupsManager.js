@@ -48,7 +48,7 @@ TabGroupsManager.addFrameScript = function()
 TabGroupsManager.onLoad = function(event)
 {
   window.removeEventListener("load", arguments.callee, false);
-  //why the f do we check this?
+  //FIXME why the f do we check this?
   if (document.getElementById("TabGroupsManagerToolbar"))
   {
     window.addEventListener("unload", TabGroupsManager.onUnload, false);
@@ -139,7 +139,6 @@ TabGroupsManager.initialize = function(event)
 
 TabGroupsManager.initializeAfterOnLoad = function()
 {
-
   try
   {
     //This is nasty as we're depending on the preferences of another extension
@@ -172,6 +171,8 @@ TabGroupsManager.onLoadDelay1000 = function()
 /**/console.log("kick6")
     //this can take effect *after* the first session has been restored when you select
     //restore from specific session without prompting...
+    //would probably be better done by waiting for the browser to announce all
+    //extensions have been initialised.
     TabGroupsManager.overrideMethod.delayOverride();
     TabGroupsManager.overrideOtherAddOns.delayOverride();
     if (("TMP_eventListener" in window) && !("TMP_TabGroupsManager" in window))

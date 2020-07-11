@@ -94,7 +94,7 @@ TabGroupsManager.Session.prototype._restore_complete = function()
   this.sessionRestoring = false;
   TabGroupsManager.groupBarDispHide.firstStatusOfGroupBarDispHide();
   TabGroupsManager.allGroups.scrollInActiveGroup();
-/**/console.log("complete");
+/**/console.log("complete", this._restore_count);
 };
 
 TabGroupsManager.Session.prototype.onSSTabRestoring = function(event)
@@ -107,6 +107,10 @@ TabGroupsManager.Session.prototype.onSSTabRestoring = function(event)
 
   if (! this.disableOnSSTabRestoring)
   {
+    //Apparently there's something that makes this go in the right place.
+    //The selected page come in as the first event. however some shuffling
+    //seems to go on somewhere which doesn't catch the page. it appears to go
+    //wrong at around 70 tabs
     this.moveTabToGroupBySessionStore(event.originalTarget);
   }
   this._restore_count -= 1;
@@ -123,6 +127,9 @@ TabGroupsManager.Session.prototype.moveTabToGroupBySessionStore = function(resto
     var groupId = this.getGroupId(restoringTab);
     if (isNaN(groupId))
     {
+/**/console.log("no group???", restoringTab.group)
+      //FIXME If restoringTab has a group and the groupId isn't valid, why we do
+      //we have this test...
       groupId = (restoringTab.group) ? restoringTab.group.id : TabGroupsManager.allGroups.selectedGroup.id;
       this.sessionStore.setTabValue(restoringTab, "TabGroupsManagerGroupId", groupId.toString());
     }
@@ -140,6 +147,7 @@ TabGroupsManager.Session.prototype.moveTabToGroupBySessionStore = function(resto
     {
       var groupName = this.sessionStore.getTabValue(restoringTab, "TabGroupsManagerGroupName");
       var group = TabGroupsManager.allGroups.openNewGroupCore(groupId, groupName);
+/**/console.log("unexpected group?", groupId, groupName)
       this.moveTabToGroupWithSuspend(group, restoringTab);
       return;
     }

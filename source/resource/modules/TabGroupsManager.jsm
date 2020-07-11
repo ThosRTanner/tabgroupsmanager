@@ -1459,6 +1459,7 @@ TabGroupsManagerJsm.displayError = {
     }
     return text;
   },
+
   showMessage: function (text)
   {
     try
@@ -1471,28 +1472,32 @@ TabGroupsManagerJsm.displayError = {
       Application.console.log(text);
     }
   },
+
   alert: function (text)
   {
     var promptService = Cc["@mozilla.org/embedcomp/prompt-service;1"].getService(Ci.nsIPromptService);
     promptService.alert(null, "Firefox", text);
   },
+
   alertIfDebug: function (text)
   {
-    /**/
-    showMessage(text)
+    this.showMessage(text)
     if (TabGroupsManagerJsm.globalPreferences.debug)
     {
       this.alert(text);
     }
   },
+
   showMessageProp: function (object)
   {
     this.showMessage(this.makePropList(object));
   },
+
   alertProp: function (object, text)
   {
     this.alert((text ? text + "\n\n" : "") + this.makePropList(object));
   },
+
   alertPropIfDebug: function (object, text)
   {
     if (TabGroupsManagerJsm.globalPreferences.debug)
@@ -1500,6 +1505,7 @@ TabGroupsManagerJsm.displayError = {
       this.alertProp(object, text);
     }
   },
+
   alertError: function (e, text)
   {
     this.alert((text ? text + "\n\n" : "") +
@@ -1510,6 +1516,7 @@ TabGroupsManagerJsm.displayError = {
       "Stack:\n" + e.stack
     );
   },
+
   alertErrorIfDebug: function (e, text)
   {
     if (TabGroupsManagerJsm.globalPreferences.debug)

@@ -111,6 +111,12 @@ TabGroupsManager.OverrideMethod.prototype.setOverride = function()
     this.backup_nsBrowserAccess_prototype_openURI = nsBrowserAccess.prototype.openURI;
     nsBrowserAccess.prototype.openURI = this.override_nsBrowserAccess_prototype_openURI;
   }
+  //FIXME
+  //use observers on
+  //"quit-application"
+  //"quit-application-requested" notifications
+  //for definite. probably a whole load of others
+  //Note: Some of this appears to be done in TabGroupsManagerJsm module >.<
   this.backup_window_canQuitApplication = window.canQuitApplication;
   window.canQuitApplication = this.override_window_canQuitApplication;
   this.backup_WindowIsClosing = WindowIsClosing;
@@ -143,6 +149,12 @@ TabGroupsManager.OverrideMethod.prototype.setOverride = function()
 
 TabGroupsManager.OverrideMethod.prototype.setOverrideForNewGroup = function()
 {
+  //FIXME seriously? see above.
+//var container = gBrowser.tabContainer;
+//container.addEventListener("TabOpen", exampleTabAdded, false);
+//container.addEventListener("TabMove", exampleTabMoved, false);
+//container.addEventListener("TabClose", exampleTabRemoved, false);
+
   this.backup_gBrowser_addTab = gBrowser.addTab;
   gBrowser.addTab = this.override_gBrowser_addTab;
   this.backup_gBrowser_loadOneTab = gBrowser.loadOneTab;
