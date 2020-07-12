@@ -345,6 +345,12 @@ TabGroupsManager.GroupClass.prototype.addTabToTabArray = function(tab, fromSessi
     this.dispGroupLabel();
     if (!TabGroupsManager.session.allTabsMovingToGroup)
     {
+      //trying to work out when this makes sense. It seems to me that it only
+      //makes sense if you're trying to add a tab to a non visible group.
+      //And that doesn't seem to be necessary at all.
+      //Note it may be required with treetabs, but if so, I'll have to do it
+      //differently.
+      /*
       if (TabGroupsManager.session.groupRestored < 2)
       {
         tab.tPosBak = tab._tPos;
@@ -356,8 +362,10 @@ TabGroupsManager.GroupClass.prototype.addTabToTabArray = function(tab, fromSessi
       }
       else
       {
-        this.moveTabToLast(tab, firstTab, lastTab);
+        //This doesn't
+        //this.moveTabToLast(tab, firstTab, lastTab);
       }
+      */
       this.sortTabArrayByTPos();
 
       switch (this.selected)
