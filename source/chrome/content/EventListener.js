@@ -97,7 +97,7 @@ TabGroupsManager.EventListener.prototype.onTabOpen = function(event)
 {
   try
   {
-    if (!TabGroupsManager.session.sessionRestoring || !TabGroupsManagerJsm.globalPreferences.lastSessionFinalized)
+    if (!TabGroupsManager.session.sessionRestoring)
     {
       var newTab = event.originalTarget;
       if (TabGroupsManager.preferences.tabTreeOpenTabByExternalApplication && TabGroupsManager.tabOpenStatus.openerContext == Ci.nsIBrowserDOMWindow.OPEN_EXTERNAL)
@@ -266,10 +266,6 @@ TabGroupsManager.EventListener.prototype.onTabMove = function(event)
 
 TabGroupsManager.EventListener.prototype.onGroupSelect = function(event)
 {
-  if (TabGroupsManager.session.allTabsMovingToGroup)
-  {
-    return;
-  }
   TabGroupsManager.eventListener.groupSelecting = true;
   try
   {

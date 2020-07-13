@@ -96,10 +96,19 @@ TabGroupsManager.AllGroups.prototype.selectNthGroup = function(n)
   }
 };
 
+/** Get group object for specified ID
+ *
+ * @param {integer} id - the group's id
+ *
+ * @returns {GroupClass} the group object, or null if there's no group with
+ *                       that ID.
+ */
 TabGroupsManager.AllGroups.prototype.getGroupById = function(id)
 {
-  var groupTab = document.getElementById("_group" + id);
-  return groupTab ? groupTab.group : null;
+  //FIXME stored in the DOM??? At least properly mark it as user data,  or
+  //like - store it in this class as a map?
+  const groupTab = document.getElementById("_group" + id);
+  return groupTab == null ? null : groupTab.group;
 };
 
 TabGroupsManager.AllGroups.prototype.openNewGroup = function(tab, id, name, image, forTabMixPlus)
@@ -278,52 +287,20 @@ TabGroupsManager.AllGroups.prototype.endUpdateByTimer = function()
 
 TabGroupsManager.AllGroups.prototype.loadAllGroupsData = function()
 {
-  TabGroupsManager.session.groupRestored = 1;
-  try
+  const text = TabGroupsManager.session.sessionStore.getWindowValue(
+    window,
+    "TabGroupsManagerAllGroupsData");
+  if (text != "")
   {
-    try
+    const all_data = JSON.parse(text);
+    for (const data of all_data.groups)
     {
-      let jsonText = TabGroupsManager.session.sessionStore.getWindowValue(window, "TabGroupsManagerAllGroupsData");
-      if (jsonText != null && jsonText != "")
+      if (! this.getGroupById(data.id))
       {
-        var allGroupsData = JSON.parse(jsonText);
-        for (var i = 0; i < allGroupsData.groups.length; i++)
-        {
-          var groupData = allGroupsData.groups[i];
-          if (!this.getGroupById(groupData.id))
-          {
-            var group = this.openNewGroupCore(groupData.id, groupData.name, groupData.image);
-            group.setGroupDataWithoutTabs(groupData);
-          }
-        }
+        const group = this.openNewGroupCore(data.id, data.name, data.image);
+        group.setGroupDataWithoutTabs(data);
       }
     }
-    catch (e)
-    {
-      //show errors as window is not tracked during startup caused by small
-      //delay on initialisation > Fx33
-      TabGroupsManagerJsm.displayError.alertErrorIfDebug(e);
-    }
-    if (TabGroupsManager.session.sessionRestoring)
-    {
-      //Seriously, this being set seems to imply the preferences menu is open..
-      if (TabGroupsManagerJsm.globalPreferences.lastSessionFinalized)
-      {
-        //TabGroupsManager.session.allTabsMoveToGroup();
-      }
-    }
-    else
-    {
-      TabGroupsManager.allGroups.selectedGroup.initDefaultGroupAndModifyId();
-    }
-  }
-  catch (e)
-  {
-    TabGroupsManagerJsm.displayError.alertErrorIfDebug(e);
-  }
-  finally
-  {
-    TabGroupsManager.session.groupRestored = 2;
   }
 };
 

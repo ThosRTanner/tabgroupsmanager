@@ -1,7 +1,7 @@
 /*jshint browser: true, devel: true */
 /*eslint-env browser */
 
-/* globals TabGroupsManager, TabGroupsManagerJsm, gBrowser */
+/* globals TabGroupsManager, TabGroupsManagerJsm, gBrowser, Cc, Ci */
 
 TabGroupsManager.Session = function()
 {
@@ -22,16 +22,16 @@ TabGroupsManager.Session = function()
 
 TabGroupsManager.Session.prototype.createEventListener = function()
 {
-  gBrowser.tabContainer.addEventListener("SSTabRestoring", this, false);
-  window.addEventListener("SSWindowStateBusy", this, false);
-  window.addEventListener("SSWindowStateReady", this, false);
+  gBrowser.tabContainer.addEventListener("SSTabRestoring", this);
+  window.addEventListener("SSWindowStateBusy", this);
+  window.addEventListener("SSWindowStateReady", this);
 };
 
 TabGroupsManager.Session.prototype.destroyEventListener = function()
 {
-  gBrowser.tabContainer.removeEventListener("SSTabRestoring", this, false);
-  window.removeEventListener("SSWindowStateBusy", this, false);
-  window.removeEventListener("SSWindowStateReady", this, false);
+  gBrowser.tabContainer.removeEventListener("SSTabRestoring", this);
+  window.removeEventListener("SSWindowStateBusy", this);
+  window.removeEventListener("SSWindowStateReady", this);
 };
 
 TabGroupsManager.Session.prototype.handleEvent = function(event)
@@ -72,7 +72,8 @@ TabGroupsManager.Session.prototype.onSSWindowStateBusy = function(event)
 /**/console.log("busy");
   this._restore_count = 0;
   this._restore_groups = true;
-  this.groupRestored = 0; //FIXME Why is this exposed? And someone else controls it!
+  this.groupRestored = 0; //FIXME Why is this exposed? why aren't the clients
+                          //checking if the session is being restored?
   this.sessionRestoring = true;
 };
 
@@ -101,18 +102,26 @@ TabGroupsManager.Session.prototype.onSSTabRestoring = function(event)
 {
   if (this._restore_groups)
   {
-    this.restoreGroupsAndSleepingGroupsAndClosedGroups();
+    //FIXME again, this groupRestored thing. This is sequential so the setting
+    //of 1 is pointless. and it doesn't belong to this class anyway.
+    this.groupRestored = 1;
+    try
+    {
+      TabGroupsManager.allGroups.loadAllGroupsData();
+    }
+    catch (err)
+    {
+      TabGroupsManagerJsm.displayError.alertErrorIfDebug(err);
+    }
+    this.groupRestored = 2;
     this._restore_groups = false;
   }
 
   if (! this.disableOnSSTabRestoring)
   {
-    //Apparently there's something that makes this go in the right place.
-    //The selected page come in as the first event. however some shuffling
-    //seems to go on somewhere which doesn't catch the page. it appears to go
-    //wrong at around 70 tabs
     this.moveTabToGroupBySessionStore(event.originalTarget);
   }
+
   this._restore_count -= 1;
   if (this._restore_count == 0)
   {
@@ -174,53 +183,6 @@ TabGroupsManager.Session.prototype.moveTabToGroupWithSuspend = function(group, t
   }
 };
 
-TabGroupsManager.Session.prototype.allTabsMoveToGroup = function()
-{
-  this.allTabsMovingToGroup = true;
-  try
-  {
-    for (let tab = gBrowser.tabContainer.firstChild; tab; tab = tab.nextSibling)
-    {
-      let groupId = parseInt(this.sessionStore.getTabValue(tab, "TabGroupsManagerGroupId"), 10);
-      if (!isNaN(groupId))
-      {
-        if (!tab.group || tab.group.id != groupId)
-        {
-          let group = TabGroupsManager.allGroups.getGroupById(groupId);
-          if (group)
-          {
-            this.moveTabToGroupWithSuspend(group, tab);
-          }
-        }
-      }
-      else
-      {
-        if (!tab.group)
-        {
-          let group = TabGroupsManager.allGroups.getGroupById(-1) || TabGroupsManager.allGroups.selectedGroup;
-          group.addTab(tab);
-        }
-        this.sessionStore.setTabValue(tab, "TabGroupsManagerGroupId", tab.group.id.toString());
-        this.sessionStore.setTabValue(tab, "TabGroupsManagerGroupName", tab.group.name);
-      }
-    }
-  }
-  catch (e)
-  {
-    TabGroupsManagerJsm.displayError.alertErrorIfDebug(e);
-  }
-  finally
-  {
-    delete this.allTabsMovingToGroup;
-    TabGroupsManager.eventListener.onGroupSelect(null);
-    let startGroup = TabGroupsManager.allGroups.getGroupById(-1);
-    if (startGroup && startGroup.tabArray.length == 0)
-    {
-      startGroup.close();
-    }
-  }
-};
-
 TabGroupsManager.Session.prototype.getGroupId = function(tab)
 {
   return parseInt(this.sessionStore.getTabValue(tab, "TabGroupsManagerGroupId"), 10);
@@ -231,14 +193,6 @@ TabGroupsManager.Session.prototype.setGroupNameAllTabsInGroup = function(group)
   for (var i = 0; i < group.tabArray.length; i++)
   {
     this.sessionStore.setTabValue(group.tabArray[i], "TabGroupsManagerGroupName", group.name);
-  }
-};
-
-TabGroupsManager.Session.prototype.restoreGroupsAndSleepingGroupsAndClosedGroups = function()
-{
-  if (this.groupRestored == 0)
-  {
-    TabGroupsManager.allGroups.loadAllGroupsData();
   }
 };
 
@@ -379,6 +333,8 @@ TabGroupsManager.Session.prototype.menuitemDelete = function(event)
 
 TabGroupsManager.Session.prototype.setClosedTabJson = function(jsonData)
 {
+  //FIXME Why do we stop watching these events when we're doing this? it
+  //doesn't stop the even happening. and there isn't anything async in here.
   window.removeEventListener("SSWindowStateBusy", this, false);
   window.removeEventListener("SSWindowStateReady", this, false);
   try
