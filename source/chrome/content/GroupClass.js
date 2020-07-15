@@ -1,7 +1,7 @@
 /*jshint browser: true, devel: true */
 /*eslint-env browser */
 
-/* globals TabGroupsManager, TabGroupsManagerJsm */
+/* globals TabGroupsManager, TabGroupsManagerJsm, gBrowser */
 
 TabGroupsManager.GroupClass = function(id, name, image)
 {
@@ -339,40 +339,29 @@ TabGroupsManager.GroupClass.prototype.addTabToTabArray = function(tab, fromSessi
 {
   try
   {
-    let [firstTab, lastTab] = this.getFirstLastTabInGroup();
+    let [ firstTab, lastTab ] = this.getFirstLastTabInGroup();
     tab.group = this;
     this.tabArray.push(tab);
     this.dispGroupLabel();
-    if (!TabGroupsManager.session.allTabsMovingToGroup)
-    {
-      if (TabGroupsManager.session.groupRestored < 2)
-      {
-        tab.tPosBak = tab._tPos;
-      }
-      else if (tab.tPosBak != null)
-      {
-        TabGroupsManager.tabMoveByTGM.moveTabTo(tab, tab.tPosBak);
-        delete tab.tPosBak;
-      }
-      else
-      {
-        this.moveTabToLast(tab, firstTab, lastTab);
-      }
-      this.sortTabArrayByTPos();
+    this.sortTabArrayByTPos();
 
-      switch (this.selected)
-      {
+    //FIXME Yer what? how about an if?
+    switch (this.selected)
+    {
       case false:
         TabGroupsManager.utils.hideTab(tab);
         break;
+
       default:
         TabGroupsManager.utils.unHideTab(tab);
         break;
-      }
     }
-    tab.linkedBrowser.webProgress.addProgressListener(this.progressListener, Ci.nsIWebProgress.NOTIFY_STATE_NETWORK);
+
+    tab.linkedBrowser.webProgress.addProgressListener(
+      this.progressListener,
+      Ci.nsIWebProgress.NOTIFY_STATE_NETWORK);
     this.displayGroupBusy();
-    if (!this.selectedTab)
+    if (! this.selectedTab)
     {
       this.selectedTab = tab;
       if (this.selected)
@@ -390,7 +379,7 @@ TabGroupsManager.GroupClass.prototype.addTabToTabArray = function(tab, fromSessi
     }
     if ("TreeStyleTabService" in window)
     {
-      if (!fromSessionStore)
+      if (! fromSessionStore)
       {
         if (TreeStyleTabService.hasChildTabs(tab))
         {
@@ -678,17 +667,12 @@ TabGroupsManager.GroupClass.prototype.removeTab = function(tab, fromTabCloseEven
       TabGroupsManager.allGroups.selectNextGroup();
     }
     this.unlinkTab(tab);
-    if (TabGroupsManager.session.allTabsMovingToGroup && this.id == -1)
-    {
-      this.selectedTab = null;
-    }
-    else
-    {
-      this.close();
-    }
+    this.close();
   }
   else
-  { //for startup allow select tab only if group is in status restored to prevent 2 loaded tabs in group
+  {
+    //for startup allow select tab only if group is in status restored to
+    //prevent 2 loaded tabs in group
     if (this.selectedTab == tab && TabGroupsManager.session.groupRestored == 2)
     {
       this._selectedTab = this.getNextTabWhenTabRemove(tab);
@@ -1118,33 +1102,6 @@ TabGroupsManager.GroupClass.prototype.removeAllTabsWithoutClosedTabsList = funct
   }
   this.tabArray.splice(0);
   TabGroupsManager.session.setClosedTabJson(closedTabsJson);
-};
-
-TabGroupsManager.GroupClass.prototype.initDefaultGroupAndModifyId = function()
-{
-  if (this.id == -1)
-  {
-    this.id = TabGroupsManagerJsm.applicationStatus.makeNewId();
-    for (var i = 0; i < this.tabArray.length; i++)
-    {
-      var tab = this.tabArray[i];
-      var groupId = TabGroupsManager.session.getGroupId(tab);
-      if (isNaN(groupId))
-      {
-        TabGroupsManager.session.sessionStore.setTabValue(tab, "TabGroupsManagerGroupId", this.id.toString());
-        TabGroupsManager.session.sessionStore.setTabValue(tab, "TabGroupsManagerGroupName", this.name);
-        if ("TMP_TabGroupsManager" in window)
-        {
-          TabmixSessionManager.updateTabProp(tab);
-        }
-      }
-      else
-      {
-        TabGroupsManager.session.moveTabToGroupBySessionStore(tab);
-      }
-    }
-    TabGroupsManager.allGroups.saveAllGroupsData();
-  }
 };
 
 TabGroupsManager.GroupClass.prototype.getGroupDataBase = function()

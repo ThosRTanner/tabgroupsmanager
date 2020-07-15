@@ -1,5 +1,6 @@
 var EXPORTED_SYMBOLS = ["TabGroupsManagerJsm"];
 
+/* globals console */
 Components.utils.import("resource://gre/modules/Console.jsm");
 
 var TabGroupsManagerJsm = {
@@ -66,8 +67,6 @@ TabGroupsManagerJsm.GlobalPreferences = function ()
     this.prefService = Cc["@mozilla.org/preferences-service;1"].getService(Ci.nsIPrefService);
     this.prefBranch = this.prefService.getBranch("extensions.tabgroupsmanager.");
     this.prefBranch.QueryInterface(Ci.nsIPrefBranch2);
-    this.lastSessionFinalized = !this.prefBranch.prefHasUserValue("executing");
-    this.prefBranch.setBoolPref("executing", true);
     if (this.prefBranch.prefHasUserValue("groupBarBelow"))
     {
       this.prefBranch.setIntPref("groupBarPosition", 2);
@@ -115,7 +114,6 @@ TabGroupsManagerJsm.GlobalPreferences = function ()
 
 TabGroupsManagerJsm.GlobalPreferences.prototype.finalize = function ()
 {
-  this.deletePrefValue("executing");
 };
 
 TabGroupsManagerJsm.GlobalPreferences.prototype.deletePrefValue = function (pref)
@@ -1701,6 +1699,7 @@ TabGroupsManagerJsm.QuitApplicationObserver.prototype.quitApplication = function
 {
   TabGroupsManagerJsm.finalize();
 };
+
 const Cc = Components.classes;
 const Ci = Components.interfaces;
 
