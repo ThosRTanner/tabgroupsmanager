@@ -175,20 +175,11 @@ TabGroupsManager.onLoadDelay1000 = function()
     //extensions have been initialised.
     TabGroupsManager.overrideMethod.delayOverride();
     TabGroupsManager.overrideOtherAddOns.delayOverride();
-    if (("TMP_eventListener" in window) && !("TMP_TabGroupsManager" in window))
-    {
-      window.openDialog("chrome://tabgroupsmanager/content/versionAlertTMP.xul", "TabGroupsManagerVersionAlertTMP", "chrome,modal,dialog,centerscreen,resizable", TabGroupsManager.callbackOpenUriInSelectedTab);
-    }
   }
   catch (err)
   {
 /**/console.log("bad things happened", err)
   }
-};
-
-TabGroupsManager.callbackOpenUriInSelectedTab = function(uri)
-{
-  gBrowser.selectedTab = TabGroupsManager.overrideMethod.gBrowserAddTab(uri);
 };
 
 TabGroupsManager.finalize = function()

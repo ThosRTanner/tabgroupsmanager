@@ -1,9 +1,0 @@
-<!ENTITY TabGroupsManager.versionAlertTMP.title         "Неверная версия">
-<!ENTITY TabGroupsManager.versionAlertTMP.description   "Группировщик вкладок в Firefox">
-
-<!ENTITY TabGroupsManager.description1.label            "Эта версия группировщика вкладок не поддерживает старые версии Tab Mix Plus.">
-<!ENTITY TabGroupsManager.description2.label            "Вы должны обновить Tab Mix Plus или откатить TabGroups Manager.">
-<!ENTITY TabGroupsManager.newTMP.label                  "Загрузить новую версию Tab Mix Plus">
-<!ENTITY TabGroupsManager.newTMP.url                    "https://addons.mozilla.org/ja/firefox/addon/1122">
-<!ENTITY TabGroupsManager.oldTGM.label                  "Загрузить старую версию группировщика вкладок">
-<!ENTITY TabGroupsManager.oldTGM.url                    "https://addons.mozilla.org/ja/firefox/addons/versions/10254">
