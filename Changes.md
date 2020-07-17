@@ -1,6 +1,8 @@
+# Changes for v 1.1.0 (pre-release)
+* Update contributor list
+
 # Changes for v 1.0.1
 * Fix restoring session on palemoon getting tabs in the wrong order. This ended up removing a lot of unnecessary operations, and has made reloading sessions a lot snappier. (Issue #4)
-
 * Remove the original license.txt file (Issue #26)
 
 # Changes for v 1.0.0

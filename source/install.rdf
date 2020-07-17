@@ -4,7 +4,7 @@
   <Description about="urn:mozilla:install-manifest">
     <em:id>tabgroupsmanager@thosrtanner.github.com</em:id>
     <em:name>Tab Groups Manager reloaded</em:name>
-    <em:version>1.0.1</em:version>
+    <em:version>1.1.0 (pre-release)</em:version>
     <em:type>2</em:type>
     <em:unpack>true</em:unpack>
 
@@ -14,6 +14,8 @@
     <em:developer>Axel Shootingstar</em:developer>
     <em:developer>TGM Extended Support</em:developer>
     <em:developer>ThosRTanner</em:developer>
+
+    <em:contributor>Off JustOff &lt;Off.Just.Off@gmail.com&gt;</em:contributor>
 
     <em:translator>locale de-DE: Christoph Koerner (Christoph.Krn)</em:translator>
 
