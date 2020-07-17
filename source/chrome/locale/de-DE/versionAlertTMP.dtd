@@ -1,9 +1,0 @@
-<!ENTITY TabGroupsManager.versionAlertTMP.title         "Falsche Version">
-<!ENTITY TabGroupsManager.versionAlertTMP.description   "TabGroups Manager in Firefox">
-
-<!ENTITY TabGroupsManager.description1.label            "Diese Version von TabGroups Manager unterstutzt keine alten Versionen von Tab Mix Plus.">
-<!ENTITY TabGroupsManager.description2.label            "Sie sollten Tab Mix Plus aktualisieren oder auf eine altere Version von TabGroups Manager umsteigen.">
-<!ENTITY TabGroupsManager.newTMP.label                  "Neuere Version von Tab Mix Plus herunterladen">
-<!ENTITY TabGroupsManager.newTMP.url                    "https://addons.mozilla.org/ja/firefox/addon/1122">
-<!ENTITY TabGroupsManager.oldTGM.label                  "Altere Version von TabGroups Manager herunterladen">
-<!ENTITY TabGroupsManager.oldTGM.url                    "https://addons.mozilla.org/ja/firefox/addons/versions/10254">
