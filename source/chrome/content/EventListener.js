@@ -1,7 +1,7 @@
 /*jshint browser: true, devel: true */
 /*eslint-env browser */
 
-/* globals TabGroupsManager, TabGroupsManagerJsm, gBrowser */
+/* globals TabGroupsManager, TabGroupsManagerJsm, gBrowser, Ci */
 
 TabGroupsManager.EventListener = function()
 {
@@ -13,22 +13,22 @@ TabGroupsManager.EventListener.prototype.createEventListener = function()
 {
   var groupTabs = document.getElementById("TabGroupsManagerGroupbar");
   groupTabs.addEventListener("mousedown", this, true);
-  groupTabs.addEventListener("click", this, false);
-  groupTabs.addEventListener("dblclick", this, false);
-  groupTabs.addEventListener("select", this, false);
+  groupTabs.addEventListener("click", this);
+  groupTabs.addEventListener("dblclick", this);
+  groupTabs.addEventListener("select", this);
   if (!("TMP_TabGroupsManager" in window))
   {
-    gBrowser.tabContainer.addEventListener("TabOpen", this, false);
-    gBrowser.tabContainer.addEventListener("TabClose", this, false);
+    gBrowser.tabContainer.addEventListener("TabOpen", this);
+    gBrowser.tabContainer.addEventListener("TabClose", this);
   }
-  gBrowser.tabContainer.addEventListener("TabSelect", this, false);
-  gBrowser.tabContainer.addEventListener("TabMove", this, false);
-  gBrowser.tabContainer.addEventListener("TabShow", this, false);
-  gBrowser.tabContainer.addEventListener("TabHide", this, false);
+  gBrowser.tabContainer.addEventListener("TabSelect", this);
+  gBrowser.tabContainer.addEventListener("TabMove", this);
+  gBrowser.tabContainer.addEventListener("TabShow", this);
+  gBrowser.tabContainer.addEventListener("TabHide", this);
   var contextMenu = document.getElementById("contentAreaContextMenu");
   if (contextMenu)
   {
-    contextMenu.addEventListener("popupshowing", this, false);
+    contextMenu.addEventListener("popupshowing", this);
   }
 };
 
@@ -36,20 +36,20 @@ TabGroupsManager.EventListener.prototype.destroyEventListener = function()
 {
   var groupTabs = document.getElementById("TabGroupsManagerGroupbar");
   groupTabs.removeEventListener("mousedown", this, true);
-  groupTabs.removeEventListener("click", this, false);
-  groupTabs.removeEventListener("dblclick", this, false);
-  groupTabs.removeEventListener("select", this, false);
+  groupTabs.removeEventListener("click", this);
+  groupTabs.removeEventListener("dblclick", this);
+  groupTabs.removeEventListener("select", this);
   if (!("TMP_TabGroupsManager" in window))
   {
-    gBrowser.tabContainer.removeEventListener("TabOpen", this, false);
-    gBrowser.tabContainer.removeEventListener("TabClose", this, false);
+    gBrowser.tabContainer.removeEventListener("TabOpen", this);
+    gBrowser.tabContainer.removeEventListener("TabClose", this);
   }
-  gBrowser.tabContainer.removeEventListener("TabSelect", this, false);
-  gBrowser.tabContainer.removeEventListener("TabMove", this, false);
+  gBrowser.tabContainer.removeEventListener("TabSelect", this);
+  gBrowser.tabContainer.removeEventListener("TabMove", this);
   var contextMenu = document.getElementById("contentAreaContextMenu");
   if (contextMenu)
   {
-    contextMenu.removeEventListener("popupshowing", this, false);
+    contextMenu.removeEventListener("popupshowing", this);
   }
 };
 
@@ -112,21 +112,21 @@ TabGroupsManager.EventListener.prototype.onTabOpen = function(event)
 {
   try
   {
-    if (!TabGroupsManager.session.sessionRestoring)
+    if (! TabGroupsManager.session.sessionRestoring)
     {
-      var newTab = event.originalTarget;
+      const newTab = event.originalTarget;
       if (TabGroupsManager.preferences.tabTreeOpenTabByExternalApplication &&
           TabGroupsManager.tabOpenStatus.openerContext == Ci.nsIBrowserDOMWindow.OPEN_EXTERNAL)
       {
         let group = TabGroupsManager.allGroups.getGroupById(-2);
-        if (! group)
+        if (group)
         {
-          group = TabGroupsManager.allGroups.openNewGroup(newTab, -2, TabGroupsManager.strings.getString("ExtAppGroupName"));
-          TabGroupsManager.allGroups.changeGroupOrder(group, 0);
+          group.addTab(newTab);
         }
         else
         {
-          group.addTab(newTab);
+          group = TabGroupsManager.allGroups.openNewGroup(newTab, -2, TabGroupsManager.strings.getString("ExtAppGroupName"));
+          TabGroupsManager.allGroups.changeGroupOrder(group, 0);
         }
       }
       else if (TabGroupsManager.tabOpenStatus.openerTab)
@@ -192,8 +192,8 @@ TabGroupsManager.EventListener.prototype.onTabSelect = function(event)
   const tab = gBrowser.selectedTab;
   if (tab.group == null)
   {
-    //FIXME is it possible for the group to be null if we're not in the restoring code?
-    //FIXME Shouldn't we just do this check first?
+    //FIXME is it possible for the group to be null if we're not in the
+    //restoring code? Also, houldn't we just do this check first?
     if (TabGroupsManager.session.sessionRestoring)
     {
       return; //It's being weird
@@ -236,17 +236,18 @@ TabGroupsManager.EventListener.prototype.onTabHide = function(event)
 
 TabGroupsManager.EventListener.prototype.onTabMove = function(event)
 {
-  var tab = event.originalTarget;
-  if (! TabGroupsManager.eventListener.groupSelecting)
+  if (TabGroupsManager.eventListener.groupSelecting)
   {
-    if (tab.tabGroupsManagerTabTree)
-    {
-      tab.tabGroupsManagerTabTree.removeTabFromTree(false);
-    }
-    if (tab.group)
-    {
-      tab.group.sortTabArrayByTPos();
-    }
+    return;
+  }
+  const tab = event.originalTarget;
+  if (tab.tabGroupsManagerTabTree)
+  {
+    tab.tabGroupsManagerTabTree.removeTabFromTree(false);
+  }
+  if (tab.group)
+  {
+    tab.group.sortTabArrayByTPos();
   }
 };
 
@@ -268,8 +269,8 @@ TabGroupsManager.EventListener.prototype.onGroupSelect = function(event)
       selectedGroup.selectedTab = selectedGroup.tabArray[0];
     }
     for (const tab of gBrowser.mTabContainer.childNodes)
-    //for (var tab = gBrowser.mTabContainer.firstChild; tab; tab = tab.nextSibling)
     {
+      //FIXME Why would tab.group not be set?
       if (tab.group && ! tab.group.selected)
       {
         TabGroupsManager.utils.hideTab(tab);
@@ -295,7 +296,7 @@ TabGroupsManager.EventListener.prototype.onGroupSelect = function(event)
       }
       else if ("tabBarScrollStatus" in window)
       {
-        //FIXME Check - this appears to be to do with treestyletab and may nodeName
+        //FIXME Check - this appears to be to do with treestyletab and may no
         //longer be necessary
         gBrowser.mTabContainer.collapsedTabs = 0;
         window.tabBarScrollStatus();
