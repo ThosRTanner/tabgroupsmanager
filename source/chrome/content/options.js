@@ -6,7 +6,7 @@ var TabGroupsManagerOptions = {
 
   applyFlag: true,
 
-  onLoad: function (event)
+  onLoad(event)
   {
     window.removeEventListener("load", TabGroupsManagerOptions.onLoad, false);
     Components.utils.import("resource://tabgroupsmanager/modules/TabGroupsManager.jsm");
@@ -17,7 +17,7 @@ var TabGroupsManagerOptions = {
     }, 0);
   },
 
-  makeToolButton: function ()
+  makeToolButton()
   {
     let dialog = document.getElementById("TabGroupsManagerPrefWindow");
     var _doButtonCommandBak = dialog._doButtonCommand;
@@ -32,13 +32,22 @@ var TabGroupsManagerOptions = {
     extra2.appendChild(document.getElementById("TabGroupsManagerSettingsMenu"));
   },
 
-  delayInit: function ()
+  delayInit()
   {
-    var firefoxAppInfo = Components.classes["@mozilla.org/xre/app-info;1"].getService(Components.interfaces.nsIXULAppInfo);
-    var versionComparator = Components.classes["@mozilla.org/xpcom/version-comparator;1"].getService(Components.interfaces.nsIVersionComparator);
-    var isAfterFirefox35 = (versionComparator.compare(firefoxAppInfo.version, "3.1") > 0);
     document.getElementById("TabGroupsManagerHideGroupBarByMouseoutTimerTextbox").disabled = !document.getElementById("TabGroupsManagerHideGroupBarByMouseoutCheckbox").checked;
-    this.checkSessionStore(isAfterFirefox35);
+    if (true == document.getElementById("browserSessionstoreEnabled").value || true)
+    {
+      document.getElementById("TabGroupsManagerDisableSessionStoreGroupbox").hidden = true;
+      document.getElementById("TabGroupsManagerSessionBackupSetting").hidden = false;
+      document.getElementById("TabGroupsManagerMoveGroupBeforeWindowCloseMenuitem").hidden = false;
+    }
+    else
+    {
+      document.getElementById("TabGroupsManagerDisableSessionStoreGroupbox").hidden = false;
+      document.getElementById("TabGroupsManagerSessionBackupSetting").hidden = true;
+      document.getElementById("TabGroupsManagerMoveGroupBeforeWindowCloseMenuitem").hidden = true;
+    }
+    this.checkSessionStore(true);
     this.disableChangeOpenNewGroupOperationChild();
     this.sessionBackupByTimerCountChange();
     this.setKeyBindPage();
@@ -49,47 +58,32 @@ var TabGroupsManagerOptions = {
     this.makeStyleCheckboxEtc(document.getElementById("TabGroupsManagerGroupStyleSelected"));
     this.makeStyleCheckboxEtc(document.getElementById("TabGroupsManagerGroupStyleUnread"));
     this.makeStyleCheckboxEtc(document.getElementById("TabGroupsManagerGroupStyleSuspended"));
-    document.getElementById("TabGroupsManagerMoveGroupBeforeWindowCloseMenuitem").hidden = !isAfterFirefox35;
   },
 
-  checkSessionStore: function (isFirefox35)
-  {
-    if (true == document.getElementById("browserSessionstoreEnabled").value || isFirefox35)
-    {
-      document.getElementById("TabGroupsManagerDisableSessionStoreGroupbox").hidden = true;
-      document.getElementById("TabGroupsManagerSessionBackupSetting").hidden = false;
-    }
-    else
-    {
-      document.getElementById("TabGroupsManagerDisableSessionStoreGroupbox").hidden = false;
-      document.getElementById("TabGroupsManagerSessionBackupSetting").hidden = true;
-    }
-  },
-
-  hideGroupBarByMouseoutOnCommand: function ()
+  hideGroupBarByMouseoutOnCommand()
   {
     document.getElementById("TabGroupsManagerHideGroupBarByMouseoutTimerTextbox").disabled = !document.getElementById("TabGroupsManagerHideGroupBarByMouseoutCheckbox").checked;
   },
 
-  openNewGroupOperationOnCommand: function ()
+  openNewGroupOperationOnCommand()
   {
     document.getElementById("TabGroupsManagerOpenNewGroupByShift").value = document.getElementById("TabGroupsManagerOpenNewGroupOperationCheckbox").checked;
     this.disableChangeOpenNewGroupOperationChild();
   },
 
-  sessionBackupByTimerCountChange: function ()
+  sessionBackupByTimerCountChange()
   {
     document.getElementById("TabGroupsManagerSessionBackupByTimerIntervalTextbox").disabled = document.getElementById("TabGroupsManagerSessionBackupByTimerCount").value <= 0;
   },
 
-  disableChangeOpenNewGroupOperationChild: function ()
+  disableChangeOpenNewGroupOperationChild()
   {
     var openNewGroupOperation = document.getElementById("TabGroupsManagerOpenNewGroupOperationCheckbox").checked;
     var disabled1 = !openNewGroupOperation;
     document.getElementById("TabGroupsManagerOpenNewGroupByShiftCheckbox").disabled = disabled1;
   },
 
-  setKeyBindPage: function ()
+  setKeyBindPage()
   {
     var keyBindStrings = document.getElementById("TabGroupsManagerStringsKeyBind");
     var menupopup = document.getElementById("TabGroupsManagerKeyBindCommandMenupopup");
@@ -125,7 +119,7 @@ var TabGroupsManagerOptions = {
     this.setKeyBindListBox(document.getElementById("TabGroupsManagerKeyBindJson").value);
   },
 
-  selectKeyBindCommand: function (event)
+  selectKeyBindCommand(event)
   {
     let paramArea = document.getElementById("TabGroupsManagerKeyBindCommandParam");
     for (let i = 0; i < paramArea.childNodes.length; i++)
@@ -155,7 +149,7 @@ var TabGroupsManagerOptions = {
     }
   },
 
-  setKeyBindListBox: function (jsonText)
+  setKeyBindListBox(jsonText)
   {
     var keyBind = JSON.parse(jsonText);
     var listbox = document.getElementById("TabGroupsManagerKeyBindListbox");
@@ -189,7 +183,7 @@ var TabGroupsManagerOptions = {
     }
   },
 
-  setShortcutKey: function (event)
+  setShortcutKey(event)
   {
     var key = "";
     for (var i in event)
@@ -228,7 +222,7 @@ var TabGroupsManagerOptions = {
     event.currentTarget.setAttribute("value", data);
   },
 
-  addKeyBind: function ()
+  addKeyBind()
   {
     let menulist = document.getElementById("TabGroupsManagerKeyBindCommandMenulist");
     let data = menulist.selectedItem.data;
@@ -268,7 +262,7 @@ var TabGroupsManagerOptions = {
     this.keyBindListboxToJson();
   },
 
-  deleteKeyBind: function ()
+  deleteKeyBind()
   {
     var listbox = document.getElementById("TabGroupsManagerKeyBindListbox");
     if (-1 < listbox.selectedIndex)
@@ -280,7 +274,7 @@ var TabGroupsManagerOptions = {
     this.keyBindListboxToJson();
   },
 
-  allDeleteKeyBind: function ()
+  allDeleteKeyBind()
   {
     var keyBindPreference = document.getElementById("TabGroupsManagerKeyBindJson");
     if (keyBindPreference.hasUserValue)
@@ -290,14 +284,14 @@ var TabGroupsManagerOptions = {
     this.setKeyBindListBox(document.getElementById("TabGroupsManagerKeyBindJson").value);
   },
 
-  recommendKeyBind: function ()
+  recommendKeyBind()
   {
     var jsonText = document.getElementById("TabGroupsManagerStringsKeyBind").getString("keybindRecommend1");
     document.getElementById("TabGroupsManagerKeyBindJson").value = jsonText;
     this.setKeyBindListBox(jsonText);
   },
 
-  recommend2KeyBind: function ()
+  recommend2KeyBind()
   {
     var jsonText = document.getElementById("TabGroupsManagerStringsKeyBind").getString("keybindRecommend2");
     document.getElementById("TabGroupsManagerKeyBindJson").value = jsonText;
@@ -305,7 +299,7 @@ var TabGroupsManagerOptions = {
     document.getElementById("TabGroupsManagerKeyBindOverride").value = true;
   },
 
-  addKeyBindToList: function (data, key, params)
+  addKeyBindToList(data, key, params)
   {
     let parent = document.getElementById("TabGroupsManagerKeyBindListbox");
     var listitem = document.createElement("listitem");
@@ -322,7 +316,7 @@ var TabGroupsManagerOptions = {
     parent.appendChild(listitem);
   },
 
-  keyBindListboxToJson: function ()
+  keyBindListboxToJson()
   {
     var keyBind = new Array();
     var listbox = document.getElementById("TabGroupsManagerKeyBindListbox");
@@ -345,7 +339,7 @@ var TabGroupsManagerOptions = {
     document.getElementById("TabGroupsManagerKeyBindJson").value = JSON.stringify(keyBind);
   },
 
-  tabTreeAnalysisChange: function ()
+  tabTreeAnalysisChange()
   {
     var tmp = !document.getElementById("TabGroupsManagerTabTreeAnalysis").value;
     document.getElementById("TabGroupsManagerTabTreeOpenTabByExternalApplicationCheckBox").disabled = tmp;
@@ -359,7 +353,7 @@ var TabGroupsManagerOptions = {
     }
   },
 
-  tabTreeRecordParentAndChildChange: function ()
+  tabTreeRecordParentAndChildChange()
   {
     var tmp = !document.getElementById("TabGroupsManagerTabTreeRecordParentAndChild").value;
     document.getElementById("TabGroupsManagerTabTreeDisplayParentAndChildCheckBox").disabled = tmp;
@@ -371,13 +365,13 @@ var TabGroupsManagerOptions = {
     }
   },
 
-  dispGroupTabCountChange: function ()
+  dispGroupTabCountChange()
   {
     var tmp = document.getElementById("TabGroupsManagerDispGroupTabCount").value;
     document.getElementById("TabGroupsManagerDispGroupTabCountReadingCheckbox").disabled = !tmp
   },
 
-  useGroupStyle: function (event)
+  useGroupStyle(event)
   {
     event.target.nextSibling.childNodes[0].disabled = !event.target.checked;
     event.target.nextSibling.childNodes[1].disabled = !event.target.checked || !event.target.nextSibling.childNodes[0].checked;
@@ -397,18 +391,18 @@ var TabGroupsManagerOptions = {
     }
   },
 
-  useGroupStyleUseColor: function (event)
+  useGroupStyleUseColor(event)
   {
     event.target.nextSibling.disabled = !event.target.checked;
     this.makeGroupsStyleText(event.target.parentNode.parentNode);
   },
 
-  groupStylePartChange: function (event)
+  groupStylePartChange(event)
   {
     this.makeGroupsStyleText(event.target.parentNode.parentNode);
   },
 
-  selectedGroupStyleAdvance: function (event)
+  selectedGroupStyleAdvance(event)
   {
     if (!event.target.checked)
     {
@@ -418,7 +412,7 @@ var TabGroupsManagerOptions = {
     event.target.previousSibling.hidden = !event.target.checked;
   },
 
-  editGroupStyle: function (event)
+  editGroupStyle(event)
   {
     var pref = document.getElementById(event.target.parentNode.childNodes[0].getAttribute("preference"));
     var tmp = window.prompt(event.target.label, pref.value);
@@ -428,7 +422,7 @@ var TabGroupsManagerOptions = {
     }
   },
 
-  makeGroupsStyleText: function (parent)
+  makeGroupsStyleText(parent)
   {
     var src = parent.childNodes[2];
     var dest = document.getElementById(parent.childNodes[0].getAttribute("preference"));
@@ -446,7 +440,7 @@ var TabGroupsManagerOptions = {
     dest.value = text;
   },
 
-  makeStyleCheckboxEtc: function (parent)
+  makeStyleCheckboxEtc(parent)
   {
     var src = document.getElementById(parent.childNodes[0].getAttribute("preference"));
     var dest = parent.childNodes[2];
@@ -492,7 +486,7 @@ var TabGroupsManagerOptions = {
     }
   },
 
-  defaultGroupStyle: function (event)
+  defaultGroupStyle(event)
   {
     document.getElementById("TabGroupsManagerNormalGroupStyle").value = "";
     document.getElementById("TabGroupsManagerSelectedGroupStyle").value = "font-weight: bold !important; font-style: normal !important; ";
@@ -504,7 +498,7 @@ var TabGroupsManagerOptions = {
     this.makeStyleCheckboxEtc(document.getElementById("TabGroupsManagerGroupStyleSuspended"));
   },
 
-  hideGroupBarByGroupCountButtonCommand: function ()
+  hideGroupBarByGroupCountButtonCommand()
   {
     var data = {
       old: document.getElementById("TabGroupsManagerHideGroupBarByTabGroupCount").value
@@ -516,7 +510,7 @@ var TabGroupsManagerOptions = {
     }
   },
 
-  settingsDefault: function ()
+  settingsDefault()
   {
     if (window.confirm(document.getElementById("TabGroupsManagerSettingDefaultMessage").value.replace(/\\n/g, "\n")))
     {
@@ -526,7 +520,7 @@ var TabGroupsManagerOptions = {
     }
   },
 
-  createFilePickerForSettings: function (mode)
+  createFilePickerForSettings(mode)
   {
     let nsIFilePicker = Components.interfaces.nsIFilePicker;
     let filePicker = Components.classes["@mozilla.org/filepicker;1"].createInstance(nsIFilePicker);
@@ -538,7 +532,7 @@ var TabGroupsManagerOptions = {
     return filePicker;
   },
 
-  settingsExport: function ()
+  settingsExport()
   {
     let nsIFilePicker = Components.interfaces.nsIFilePicker;
     let filePicker = this.createFilePickerForSettings(nsIFilePicker.modeSave);
@@ -552,7 +546,7 @@ var TabGroupsManagerOptions = {
     }
   },
 
-  settingsImport: function ()
+  settingsImport()
   {
     let nsIFilePicker = Components.interfaces.nsIFilePicker;
     let filePicker = this.createFilePickerForSettings(nsIFilePicker.modeOpen);
@@ -573,7 +567,7 @@ var TabGroupsManagerOptions = {
     }
   },
 
-  onApplyButton: function (event)
+  onApplyButton(event)
   {
     let dialog = document.getElementById("TabGroupsManagerPrefWindow");
     dialog.getButton("extra1").disabled = true;
@@ -588,18 +582,18 @@ var TabGroupsManagerOptions = {
     }
   },
 
-  onDialogAccept: function (event)
+  onDialogAccept(event)
   {
     return this.applyFlag;
   },
 
-  onDialogChange: function (event)
+  onDialogChange(event)
   {
     let dialog = document.getElementById("TabGroupsManagerPrefWindow");
     dialog.getButton("extra1").disabled = false;
   },
 
-  repaintSettingsWindow: function ()
+  repaintSettingsWindow()
   {
     window.openDialog("chrome://tabgroupsmanager/content/options.xul", "TabGroupsManagerSettingsWindow", "chrome,titlebar,toolbar,centerscreen");
   },
