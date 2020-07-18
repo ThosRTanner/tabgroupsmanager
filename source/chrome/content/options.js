@@ -34,20 +34,8 @@ var TabGroupsManagerOptions = {
 
   delayInit()
   {
+    //FIXME Why is any of this stuff done in a callback?
     document.getElementById("TabGroupsManagerHideGroupBarByMouseoutTimerTextbox").disabled = !document.getElementById("TabGroupsManagerHideGroupBarByMouseoutCheckbox").checked;
-    if (true == document.getElementById("browserSessionstoreEnabled").value || true)
-    {
-      document.getElementById("TabGroupsManagerDisableSessionStoreGroupbox").hidden = true;
-      document.getElementById("TabGroupsManagerSessionBackupSetting").hidden = false;
-      document.getElementById("TabGroupsManagerMoveGroupBeforeWindowCloseMenuitem").hidden = false;
-    }
-    else
-    {
-      document.getElementById("TabGroupsManagerDisableSessionStoreGroupbox").hidden = false;
-      document.getElementById("TabGroupsManagerSessionBackupSetting").hidden = true;
-      document.getElementById("TabGroupsManagerMoveGroupBeforeWindowCloseMenuitem").hidden = true;
-    }
-    this.checkSessionStore(true);
     this.disableChangeOpenNewGroupOperationChild();
     this.sessionBackupByTimerCountChange();
     this.setKeyBindPage();

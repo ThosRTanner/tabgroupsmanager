@@ -1471,25 +1471,7 @@
                   name="browser.sessionstore.enabled"
                   type="bool"/>
 		</preferences>
-		<groupbox id="TabGroupsManagerDisableSessionStoreGroupbox"
-              hidden="true">
-			<caption label="&TabGroupsManager.sessionStoreStatus.label;"/>
-			<label value="&TabGroupsManager.disableSessionStore1.label;"
-             style="font-size:large; font-weight:bold;"/>
-			<label value="&TabGroupsManager.disableSessionStore2.label;"
-             style="margin-left:20px;"/>
-			<label value="&TabGroupsManager.disableSessionStore3.label;"
-             style="margin-left:20px;"/>
-			<label value=""/>
-			<label value="&TabGroupsManager.disableSessionStore4.label;"/>
-			<label id="TabGroupsManagerBrowserSessionstoreEnabledLabel"
-             style="margin-left:20px; font-weight: bold;"
-             value="&TabGroupsManager.browserSessionstoreEnabled.label;"/>
-			<label value="&TabGroupsManager.disableSessionStore5.label;"/>
-			<description>&TabGroupsManager.disableSessionStore6.label;</description>
-		</groupbox>
-		<vbox id="TabGroupsManagerSessionBackupSetting"
-          hidden="true">
+		<vbox id="TabGroupsManagerSessionBackupSetting">
 			<groupbox>
 				<caption label="&TabGroupsManager.saveDataBackup.label;"/>
 				<hbox align="center">
