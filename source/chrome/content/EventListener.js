@@ -1,7 +1,7 @@
 /*jshint browser: true, devel: true */
 /*eslint-env browser */
 
-/* globals TabGroupsManager, TabGroupsManagerJsm */
+/* globals TabGroupsManager, TabGroupsManagerJsm, gBrowser */
 
 TabGroupsManager.EventListener = function()
 {
@@ -55,41 +55,56 @@ TabGroupsManager.EventListener.prototype.destroyEventListener = function()
 
 TabGroupsManager.EventListener.prototype.handleEvent = function(event)
 {
+  //FIXME I am somewhat suspicious of the tab event intercepts. Especially asin
+  //the onhide one calls unhide on the selected one.
   switch (event.type)
   {
-  case "mousedown":
-    event.stopPropagation();
-    break;
-  case "click":
-    this.onGroupClick(event);
-    break;
-  case "dblclick":
-    this.onGroupDblClick(event);
-    break;
-  case "select":
-    this.onGroupSelect(event);
-    break;
-  case "TabOpen":
-    this.onTabOpen(event);
-    break;
-  case "TabClose":
-    this.onTabClose(event);
-    break;
-  case "TabSelect":
-    this.onTabSelect(event);
-    break;
-  case "TabMove":
-    this.onTabMove(event);
-    break;
-  case "TabShow":
-    this.onTabShow(event);
-    break;
-  case "TabHide":
-    this.onTabHide(event);
-    break;
-  case "popupshowing":
-    this.contentAreaContextMenuShowHideItems(event);
-    break;
+    case "mousedown":
+      event.stopPropagation();
+      break;
+
+    case "click":
+      this.onGroupClick(event);
+      break;
+
+    case "dblclick":
+      this.onGroupDblClick(event);
+      break;
+
+    case "select":
+      this.onGroupSelect(event);
+      break;
+
+    case "TabOpen":
+      this.onTabOpen(event);
+      break;
+
+    case "TabClose":
+      this.onTabClose(event);
+      break;
+
+    case "TabSelect":
+      this.onTabSelect(event);
+      break;
+
+    case "TabMove":
+      this.onTabMove(event);
+      break;
+
+    case "TabShow":
+      this.onTabShow(event);
+      break;
+
+    case "TabHide":
+      this.onTabHide(event);
+      break;
+
+    case "popupshowing":
+      this.contentAreaContextMenuShowHideItems(event);
+      break;
+
+    default:
+      break;
   }
 };
 
@@ -100,10 +115,11 @@ TabGroupsManager.EventListener.prototype.onTabOpen = function(event)
     if (!TabGroupsManager.session.sessionRestoring)
     {
       var newTab = event.originalTarget;
-      if (TabGroupsManager.preferences.tabTreeOpenTabByExternalApplication && TabGroupsManager.tabOpenStatus.openerContext == Ci.nsIBrowserDOMWindow.OPEN_EXTERNAL)
+      if (TabGroupsManager.preferences.tabTreeOpenTabByExternalApplication &&
+          TabGroupsManager.tabOpenStatus.openerContext == Ci.nsIBrowserDOMWindow.OPEN_EXTERNAL)
       {
-        var group = TabGroupsManager.allGroups.getGroupById(-2);
-        if (!group)
+        let group = TabGroupsManager.allGroups.getGroupById(-2);
+        if (! group)
         {
           group = TabGroupsManager.allGroups.openNewGroup(newTab, -2, TabGroupsManager.strings.getString("ExtAppGroupName"));
           TabGroupsManager.allGroups.changeGroupOrder(group, 0);
@@ -115,7 +131,7 @@ TabGroupsManager.EventListener.prototype.onTabOpen = function(event)
       }
       else if (TabGroupsManager.tabOpenStatus.openerTab)
       {
-        var parentTab = TabGroupsManager.tabOpenStatus.openerTab;
+        const parentTab = TabGroupsManager.tabOpenStatus.openerTab;
         if (TabGroupsManager.preferences.tabTreeOpenTabByJavaScript)
         {
           parentTab.group.addTab(newTab);
@@ -124,7 +140,7 @@ TabGroupsManager.EventListener.prototype.onTabOpen = function(event)
         {
           TabGroupsManager.allGroups.selectedGroup.addTab(newTab);
         }
-        if (!parentTab.tabGroupsManagerTabTree)
+        if (! parentTab.tabGroupsManagerTabTree)
         {
           parentTab.tabGroupsManagerTabTree = new TabGroupsManager.TabTree(parentTab);
         }
@@ -145,9 +161,9 @@ TabGroupsManager.EventListener.prototype.onTabOpen = function(event)
       newTab.tgmSelectedTime = (new Date()).getTime();
     }
   }
-  catch (e)
+  catch (err)
   {
-    TabGroupsManagerJsm.displayError.alertErrorIfDebug(e);
+    TabGroupsManagerJsm.displayError.alertErrorIfDebug(err);
   }
   finally
   {
@@ -158,11 +174,12 @@ TabGroupsManager.EventListener.prototype.onTabOpen = function(event)
 
 TabGroupsManager.EventListener.prototype.onTabClose = function(event)
 {
-  var closeTab = event.originalTarget;
+  const closeTab = event.originalTarget;
   if (closeTab.tabGroupsManagerTabTree)
   {
     closeTab.tabGroupsManagerTabTree.removeTabFromTree(true);
   }
+  //FIXME How can this ever be null?
   if (closeTab.group != null)
   {
     closeTab.group.removeTab(closeTab, true);
@@ -172,32 +189,30 @@ TabGroupsManager.EventListener.prototype.onTabClose = function(event)
 
 TabGroupsManager.EventListener.prototype.onTabSelect = function(event)
 {
-  var tab = gBrowser.selectedTab;
+  const tab = gBrowser.selectedTab;
   if (tab.group == null)
   {
     //FIXME is it possible for the group to be null if we're not in the restoring code?
+    //FIXME Shouldn't we just do this check first?
     if (TabGroupsManager.session.sessionRestoring)
     {
       return; //It's being weird
     }
     TabGroupsManager.allGroups.selectedGroup.addTab(tab);
   }
-  if (!tab.group.selected)
+  if (! tab.group.selected)
   {
-    tab.group.selectedTab = tab;
     TabGroupsManager.allGroups.selectedGroup = tab.group;
   }
-  else
-  {
-    tab.group.selectedTab = tab;
-  }
+  tab.group.selectedTab = tab;
   tab.tgmSelectedTime = (new Date()).getTime();
 };
 
+//FIXME Why would someone else be hiding/showing tabs?
 TabGroupsManager.EventListener.prototype.onTabShow = function(event)
 {
-  var tab = event.target;
-  if (!tab.group.selected)
+  const tab = event.target;
+  if (! tab.group.selected)
   {
     TabGroupsManager.utils.hideTab(tab);
   }
@@ -205,53 +220,24 @@ TabGroupsManager.EventListener.prototype.onTabShow = function(event)
 
 TabGroupsManager.EventListener.prototype.onTabHide = function(event)
 {
-  var tab = event.target;
-  let count = 0;
-
-  function checkTabGroup()
+  //FIXME The ONLY time I have ever seen this event happen is when restoring
+  //tabs from Basilisk and doing a timed callback ends up doing nothing useful.
+  if (TabGroupsManager.session.sessionRestoring)
   {
-    count++;
-    var activeGroupPromise = new Promise(
-      function(resolve, reject)
-      {
-        setTimeout(function ()
-        {
-          if (typeof tab.group == "undefined" && count < 10)
-          {
-            checkTabGroup();
-          }
-          else resolve(tab);
-        }, 50);
-      });
-
-    activeGroupPromise.then(function (tab)
-    {
-      //FIXME This spews like crazy because tab or tab.group is undefined
-      if (tab.group.selected)
-      {
-        TabGroupsManager.utils.unHideTab(tab);
-      }
-    }, Components.utils.reportError);
+    return;
   }
 
-  //check if tab.group is not defined at startup since Fx25+
-  if (TabGroupsManager.preferences.firefoxVersionCompare("28") == 1 && typeof tab.group == "undefined")
+  const tab = event.target;
+  if (tab.group.selected)
   {
-    checkTabGroup();
-  }
-  else
-  {
-    if (tab.group.selected)
-    {
-      TabGroupsManager.utils.unHideTab(tab);
-    }
+    TabGroupsManager.utils.unHideTab(tab);
   }
 };
 
 TabGroupsManager.EventListener.prototype.onTabMove = function(event)
 {
   var tab = event.originalTarget;
-  if (!TabGroupsManager.eventListener.groupSelecting)
+  if (! TabGroupsManager.eventListener.groupSelecting)
   {
     if (tab.tabGroupsManagerTabTree)
     {
@@ -269,21 +255,22 @@ TabGroupsManager.EventListener.prototype.onGroupSelect = function(event)
   TabGroupsManager.eventListener.groupSelecting = true;
   try
   {
-    var selectedGroup = TabGroupsManager.allGroups.selectedGroup;
+    const selectedGroup = TabGroupsManager.allGroups.selectedGroup;
     selectedGroup.suspended = false;
     if (selectedGroup.tabArray.length == 0)
     {
-      let tab = selectedGroup.makeDummyTab();
+      const tab = selectedGroup.makeDummyTab();
       selectedGroup.addTab(tab);
       selectedGroup.selectedTab = tab;
     }
-    if (!selectedGroup.selectedTab)
+    if (! selectedGroup.selectedTab)
     {
       selectedGroup.selectedTab = selectedGroup.tabArray[0];
     }
-    for (var tab = gBrowser.mTabContainer.firstChild; tab; tab = tab.nextSibling)
+    for (const tab of gBrowser.mTabContainer.childNodes)
+    //for (var tab = gBrowser.mTabContainer.firstChild; tab; tab = tab.nextSibling)
     {
-      if (tab.group && !tab.group.selected)
+      if (tab.group && ! tab.group.selected)
       {
         TabGroupsManager.utils.hideTab(tab);
       }
@@ -293,43 +280,35 @@ TabGroupsManager.EventListener.prototype.onGroupSelect = function(event)
       }
     }
     TabGroupsManager.allGroups.scrollInActiveGroup(true);
-    if (!("TreeStyleTabService" in window))
+    if (! ("TreeStyleTabService" in window))
     {
       if ("TabmixTabbar" in window)
       {
-        if (TabGroupsManager.preferences.firefoxVersionCompare("3.7") > 0)
+        if (window.TabmixTabbar.isMultiRow)
         {
-          if (TabmixTabbar.isMultiRow)
-          {
-            TabmixTabbar.updateScrollStatus();
-          }
-          else
-          {
-            gBrowser.tabContainer.collapsedTabs = 0;
-          }
+          window.TabmixTabbar.updateScrollStatus();
         }
         else
         {
-          gBrowser.mTabContainer.collapsedTabs = 0;
-          TabmixTabbar.updateScrollStatus();
-          gBrowser.mTabContainer.ensureTabIsVisible(selectedGroup.selectedTab._tPos);
-          TabmixTabbar.updateBeforeAndAfter();
+          gBrowser.tabContainer.collapsedTabs = 0;
         }
       }
       else if ("tabBarScrollStatus" in window)
       {
+        //FIXME Check - this appears to be to do with treestyletab and may nodeName
+        //longer be necessary
         gBrowser.mTabContainer.collapsedTabs = 0;
-        tabBarScrollStatus();
+        window.tabBarScrollStatus();
         gBrowser.mTabContainer.ensureTabIsVisible(selectedGroup.selectedTab._tPos);
-        checkBeforeAndAfter();
+        window.checkBeforeAndAfter();
       }
     }
     gBrowser.selectedTab = selectedGroup.selectedTab;
     selectedGroup.unread = false;
   }
-  catch (e)
+  catch (err)
   {
-    TabGroupsManagerJsm.displayError.alertErrorIfDebug(e);
+    TabGroupsManagerJsm.displayError.alertErrorIfDebug(err);
   }
   finally
   {
@@ -339,7 +318,8 @@ TabGroupsManager.EventListener.prototype.onGroupSelect = function(event)
 
 TabGroupsManager.EventListener.prototype.onGroupClick = function(event)
 {
-  var group = event.target.group;
+  const group = event.target.group;
+  //FIXME how can this be null???
   if (group)
   {
     if (event.button == 0)
@@ -382,22 +362,24 @@ TabGroupsManager.EventListener.prototype.onGroupBarClick = function(event)
 {
   switch (event.button)
   {
-  case 0:
-    TabGroupsManager.allGroups.mouseCommand(TabGroupsManager.preferences.groupBarLClick);
-    break;
-  case 1:
-    TabGroupsManager.allGroups.mouseCommand(TabGroupsManager.preferences.groupBarMClick);
-    break;
+    case 0:
+      TabGroupsManager.allGroups.mouseCommand(TabGroupsManager.preferences.groupBarLClick);
+      break;
+
+    case 1:
+      TabGroupsManager.allGroups.mouseCommand(TabGroupsManager.preferences.groupBarMClick);
+      break;
+
+    default:
+      break;
   }
 };
 
 TabGroupsManager.EventListener.prototype.onGroupBarDblClick = function(event)
 {
-  switch (event.button)
+  if (event.button == 0)
   {
-  case 0:
     TabGroupsManager.allGroups.mouseCommand(TabGroupsManager.preferences.groupBarDblClick);
-    break;
   }
 };
 
@@ -409,13 +391,19 @@ TabGroupsManager.EventListener.prototype.onButtonOpenCommand = function(event)
 
 TabGroupsManager.EventListener.prototype.onButtonOpenClick = function(event)
 {
-  if (event.button == 1) TabGroupsManager.allGroups.mouseCommand(TabGroupsManager.preferences.buttonOpenMClick);
+  if (event.button == 1)
+  {
+    TabGroupsManager.allGroups.mouseCommand(TabGroupsManager.preferences.buttonOpenMClick);
+  }
   event.stopPropagation();
 };
 
 TabGroupsManager.EventListener.prototype.onButtonOpenDblClick = function(event)
 {
-  if (event.button == 0) TabGroupsManager.allGroups.mouseCommand(TabGroupsManager.preferences.buttonOpenDblClick);
+  if (event.button == 0)
+  {
+    TabGroupsManager.allGroups.mouseCommand(TabGroupsManager.preferences.buttonOpenDblClick);
+  }
   event.stopPropagation();
 };
 
@@ -427,13 +415,19 @@ TabGroupsManager.EventListener.prototype.onButtonSleepCommand = function(event)
 
 TabGroupsManager.EventListener.prototype.onButtonSleepClick = function(event)
 {
-  if (event.button == 1) TabGroupsManager.allGroups.mouseCommand(TabGroupsManager.preferences.buttonSleepMClick);
+  if (event.button == 1)
+  {
+    TabGroupsManager.allGroups.mouseCommand(TabGroupsManager.preferences.buttonSleepMClick);
+  }
   event.stopPropagation();
 };
 
 TabGroupsManager.EventListener.prototype.onButtonSleepDblClick = function(event)
 {
-  if (event.button == 0) TabGroupsManager.allGroups.mouseCommand(TabGroupsManager.preferences.buttonSleepDblClick);
+  if (event.button == 0)
+  {
+    TabGroupsManager.allGroups.mouseCommand(TabGroupsManager.preferences.buttonSleepDblClick);
+  }
   event.stopPropagation();
 };
 
@@ -445,19 +439,28 @@ TabGroupsManager.EventListener.prototype.onButtonCloseCommand = function(event)
 
 TabGroupsManager.EventListener.prototype.onButtonCloseClick = function(event)
 {
-  if (event.button == 1) TabGroupsManager.allGroups.mouseCommand(TabGroupsManager.preferences.buttonCloseMClick);
+  if (event.button == 1)
+  {
+    TabGroupsManager.allGroups.mouseCommand(TabGroupsManager.preferences.buttonCloseMClick);
+  }
   event.stopPropagation();
 };
 
 TabGroupsManager.EventListener.prototype.onButtonCloseDblClick = function(event)
 {
-  if (event.button == 0) TabGroupsManager.allGroups.mouseCommand(TabGroupsManager.preferences.buttonCloseDblClick);
+  if (event.button == 0)
+  {
+    TabGroupsManager.allGroups.mouseCommand(TabGroupsManager.preferences.buttonCloseDblClick);
+  }
   event.stopPropagation();
 };
 
 TabGroupsManager.EventListener.prototype.onButtonDispMClick = function(event)
 {
-  if (event.button == 1) TabGroupsManager.allGroups.mouseCommand(TabGroupsManager.preferences.buttonDispMClick);
+  if (event.button == 1)
+  {
+    TabGroupsManager.allGroups.mouseCommand(TabGroupsManager.preferences.buttonDispMClick);
+  }
   event.stopPropagation();
 };
 
@@ -483,21 +486,23 @@ TabGroupsManager.EventListener.prototype.onHiddenClosedGroupsMenu = function(eve
 
 TabGroupsManager.EventListener.prototype.contentAreaContextMenuShowHideItems = function()
 {
-  document.getElementById("TabGroupsManagerLinkOpenInNewGroup").hidden = !gContextMenu.onLink;
-  document.getElementById("TabGroupsManagerLinkOpenInSelectedGroup").hidden = !gContextMenu.onLink;
-  document.getElementById("TabGroupsManagerLinkOpenInNewGroupSeparator").hidden = !gContextMenu.onLink;
+  document.getElementById("TabGroupsManagerLinkOpenInNewGroup").hidden =
+    ! gContextMenu.onLink;
+  document.getElementById("TabGroupsManagerLinkOpenInSelectedGroup").hidden =
+    ! gContextMenu.onLink;
+  document.getElementById("TabGroupsManagerLinkOpenInNewGroupSeparator").hidden =
+    ! gContextMenu.onLink;
 };
 
 TabGroupsManager.EventListener.prototype.linkOpenInNewGroup = function()
 {
-  var newTab = TabGroupsManager.overrideMethod.gBrowserAddTab(TabGroupsManager.contextTargetHref);
+  const newTab = TabGroupsManager.overrideMethod.gBrowserAddTab(TabGroupsManager.contextTargetHref);
   TabGroupsManager.allGroups.openNewGroup(newTab);
 };
 
 TabGroupsManager.EventListener.prototype.linkOpenInSelectedGroup = function()
 {
-  var newTab = TabGroupsManager.overrideMethod.gBrowserAddTab(TabGroupsManager.contextTargetHref);
-  var group = TabGroupsManager.allGroups.openNewGroup(newTab);
+  const newTab = TabGroupsManager.overrideMethod.gBrowserAddTab(TabGroupsManager.contextTargetHref);
+  const group = TabGroupsManager.allGroups.openNewGroup(newTab);
   TabGroupsManager.allGroups.selectedGroup = group;
 };
-

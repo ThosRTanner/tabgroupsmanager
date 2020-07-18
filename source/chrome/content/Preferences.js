@@ -8,8 +8,6 @@ TabGroupsManager.Preferences = function()
   try
   {
     this.isMac = navigator.platform.match(/mac/i);
-    this.firefoxAppInfo = Cc["@mozilla.org/xre/app-info;1"].getService(Ci.nsIXULAppInfo);
-    this.versionComparator = Cc["@mozilla.org/xpcom/version-comparator;1"].getService(Ci.nsIVersionComparator);
     this.prefService = Cc["@mozilla.org/preferences-service;1"].getService(Ci.nsIPrefService);
     this.prefRoot = Cc['@mozilla.org/preferences-service;1'].getService(Ci.nsIPrefBranch);
     this.prefBranch = this.prefService.getBranch("extensions.tabgroupsmanager.");
@@ -460,16 +458,6 @@ TabGroupsManager.Preferences.prototype.setButtonType = function(id, value)
       element.type = "";
     }
   }
-};
-
-TabGroupsManager.Preferences.prototype.firefoxVersionCompare = function(target)
-{
-  return this.versionComparator.compare(this.firefoxAppInfo.version, target);
-};
-
-TabGroupsManager.Preferences.prototype.firefoxVersion = function()
-{
-  return this.firefoxAppInfo.version.substr(0, this.firefoxAppInfo.version.indexOf('.'));
 };
 
 TabGroupsManager.Preferences.prototype.addStyleSheet = function(text)
