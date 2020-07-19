@@ -1,5 +1,10 @@
 var EXPORTED_SYMBOLS = ["TabGroupsManagerJsm"];
 
+/*** IMPORTANT NOTE:
+ *
+ * This is a singleton.
+ */
+
 /* globals console */
 Components.utils.import("resource://gre/modules/Console.jsm");
 
@@ -510,8 +515,6 @@ TabGroupsManagerJsm.ApplicationStatus.prototype.modifyGroupId = function (groupD
     groupData.tabs[i] = JSON.stringify(tabData);
   }
 };
-
-//Mozilla doesn't like the search plugins. Removed all code involved...
 
 TabGroupsManagerJsm.SaveData = function ()
 {
@@ -1460,15 +1463,7 @@ TabGroupsManagerJsm.displayError = {
 
   showMessage: function (text)
   {
-    try
-    {
-      Services.console.logStringMessage(text);
-    }
-    catch (ex)
-    {
-      //use Fuel API for Firefox 3.6
-      Application.console.log(text);
-    }
+    Services.console.logStringMessage(text);
   },
 
   alert: function (text)
@@ -1702,19 +1697,6 @@ TabGroupsManagerJsm.QuitApplicationObserver.prototype.quitApplication = function
 
 const Cc = Components.classes;
 const Ci = Components.interfaces;
-
-var Application = null;
-
-try
-{
-  Components.utils.import("resource://gre/modules/Services.jsm");
-  Application = Services.wm.getMostRecentWindow("navigator:browser");
-}
-catch (ex)
-{
-  //use Fuel API for Firefox 3.6
-  Application = Cc["@mozilla.org/fuel/application;1"].getService(Ci.fuelIApplication);
-}
 
 const nsIWindowMediator = Cc["@mozilla.org/appshell/window-mediator;1"].getService(Ci.nsIWindowMediator);
 
