@@ -1,6 +1,8 @@
 # Changes for v 1.1.0 (pre-release)
-* Update contributor list
-* Remove check for old version of tab mix plus.
+* Update contributor list (Issue #29)
+* Remove check for old version of tab mix plus. (Issue #20)
+* Remove checks for older versions of firefox (Issue #17)
+* Fix problem of losing icnons/group names when restoring sessions with multiple windows (Issue #34)
 
 # Changes for v 1.0.1
 * Fix restoring session on palemoon getting tabs in the wrong order. This ended up removing a lot of unnecessary operations, and has made reloading sessions a lot snappier. (Issue #4)
