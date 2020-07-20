@@ -7,6 +7,7 @@ TabGroupsManager.Session = function()
 {
   try
   {
+    this._needs_groups = true;
     this.groupRestored = 0;
     this.sessionRestoring = false;
     this.disableOnSSTabRestoring = false;
@@ -59,19 +60,38 @@ TabGroupsManager.Session.prototype.handleEvent = function(event)
 
 //It looks as though in palemoon, we get
 //1) Busy
-//2) each window being restored
+//2) each tab being restored
 //3) Ready
 //
 //but in basilisk, 3 happens before 2
 //
-//This means we have to restore the group information when we restore the first
-//tab
+//It looks as though session restore works like this:
+//1) send SSWindowStateBusy to "window 0"
+//2) close all but one window (1 and 2 may be swapped)
+//3) In palemoon, send an SSTabRestoring event to the appropriate window for
+//   each tab being restored
+//4) Send an SSWindowStateReady to "window 0"
+//5) in basilisk, send an SSTabRestoring event to the appropriate window for
+//   each tab being restored
+//
+//Note - pm 29 might do the same as basilisk - not sure
+//
+//This means (among other things) we have no idea in window <n> whether windows
+//are being restored. We only know this in "window 0".
+//
+//We do however know if groups have been loaded. It can't happen till the first
+//tab is restored because for window 0, you can't actually access the session
+//manager data till that happens anyway.
+//
+//You cannot load the window's group information when you get the
+//SSWindowStateBusy event, but you can load it on the ready event. Which is OK
+//for basilisk but too late for palemoon.
 //
 TabGroupsManager.Session.prototype.onSSWindowStateBusy = function(event)
 {
 /**/console.log("busy");
   this._restore_count = 0;
-  this._restore_groups = true;
+  this._needs_groups = true;
   this.groupRestored = 0; //FIXME Why is this exposed? why aren't the clients
                           //checking if the session is being restored?
   this.sessionRestoring = true;
@@ -100,7 +120,7 @@ TabGroupsManager.Session.prototype._restore_complete = function()
 
 TabGroupsManager.Session.prototype.onSSTabRestoring = function(event)
 {
-  if (this._restore_groups)
+  if (this._needs_groups)
   {
     //FIXME again, this groupRestored thing. This is sequential so the setting
     //of 1 is pointless. and it doesn't belong to this class anyway.
@@ -114,7 +134,7 @@ TabGroupsManager.Session.prototype.onSSTabRestoring = function(event)
       TabGroupsManagerJsm.displayError.alertErrorIfDebug(err);
     }
     this.groupRestored = 2;
-    this._restore_groups = false;
+    this._needs_groups = false;
   }
 
   if (! this.disableOnSSTabRestoring)
@@ -133,7 +153,7 @@ TabGroupsManager.Session.prototype.moveTabToGroupBySessionStore = function(resto
 {
   try
   {
-    var groupId = this.getGroupId(restoringTab);
+    let groupId = this.getGroupId(restoringTab);
     if (isNaN(groupId))
     {
 /**/console.log("no group???", restoringTab.group)
@@ -146,17 +166,17 @@ TabGroupsManager.Session.prototype.moveTabToGroupBySessionStore = function(resto
     {
       return;
     }
-    var group = TabGroupsManager.allGroups.getGroupById(groupId);
+    let group = TabGroupsManager.allGroups.getGroupById(groupId);
     if (group)
     {
       this.moveTabToGroupWithSuspend(group, restoringTab);
       return;
     }
-    if (null == TabGroupsManagerJsm.applicationStatus.getGroupById(groupId))
+    if (TabGroupsManagerJsm.applicationStatus.getGroupById(groupId) == null)
     {
-      var groupName = this.sessionStore.getTabValue(restoringTab, "TabGroupsManagerGroupName");
-      var group = TabGroupsManager.allGroups.openNewGroupCore(groupId, groupName);
-/**/console.log("unexpected group?", groupId, groupName)
+      const groupName = this.sessionStore.getTabValue(restoringTab, "TabGroupsManagerGroupName");
+      group = TabGroupsManager.allGroups.openNewGroupCore(groupId, groupName);
+/**/console.log("unexpected group?", groupId, groupName, this, window, restoringTab)
       this.moveTabToGroupWithSuspend(group, restoringTab);
       return;
     }
