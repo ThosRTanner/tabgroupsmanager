@@ -1463,7 +1463,7 @@ TabGroupsManagerJsm.displayError = {
 
   showMessage: function (text)
   {
-    Services.console.logStringMessage(text);
+    console.log(text);
   },
 
   alert: function (text)

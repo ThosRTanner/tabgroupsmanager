@@ -45,20 +45,16 @@ TabGroupsManager.addFrameScript = function()
   }
 };
 
-TabGroupsManager.onLoad = function(event)
+TabGroupsManager.onLoad = function(_event)
 {
-  window.removeEventListener("load", arguments.callee, false);
-  //FIXME why the f do we check this?
-  if (document.getElementById("TabGroupsManagerToolbar"))
-  {
-    window.addEventListener("unload", TabGroupsManager.onUnload, false);
-    TabGroupsManager.initialize();
-  }
+  window.removeEventListener("load", arguments.callee);
+  window.addEventListener("unload", TabGroupsManager.onUnload);
+  TabGroupsManager.initialize();
 };
 
-TabGroupsManager.onUnload = function(event)
+TabGroupsManager.onUnload = function(_event)
 {
-  window.removeEventListener("unload", arguments.callee, false);
+  window.removeEventListener("unload", arguments.callee);
   TabGroupsManager.finalize();
 };
 
@@ -111,29 +107,33 @@ TabGroupsManager.initialize = function(event)
     this.apiEnabled = true;
     this.overrideMethod = new this.OverrideMethod();
     this.overrideOtherAddOns = new this.OverrideOtherAddOns();
-    if (("arguments" in window) && window.arguments.length > 2 && window.arguments[1] == "TabGroupsManagerNewWindowWithGroup")
+    //This is for when you manage to drag a whole group into a brand  new window
+    //Having said which, I can't work out how to trigger it.
+    if ("arguments" in window &&
+        window.arguments.length > 2 &&
+        window.arguments[1] == "TabGroupsManagerNewWindowWithGroup")
     {
-      var fromGroupTab = window.arguments[2];
-      var isCopy = window.arguments[3];
+      const fromGroupTab = window.arguments[2];
       if (fromGroupTab.group)
       {
-        var newGroup = this.allGroups.moveGroupToOtherWindow(fromGroupTab, null, isCopy);
+        const newGroup = this.allGroups.moveGroupToOtherWindow(
+          fromGroupTab,
+          null,
+          window.arguments[3]);
         this.allGroups.selectedGroup = newGroup;
         group.close();
       }
     }
 
-    //What values can this be exactly? and why the pause
-    //I do not think we need this vvvvv as far as I can tell, the test it is used
-    //for is spurious.
-    if (TabGroupsManagerJsm.globalPreferences.prefService.getIntPref("browser.startup.page") < 3) setTimeout(function ()
+    //FIXME Why is this delayed?
+    setTimeout(function ()
     {
       TabGroupsManager.initializeAfterOnLoad();
     }, 10);
   }
-  catch (e)
+  catch (err)
   {
-    TabGroupsManagerJsm.displayError.alertErrorIfDebug(e);
+    TabGroupsManagerJsm.displayError.alertErrorIfDebug(err);
   }
 };
 
@@ -142,26 +142,33 @@ TabGroupsManager.initializeAfterOnLoad = function()
   try
   {
     //This is nasty as we're depending on the preferences of another extension
-    if (TabGroupsManagerJsm.globalPreferences.prefService.getBranch("extensions.tabmix.sessions.").getBoolPref("manager"))
+    if (TabGroupsManagerJsm.globalPreferences.prefService.getBranch(
+      "extensions.tabmix.sessions.").getBoolPref("manager", false))
     {
       try
       {
         /**/console.log("kick3");
         this.session.sessionStore.getWindowState(window);
       }
-      catch (e)
+      catch (err)
       {
+        //FIXME - how does this get caused?
+/**/console.log(err)
         this.session.sessionStore.init(window);
       }
     }
+
+    this.tabContextMenu.makeMenu();
+
+    setTimeout(function ()
+    {
+      TabGroupsManager.onLoadDelay1000();
+    }, 1000);
   }
-  catch (e)
-  {}
-  this.tabContextMenu.makeMenu();
-  setTimeout(function ()
+  catch (err)
   {
-    TabGroupsManager.onLoadDelay1000();
-  }, 1000);
+    TabGroupsManagerJsm.displayError.alertIfDebug(err);
+  }
 };
 
 TabGroupsManager.onLoadDelay1000 = function()
