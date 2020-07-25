@@ -123,17 +123,15 @@ TabGroupsManager.initialize = function(event)
       }
     }
 
-    //What values can this be exactly? and why the pause
-    //I do not think we need this vvvvv as far as I can tell, the test it is used
-    //for is spurious.
-    if (TabGroupsManagerJsm.globalPreferences.prefService.getIntPref("browser.startup.page") < 3) setTimeout(function ()
+    //FIXME Why is this delayed?
+    setTimeout(function ()
     {
       TabGroupsManager.initializeAfterOnLoad();
     }, 10);
   }
-  catch (e)
+  catch (err)
   {
-    TabGroupsManagerJsm.displayError.alertErrorIfDebug(e);
+    TabGroupsManagerJsm.displayError.alertErrorIfDebug(err);
   }
 };
 
