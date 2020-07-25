@@ -45,20 +45,16 @@ TabGroupsManager.addFrameScript = function()
   }
 };
 
-TabGroupsManager.onLoad = function(event)
+TabGroupsManager.onLoad = function(_event)
 {
-  window.removeEventListener("load", arguments.callee, false);
-  //FIXME why the f do we check this?
-  if (document.getElementById("TabGroupsManagerToolbar"))
-  {
-    window.addEventListener("unload", TabGroupsManager.onUnload, false);
-    TabGroupsManager.initialize();
-  }
+  window.removeEventListener("load", arguments.callee);
+  window.addEventListener("unload", TabGroupsManager.onUnload);
+  TabGroupsManager.initialize();
 };
 
-TabGroupsManager.onUnload = function(event)
+TabGroupsManager.onUnload = function(_event)
 {
-  window.removeEventListener("unload", arguments.callee, false);
+  window.removeEventListener("unload", arguments.callee);
   TabGroupsManager.finalize();
 };
 
@@ -117,11 +113,13 @@ TabGroupsManager.initialize = function(event)
         window.arguments.length > 2 &&
         window.arguments[1] == "TabGroupsManagerNewWindowWithGroup")
     {
-      var fromGroupTab = window.arguments[2];
-      var isCopy = window.arguments[3];
+      const fromGroupTab = window.arguments[2];
       if (fromGroupTab.group)
       {
-        var newGroup = this.allGroups.moveGroupToOtherWindow(fromGroupTab, null, isCopy);
+        const newGroup = this.allGroups.moveGroupToOtherWindow(
+          fromGroupTab,
+          null,
+          window.arguments[3]);
         this.allGroups.selectedGroup = newGroup;
         group.close();
       }
@@ -154,7 +152,8 @@ TabGroupsManager.initializeAfterOnLoad = function()
       }
       catch (err)
       {
-        console.log(err)
+        //FIXME - how does this get caused?
+/**/console.log(err)
         this.session.sessionStore.init(window);
       }
     }

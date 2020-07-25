@@ -2,7 +2,8 @@
 * Update contributor list (Issue #29)
 * Remove check for old version of tab mix plus. (Issue #20)
 * Remove checks for older versions of firefox (Issue #17)
-* Fix problem of losing icnons/group names when restoring sessions with multiple windows (Issue #34)
+* Fix problem of losing icons/group names when restoring sessions with multiple windows (Issue #34)
+* Fix regression causing missing menus when browser is set to restore tabs/windows (Issue #35)
 
 # Changes for v 1.0.1
 * Fix restoring session on palemoon getting tabs in the wrong order. This ended up removing a lot of unnecessary operations, and has made reloading sessions a lot snappier. (Issue #4)
