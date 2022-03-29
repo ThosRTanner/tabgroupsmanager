@@ -48,6 +48,7 @@ TabGroupsManager.ProgressListenerForGroup.prototype.onStateChange = function(aWe
         //button.setAttribute("oncommand","getBrowserWindow().TabGroupsManager.session.restoreSessionFromAboutSessionRestore(); "+button.getAttribute("oncommand"));
         button.addEventListener("command", function(event)
         {
+          //because getBrowserWindow() doesn't actually exist
           getBrowserWindow().TabGroupsManager.session.restoreSessionFromAboutSessionRestore();
           +button.getAttribute("oncommand");
         }, false);
